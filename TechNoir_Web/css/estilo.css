@@ -1,0 +1,526 @@
+/* 
+(Procurei sempre manter as classes organizadas em relação ao HTML, ou seja começa no .homer e termina no .transição)
+
+TENTE MANTER A LOGICA DE ORGANIZAÇÃO PARA MELHOR LEITURA DO CODIGO 
+
+*/
+
+/* ATRIBUINDO AS TAGS DE CONSTRUÇÃO PADRÕES */
+
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, 'Arial Narrow', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    cursor: default;
+}
+
+body {
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.transicao {
+    display: flex;
+    height: 10vh;
+    background-color: #68B0AB;
+}
+
+/* Atribuindo as características padrões para as classes da HOME */
+
+.homer {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    background-color: #F3DFC1;
+    flex-direction: column;
+}
+
+.navbar {
+    display: flex;
+    height: 10%;
+    justify-content: space-between;
+    width: 100%;
+    background-color: #68B0AB;
+    border-bottom: solid 1px black;
+}
+
+.navlogo {
+    display: flex;
+    width: 20%;
+    justify-content: center;
+    align-items: center;
+}
+
+.navlista {
+    border-left: solid 1px black;
+    border-right: solid 1px black;
+    display: flex;
+    width: 60%;
+    justify-content: center;
+    align-content: center;
+}
+
+.lista {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.navbotoes {
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    width: 20%;
+    justify-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.main {
+    background: url(https://s2.best-wallpaper.net/wallpaper/1920x1440/1908/Malaysia-plantation-tea-hills-green-sunset-clouds_1920x1440.jpg);
+    background-color: rgba(80, 80, 80, 0.778);
+    background-blend-mode: multiply;
+    background-position-y: center;
+    display: flex;
+    height: 80%;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/*Adicionando detalhe no slogan*/
+.main p span {
+    color: #68B0AB
+}
+
+/* Manipulando tags HTML a partir das classes.) */
+
+.navlogo img {
+    height: 90%;
+    width: auto;
+    padding: 5%;
+    padding-bottom: 7%;
+}
+
+.navlogo p {
+    font-size: larger;
+}
+
+.navlogo p:hover{
+    cursor: default;
+}
+
+.lista button {
+    display: flex;
+    border: solid 1px black;
+    width: 20%;
+    height: 60%;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    border-radius: 5px;
+    background-color: rgba(240, 248, 255, 0);
+    font-size: larger;
+}
+
+.lista button:hover{
+    transform: translateY(-1px);
+    transition: 0.5s;
+    box-shadow: 1px 1px 1px #065143;
+    cursor: pointer;
+}
+
+.navbotoes button {
+    font-size: large;
+    width: 55%;
+    height: 70%;
+    border-radius: 30px 15px 30px 15px;
+    border: solid 1px black;
+    background-color: #368F8B;
+    color: #F3DFC1;
+    box-shadow: 2px 2px 2px #065143;
+}
+
+.navbotoes button:hover {
+    transform: translateY(-3px);
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.main p {
+    font-size: 65px;
+    color: white;
+    background-color: rgba(139, 139, 139, 0.315);
+    border-radius: 100px;
+    padding: 10px 50px;
+    letter-spacing: 10px;
+}
+
+.main button {
+    height: 10%;
+    width: 25%;
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+    border: solid 1px white;
+    font-size: xx-large;
+}
+
+.main button:hover{
+    transform: translateY(-5px);
+    transition: 500ms;
+    cursor: pointer;
+    box-shadow: 3px 3px 3px #F3DFC1;
+}
+
+/* FIM DA ESTILIZAÇÃO DAS TAGS DA HOME */
+
+/* INICIO DO PRODUTOS */
+.titulo {
+    text-align: center;
+}
+
+.titulo h2 {
+    font-size: 80px;
+    margin: 0;
+}
+
+.titulo p {
+    font-size: 35px;
+    margin: 0;
+}
+
+.titulo span {
+    color: #8E518D;
+}
+
+.produto {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 80vh;
+    margin: 0;
+    align-items: center;
+    flex-direction: column;
+}
+
+.vintech{
+    background-color: #6A2F39;
+}
+
+.transicaoVT{
+    
+    background-color: #230208;
+    height: 10vh;
+}
+
+.produto .container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 60%;
+    width: 90%;
+    padding: 30px;
+    margin-top: 15px;
+    border: solid 2px #230208;
+    border-radius: 20px;
+    background: url(../img/fundo-videiras.jpg);
+    background-color: rgba(54, 54, 54, 0.459);
+    background-blend-mode: multiply;
+    background-size: cover;
+}
+
+.produto .container:hover{
+    transform: translateY(-5px);
+    box-shadow: 5px 5px 5px #230208;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.produtovt{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 70%;
+    height: 100%;
+    color: white;
+}
+
+.produto .container h2{
+    margin: 0;
+}
+
+.produto .container div{
+    display: flex;
+    height: 100%;
+    width: 30%;
+}
+
+.produto .container img {
+    height: auto;
+    width: auto;
+    border: 20px solid #6b386a9a;
+    background-color: #8e518d;
+    border-radius: 50%;
+    box-shadow: 0 0 2px 15px #723970c2;
+}
+
+.marketing {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border: solid 3px #065143;
+    border-radius: 20px;
+    margin-top: 15px;
+    background-color: #065143;
+    height: 390px;
+    width: 480px;
+    justify-content: center;
+}
+
+.marketing h2 {
+    font-size: 65px;
+    justify-content: center;
+}
+
+.marketing p {
+    font-size: 20px;
+    align-content: center;
+}
+
+.container h2 {
+    font-size: 65px;
+}
+
+.container p {
+    font-size: 20px;
+    align-content: center;
+}
+
+/* FIM DO PRODUTOS */
+
+/* INICIO DO SOBRE NOS */
+
+.Nos {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+
+}
+
+.NosTexto {
+    width: 90%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.NosTexto h1 {
+    display: flex;
+    justify-content: center;
+    font-size: 80px;
+    letter-spacing: 5px;
+}
+
+.NosTexto h2 {
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+    letter-spacing: 5px;
+    gap: 15px;
+}
+
+.Nos span {
+    color: #68B0AB;
+}
+
+.Nos p {
+    font-size: 38px;
+}
+
+/*Social inferna*/
+
+.social {
+    width: 100%;
+    background-color: #368F8B;
+    height: 60vh;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.social .container {
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 100%;
+}
+
+.social .container p {
+    border: solid 1px #F3DFC1;
+    border-radius: 10px;
+    align-items: center;
+    color: #F3DFC1;
+    height: 33vh;
+    padding: 15px;
+    justify-content: center;
+}
+
+.card_valor {
+    display: flex;
+    width: 30%;
+    flex-direction: column;
+    align-items: center;
+}
+.card_valor p{
+    display: flex;
+    text-align: justify;
+}
+.card_visao {
+    display: flex;
+    width: 30%;
+    flex-direction: column;
+    align-items: center;
+}
+.card_visao p{
+    display: flex;
+    text-align: justify;
+}
+.card_missao {
+    display: flex;
+    width: 30%;
+    flex-direction: column;
+    align-items: center;
+}
+.card_missao p{
+    display: flex;
+    text-align: justify;
+}
+.social .transicao{
+    height: 30vh;
+}
+
+/*Fim do social*/
+
+/* Problemas de espaçamento entre algumas divs me incomodaram bastante */
+
+
+/* Quem somos */
+
+.quemSomos {
+    display: flex;
+    width: 100%;
+    height: 80vh;
+    justify-content: space-evenly;
+}
+
+.pessoal {
+    display: flex;
+    width: 30%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.pessoal h2 {
+    margin-bottom: 30px;
+    font-size: 38px;
+}
+
+.pessoal h3 {
+    font-size: 20px;
+}
+
+.cartao{
+    display: flex;
+    height: 6vh;
+    width: 85%;
+    align-items: center;
+    gap: 20px;
+    border: 3px solid black;
+    margin: 10px;
+    padding: 3px;
+}
+
+.cartao img{
+    width: auto;
+    height: 100%;
+    border-radius: 0px;
+
+}
+
+.nossaEquipe {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.nossaEquipe span {
+    color: #065143;
+}
+
+.nossaEquipe h2 {
+    font-size: 120px;
+    display: flex;
+    justify-content: center;
+}
+
+.nossaEquipe h3 {
+    display: flex;
+    justify-content: center;
+}
+
+.nossaEquipe p {
+    letter-spacing: 4px;
+    font-size: 25px;
+    
+}
+
+
+/* FIM DO SOBRE NOS */
+
+/* INICIO DO CONTATE-NOS */
+.footer {
+    display: flex;
+    font-size: 30px;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #368F8B;
+}
+
+.footer h2 {
+    display: flex;
+    justify-content: center;
+}
+
+.redes {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.footer h3 {
+    display: flex;
+    justify-content: center;
+}
+
+/* FIM DO CONTATE-NOS */
+/* Parte do carrosel */
