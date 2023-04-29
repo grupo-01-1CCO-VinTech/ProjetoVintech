@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DashBoard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="icon" href="../img/logo.jpeg" type="image/png">
+    <link rel="stylesheet" href="../css/estiloDashboard.css">
+    <link rel="stylesheet" href="../css/stylecor.css">
+</head>
+
+<!-- Teste -->
+
+<body>
+    <div class="tela-toda">
+        <!-- Barra Lateral -->
+        <div class="barra-lateral">
+            <div class="area-logo">
+                <img src="../img/logo.jpeg" alt=""
+                    style="width: 40px; height: 40px;">
+            </div>
+            <div class="area-botoes">
+                <div class="icone-graficos icone">
+                    <img src="../img/icons8-aumentar-lucros-64.png" style="filter: invert(1);">
+                </div>
+                <div class="icone-platacoes icone">
+                    <img src="../img/icons8-uva-96.png" alt=""
+                     style="filter: invert(1)" onclick="mudaPagina()">
+                </div>
+                <div class="icone-config icone">
+                    <img src="../img/logo-engrenagem.png" alt="" style="filter: invert(1);">
+                </div>
+            </div>
+            <div class="area-logout">
+                <div class="icone-logout icone">
+                    <img src="../img/icons8-sair-50.png" style="filter:invert(1)" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="principal">
+            <div class="container-tempUmid container">
+                <div class="bloco-info" id="bloco_temp">
+                    <div class="titulo-bloco">
+                        <span>Temperatura</span>
+                    </div>
+                    <div class="linha-info">
+                        <div class="info">
+                            <img src="../img/temperatura.png" alt="">
+                        </div>
+                        <div class="info">
+                            <span class="h2"><span id="temperatura_valor_max">24</span>°C</span>
+                            <span class="h2">Máxima</span>
+                        </div>
+                        <div class="info">
+                            <span class="h2"><span id="temperatura_valor_min">18</span>°C</span>
+                            <span class="h2">Mínima</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bloco-metrica" id="bloco_metrica">
+                    <div class="titulo-bloco">
+                        <span>Status da plantação</span>
+                    </div>
+                    <div class="metricas">
+                        <div class="info"> 
+                            <!-- IMAGEM -->
+                            <img src="" alt="">
+                        </div>
+                        <div class="info">
+                            <span class="h1">SOCORRO</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bloco-info" id="bloco_umid">
+                    <div class="titulo-bloco">
+                        <span>Umidade</span>
+                    </div>
+                    <div class="linha-info">
+                        <div class="info">
+                            <img src="../img/umidade.png" alt="">
+                        </div>
+                        <div class="info">
+                            <span class="h2"><span id="umidade_valor_max">48</span>%</span>
+                            <span class="h2">Máxima</span>
+                        </div>
+                        <div class="info">
+                            <span class="h2"><span id="umidade_valor_min">41</span>%</span>
+                            <span class="h2">Mínima</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="container-main container">
+                <div class="coluna coluna-esquerda">
+                    <div class="container area-grafico">
+                        <canvas id="dht11Umidade"></canvas>
+                    </div>
+                    <div class="container area-grafico">
+                        <canvas id="dht11Temperatura"></canvas>
+                    </div>
+                </div>
+                <div class="coluna coluna-direita">
+                    <div class="info-plantacao">
+                        <select name="" id="">
+                            <option value="">Plantação 1</option>
+                            <option value="">Plantação 2</option>
+                            <option value="">Plantação 3</option>
+                        </select>
+                        <div class="linha-form">
+                            <label for="">Área:</label>
+                            <input type="text" disabled value="100km²">
+                        </div>
+                        <div class="linha-form">
+                            <label for="">Tipo de Uva:</label>
+                            <input type="text" disabled value="Pinot Noir">
+                        </div>
+                        <div class="linha-form">
+                            <label for="">Status:</label>
+                            <input type="text" disabled id="txtStatus">
+                        </div>
+                        <div class="linha-form">
+                            <canvas id="graficoBarraDeitado"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>
+<script>
+    function mudaPagina(){
+        location.href = 'index.html'
+    }
+
+    var contextoDht11Umidade = document.getElementById('dht11Umidade').getContext('2d');
+        contextoDht11Umidade.canvas.width = 1000;
+        contextoDht11Umidade.canvas.height = 300;
+        var dht11Umidade = new Chart(
+            contextoDht11Umidade,
+            {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: 'Umidade',
+                        type: 'line',
+                        borderColor: ['#45b3e7'],
+                        backgroundColor: ['#89cff0']
+                    }
+                ]},
+                options: {
+                    scales: {
+                        xAxes: [{
+                            distribution: 'series',
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Umidade'
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    animation: {
+                        duration: 0
+                    }
+                }
+            }
+        );
+
+    // const graficoRosca = document.getElementById('graficoRosca');
+
+    // new Chart(graficoRosca, {
+    //     type: 'doughnut',
+    //     data: {
+    //         labels: ['Sim', 'Não'],
+    //         datasets: [{
+    //             data: [12, 3],
+    //             borderWidth: 1,
+    //             backgroundColor: [
+    //                 '#8E518D',
+    //                 '#38040E'
+    //             ],
+    //             hoverOffset: 5
+    //         }]
+    //     },
+    //     options: {
+
+    //     }
+    // });
+
+    const graficoBarraDeitado = document.getElementById('graficoBarraDeitado');
+
+    new Chart(graficoBarraDeitado, {
+        type: 'bar',
+        data: {
+            labels: ['Ideal', 'Bom', 'Alerta', 'Perigo'],
+            datasets: [{
+                data: [12, 3, 9, 6],
+                borderWidth: 1,
+                backgroundColor: [
+                    '#8FC0A9',
+                    '#C8D5B9',
+                    '#93B5C6',
+                    '#8E518D'
+                ]
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            scales: {
+                x: {
+                    grid: {
+                        display: false
+                    }
+                },
+                y: {
+                    grid: {
+                        display: false
+                    }
+                }
+            }
+        }
+    });
+
+    var contextoDht11Temperatura = document.getElementById('dht11Temperatura').getContext('2d');
+        contextoDht11Temperatura.canvas.width = 1000;
+        contextoDht11Temperatura.canvas.height = 300;
+        var dht11Temperatura = new Chart(
+            contextoDht11Temperatura,
+            {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: "Temperatura",
+                        type: 'line',
+                        borderColor: ['#ff3232'],
+                        backgroundColor: ['#ff7f7f']
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            distribution: 'series',
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Luminosidade'
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    animation: {
+                        duration: 0
+                    }
+                }
+            }
+        );
+    //Aqui está criando dois JSONs para manipulação de dados
+    var paginacao = {};
+    var tempo = {};
+
+    var temp_max_element = document.getElementById('temperatura_valor_max')
+    var temp_min_element = document.getElementById('temperatura_valor_min')
+
+    var umid_max_element = document.getElementById('umidade_valor_max')
+    var umid_min_element = document.getElementById('umidade_valor_min')
+
+    var bloco_temp_element = document.getElementById('bloco_temp')
+    var bloco_umid_element = document.getElementById('bloco_umid')
+
+
+    //Aqui a função de pegar os dados (dados do sensor) da API criada pelo express 
+    function obterDados(grafico, endpoint, max_elem, min_elem, max, min, bloco) {
+        //Aqui vai pegar os valores do localhost:3000/sensores/ENDPOINT e transforma os valores em JSON
+        var http = new XMLHttpRequest();
+        http.open('GET', 'http://localhost:3000/sensores/' + endpoint, false);
+        http.send(null);
+
+        var valores = JSON.parse(http.responseText);
+
+        //Aqui vai ver se o json paginação na posição onde fica o endpoint está sem nada e se não tiver atribui 0
+
+        if (paginacao[endpoint] == null) {
+            paginacao[endpoint] = 0;
+        }
+
+        if (tempo[endpoint] == null) {
+            tempo[endpoint] = 0;
+        }
+
+        // Exibir à partir do último elemento exibido anteriormente
+        var ultimaPaginacao = paginacao[endpoint];
+        paginacao[endpoint] = valores.length;
+        var valores = valores.slice(ultimaPaginacao);
+
+        //para cada valor em valores vai mostrar no gráfico os ultimos 10 valores
+        valores.forEach((valor) => {
+            //Máximo de 60 itens exibidos no gráfico
+            if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
+                grafico.data.labels.shift();
+                grafico.data.datasets[0].data.shift();
+            }
+            grafico.data.labels.push(tempo[endpoint]++);
+            grafico.data.datasets[0].data.push(parseFloat(valor));
+            grafico.update();
+
+            if (valor > Number(max.innerHTML)){
+                max_elem.innerHTML = valor
+            }
+
+            if(valor < Number(min.innerHTML)){
+                min_elem.innerHTML = valor
+            }
+            
+            check(valor, max, min, bloco)
+
+        })
+    }
+
+    function check(valor, max, min, bloco){
+        if (valor > max || valor < min){
+            bloco.style.border = '3px solid red'
+        }
+        else if(valor == max || valor == min){
+            bloco.style.border = '3px solid yellow'
+        }
+        else{
+            bloco.style.border = '3px solid green'
+        }
+    }
+
+    //aqui está rodando as funções a cada um segundo
+    setInterval(() => {
+        obterDados(dht11Umidade , 'dht11/umidade', umid_max_element, umid_min_element, 38, 17, bloco_umid_element);
+        obterDados(dht11Temperatura, 'dht11/temperatura', temp_max_element, temp_min_element, 20, 12, bloco_temp_element);
+        //obterDados(luminosidade, 'luminosidade');
+        //obterDados(lm35Temperatura, 'lm35/temperatura');
+        //obterDados(chave, 'chave');
+    }, 1000);
+</script>

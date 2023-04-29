@@ -1,0 +1,335 @@
+.identado {
+    margin: auto;
+    height: 90%;
+    width: 90%;
+    display: flex;
+    gap: 20px;
+}
+
+.tela-toda {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+/* Barra Lateral */
+
+.barra-lateral {
+    width: 6%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #8E518D;
+    border-right: 5px solid #6e406e;
+}
+
+.area-logo {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: red; */
+}
+.area-logo img {
+    border-radius: 10px;
+}
+
+.area-botoes {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    /* background-color: green; */
+}
+
+.area-logout {
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: blue; */
+}
+
+.icone {
+    width: 40px;
+    height: 40px;
+    background-color: #724071a1;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.area-logout .icone-logout {
+    background-color: #502d4f;
+    box-shadow: 5px 5px 5px rgb(58, 20, 58);
+}
+
+.icone img {
+    width: 40px;
+    height: 40px;
+}
+
+
+
+/* Principal */
+
+.principal {
+    width: 90%;
+    height: 90%;
+    background-color: #160F29;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    /* border: 2px solid red; */
+    margin: auto;
+}
+
+.container {
+    width: 95%;
+    height: 150px;
+    /* background-color: beige; */
+    margin: auto;
+    display: flex;
+}
+
+.container-tempUmid {
+    width: 95%;
+    align-items: center;
+    gap: 25px;
+    justify-content: center;
+    /* border: 2px solid yellow; */
+}
+
+.container-main {
+    height: 60vh;
+    /* background-color: beige; */
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+.bloco-info {
+    width: 29.5%;
+    height: 90%;
+    background-color: #FAF3DD;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    transition: .5s;
+}
+
+.bloco-metrica {
+    width: 29.5%;
+    height: 90%;
+    background-color: #FAF3DD;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    transition: .5s;
+}
+
+.bloco-info:hover{
+    transform: translateY(-5px);
+    transition: .5s;
+}
+
+.coluna {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.coluna-esquerda {
+    height: 100%;
+    width: 55%;
+    display: flex;
+    gap: 25px;
+    /* background-color: red; */
+}
+
+.coluna-direita {
+    height: 100%;
+    width: 35%;
+    background-color: #FAF3DD;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    transition: .5s;
+}
+
+.coluna-direita:hover{
+    transform: translateY(-5px);
+    transition: .5s;
+}
+
+.linha-graficos {
+    background-color: #FAF3DD;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    border-radius: 10px;
+    align-items: center;
+}
+
+.bloco-graficos {
+    width: 31%;
+    height: 100%;
+    background-color: #FAF3DD;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    transition: .5s;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bloco-graficos:hover {
+    transform: translateY(-5px);
+    transition: .5s;
+}
+
+.area-grafico {
+    width: 100%;
+    height: 250px;
+    background-color: #FAF3DD;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    transition: .5s;
+}
+
+.area-grafico:hover {
+    transform: translateY(-5px);
+    transition: .5s;
+}
+
+.linha-info {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    width: 55%;
+    align-items: center;
+    margin: auto;
+    /* background-color: red; */
+}
+.metricas {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    align-items: center;
+    margin: auto;
+    /* background-color: red; */
+}
+
+.metricas .info {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.metricas .info img {
+    width: 85px;
+    height: 85px;
+}
+.metricas .info .h1 {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+
+.linha-info .info {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.linha-info .info .h1 {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.linha-info .info .h2 {
+    text-align: center;
+}
+
+.linha-info .info img {
+    width: 85px;
+    height: 85px;
+}
+
+.titulo-bloco {
+    width: 80%;
+    text-align: center;
+    /* background-color: red; */
+    margin: 0 auto;
+    margin-top: 5px;
+}
+
+#dht11Umidade {
+    width: 90%;
+    height: 100%;
+    margin: auto;
+}
+
+#dht11Temperatura {
+    width: 90%;
+    height: 100%;
+    margin: auto;
+}
+
+.info-plantacao {
+    width: 90%;
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    /* background-color: red; */
+    align-items: center;
+}
+
+.info-plantacao select {
+    width: 80%;
+    height: 50px;
+    text-align: center;
+    font-size: 25px;
+    background-color: transparent;
+    border: 1px solid white;
+}
+
+.info-plantacao select option {
+    font-size: 15px;
+}
+
+.linha-form {
+    display: flex;
+    width: 100%;
+    /* background-color: red; */
+    align-items: center;
+    justify-content: left;
+    font-size: 20px;
+}
+
+.linha-form input {
+    background-color: transparent;
+    border: none;
+    height: 50px;
+    width: 50%;
+    font-size: 20px;
+    text-align: left;
+}
+
+.bloco-graficos .h1{
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: auto;
+}
+
+.bloco-graficos .titulo-bloco{
+    margin-bottom: auto;
+}

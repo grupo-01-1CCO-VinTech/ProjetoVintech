@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="icon" href="../img/logo.jpeg" type="image/png">
+    <link rel="stylesheet" href="../css/estiloIndex.css">
+    <link rel="stylesheet" href="../css/stylecor.css">
+    <title>View - DashBoard</title>
+</head>
+
+<body>
+    <div class="tela-toda">
+        <div class="barra-lateral">
+            <div class="area-logo">
+                <img src="../img/logo.jpeg" alt=""
+                    style="width: 40px; height: 40px;">
+            </div>
+            <div class="area-botoes">
+                <div class="icone-graficos icone">
+                    <img src="../img/icons8-aumentar-lucros-64.png"
+                     style="filter: invert(1);" onclick="mudaPagina()">
+                </div>
+                <div class="icone-platacoes icone">
+                    <img src="../img/icons8-uva-96.png" alt="" style="filter: invert(1)">
+                </div>
+                <div class="icone-config icone">
+                    <img src="../img/logo-engrenagem.png" alt="" style="filter: invert(1);">
+                </div>
+            </div>
+            <div class="area-logout">
+                <div class="icone-logout icone">
+                    <img src="../img/icons8-sair-50.png" style="filter:invert(1)" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="areaCards">
+            <div class="blocoBarra">
+                <input type="text" class="inputPesquisa" placeholder=" | Pesquisa">
+                <div class="areaCardFiltros">
+                    <div class="cardFiltros">
+                        <select id="" class="select">
+                            <option value="">Plantações</option>
+                            <option value="">Plantação 1 - Borgonha</option>
+                            <option value="">Plantação 2 - Viterbo</option>
+                            <option value="">Plantação 2 - Califórnia</option>
+                        </select>
+                    </div>
+                    <div class="cardFiltros">
+                        <select id="" class="select">
+                            <option value="">Tipos de Uvas</option>
+                            <option value="">Pinot Noir</option>
+                            <option value="">Malbec</option>
+                            <option value="">Syrah</option>
+                            <option value="">Merlot</option>
+                            <option value="">Carménère</option>
+                        </select>
+                    </div>
+                    <div class="cardFiltros">
+                        <select id="" class="select">
+                            <option value="">Perigos</option>
+                            <option value="">Temperatura acima do Ideal</option>
+                            <option value="">Umidade Muito Alta</option>
+                            <option value="">Dias Chuvosos</option>
+                            <option value="">Dias com a maior Temperatura</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="blocoCardsGrandes">
+                <div class="cardsGrandes">
+                    <span>Total</span>
+                </div>
+                <div class="cardsGrandes">
+                    <span>Problema</span>
+                </div>
+                <div class="cardRedondo">
+                    <canvas id="graficoRosca"></canvas>
+                </div>
+            </div> -->
+            <div class="pai">
+                <div class="blocoCardTotal">
+                    <div class="cardsGrandes">
+                        <span>Total de Plantações</span>
+                    </div>
+                    <div class="cardsPequenos">
+                        <button><img src="../img/mais.png" alt="Mais" class="imgMais"></button>
+                    </div>
+                    <div class="cardsPequenos">
+                        <span>Plantação 3</span>
+                        <span>50%</span>
+                    </div>
+                </div>
+                <div class="blocoCardTotal">
+                    <div class="cardsGrandes">
+                        <span>Plantações com Problema</span>
+                    </div>
+                    <div class="cardsPequenos">
+                        <span>Plantação 1</span>
+                        <span>42%</span>
+                    </div>
+                    <div class="cardsPequenos">
+                        <span>Plantação 4</span>
+                        <span>71%</span>
+                    </div>
+                </div>
+                <div class="blocoCardTotal">
+                    <div class="cardRedondo">
+                        <canvas id="graficoRosca"></canvas>
+                    </div>
+                    <div class="cardsPequenos">
+                        <span>Plantação 2</span>
+                        <span>38%</span>
+                    </div>
+                    <div class="cardsPequenos">
+                        <span>Plantação 5</span>
+                        <span>25%</span>
+                    </div>
+                </div>
+            </div>
+</body>
+
+</html>
+<script>
+    function mudaPagina(){
+        location.href = 'telaDashboard.html'
+    }
+
+    const graficoRosca = document.getElementById('graficoRosca');
+
+    new Chart(graficoRosca, {
+        type: 'doughnut',
+        data: {
+
+            datasets: [{
+                data: [12, 3],
+                borderWidth: 1,
+                backgroundColor: [
+                    '#8E518D',
+                    '#38040E'
+                ],
+                hoverOffset: 5
+            }]
+        },
+        options: {
+
+        }
+    });
+</script>
