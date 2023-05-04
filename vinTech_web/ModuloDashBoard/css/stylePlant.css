@@ -1,0 +1,102 @@
+@font-face {
+    font-family: NunitoSans;
+    src: url(NunitoSans-VariableFont_YTLC\,opsz\,wdth\,wght.ttf);
+}
+
+
+* {
+    font-family: NunitoSans;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+}
+
+.barraLateral {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    width: 20%;
+    height: 100%;
+    color: snow;
+    background-color: #5903af;
+    border-top-right-radius: 5%;
+    border-bottom-right-radius: 5%;
+}
+
+.logoEmpresa {
+    width: 90%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logoUva {
+    width: 50px;
+    height: 50px;
+}
+
+.nomeEmpresa {
+    font-size: 350%;
+    letter-spacing: 2px;
+    margin-right: 2%;
+}
+
+.botoesTelas {
+    width: 90%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding-left: 15%;
+    justify-content: space-evenly;
+}
+
+.telas {
+    font-size: 175%;
+}
+
+.link-barraLateral{
+    width: 60%;
+}
+.link-barraLateral:hover{
+    border-bottom: 2px white solid;
+}
+
+.link-barraLateral:nth-of-type(2){
+    border-bottom: 2px white solid;
+}
+
+.usuario{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    
+}
+
+.fotoUsuario{
+    background-color: snow;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+.fotoUsuario img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.btnLogout{
+    box-shadow: 10px 10px 10px #5508a2;
+    border: snow 1px solid;
+    padding: 10px;
+    background-color: #5903af;
+    color: snow;
+    font-size: 25px;
+    border-radius: 15px;
+    width: 45%;
+}
