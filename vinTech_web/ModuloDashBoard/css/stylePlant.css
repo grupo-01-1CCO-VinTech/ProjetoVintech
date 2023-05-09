@@ -26,8 +26,6 @@ body {
 
 .pagina {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
     width: 100vw;
     height: 100vh;
 }
@@ -147,17 +145,28 @@ body {
     transition: 500ms;
 }
 
-.telaToda {
-    width: 80vw;
+.container {
+    width: 80%;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+
 }
 
 .header {
     width: 80vw;
-    height: 10vh;
+    height: 15vh;
     display: flex;
     align-items: center;
     flex-direction: column;
+}
+
+.header img {
+    position: fixed;
+    display: flex;
+    width: 5vw;
+    height: auto;
+    transform: translateX(39vw);
 }
 
 .header a {
@@ -177,28 +186,36 @@ body {
 
 .containerCard-Grande {
     display: flex;
-    align-items: center;
-    justify-content: center;
     width: 80vw;
     height: 90vh;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 .cardGrande {
     margin-top: 2%;
-    width: 99%;
-    height: 96%;
+    width: 65%;
+    height: 95%;
     border: #8C52FF solid 0.3vh;
     border-radius: 3vh;
 }
 
-.primeiraColuna {
-    width: 65%;
+.primeiraParte {
+    width: 100%;
     height: 100%;
 }
 
-.primeiraColuna input{
-    width: 95%;
-    height: 7%;
+.areaInput {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.inputPesquisa {
+    width: 90%;
+    height: 60%;
     border-radius: 5vh;
     display: flex;
     text-align: center;
@@ -206,44 +223,160 @@ body {
     padding-left: 20px;
 }
 
-.areaBtn{
-    width: 100%;
+.areaBtn {
+    width: 95%;
     height: 20%;
-    margin-top: 2%;
     display: flex;
     flex-direction: row;
-    text-align: center;
+    justify-content: space-between;
+    align-items: center;
 }
-.areaBtn button{
+
+.areaBtn button {
     width: 10vh;
     height: 10vh;
     background-color: white;
     border: none;
 }
-.areaBtn img{
+
+.areaBtn img {
     width: 10vh;
     height: 10vh;
 }
 
-.areaBtn select{
-    margin-top: 3%;
-    width: 15%;
+select {
+    width: 70%;
     height: 2vw;
     border: #8C52FF 0.2vh solid;
 }
 
-.areaCardsPequenos{
+.selectUva {
+    width: 20%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.selectOrdenar {
+    width: 20%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.areaCardsPequenos {
     width: 100%;
     height: 70%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.cardPequeno {
+    padding-left: 1%;
+    width: 90%;
+    height: 22%;
+    border: solid 0.2vh #8C52FF;
+    border-radius: 1vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ordemCardpequeno {
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ordemCardpequeno img {
+    width: 10vh;
+    height: 10vh;
+}
+
+#title {
+    font-size: 2vh;
+}
+
+.containerGraficos {
+    margin-top: 2%;
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    height: 95%;
+    border: solid 0.2vh #8C52FF;
+    border-radius: 3vh;
+    align-items: center;
     justify-content: space-evenly;
 }
 
-.cardPequeno{
-    margin-left: 3%;
+.graficoBarraHorizontal {
     width: 90%;
-    height: 20%;
-    border: solid 0.2vh #8C52FF;
+    height: 40%;
+    border: solid 0.2vh #150437;
+    display: flex;
+    border-radius: 3vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.graficoBarraHorizontal select {
+    width: 10vw;
+    height: 2vw;
     border-radius: 1vh;
+
+}
+
+.graficoPizza {
+    width: 90%;
+    height: 40%;
+    border: solid 0.2vh #150437;
+    display: flex;
+    border-radius: 3vh;
+    flex-direction: column;
+    align-items: center;
+}
+
+.graficoPizza a {
+    font-size: 2.3vh;
+
+}
+
+.statusImagens {
+    width: 70%;
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: space-evenly;
+}
+
+.status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.status img {
+    width: 5vh;
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.status a{
+    font-size: 2vh;
+    color: rgb(13, 100, 8);
 }
