@@ -1,102 +1,249 @@
 @font-face {
-    font-family: NunitoSans;
-    src: url(NunitoSans-VariableFont_YTLC\,opsz\,wdth\,wght.ttf);
+    font-family: tt-travels;
+    src: url(TTTravelsRegular.otf);
 }
 
+@font-face {
+    font-family: tt-chocolates;
+    src: url(TTChocolatesTrialRegular.otf);
+}
 
 * {
-    font-family: NunitoSans;
+    font-family: tt-chocolates;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
 }
 
 body {
-    margin: 0;
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+}
+
+/* Criação dos elementos da página */
+
+.pagina {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100vw;
     height: 100vh;
 }
 
-.barraLateral {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    width: 20%;
-    height: 100%;
-    color: snow;
-    background-color: #5903af;
-    border-top-right-radius: 5%;
-    border-bottom-right-radius: 5%;
+.barra-lateral {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 20vw;
+    height: 100vh;
+    border-radius: 0px 5vh 5vh 0px;
+    background-color: #5903AF;
+    transition: 1000ms;
 }
 
-.logoEmpresa {
-    width: 90%;
-    height: 20%;
+.barra-logo {
     display: flex;
+    width: 100%;
+    height: 20%;
     justify-content: center;
     align-items: center;
 }
 
-.logoUva {
-    width: 50px;
-    height: 50px;
-}
-
-.nomeEmpresa {
-    font-size: 350%;
-    letter-spacing: 2px;
-    margin-right: 2%;
-}
-
-.botoesTelas {
-    width: 90%;
-    height: 50%;
+.barra-itens {
     display: flex;
-    flex-direction: column;
-    text-align: left;
-    padding-left: 15%;
-    justify-content: space-evenly;
-}
-
-.telas {
-    font-size: 175%;
-}
-
-.link-barraLateral{
-    width: 60%;
-}
-.link-barraLateral:hover{
-    border-bottom: 2px white solid;
-}
-
-.link-barraLateral:nth-of-type(2){
-    border-bottom: 2px white solid;
-}
-
-.usuario{
     width: 100%;
-    height: 30%;
+    height: 40%;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 3.2vh;
+}
+
+.barra-usuario {
+    width: 100%;
+    height: 20%;
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: space-evenly;
-    
+    justify-content: flex-end;
 }
 
-.fotoUsuario{
+.barra-fotoUsuario {
     background-color: snow;
     width: 120px;
     height: 120px;
     border-radius: 50%;
 }
 
-.fotoUsuario img{
+.barra-button {
+    display: flex;
+    width: 100%;
+    height: 5%;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 10%;
+}
+
+.barra-logo img {
+    display: flex;
+    width: 20%;
+    height: auto;
+}
+
+.barra-logo span {
+    font-family: tt-travels;
+    font-size: 5vh;
+    color: white;
+}
+
+.barra-itens #item {
+    border-bottom: solid 0.1vh white;
+}
+
+.barra-itens ul {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    list-style: none;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.barra-itens ul li {
+    display: flex;
+    cursor: pointer;
+    width: 60%;
+}
+
+.barra-itens ul li:hover {
+    cursor: pointer;
+    border-bottom: solid 0.1vh white;
+}
+
+.barra-fotoUsuario img {
     width: 100%;
     height: 100%;
     border-radius: 50%;
+    border: 2px solid #420b76;
 }
 
-.btnLogout{
-    box-shadow: 10px 10px 10px #5508a2;
-    border: snow 1px solid;
-    padding: 10px;
-    background-color: #5903af;
-    color: snow;
-    font-size: 25px;
-    border-radius: 15px;
-    width: 45%;
+.barra-button button {
+    width: 60%;
+    color: white;
+    border: solid 1px white;
+    border-radius: 40px;
+    background-color: #5903af00;
+    font-size: 3vh;
+    transition: 500ms;
+}
+
+.barra-button button:hover {
+    cursor: pointer;
+    transform: translateY(-0.3vh);
+    transition: 500ms;
+}
+
+.telaToda {
+    width: 80vw;
+    height: 100vh;
+}
+
+.header {
+    width: 80vw;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.header a {
+    font-size: 7vh;
+    letter-spacing: 0.2vh;
+}
+
+.header span {
+    font-size: 3vh;
+}
+
+.linhaTitulo {
+    margin-top: 0.2%;
+    width: 80vw;
+    border: 0.3vh dashed #000;
+}
+
+.containerCard-Grande {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80vw;
+    height: 90vh;
+}
+
+.cardGrande {
+    margin-top: 2%;
+    width: 99%;
+    height: 96%;
+    border: #8C52FF solid 0.3vh;
+    border-radius: 3vh;
+}
+
+.primeiraColuna {
+    width: 65%;
+    height: 100%;
+}
+
+.primeiraColuna input{
+    width: 95%;
+    height: 7%;
+    border-radius: 5vh;
+    display: flex;
+    text-align: center;
+    background: url("../img/icons8-pesquisar-48.png") no-repeat left/ 2vw;
+    padding-left: 20px;
+}
+
+.areaBtn{
+    width: 100%;
+    height: 20%;
+    margin-top: 2%;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+}
+.areaBtn button{
+    width: 10vh;
+    height: 10vh;
+    background-color: white;
+    border: none;
+}
+.areaBtn img{
+    width: 10vh;
+    height: 10vh;
+}
+
+.areaBtn select{
+    margin-top: 3%;
+    width: 15%;
+    height: 2vw;
+    border: #8C52FF 0.2vh solid;
+}
+
+.areaCardsPequenos{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.cardPequeno{
+    margin-left: 3%;
+    width: 90%;
+    height: 20%;
+    border: solid 0.2vh #8C52FF;
+    border-radius: 1vh;
 }

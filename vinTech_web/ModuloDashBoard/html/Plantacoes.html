@@ -5,30 +5,107 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../img/logo.jpeg" type="image/png">
     <link rel="stylesheet" href="../Css/stylePlant.css">
     <title>Plantações</title>
 </head>
 
 <body>
-    <style>
-
-
-    </style>
-    <div class="barraLateral">
-        <div class="logoEmpresa">
-            <span class="nomeEmpresa">VinTech</span>
-            <img class="logoUva" src="../Img/Logo-Uva.png" alt="Logo Uva">
-        </div>
-        <div class="botoesTelas">
-            <a class="telas link-barraLateral">Home</a>
-            <a class="telas link-barraLateral">Plantações</a>
-            <a class="telas link-barraLateral">Configurações</a>
-        </div>
-        <div class="usuario">
-            <div class="fotoUsuario">
-                <img src="../Img/usuario.png" alt="Foto Usuário">
+    <div class="pagina">
+        <div class="barra-lateral">
+            <div class="barra-logo">
+                <span>VinTech</span>
+                <img src="../img/Logo-Uva.png" alt="">
             </div>
-            <button class="btn btnLogout">Sair</button>
+            <div class="barra-itens">
+                <ul>
+                    <li>Home</li>
+                    <li id="item">Plantações</li>
+                    <li>Configurações</li>
+                </ul>
+            </div>
+            <div class="barra-usuario">
+                <div class="barra-fotoUsuario">
+                    <img src="../Img/usuario.png" alt="Foto Usuário" class="border">
+                </div>
+            </div>
+            <div class="barra-button">
+                <button onclick="sair()">Sair</button>
+            </div>
+        </div>
+        <div class="telaToda">
+            <div class="header">
+                <a>Suas plantações</a>
+                <span>Listagem de Estufas</span>
+                <span class="linhaTitulo"></span>
+            </div>
+            <div class="containerCard-Grande">
+                <div class="cardGrande">
+                    <div class="primeiraColuna">
+                        <input type="text" placeholder="Digite o nome da Plantação" class="imagem">
+                        <div class="areaBtn">
+                            <button><img src="../img/check-box.png" alt="Botão Tudo OK"></button>
+                            <button><img src="../img/warning.png" alt="Botão Alerta"></button>
+                            <button><img src="../img/cancelar.png" alt="Botão Perigo"></button>
+                            <h3>Por Uva</h3>
+                            <select id="">
+                                <option value="">Tipos de Uvas</option>
+                                <option value="">Pinot Noir</option>
+                                <option value="">Malbec</option>
+                                <option value="">Syrah</option>
+                                <option value="">Merlot</option>
+                                <option value="">Carménère</option>
+                            </select>
+                            <h3 class="titSelect">Ordenar por</h3>
+                            <select id="">
+                                <option value="">Perigos</option>
+                                <option value="">Temperatura acima do Ideal</option>
+                                <option value="">Umidade Muito Alta</option>
+                                <option value="">Dias Chuvosos</option>
+                                <option value="">Dias com a maior Temperatura</option>
+                            </select>
+                        </div>
+                        <div class="areaCardsPequenos">
+                            <div class="cardPequeno">
+                                <h2>Estufa 001</h2>
+                                <h3>Tipo de Uva</h3>
+                                <a>Pinot Noir</a>
+                                <h3>Umidade Atual (%)</h3>
+                                <a>41%</a>
+                                <h3>Temperatura Atual(°C)</h3>
+                                <a>23°C</a>
+                                <h3>Status</h3>
+                                <img src="../img/check-box.png" alt="Botão Tudo OK">
+                            </div>
+                            <div class="cardPequeno">
+                                <a>Estufa 002</a>
+                                <a>Tipo de Uva</a>
+                                <a>Merlot</a>
+                                <a>Umidade Atual (%)</a>
+                                <a>60%</a>
+                                <a>Temperatura Atual(°C)</a>
+                                <a>19°C</a>
+                                <a>Status</a>
+                                <img src="../img/check-box.png" alt="Botão Tudo OK">
+                            </div>
+                            <div class="cardPequeno">
+                                <a>Estufa 003</a>
+                                <a>Tipo de Uva</a>
+                                <a>Pinot Noir</a>
+                                <a>Umidade Atual (%)</a>
+                                <a>41%</a>
+                                <a>Temperatura Atual(°C)</a>
+                                <a>23°C</a>
+                                <a>Status</a>
+                                <img src="../img/check-box.png" alt="Botão Tudo OK">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="segundaColuna">
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
