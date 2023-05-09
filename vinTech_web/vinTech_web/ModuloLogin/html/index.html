@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/login.css">
+    <title>Login - VinTech</title>
+    <link rel="icon" href="../img/logo.jpeg" type="image/png">
+    <script src="../js/login.js"></script>
+</head>
+
+<body>
+ 
+    <!--Inicio do formulario-->
+    <div class="banner">
+        <div class="container">
+            <div class="form">
+                <img src="../img/login_transparente.png" alt="">
+                
+                <h1 class="label">Login</h1>
+                <input type="email" id="txtLogin" placeholder="seulogin@dominio">
+                <span class="errWarning" id="errLogin"></span>
+                <h1 class="label">Senha</h1>
+                <input type="password" id="txtSenha" placeholder="****">   
+                <span class="errWarning" id="errPass"></span>
+                <button class="entrarBotao" onclick="validar()">Entrar</button>
+                <br>
+                <br>
+                <p><span class="span_aqui">Esqueceu a senha?</span></p>
+            </div>
+        </div>
+    </div>
+    <!--Final do formulario-->
+
+</body>
+
+</html>

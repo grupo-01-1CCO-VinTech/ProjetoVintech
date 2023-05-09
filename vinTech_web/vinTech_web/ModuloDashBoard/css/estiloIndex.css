@@ -1,0 +1,226 @@
+
+
+/* Começo da tela index */
+.tela-toda {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+/* Barra Lateral */
+
+.barra-lateral {
+    width: 6%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #8E518D;
+    border-right: 5px solid #6e406e;
+}
+
+.area-logo {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: red; */
+}
+
+.area-botoes {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    /* background-color: green; */
+}
+
+.area-logout {
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: blue; */
+}
+
+.icone {
+    width: 40px;
+    height: 40px;
+    background-color: #724071a1;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.area-logout .icone-logout {
+    background-color: #502d4f;
+    box-shadow: 5px 5px 5px rgb(58, 20, 58);
+}
+
+.icone img {
+    width: 40px;
+    height: 40px;
+}
+/* Fim da Barra Lateral */
+
+/* Começo da input e filtros */
+
+.areaCards {
+    width: 94%;
+    height: 100vh;
+}
+
+.blocoBarra {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    flex-direction: column;
+
+}
+
+
+
+.inputPesquisa {
+    background: url("../img/icons8-pesquisar-48\ \(1\).png") no-repeat left/ 23.8px ;
+    padding-left: 20px;
+    background-color: snow;
+    width: 750px;
+    height: 35px;
+    border-radius: 20px;
+    border-color: #FAF3DD;
+    flex-direction: row;
+}
+
+.areaCardFiltros {
+    margin-top: 10px;
+    display: flex;
+    width: 80%;
+    justify-content: space-evenly;
+}
+
+.cardFiltros {
+    background-color: #FAF3DD;
+    width: 150px;
+    height: 25px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.select{
+    width: 100%;
+    height: 100%;
+    background-color: #160F29;;
+    color: #FAF3DD;
+}
+
+/* .select:hover{
+    transform: translateY(-5px);
+    transition: .5s;
+} */
+
+/* Começo da input e filtros */
+
+
+/* Começo dos Cards de Total e Problemas*/
+.blocoCardTotal{
+    width: 400px;
+    height: 600px;
+    justify-content: space-evenly;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.pai{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+}
+
+.cardsGrandes {
+    background-color: #FAF3DD;
+    width: 300px;
+    height: 150px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardsGrandes:hover{
+    transform: translateY(-5px);
+    transition: .5s;
+}
+
+
+.cardRedondo{
+    background-color: #FAF3DD;
+    width: 150px;
+    height: 150px;
+    border-radius: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardRedondo:hover{
+    transform: translateY(-5px);
+    transition: .5s;
+}
+
+#graficoRosca{
+    width: 80%;
+    height: 80%;
+    margin: auto;
+}
+
+/* Fim dos Card de Total e Problemas*/
+
+/* Começo dos Cards pequenos */
+
+.areaCardsPequenos{
+    display: flex;
+    width: 100%;
+    height: 175px;
+    justify-content: space-evenly;
+}
+
+
+.cardsPequenos{
+    background-color: #FAF3DD;
+    width: 250px;
+    height: 150px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.cardsPequenos:hover{
+    transform: translateY(-5px);
+    transition: .5s;
+}
+
+button{
+    background-color: #FAF3DD;
+    border-color: #FAF3DD;
+    border: none;  
+    
+}
+
+.imgMais{
+    width: 100px;
+    height: 100px;
+    background-color: #FAF3DD;
+    border-color: #FAF3DD;
+}
+
+/*  Fim dos Cards pequenos */
+

@@ -1,0 +1,94 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+.header{
+    width: 100%;
+    background-color:#368F8B;
+    border-bottom:solid 3px #368F8B ;
+}
+.header h1{
+    color:#F3DFC1;
+    
+}
+.Navegar{
+    color:#F3DFC1;
+    list-style: none;
+    width: 300px;
+    display: flex;
+    justify-content: space-around;
+}
+.container{
+    display: flex;
+    width: 80%;
+    margin: auto;
+}
+.header .container{
+    justify-content: space-between;
+    align-items: center;
+}
+/*Fim do header*/
+.banner{
+    width: 100%;
+    height: 450px;
+    background-image: url(img/Predaiada_site.avif );
+}
+.banner .container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.banner .container p{
+    color: white;
+    font-size: 30px;
+    width: 300px;
+}
+p span{
+    font-weight: 1000;
+    color: #246A73;
+}
+/*Fim do banner*/
+.produto{
+    width: 100%;
+    height: 370px;
+}
+.produto .container{
+    flex-direction: column;
+    align-items: center;
+    border: solid 3px #065143;
+    border-radius: 20px;
+    margin-top: 15px;
+    background-color: #065143;
+    height:350px;
+    width: 360px;
+}
+.container h1{
+    color: #F3DFC1;
+}
+.container p{
+    color:white;
+    font-size: x-large;
+}
+/*Fim do produto*/
+.social{
+    width: 100%;
+    background-color:#368F8B;
+}
+.social .container p{
+    align-items: center;
+    color: #F3DFC1;
+}
+.card{
+    justify-content: center;
+}
+.social .container{
+    justify-content: space-evenly;
+    padding: 20px 5px;
+}
+.card h1{
+    color: white;
+}
