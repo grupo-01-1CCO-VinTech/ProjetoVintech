@@ -1,18 +1,3 @@
-/* Definindo características padrões */
-
-@font-face {
-    font-family: roboto-mono;
-    src: url(RobotoMono-VariableFont_wght.ttf);
-}
-
-*{
-border: 0;
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, 'Arial Narrow', Arial, sans-serif;
-}
-
 /* Definindo as classes e seus atributos */
 
 .pai{
