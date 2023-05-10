@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - DashBoard</title>
+    <link rel="icon" type="image/png" href="../img/vintech.jpg">
+    <link rel="stylesheet" href="styledb.css">
+</head>
+
+<body>
+    <div class="pagina">
+        <div class="barra-lateral">
+            <div class="barra-logo">
+                <span>VinTech</span>
+                <img src="../img/vintech.jpg" alt="">
+            </div>
+            <div class="barra-itens">
+                <ul>
+                    <li>Home</li>
+                    <li>Plantações</li>
+                    <li id="item">Configurações</li>
+                </ul>
+            </div>
+            <div class="barra-usuario">
+                <div class="barra-fotoUsuario">
+                    <img src="../Img/usuario.png" alt="Foto Usuário">
+                </div>
+            </div>
+            <div class="barra-button">
+                <button onclick="sair()">Sair</button>
+            </div>
+        </div>
+        <div class="container">
+            <div class="superior">
+            <div class="superior_esquerda">
+                <div class="titulo">
+                    <h1>
+                        Informações de hoje
+                    </h1>
+                    <span>
+                        27/04/2023
+                    </span>
+                </div>
+                <div class="caixas">
+                   <div class="caixa">
+                    <h3>Estufas em perigo</h3>
+                    <span> 33 </span>
+                   </div>
+                   <div class="caixa">
+                    <h3>
+                        Estufas em alerta
+                    </h3> 
+                    <span>26</span>
+                   </div>
+                   <div class="caixa">
+                    <h3>
+                        Estufas em estado ideal
+                    </h3> 
+                    <span>41</span>
+                   </div>
+                </div>
+            </div> 
+            <div class="superior_direita">
+                <div class="top_estufas">
+                    <h2>
+                        Top estufas
+                    </h2>
+                    <div class="lista">
+                             <div class="linha-lista">
+                            <li>Estufa 2</li>
+                            <div id="imagem"><img src="/img/cancelar.png"></div>
+                        </div>
+                        <div class="linha-lista">
+                            <li>Estufa 3</li>
+                            <img src="/img/warning.png">
+                        </div>
+                        <div class="linha-lista">
+                            <li>Estufa 4</li>
+                            <img src="/img/warning.png">
+                        </div>
+                        <div class="linha-lista">
+                            <li>Estufa 5</li>
+                            <img src="img/check-box.png">
+                        </div>
+                        <div class="linha-lista">
+                            <li>Estufa 6</li>
+                            <img src="img/check-box.png">
+                        </div>
+                        <div class="linha-lista">
+                            <li>Estufa 7</li>
+                            <img src="img/check-box.png">
+                        </div>
+                        <div class="linha-lista">
+                            <li>Estufa 8</li>
+                            <img src="img/check-box.png">
+                        </div>
+                        <div class="linha-lista">
+                            <li>Estufa 13</li>
+                            <img src="img/check-box.png">
+                        </div>
+                        </div>
+                </div>
+            </div>  
+        </div> 
+        <div class="divisoria">
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        </div>
+        <div class="inferior">
+            <div class="inferior_esquerda">
+            <div class="grafico">
+                <div class="titulo_grafico">
+                <h2>
+                    Estufa excelente
+                </h2>    
+                </div>
+                 <canvas id="excelente"></canvas></div>
+            <div class="segundo_grafico">
+                <div class="titulo_grafico">
+                   <h2>
+                    Estufa péssima
+                </h2>    
+                </div>
+              <canvas id="péssimo"></canvas></div>                
+            </div>
+            <div class="inferior_direita">
+            <div class="uvas_cultivo">
+                <h3>
+                    Uvas em cultivo
+                </h3>
+                <h2>Estufa 11</h2>
+                <div class="lista_uvas">
+                    <ul>Garménère</ul>
+                    <ul>Syrah</ul>
+                    <ul>Tempranillo</ul>
+                    <ul>Malbec</ul>
+                    <ul>Merlot</ul>
+                    <ul>Chardonnay</ul>
+                    <ul>Sauvignon Blanc</ul>
+                    <ul>Pinot Noir</ul>
+                </div>
+            </div>
+            </div>
+        </div>
+                
+</body>
+
+</html>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js">
+</script>
+<script>
+const ctx = document.getElementById('excelente')
+
+new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js">
+</script>
+<script>
+const ctx_2 = document.getElementById('péssimo')
+
+new Chart(ctx_2, {
+    type: 'line',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
