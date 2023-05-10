@@ -1,10 +1,10 @@
 @font-face {
     font-family: tt-travels;
-    src: url(TTTravelsRegular.otf);
+    src: url(fontes/TTTravelsRegular.otf);
 }
 @font-face {
     font-family: tt-chocolates;
-    src: url(TTChocolatesTrialRegular.otf);
+    src: url(fontes/TTChocolatesTrialRegular.otf);
 }
 *{
     font-family: tt-chocolates;
