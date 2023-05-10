@@ -1,22 +1,11 @@
-  @import url('https://fonts.googleapis.com/css2?family=Cousine&family=Fraunces:wght@100&family=Mallanna&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Cousine&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Cousine&family=Josefin+Sans:wght@100&display=swap');
-
-  html {
+html {
     scroll-behavior: smooth;
-    overflow-x: hidden; 
-  }
-  * {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
 }
 
 a {
     text-decoration: none;
     color: #ffffff;
-}
-
-body {
-    margin: 0%;
 }
 
 /*Formatação da navbar*/
@@ -26,9 +15,9 @@ body {
     border-bottom: 1px solid #ffffff;
 }
 
-li{
+li {
     font-family: 'Fraunces', serif;
-    font-size:3vh;
+    font-size: 3vh;
     margin-left: 2vh;
 }
 
@@ -62,7 +51,7 @@ li{
     height: 100vh;
     background-image: url(../img/HomeAgoraVai.png);
     background-attachment: fixed;
-    background-size:cover;
+    background-size: cover;
 }
 
 .banner .container {
@@ -73,20 +62,20 @@ li{
     flex-direction: column;
 }
 
-.banner h1{
+.banner h1 {
     font-family: 'Josefin Sans', sans-serif;
     font-size: 10vh;
     margin: 0;
 }
 
-.banner p{
+.banner p {
     font-family: 'Comfortaa', cursive;
     font-size: 5vh;
 
 }
 
 /*Inicio botão entrar*/
-.entrar{
+.entrar {
     background-color: #ffffff;
     width: 20%;
     height: 8%;
@@ -99,54 +88,55 @@ li{
 /*Final do banner*/
 
 /*Inicio tela saiba mais*/
-.saibaMais{
+.saibaMais {
     width: 100%;
     height: 100vh;
     background-image: url(../img/About.png);
     background-attachment: fixed;
-    background-size:cover;
+    background-size: cover;
     display: flex;
 }
 
-.saibaMais .container{
+.saibaMais .container {
     justify-content: space-between;
     height: 100%;
     width: 98%;
 }
 
-.textoCol1{
+.textoCol1 {
     text-align: left;
 }
 
-.coluna1{
+.coluna1 {
     margin-left: 3vh;
 }
 
-#item1{
+#item1 {
     color: #5105BD;
     padding-top: 1vh;
     font-size: 4.5vh;
     width: 80vh;
 }
 
-#item2{
+#item2 {
     color: #393a22;
-    font-size: 3.5vh;;
+    font-size: 3.5vh;
+    ;
     font-weight: 400;
     padding-top: 12vh;
     width: 70vh;
 }
 
-#item2 h2{
+#item2 h2 {
     color: #383a24;
     font-size: 5vh;
 }
 
-.textoCol2{
+.textoCol2 {
     text-align: left;
 }
 
-#item3{
+#item3 {
     color: #393a22;
     font-size: 3.5vh;
     font-weight: 400;
@@ -155,11 +145,11 @@ li{
     width: 80vh;
 }
 
-#item3 h2{
+#item3 h2 {
     color: #383a24;
 }
 
-#item4{
+#item4 {
     color: #393a22;
     font-size: 3.2vh;
     font-weight: 400;
@@ -169,29 +159,29 @@ li{
     border-radius: 0vh 5vh;
 }
 
-#item4 h2{
+#item4 h2 {
     color: #383a24;
 }
 
 /*Final tela saiba mais*/
 
 /* Começo simule aqui */
-.simule{
+.simule {
     display: flex;
     height: 100%;
     width: 100%;
-    background-image:linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.9)), url(../img/imgVintech/uva_coluna.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.9)), url(../img/imgVintech/uva_coluna.jpg);
     background-repeat: no-repeat;
     background-size: 40% 100vh;
 }
 
-.simule .container{
+.simule .container {
     justify-content: space-between;
     height: 100%;
-    width: 100%; 
+    width: 100%;
 }
 
-.simule .txt_simule{
+.simule .txt_simule {
     text-align: center;
     height: 100vh;
     width: 60%;
@@ -204,13 +194,14 @@ li{
     text-align: center;
     font-size: 3vh;
 }
-.simule .txt_simule ::placeholder{
+
+.simule .txt_simule ::placeholder {
     color: #383a24;
     font-size: 3vh;
     text-align: center;
 }
 
-.simule .txt_simule h2{
+.simule .txt_simule h2 {
     text-align: left;
     color: white;
     margin-left: 11vh;
@@ -219,18 +210,18 @@ li{
     margin-bottom: 3vh;
 }
 
-.simule p{
+.simule p {
     width: 90vh;
     font-size: 4.5vh;
     color: #393a22;
 }
 
-.simule span{
+.simule span {
     width: 40vh;
     text-align: left;
 }
 
-.simule .input{
+.simule .input {
     background-color: #ffffff;
     display: flex;
     width: 90vh;
@@ -239,7 +230,7 @@ li{
     justify-content: space-between;
 }
 
-.simule input{
+.simule input {
     border: 0px;
     border-radius: 10vh;
     width: 79vh;
@@ -247,7 +238,7 @@ li{
     font-size: 5vh;
 }
 
-.simule .quadrado{
+.simule .quadrado {
     background-color: gray;
     border-radius: 4vh;
     height: 8vh;
@@ -257,7 +248,7 @@ li{
     line-height: 8vh;
 }
 
-.simule button{
+.simule button {
     height: 10vh;
     width: 50vh;
     border-radius: 6vh;
@@ -265,69 +256,70 @@ li{
     font-size: 3vh;
     background-color: rgb(253, 253, 233);
 }
+
 /* Final simule aqui */
 
 /* Começo Feito para você */
 
-.feito_voce{
+.feito_voce {
     height: 100vh;
     width: 100%;
     background-image: url(../img/imgVintech/vintech_bege.png);
     background-size: 100% 100vh;
 }
 
-.feito_voce .container{
+.feito_voce .container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.feito_voce .texto{
+.feito_voce .texto {
     text-align: center;
 }
 
-.feito_voce .texto h1{
+.feito_voce .texto h1 {
     font-size: 7vh;
     color: #ffffff;
     font-family: 'Times New Roman', Times, serif;
 }
 
-.feito_voce .texto span{
+.feito_voce .texto span {
     font-size: 4vh;
     color: #705f53;
 }
 
-.feito_voce .Ncards{
+.feito_voce .Ncards {
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
 
-.feito_voce .card{
+.feito_voce .card {
     margin-top: 5vh;
     text-align: center;
     height: 55vh;
-    width: 35vh; 
+    width: 35vh;
     background-color: #ffffff;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.feito_voce .detalhe{
+.feito_voce .detalhe {
     background-image: url(../img/detalhe.png);
     background-size: cover;
     width: 35vh;
     height: 6vh;
 }
 
-.feito_voce h2{
+.feito_voce h2 {
     font-size: 8vh;
     color: #ddbea8;
     font-family: 'Times New Roman', Times, serif;
 }
 
-.feito_voce p{
+.feito_voce p {
     font-size: 2.5vh;
 }
 
@@ -335,27 +327,27 @@ li{
 
 /* Começo Fale Conosco */
 
-.fale_conosco{
+.fale_conosco {
     display: flex;
     height: 100%;
     width: 100%;
-    background-image:linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.9)), url(../img/imgVintech/uva_vermelha.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.9)), url(../img/imgVintech/uva_vermelha.jpg);
     background-color: black;
     background-size: 90% 100vh;
     background-repeat: no-repeat;
     background-position: right;
 }
 
-.fale_conosco .container{
+.fale_conosco .container {
     justify-content: start;
     height: 100%;
-    width: 100%; 
+    width: 100%;
 }
 
-.fale_conosco .txt_fale{
+.fale_conosco .txt_fale {
     height: 100vh;
     width: 55%;
-    background-image:url(../img/imgVintech/vintech_branco.png);
+    background-image: url(../img/imgVintech/vintech_branco.png);
     background-attachment: fixed;
     background-size: 100% 100vh;
     background-repeat: no-repeat;
@@ -367,39 +359,40 @@ li{
     color: rgb(63, 63, 63);
 }
 
-.fale_conosco .txt_fale h2{
+.fale_conosco .txt_fale h2 {
     font-family: 'Times New Roman', Times, serif;
     font-size: 10vh;
     color: #c03124;
     margin-top: 15vh;
 }
 
-.fale_conosco p{
+.fale_conosco p {
     width: 40vh;
     font-size: 4vh;
-} 
+}
 
-.fale_conosco .txt_fale a{
+.fale_conosco .txt_fale a {
     color: rgb(63, 63, 63);
     font-size: 4vh;
 }
 
-.fale_conosco img{
+.fale_conosco img {
     height: 7vh;
     width: 7vh;
     color: #c03124;
 }
 
-.fale_conosco .icones_fale{
+.fale_conosco .icones_fale {
     width: 50%;
     display: flex;
     justify-content: center;
     justify-content: space-evenly;
 }
 
-.fale_conosco span{
+.fale_conosco span {
     font-size: 4vh;
 }
+
 /*Final social*/
 /*Inicio*/
 .footer .container {
@@ -412,15 +405,16 @@ li{
 
 /* palavras especificas */
 
-.roxo_escuro{
+.roxo_escuro {
     color: #28015e;
 }
 
-.roxo{
+.roxo {
     margin-top: 8vh;
     color: #1a013b;
 }
 
-.escuro{
-    color: #383a24;;
+.escuro {
+    color: #383a24;
+    ;
 }
