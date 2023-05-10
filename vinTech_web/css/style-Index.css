@@ -170,7 +170,7 @@ li {
     display: flex;
     height: 100%;
     width: 100%;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.9)), url(../img/imgVintech/uva_coluna.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.9)), url(../img/uva_coluna.jpg);
     background-repeat: no-repeat;
     background-size: 40% 100vh;
 }
@@ -185,7 +185,7 @@ li {
     text-align: center;
     height: 100vh;
     width: 60%;
-    background-image: url(../img/imgVintech/VinTech.png);
+    background-image: url(../img/VinTech.png);
     background-size: 200% 100vh;
     background-repeat: no-repeat;
     display: flex;
@@ -264,7 +264,7 @@ li {
 .feito_voce {
     height: 100vh;
     width: 100%;
-    background-image: url(../img/imgVintech/vintech_bege.png);
+    background-image: url(../img/vintech_bege.png);
     background-size: 100% 100vh;
 }
 
@@ -331,7 +331,7 @@ li {
     display: flex;
     height: 100%;
     width: 100%;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.9)), url(../img/imgVintech/uva_vermelha.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.9)), url(../img/uva_vermelha.jpg);
     background-color: black;
     background-size: 90% 100vh;
     background-repeat: no-repeat;
@@ -347,7 +347,7 @@ li {
 .fale_conosco .txt_fale {
     height: 100vh;
     width: 55%;
-    background-image: url(../img/imgVintech/vintech_branco.png);
+    background-image: url(../img/vintech_branco.png);
     background-attachment: fixed;
     background-size: 100% 100vh;
     background-repeat: no-repeat;
