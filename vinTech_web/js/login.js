@@ -34,7 +34,7 @@ function validar() {
     }
     // verifica Erro
     if(erro == false){
-        location.href = '../../ModuloDashBoard/html/index.html'
+        location.href = 'telaDashboard.html'
     }
 }
 
