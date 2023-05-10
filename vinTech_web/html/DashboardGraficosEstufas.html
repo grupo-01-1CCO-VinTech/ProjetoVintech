@@ -6,6 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../img/logo.jpeg" type="image/png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+    <link rel="stylesheet" href="../css/style-PadraoDashboard.css">
+    <link rel="stylesheet" href="../css/style-PadraoTodos.css">
     <link rel="stylesheet" href="../css/style-GraficoEstufas.css">
     <title>Página estufa</title>
 </head>
@@ -48,29 +53,136 @@
             <div class="main_tela">
                 <div class="esquerda">
                     <div class="grafico_temp">
-
+                        <h1>Temperatura</h1>
+                        <section style="width: 100%;">
+                            <canvas id="dht11Temperatura"></canvas>
+                        </section>
                     </div>
                     <div class="grafico_umidade">
-    
+                        <h1>Umidade</h1>
+                        <section style="width:100%">
+                            <canvas id="dht11Umidade"></canvas>
+                        </section>
                     </div>
                 </div>
-                
-                <div class="esquerda">
-                    <div class="atual">
 
+                <div class="direita">
+                    <div class="atual">
+                        <h1>Atual</h1>
+                        <div class="atual_ambos">
+                            <div class="atual_umidade">
+                                <img src="../img/GraficosEstufas_gotas.png">
+                                <h2><span>78</span>%</h2>
+                            </div>
+                            <div class="atual_temp">
+                                <img src="../img/GraficosEstufas_temp.png">
+                                <h2><span>18</span>°C</h2>
+                            </div>
+                        </div>
+                        <div class="descricao">
+                            <div> Umidade</div>
+                            <div> Temperatura</div>
+                        </div>
                     </div>
                     <div class="informacoes">
+                        <h1>Informações</h1>
                         <div class="info_estufa">
-                            
+                            Tipo uva: <span id="tipo_uva"></span>
+                            ID estufa: <span id="numero_estufa"></span>
+                            Status: <span id="status"></span>
+                            Jonas: <span id=""></span>
                         </div>
                         <div class="info_dados">
-                            
+                            Temp. máxima: <span id="temp_max"></span>
+                            Umid. máxima: <span id="umidade_max"></span>
+                            Jonas papers: <span id=""></span>
+                            Jonas: <span id=""></span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    <!--Final do container-->
+        <!--Final do container-->
 </body>
 
 </html>
+
+<script>
+    var contextoDht11Umidade = document.getElementById('dht11Umidade').getContext('2d');
+    contextoDht11Umidade.canvas.width = 1000;
+    contextoDht11Umidade.canvas.height = 300;
+    var dht11Umidade = new Chart(
+        contextoDht11Umidade, {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: 'Umidade',
+                    type: 'line',
+                    borderColor: ['#45b3e7'],
+                    backgroundColor: ['#89cff0']
+                }]
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        distribution: 'series',
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }],
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Umidade'
+                        },
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                },
+                animation: {
+                    duration: 0
+                }
+            }
+        }
+    );
+    /* -- dht11Temperatura -- */
+    var contextoDht11Temperatura = document.getElementById('dht11Temperatura').getContext('2d');
+    contextoDht11Temperatura.canvas.width = 1000;
+    contextoDht11Temperatura.canvas.height = 300;
+    var dht11Temperatura = new Chart(
+        contextoDht11Temperatura, {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: "Temperatura",
+                    type: 'line',
+                    borderColor: ['#ff3232'],
+                    backgroundColor: ['#ff7f7f']
+                }]
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        distribution: 'series',
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }],
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Luminosidade'
+                        },
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                },
+                animation: {
+                    duration: 0
+                }
+            }
+        }
+    );
+</script>
