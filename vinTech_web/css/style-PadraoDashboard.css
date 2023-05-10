@@ -1,18 +1,20 @@
-body{
+body {
     display: flex;
     flex-direction: row;
     background-color: white;
 }
+
 /* Criação dos elementos da página */
 
-.pagina{
+.pagina {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100vw;
     height: 100vh;
 }
-.barra-lateral{
+
+.barra-lateral {
     display: flex;
     position: relative;
     flex-direction: column;
@@ -23,14 +25,16 @@ body{
     background-color: #5903AF;
     transition: 1000ms;
 }
-.barra-logo{
+
+.barra-logo {
     display: flex;
     width: 100%;
     height: 20%;
     justify-content: center;
     align-items: center;
 }
-.barra-itens{
+
+.barra-itens {
     display: flex;
     width: 100%;
     height: 40%;
@@ -39,7 +43,8 @@ body{
     color: white;
     font-size: 3.2vh;
 }
-.barra-usuario{
+
+.barra-usuario {
     width: 100%;
     height: 20%;
     display: flex;
@@ -47,13 +52,15 @@ body{
     flex-direction: column;
     justify-content: flex-end;
 }
-.barra-fotoUsuario{
+
+.barra-fotoUsuario {
     background-color: snow;
     width: 120px;
     height: 120px;
     border-radius: 50%;
 }
-.barra-button{
+
+.barra-button {
     display: flex;
     width: 100%;
     height: 5%;
@@ -61,20 +68,24 @@ body{
     align-items: flex-end;
     padding: 10%;
 }
-.barra-logo img{
+
+.barra-logo img {
     display: flex;
     width: 20%;
     height: auto;
 }
-.barra-logo span{
+
+.barra-logo span {
     font-family: tt-travels;
     font-size: 5vh;
     color: white;
 }
-.barra-itens #item{
+
+.barra-itens #item {
     border-bottom: solid 0.1vh white;
 }
-.barra-itens ul{
+
+.barra-itens ul {
     display: flex;
     height: 100%;
     flex-direction: column;
@@ -83,21 +94,25 @@ body{
     justify-content: space-evenly;
     width: 100%;
 }
-.barra-itens ul li{
+
+.barra-itens ul a {
     display: flex;
     cursor: pointer;
     width: 60%;
 }
-.barra-itens ul li:hover{
+
+.barra-itens ul a:hover {
     cursor: pointer;
     border-bottom: solid 0.1vh white;
 }
-.barra-fotoUsuario img{
+
+.barra-fotoUsuario img {
     width: 100%;
     height: 100%;
     border-radius: 50%;
 }
-.barra-button button{
+
+.barra-button button {
     width: 60%;
     color: white;
     border: solid 1px white;
@@ -106,7 +121,8 @@ body{
     font-size: 3vh;
     transition: 500ms;
 }
-.barra-button button:hover{
+
+.barra-button button:hover {
     cursor: pointer;
     transform: translateY(-0.3vh);
     transition: 500ms;
