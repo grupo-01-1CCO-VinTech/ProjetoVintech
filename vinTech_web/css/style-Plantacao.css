@@ -322,7 +322,7 @@ select {
     align-items: center;
 }
 
-.cardPequeno h2{
+.cardPequeno a{
     color: black;
     text-decoration: none;
 }
