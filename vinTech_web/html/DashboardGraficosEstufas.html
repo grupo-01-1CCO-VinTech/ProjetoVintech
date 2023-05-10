@@ -87,16 +87,17 @@
                     <div class="informacoes">
                         <h1>Informações</h1>
                         <div class="info_estufa">
-                            Tipo uva: <span id="tipo_uva"></span>
-                            ID estufa: <span id="numero_estufa"></span>
-                            Status: <span id="status"></span>
-                            Jonas: <span id=""></span>
+                            <p class="info-item">Plantação:</p> <span id="plantacao">01</span>
+                            <p class="info-item">ID estufa:</p> <span id="numero_estufa">001</span>
+                            <p class="info-item">Tipo uva:</p> <span id="tipo_uva">Pinot Noir</span>
+                            <p class="info-item">Status:</p> <span id="status">Ótimo</span>
                         </div>
                         <div class="info_dados">
-                            Temp. máxima: <span id="temp_max"></span>
-                            Umid. máxima: <span id="umidade_max"></span>
-                            Jonas papers: <span id=""></span>
-                            Jonas: <span id=""></span>
+                            <p class="info-item">Temperatura máxima:</p> <span id="temp_max">43</span>
+                            <p class="info-item">Temperatura mínima:</p> <span id="temp_min">15</span>
+
+                            <p class="info-item">Umidade máxima:</p> <span id="umidade_max">75</span>
+                            <p class="info-item">Umidade mínima:</p> <span id="umidade_min">22</span>
                         </div>
                     </div>
                 </div>
@@ -113,38 +114,38 @@
     contextoDht11Umidade.canvas.height = 300;
     var dht11Umidade = new Chart(
         contextoDht11Umidade, {
-            type: 'line',
-            data: {
-                datasets: [{
-                    label: 'Umidade',
-                    type: 'line',
-                    borderColor: ['#45b3e7'],
-                    backgroundColor: ['#89cff0']
+        type: 'line',
+        data: {
+            datasets: [{
+                label: 'Umidade',
+                type: 'line',
+                borderColor: ['#45b3e7'],
+                backgroundColor: ['#89cff0']
+            }]
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    distribution: 'series',
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }],
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Umidade'
+                    },
+                    ticks: {
+                        beginAtZero: true
+                    }
                 }]
             },
-            options: {
-                scales: {
-                    xAxes: [{
-                        distribution: 'series',
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }],
-                    yAxes: [{
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Umidade'
-                        },
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                },
-                animation: {
-                    duration: 0
-                }
+            animation: {
+                duration: 0
             }
         }
+    }
     );
     /* -- dht11Temperatura -- */
     var contextoDht11Temperatura = document.getElementById('dht11Temperatura').getContext('2d');
@@ -152,37 +153,37 @@
     contextoDht11Temperatura.canvas.height = 300;
     var dht11Temperatura = new Chart(
         contextoDht11Temperatura, {
-            type: 'line',
-            data: {
-                datasets: [{
-                    label: "Temperatura",
-                    type: 'line',
-                    borderColor: ['#ff3232'],
-                    backgroundColor: ['#ff7f7f']
+        type: 'line',
+        data: {
+            datasets: [{
+                label: "Temperatura",
+                type: 'line',
+                borderColor: ['#ff3232'],
+                backgroundColor: ['#ff7f7f']
+            }]
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    distribution: 'series',
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }],
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Luminosidade'
+                    },
+                    ticks: {
+                        beginAtZero: true
+                    }
                 }]
             },
-            options: {
-                scales: {
-                    xAxes: [{
-                        distribution: 'series',
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }],
-                    yAxes: [{
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Luminosidade'
-                        },
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                },
-                animation: {
-                    duration: 0
-                }
+            animation: {
+                duration: 0
             }
         }
+    }
     );
 </script>
