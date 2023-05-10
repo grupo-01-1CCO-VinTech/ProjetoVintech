@@ -239,10 +239,10 @@ body {
     height: 20%;
     display: flex;
     align-items: center;
-    justify-content: center;    
+    justify-content: center;
 }
 
-.botoes{
+.botoes {
     width: 100%;
     height: 80%;
     display: flex;
@@ -320,6 +320,11 @@ select {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+}
+
+.cardPequeno h2{
+    color: black;
+    text-decoration: none;
 }
 
 .ordemCardpequeno {

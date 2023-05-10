@@ -99,6 +99,8 @@ body {
     display: flex;
     cursor: pointer;
     width: 60%;
+    color: white;
+    text-decoration: none;
 }
 
 .barra-itens ul a:hover {
