@@ -1,24 +1,8 @@
-@font-face {
-    font-family: tt-travels;
-    src: url(fontes/TTTravelsRegular.otf);
-}
-@font-face {
-    font-family: tt-chocolates;
-    src: url(fontes/TTChocolatesTrialRegular.otf);
-}
-*{
-    font-family: tt-chocolates;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-
-}
 body{
     display: flex;
     flex-direction: row;
     background-color: white;
 }
-
 /* Criação dos elementos da página */
 
 .pagina{
