@@ -95,26 +95,26 @@
                             </div>
                         </div>
                         <div class="areaCardsPequenos">
-                            <div class="cardPequeno">
+                            <div class="cardPequeno" id="cardPinotNoir">
                                 <h2><a href="DashboardGraficosEstufas.html">Estufa 001</a></h2>
                                 <div class="ordemCardpequeno">
                                     <a id="title">Tipo de Uva</a>
-                                    <a>Pinot Noir</a>
+                                    <a></a>
                                 </div>
                                 <div class="ordemCardpequeno">
                                     <a id="title">Umidade Atual (%)</a>
-                                    <a>41%</a>
+                                    <a></a>
                                 </div>
                                 <div class="ordemCardpequeno">
                                     <a id="title">Temperatura Atual(°C)</a>
-                                    <a>23°C</a>
+                                    <a></a>
                                 </div>
                                 <div class="ordemCardpequeno">
                                     <a id="title">Status</a>
                                     <img src="../img/check-box.png" alt="Botão Tudo OK">
                                 </div>
                             </div>
-                            <div class="cardPequeno">
+                            <div class="cardPequeno" id="cardMerlone">
                                 <h2>Estufa 002</h2>
                                 <div class="ordemCardpequeno">
                                     <a id="title">Tipo de Uva</a>
@@ -133,7 +133,7 @@
                                     <img src="../img/warning.png" alt="Botão Tudo OK">
                                 </div>
                             </div>
-                            <div class="cardPequeno">
+                            <div class="cardPequeno" id="cardCarmenere">
                                 <h2>Estufa 003</h2>
                                 <div class="ordemCardpequeno">
                                     <a id="title">Tipo de Uva</a>
@@ -207,6 +207,11 @@
 
 </html>
 <script>
+    var listaContadores = [] 
+    var contadorSeguro = 0
+    var contadorAlerta = 0
+    var contadorPerigo = 0
+
     const graficoBarraDeitado = document.getElementById('graficoBarraDeitado');
 
     new Chart(graficoBarraDeitado, {
@@ -246,7 +251,7 @@
         data: {
             datasets: [{
                 label: 'Status',
-                data: [3, 3, 3],
+                data: [3,3,3],
                 borderWidth: 1,
                 backgroundColor: [
                     '#00BF15',
@@ -256,4 +261,196 @@
             }]
         },
     });
+
+    var jsonEstufas = {
+        estufa1:{
+            nome:  "Estufa 001",
+            tipoUva: "Pinot Noir",
+            umidAtual: "",
+            tempAtual: "",
+            status: ""
+        },
+        estufa2:{
+            nome:  "Estufa 002",
+            tipoUva: "Merlot",
+            umidAtual: "",
+            tempAtual: "",
+            status: ""
+        },
+        estufa3:{
+            nome: "Estufa 003",
+            tipoUva: "Carmenere",
+            umidAtual: "",
+            tempAtual: "",
+            status: ""
+        },
+    }
+
+    function atualizarHTML(){
+        // PinotNoir
+        cardPinotNoir.innerHTML = 
+        `
+        <h2><a href="DashboardGraficosEstufas.html">${jsonEstufas.estufa1.nome}</a></h2>
+            <div class="ordemCardpequeno">
+                <a id="title">Tipo de Uva</a>
+                <a>${jsonEstufas.estufa1.tipoUva}</a>
+            </div>
+            <div class="ordemCardpequeno">
+                <a id="title">Umidade Atual (%)</a>
+                <a>${jsonEstufas.estufa1.umidAtual}</a>
+            </div>
+            <div class="ordemCardpequeno">
+                <a id="title">Temperatura Atual(°C)</a>
+                <a>${jsonEstufas.estufa1.tempAtual}</a>
+            </div>
+            <div class="ordemCardpequeno">
+                <a id="title">Status</a>
+                <img src="" alt="Botão Tudo OK" id="imagemStatusPinot">
+            </div>
+        `
+        if(jsonEstufas.estufa1.status == "Seguro"){
+            imagemStatusPinot.src = "../img/check-box.png"
+            contadorSeguro++
+            
+        }else if(jsonEstufas.estufa1.status == "Alerta"){
+            imagemStatusPinot.src = "../img/warning.png"
+            contadorAlerta++
+        }else if(jsonEstufas.estufa1.status == "Perigo"){
+            imagemStatusPinot.src = "../img/cancelar.png"
+            contadorPerigo++
+        }
+
+        // Merlone
+
+        cardMerlone.innerHTML = 
+        `
+        <h2><a href="DashboardGraficosEstufas.html">${jsonEstufas.estufa2.nome}</a></h2>
+            <div class="ordemCardpequeno">
+                <a id="title">Tipo de Uva</a>
+                <a>${jsonEstufas.estufa2.tipoUva}</a>
+            </div>
+            <div class="ordemCardpequeno">
+                <a id="title">Umidade Atual (%)</a>
+                <a>${jsonEstufas.estufa2.umidAtual}</a>
+            </div>
+            <div class="ordemCardpequeno">
+                <a id="title">Temperatura Atual(°C)</a>
+                <a>${jsonEstufas.estufa2.tempAtual}</a>
+            </div>
+            <div class="ordemCardpequeno">
+                <a id="title">Status</a>
+                <img src="" alt="Botão Tudo OK" id="imagemStatusMerlone">
+            </div>
+        `
+        if(jsonEstufas.estufa2.status == "Seguro"){
+            imagemStatusMerlone.src = "../img/check-box.png"
+            contadorSeguro++
+            
+        }else if(jsonEstufas.estufa2.status == "Alerta"){
+            imagemStatusMerlone.src = "../img/warning.png"
+            contadorAlerta++
+        }else if(jsonEstufas.estufa2.status == "Perigo"){
+            imagemStatusMerlone.src = "../img/cancelar.png"
+            contadorPerigo++
+        }
+
+        // Carmenere
+
+        cardCarmenere.innerHTML = 
+        `
+        <h2><a href="DashboardGraficosEstufas.html">${jsonEstufas.estufa3.nome}</a></h2>
+            <div class="ordemCardpequeno">
+                <a id="title">Tipo de Uva</a>
+                <a>${jsonEstufas.estufa3.tipoUva}</a>
+            </div>
+            <div class="ordemCardpequeno">
+                <a id="title">Umidade Atual (%)</a>
+                <a>${jsonEstufas.estufa3.umidAtual}</a>
+            </div>
+            <div class="ordemCardpequeno">
+                <a id="title">Temperatura Atual(°C)</a>
+                <a>${jsonEstufas.estufa3.tempAtual}</a>
+            </div>
+            <div class="ordemCardpequeno">
+                <a id="title">Status</a>
+                <img src="" alt="Botão Tudo OK" id="imagemStatusCarmenere">
+            </div>
+        `
+        if(jsonEstufas.estufa3.status == "Seguro"){
+            imagemStatusCarmenere.src = "../img/check-box.png"
+            contadorSeguro++
+            
+        }else if(jsonEstufas.estufa3.status == "Alerta"){
+            imagemStatusCarmenere.src = "../img/warning.png"
+            contadorAlerta++
+        }else if(jsonEstufas.estufa3.status == "Perigo"){
+            imagemStatusCarmenere.src = "../img/cancelar.png"
+            contadorPerigo++
+        }
+        listaContadores.push(contadorSeguro)
+        listaContadores.push(contadorAlerta)
+        listaContadores.push(contadorPerigo)
+    }
+
+    (function definirValores(){
+        // PinotNoir
+        var umidAtual1 = (30 + Math.random() * (50 - 30)).toFixed()
+        var tempAtual1 = (12 + Math.random() * (30 - 12)).toFixed()
+
+        jsonEstufas.estufa1.umidAtual = `${umidAtual1}%`
+        jsonEstufas.estufa1.tempAtual = `${tempAtual1}°C`
+
+        if((umidAtual1 >= 39 && umidAtual1 <= 42) && (tempAtual1 >= 20 && tempAtual1 <= 24)){
+            jsonEstufas.estufa1.status = "Seguro"
+            
+        }
+        else if((((umidAtual1 >= 43 && umidAtual1 <= 45) || (umidAtual1 >= 34 && umidAtual1 <= 38))
+         || ((tempAtual1 >= 25 && tempAtual1 <= 27) || (tempAtual1 >= 17 && tempAtual1 <= 19)))){
+            jsonEstufas.estufa1.status = "Alerta"
+        }
+        else if((umidAtual1 >= 46 || umidAtual1 <= 33) || (tempAtual1 >= 28 || tempAtual1 <= 16)){
+            jsonEstufas.estufa1.status = "Perigo"
+        }
+
+        // Merlot 
+
+        var umidAtual2 = (30 + Math.random() * (50 - 30)).toFixed()
+        var tempAtual2 = (12 + Math.random() * (30 - 12)).toFixed()
+
+        jsonEstufas.estufa2.umidAtual = `${umidAtual2}%`
+        jsonEstufas.estufa2.tempAtual = `${tempAtual2}°C`
+
+        if((umidAtual2 >= 35 && umidAtual2 <= 40) && (tempAtual2 >= 25 && tempAtual2 <= 30)){
+            jsonEstufas.estufa2.status = "Seguro"
+            
+        }
+        else if((((umidAtual2 >= 41 && umidAtual2 <= 46) || (umidAtual2 >= 29 && umidAtual2 <= 34))
+         || ((tempAtual2 >= 31 && tempAtual2 <= 36) || (tempAtual2 >= 19 && tempAtual2 <= 24)))){
+            jsonEstufas.estufa2.status = "Alerta"
+        }
+        else if((umidAtual2 >= 47 || umidAtual2 <= 30) || (tempAtual2 >= 37 || tempAtual2 <= 18)){
+            jsonEstufas.estufa2.status = "Perigo"
+        }
+
+        // Carmenere 
+
+        var umidAtual3 = (30 + Math.random() * (50 - 30)).toFixed()
+        var tempAtual3 = (12 + Math.random() * (30 - 12)).toFixed()
+
+        jsonEstufas.estufa3.umidAtual = `${umidAtual3}%`
+        jsonEstufas.estufa3.tempAtual = `${tempAtual3}°C`
+
+        if((umidAtual3 >= 24 && umidAtual3 <= 26) && (tempAtual3 >= 15 && tempAtual3 <= 18)){
+            jsonEstufas.estufa3.status = "Seguro"
+            
+        }
+        else if((((umidAtual3 >= 27 && umidAtual3 <= 29) || (umidAtual3 >= 21 && umidAtual3 <= 23))
+         || ((tempAtual3 >= 19 && tempAtual3 <= 21) || (tempAtual3 >= 12 && tempAtual3 <= 14)))){
+            jsonEstufas.estufa3.status = "Alerta"
+        }
+        else if((umidAtual3 >= 30 || umidAtual3 <= 20) || (tempAtual3 >= 22 || tempAtual3 <= 11)){
+            jsonEstufas.estufa3.status = "Perigo"
+        }
+        atualizarHTML()
+    })()
 </script>
