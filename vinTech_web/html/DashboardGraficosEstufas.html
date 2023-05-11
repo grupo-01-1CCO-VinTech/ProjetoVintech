@@ -9,7 +9,6 @@
     <link rel="icon" href="../img/logo.jpeg" type="image/png">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
-    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
     <link rel="stylesheet" href="../css/style-PadraoDashboard.css">
     <link rel="stylesheet" href="../css/style-PadraoTodos.css">
     <link rel="stylesheet" href="../css/style-GraficoEstufas.css">
@@ -75,11 +74,11 @@
                         <div class="atual_ambos">
                             <div class="atual_umidade">
                                 <img src="../img/GraficosEstufas_gotas.png">
-                                <h2><span>78</span>%</h2>
+                                <h2><span id="atual_umid"></span>%</h2>
                             </div>
                             <div class="atual_temp">
                                 <img src="../img/GraficosEstufas_temp.png">
-                                <h2><span>18</span>°C</h2>
+                                <h2><span id="atual_temp"></span>°C</h2>
                             </div>
                         </div>
                         <div class="descricao">
@@ -92,17 +91,17 @@
                         <h1>Informações</h1>
                         <div class="info_estufa">
                             <h5>Informações estufa</h5>
-                            <p>Plantação: <span id="tipo_uva"></span></p>
-                            <p>Estufa: <span id="numero_estufa"></span></p>
-                            <p>Tipo da Uva: <span id="status"></span></p>
-                            <p>Tamanho: <span id=""></span></p>
+                            <p>Plantação: <span id="plantacao">2012</span></p>
+                            <p>Estufa: <span id="estufa"> 001</span></p>
+                            <p>Tipo da Uva: <span id="tipo_uva">Pinot Noir</span></p>
+                            <p>Tamanho: <span id="tamanho">200Hec</span></p>
                         </div>
                         <div class="info_dados">
                             <h5>Informações dados</h5>
-                            <p>Temp. Min: <span id="temp_min">50C</span></p>
-                            <p>Temp. Max: <span id="temp_max"></span></p>
-                            <p>Umid. Min: <span id="umidade_min"></span></p>
-                            <p>Umid. Max: <span id="umidade_max"></span></p>
+                            <p>Temp. Min: <span id="temp_min">1000</span></p>
+                            <p>Temp. Max: <span id="temp_max">-10</span></p>
+                            <p>Umid. Min: <span id="umidade_min">1000</span></p>
+                            <p>Umid. Max: <span id="umidade_max">-10</span></p>
                         </div>
                     </div>
                 </div>
@@ -194,18 +193,18 @@
     var paginacao = {};
     var tempo = {};
 
-    var temp_max_element = document.getElementById('temperatura_valor_max')
-    var temp_min_element = document.getElementById('temperatura_valor_min')
+    var temp_max_element = document.getElementById('temp_max')
+    var temp_min_element = document.getElementById('temp_min')
 
-    var umid_max_element = document.getElementById('umidade_valor_max')
-    var umid_min_element = document.getElementById('umidade_valor_min')
+    var umid_max_element = document.getElementById('umidade_max')
+    var umid_min_element = document.getElementById('umidade_min')
 
-    var bloco_temp_element = document.getElementById('bloco_temp')
-    var bloco_umid_element = document.getElementById('bloco_umid')
+    var atual_umid_element = document.getElementById('atual_umid')
+    var atual_temp_element = document.getElementById('atual_temp')
 
 
     //Aqui a função de pegar os dados (dados do sensor) da API criada pelo express 
-    function obterDados(grafico, endpoint, max_elem, min_elem, max, min, bloco) {
+    function obterDados(grafico, endpoint, max_elem, min_elem, max, min, atual) {
         //Aqui vai pegar os valores do localhost:3000/sensores/ENDPOINT e transforma os valores em JSON
         var http = new XMLHttpRequest();
         http.open('GET', 'http://localhost:3000/sensores/' + endpoint, false);
@@ -239,37 +238,24 @@
             grafico.data.datasets[0].data.push(parseFloat(valor));
             grafico.update();
 
-            if (valor > Number(max.innerHTML)){
+            if (valor > Number(max_elem.innerHTML)){
                 max_elem.innerHTML = valor
             }
 
-            if(valor < Number(min.innerHTML)){
+            if(valor < Number(min_elem.innerHTML)){
                 min_elem.innerHTML = valor
             }
-            
-            check(valor, max, min, bloco)
+            atual.innerHTML = valor
 
         })
     }
 
-    function check(valor, max, min, bloco){
-        if (valor > max || valor < min){
-            bloco.style.border = '3px solid red'
-        }
-        else if(valor == max || valor == min){
-            bloco.style.border = '3px solid yellow'
-        }
-        else{
-            bloco.style.border = '3px solid green'
-        }
-    }
-
     //aqui está rodando as funções a cada um segundo
     setInterval(() => {
-        obterDados(dht11Umidade , 'dht11/umidade', umid_max_element, umid_min_element, 38, 17, bloco_umid_element);
-        obterDados(dht11Temperatura, 'dht11/temperatura', temp_max_element, temp_min_element, 20, 12, bloco_temp_element);
+        obterDados(dht11Umidade , 'dht11/umidade', umid_max_element, umid_min_element, 38, 17, atual_umid_element);
+        obterDados(dht11Temperatura, 'dht11/temperatura', temp_max_element, temp_min_element, 20, 12, atual_temp_element);
         //obterDados(luminosidade, 'luminosidade');
         //obterDados(lm35Temperatura, 'lm35/temperatura');
         //obterDados(chave, 'chave');
-    }, 1000);
+    }, 7000);
 </script>
