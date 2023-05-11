@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -8,7 +9,8 @@
     <link rel="icon" href="../img/logo.jpeg" type="image/png">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
-    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+    <link rel="stylesheet" href="../css/style-PadraoDashboard.css">
+    <link rel="stylesheet" href="../css/style-PadraoTodos.css">
     <link rel="stylesheet" href="../css/style-GraficoEstufas.css">
     <link rel="stylesheet" href="../css/style-PadraoDashboard.css">
     <link rel="stylesheet" href="../css/style-PadraoTodos.css">
@@ -72,11 +74,11 @@
                         <div class="atual_ambos">
                             <div class="atual_umidade">
                                 <img src="../img/GraficosEstufas_gotas.png">
-                                <h2><span>78</span>%</h2>
+                                <h2><span id="atual_umid"></span>%</h2>
                             </div>
                             <div class="atual_temp">
                                 <img src="../img/GraficosEstufas_temp.png">
-                                <h2><span>18</span>°C</h2>
+                                <h2><span id="atual_temp"></span>°C</h2>
                             </div>
                         </div>
                         <div class="descricao">
@@ -84,20 +86,22 @@
                             <div> Temperatura</div>
                         </div>
                     </div>
+                    Informações estufa
                     <div class="informacoes">
                         <h1>Informações</h1>
                         <div class="info_estufa">
-                            <p class="info-item">Plantação:</p> <span id="plantacao">01</span>
-                            <p class="info-item">ID estufa:</p> <span id="numero_estufa">001</span>
-                            <p class="info-item">Tipo uva:</p> <span id="tipo_uva">Pinot Noir</span>
-                            <p class="info-item">Status:</p> <span id="status">Ótimo</span>
+                            <h5>Informações estufa</h5>
+                            <p>Plantação: <span id="plantacao">2012</span></p>
+                            <p>Estufa: <span id="estufa"> 001</span></p>
+                            <p>Tipo da Uva: <span id="tipo_uva">Pinot Noir</span></p>
+                            <p>Tamanho: <span id="tamanho">200Hec</span></p>
                         </div>
                         <div class="info_dados">
-                            <p class="info-item">Temperatura máxima:</p> <span id="temp_max">43</span>
-                            <p class="info-item">Temperatura mínima:</p> <span id="temp_min">15</span>
-
-                            <p class="info-item">Umidade máxima:</p> <span id="umidade_max">75</span>
-                            <p class="info-item">Umidade mínima:</p> <span id="umidade_min">22</span>
+                            <h5>Informações dados</h5>
+                            <p>Temp. Min: <span id="temp_min">1000</span></p>
+                            <p>Temp. Max: <span id="temp_max">-10</span></p>
+                            <p>Umid. Min: <span id="umidade_min">1000</span></p>
+                            <p>Umid. Max: <span id="umidade_max">-10</span></p>
                         </div>
                     </div>
                 </div>
@@ -111,79 +115,147 @@
 <script>
     var contextoDht11Umidade = document.getElementById('dht11Umidade').getContext('2d');
     contextoDht11Umidade.canvas.width = 1000;
-    contextoDht11Umidade.canvas.height = 300;
+    contextoDht11Umidade.canvas.height = 250;
     var dht11Umidade = new Chart(
         contextoDht11Umidade, {
-        type: 'line',
-        data: {
-            datasets: [{
-                label: 'Umidade',
-                type: 'line',
-                borderColor: ['#45b3e7'],
-                backgroundColor: ['#89cff0']
-            }]
-        },
-        options: {
-            scales: {
-                xAxes: [{
-                    distribution: 'series',
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }],
-                yAxes: [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Umidade'
-                    },
-                    ticks: {
-                        beginAtZero: true
-                    }
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: 'Umidade',
+                    type: 'line',
+                    borderColor: ['#45b3e7'],
+                    backgroundColor: ['#89cff0']
                 }]
             },
-            animation: {
-                duration: 0
+            options: {
+                scales: {
+                    xAxes: [{
+                        distribution: 'series',
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }],
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Umidade'
+                        },
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                },
+                animation: {
+                    duration: 0
+                }
             }
         }
-    }
     );
     /* -- dht11Temperatura -- */
     var contextoDht11Temperatura = document.getElementById('dht11Temperatura').getContext('2d');
     contextoDht11Temperatura.canvas.width = 1000;
-    contextoDht11Temperatura.canvas.height = 300;
+    contextoDht11Temperatura.canvas.height = 250;
     var dht11Temperatura = new Chart(
         contextoDht11Temperatura, {
-        type: 'line',
-        data: {
-            datasets: [{
-                label: "Temperatura",
-                type: 'line',
-                borderColor: ['#ff3232'],
-                backgroundColor: ['#ff7f7f']
-            }]
-        },
-        options: {
-            scales: {
-                xAxes: [{
-                    distribution: 'series',
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }],
-                yAxes: [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Luminosidade'
-                    },
-                    ticks: {
-                        beginAtZero: true
-                    }
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: "Temperatura",
+                    type: 'line',
+                    borderColor: ['#ff3232'],
+                    backgroundColor: ['#ff7f7f']
                 }]
             },
-            animation: {
-                duration: 0
+            options: {
+                scales: {
+                    xAxes: [{
+                        distribution: 'series',
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }],
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Luminosidade'
+                        },
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                },
+                animation: {
+                    duration: 0
+                }
             }
         }
-    }
     );
+    var paginacao = {};
+    var tempo = {};
+
+    var temp_max_element = document.getElementById('temp_max')
+    var temp_min_element = document.getElementById('temp_min')
+
+    var umid_max_element = document.getElementById('umidade_max')
+    var umid_min_element = document.getElementById('umidade_min')
+
+    var atual_umid_element = document.getElementById('atual_umid')
+    var atual_temp_element = document.getElementById('atual_temp')
+
+
+    //Aqui a função de pegar os dados (dados do sensor) da API criada pelo express 
+    function obterDados(grafico, endpoint, max_elem, min_elem, max, min, atual) {
+        //Aqui vai pegar os valores do localhost:3000/sensores/ENDPOINT e transforma os valores em JSON
+        var http = new XMLHttpRequest();
+        http.open('GET', 'http://localhost:3000/sensores/' + endpoint, false);
+        http.send(null);
+
+        var valores = JSON.parse(http.responseText);
+
+        //Aqui vai ver se o json paginação na posição onde fica o endpoint está sem nada e se não tiver atribui 0
+
+        if (paginacao[endpoint] == null) {
+            paginacao[endpoint] = 0;
+        }
+
+        if (tempo[endpoint] == null) {
+            tempo[endpoint] = 0;
+        }
+
+        // Exibir à partir do último elemento exibido anteriormente
+        var ultimaPaginacao = paginacao[endpoint];
+        paginacao[endpoint] = valores.length;
+        var valores = valores.slice(ultimaPaginacao);
+
+        //para cada valor em valores vai mostrar no gráfico os ultimos 10 valores
+        valores.forEach((valor) => {
+            //Máximo de 60 itens exibidos no gráfico
+            if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
+                grafico.data.labels.shift();
+                grafico.data.datasets[0].data.shift();
+            }
+            grafico.data.labels.push(tempo[endpoint]++);
+            grafico.data.datasets[0].data.push(parseFloat(valor));
+            grafico.update();
+
+            if (valor > Number(max_elem.innerHTML)){
+                max_elem.innerHTML = valor
+            }
+
+            if(valor < Number(min_elem.innerHTML)){
+                min_elem.innerHTML = valor
+            }
+            atual.innerHTML = valor
+
+        })
+    }
+
+    //aqui está rodando as funções a cada um segundo
+    setInterval(() => {
+        obterDados(dht11Umidade , 'dht11/umidade', umid_max_element, umid_min_element, 38, 17, atual_umid_element);
+        obterDados(dht11Temperatura, 'dht11/temperatura', temp_max_element, temp_min_element, 20, 12, atual_temp_element);
+        //obterDados(luminosidade, 'luminosidade');
+        //obterDados(lm35Temperatura, 'lm35/temperatura');
+        //obterDados(chave, 'chave');
+    }, 7000);
 </script>
