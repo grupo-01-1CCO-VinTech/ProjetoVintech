@@ -45,7 +45,7 @@
 .main_tela{
     display: flex;
     width: 95%;
-    height: 90%;
+    height: 84vh;
     border: 2px solid purple;
     border-radius: 5%;
     justify-content: space-around;
