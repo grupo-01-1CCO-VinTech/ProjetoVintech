@@ -174,7 +174,7 @@ h2{
 .info_estufa{
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    align-items: center;
     margin-top: 2.5%;
     margin-bottom: 2.5%;
     height: 40%;
@@ -182,13 +182,13 @@ h2{
     border: 2px purple solid;
     border-radius: 5%;
 
-    font-size: 2.5vh;
+    font-size: 3vh;
 }
 
 .info_dados{
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    align-items: center;
     margin-top: 2.5%;
     margin-bottom: 2.5%;
     height: 40%;
@@ -196,17 +196,7 @@ h2{
     border: 2px purple solid;
     border-radius: 5%;
 
-}
-
-.info-item{
-    display: flex;
-    width: 90%;
-    height: 3vh;
-    font-size: 2.5vh;
-    margin: 0;
-    justify-content: space-evenly;
-    gap: 50px;
-    align-items: center;
+    font-size: 3vh;
 }
 
 /* FIM DIV INFORMAÇÕES E ATUAL */

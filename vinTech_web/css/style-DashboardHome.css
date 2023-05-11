@@ -6,12 +6,6 @@
     font-family: tt-chocolates;
     src: url(/fonte/TTTravelsRegular.otf);
 }
-*{
-    font-family: tt-chocolates;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 body{
     display: flex;
     flex-direction: row;
