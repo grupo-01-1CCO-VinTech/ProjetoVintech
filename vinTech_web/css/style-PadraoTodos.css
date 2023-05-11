@@ -6,7 +6,7 @@
     font-family: tt-chocolates;
     src: url(fontes/TTChocolatesTrialRegular.otf);
 }
-body,html{
+*{
     font-family: tt-chocolates;
     margin: 0;
     padding: 0;
