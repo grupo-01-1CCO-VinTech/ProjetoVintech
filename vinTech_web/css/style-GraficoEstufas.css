@@ -46,7 +46,7 @@
     display: flex;
     width: 95%;
     height: 90%;
-    border: 2px solid purple;
+    border: 1% solid purple;
     border-radius: 5%;
     justify-content: space-around;
 }
@@ -57,8 +57,8 @@
     flex-direction: column;
     align-items: center;
     justify-items: center;
-    width: 60%;
-    height: 100%;
+    width: 50vw;
+    height: 85vh;
 }
 
 .grafico_temp{
@@ -92,8 +92,8 @@
     flex-direction: column;
     align-items: center;
     justify-items: center;
-    width: 30%;
-    height: 100%;
+    width: 30vw;
+    height: 85vh;
 }
 
 /* FIM DIV GRAFICOS */
@@ -174,7 +174,7 @@ h2{
 .info_estufa{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: space-around;
     margin-top: 2.5%;
     margin-bottom: 2.5%;
     height: 40%;
@@ -182,13 +182,13 @@ h2{
     border: 2px purple solid;
     border-radius: 5%;
 
-    font-size: 3vh;
+    font-size: 2.5vh;
 }
 
 .info_dados{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: space-around;
     margin-top: 2.5%;
     margin-bottom: 2.5%;
     height: 40%;
@@ -196,7 +196,17 @@ h2{
     border: 2px purple solid;
     border-radius: 5%;
 
-    font-size: 3vh;
+}
+
+.info-item{
+    display: flex;
+    width: 90%;
+    height: 3vh;
+    font-size: 2.5vh;
+    margin: 0;
+    justify-content: space-evenly;
+    gap: 50px;
+    align-items: center;
 }
 
 /* FIM DIV INFORMAÇÕES E ATUAL */
