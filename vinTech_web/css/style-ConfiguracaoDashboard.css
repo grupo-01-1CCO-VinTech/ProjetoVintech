@@ -1,0 +1,53 @@
+.container{
+    display: flex;
+    width: 60vw;
+    height: 100vh;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center
+}
+
+
+.container-esquerda{
+    display: flex;
+    width: 90%;
+    height: 85%;
+    border: solid 1px cadetblue;
+    border-radius: 40px;
+}
+.container-direita{
+    display: flex;
+    width: 20vw;
+    height: 100vh;
+    flex-direction: column;
+    border: solid 1px cadetblue;
+}
+.container-usuario{
+    display: flex;
+    flex-direction: column;
+    height: 30%;
+    width: 100%;
+    border-bottom: solid 1px cadetblue;
+    align-items: center;
+    justify-content: center;
+}
+.container-usuario img{
+    width: 45%;
+    height: 65%;
+    border-radius: 50%;
+}
+.container-contato{
+    display: flex;
+    flex-direction: column;
+    height: 30%;
+    width: 100%;
+    justify-content: space-evenly;
+    border-bottom: solid 1px cadetblue;
+}
+.container-botoes{
+    display: flex;
+    flex-direction: column;
+    height: 40%;
+    width: 100%;
+    justify-content: space-evenly;
+}
