@@ -36,7 +36,7 @@
         </div>
         <div class="coluna"></div>
         <div class="ajuste">
-            <div class="formulario">
+            <div class="formulario formulario-infoEmpresa" id="frm_infoEmpresa">
                 <h2>Informações</h2>
                 <br>
                 <div class="informacoes">
@@ -45,7 +45,7 @@
                             <p>Nome Empresarial:* </p><input type="text" id="txtNomeEmpresarial">
                         </div>
                         <div class="bloco">
-                            <p>Nome Fantasia: </p><input type="text">
+                            <p>Nome Fantasia: </p><input type="text" id="txtNomeFantasia">
                         </div>
                     </div>
                     <div class="linha linha-cnpj">
@@ -75,7 +75,6 @@
                             <p>UF:* </p><input type="text" id="txtUf">
                         </div>
                     </div>
-
                 </div>
                 <br><br>
                 <h2>Contato</h2>
@@ -99,7 +98,40 @@
                 <h2>Termos de Serviço</h2>
                 <div class="termos">
                     <p><input type="checkbox" onclick="mudaCheckBox()"> Li e aceito os Termos de Serviço da TechNoir</p>
-                    <button onclick="verificarCampos()">Continuar</button>
+                    <button onclick="verificarCampos()" class="button">Continuar</button>
+                </div>
+            </div>
+            <div class="carregando" id="divLoad">
+                <img src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif" alt="">
+            </div>
+            <div class="formulario formulario-cadastroLogin" id="frm_infoLogin">
+                <div class="administrador">
+                    <br>
+                    <h2>Dados do Administrador</h2>
+                    <div class="linha">
+                        <div class="bloco">
+                            <p>E-mail do Administrador:* </p><input type="text" id="txtEmailAdm">
+                        </div>
+                    </div>
+                    <div class="linha">
+                        <div class="bloco">
+                            <p>Login:* </p><input type="text" id="txtLogin">
+                        </div>
+                    </div>
+                    <div class="linha">
+                        <div class="bloco">
+                            <p>Senha:* </p><input type="text" id="txtSenha">
+                        </div>
+                    </div>
+                    <div class="linha">
+                        <div class="bloco">
+                            <p>Repetir Senha:* </p><input type="text" id="txtRepetirSenha">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="termos">
+                    <button onclick="verificarCampos()" class="button">Cadastrar</button>
                 </div>
             </div>
         </div>
@@ -112,6 +144,7 @@
     var empresa = {
         dados: {
             nome: "",
+            nomeFantasia: "",
             cnpj: "",
         },
         endereco: {
@@ -124,6 +157,7 @@
         },
         contato: {
             telefone: "",
+            telefoneSecundario: "",
             email: ""
         },
         adm: {
@@ -146,6 +180,7 @@
     function verificarCampos() {
         // campos obrigatorios
         empresa.dados.nome = txtNomeEmpresarial.value
+        empresa.dados.nomeFantasia = txtNomeFantasia.value
         empresa.dados.cnpj = txtCnpj.value
         empresa.endereco.cep = txtCep.value
         empresa.endereco.logradouro = txtLogradouro.value
@@ -154,6 +189,7 @@
         empresa.endereco.cidade = txtCidade.value
         empresa.endereco.uf = txtUf.value
         empresa.contato.telefone = txtTelEmpresa.value
+        empresa.contato.telefoneSecundario = txtTelSecundario.value
         empresa.contato.email = txtEmailEmpresa.value
         var erro = false
 
@@ -167,7 +203,7 @@
         txtBairro.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
         txtUf.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
         txtEmailEmpresa.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
-        txtTelEmpresa.style = 'box-shadow: 1px 1px 10px #4f3f585d';
+        txtTelEmpresa.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
 
         // verificando condições
         if (checked == false) {
@@ -215,7 +251,12 @@
             alert("O campo {email da empresa} é obrigatório!")
             txtEmailEmpresa.style = 'box-shadow: .5px .5px 10px red;'
         } if (erro == false) {
-            alert("acessando formulário de pagamento...")
+            divLoad.style = 'display:flex;'
+            setInterval(() => {
+                divLoad.style = 'display:none;'
+                frm_infoEmpresa.style = 'display:none;'
+                frm_infoLogin.style = 'display:flex;'
+            }, 1000)
         }
     }
 
@@ -240,6 +281,7 @@
     }
     function mascaraTelefone() {
         var tamanhoTel1 = txtTelEmpresa.value.length
+
         if (tamanhoTel1 == 2) {
             txtTelEmpresa.value = `(${txtTelEmpresa.value})`
         } if (tamanhoTel1 == 9) {

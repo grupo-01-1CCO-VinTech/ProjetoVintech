@@ -8,6 +8,20 @@ background-repeat: no-repeat;
 background-size: cover;
 }
 
+.button{
+    margin-top: 1vh;
+    width: 30%;
+    height: 60%;
+    border: none;
+    /* border: solid 2px black; */
+    border-radius: 10px;
+    background-color: azure;
+    font-size: 3vh;
+    /* align-self: flex-end; */
+    box-shadow: 5px 1px 10px #705480;
+    margin-right: 2vw;
+}
+
 .sobre{
     display: flex;
     flex-direction: column;
@@ -62,17 +76,24 @@ background-size: cover;
 
 .formulario{
     display: flex;
-    width: 65%;
-    height: 95%;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     background-color: #f2e1fc;
-    /* border: solid 3px black; */
     border-radius: 10px;
     box-shadow: 10px 0px 30px rgb(146, 146, 146);
     /* padding-top: 3vh; */
     /* padding-bottom: 3vh; */
+    /* border: solid 3px black; */
+}
+.formulario-infoEmpresa{
+    width: 65%;
+    height: 95%;
+}
+.formulario-cadastroLogin{
+    display: none;
+    width: 50%;
+    height: 60%;
 }
 
 .informacoes{
@@ -106,6 +127,15 @@ background-size: cover;
     /* border: 1px solid red; */
 }
 
+.administrador{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 90%;
+}
+
 .termos{
     display: flex;
     height: 10vh;
@@ -114,6 +144,17 @@ background-size: cover;
     align-items: center;
     justify-content: space-evenly;
     font-size: 2vh;
+}
+
+.carregando{
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    background-color: #a7a7a7ef;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
 }
 
 /* Definindo atributos das tags dentro das classes */
@@ -170,32 +211,37 @@ background-size: cover;
     width: 15%;
 }
 
-.formulario .termos button{
-    margin-top: 1vh;
-    width: 30%;
-    height: 60%;
-    border: none;
-    /* border: solid 2px black; */
-    border-radius: 10px;
-    background-color: azure;
-    font-size: 3vh;
-    /* align-self: flex-end; */
-    box-shadow: 5px 1px 10px #705480;
-    margin-right: 2vw;
-}
-
-.formulario h1{
+.formulario-infoEmpresa h1{
     font-size: 4vh;
 }
 
-.formulario h2{
+.formulario-infoEmpresa h2{
     font-size: 3.5vh;
     width: 80%;
     font-weight: 500;
 }
 
-.formulario h2:last-of-type{
+.formulario-infoEmpresa h2:last-of-type{
     /* border: 2px solid red; */
     width: auto;
     font-size: 3vh;
+}
+
+.formulario-cadastroLogin .linha, .formulario-cadastroLogin .linha .bloco{
+    width: 90%;
+    /* border: 2px solid red; */
+}
+
+.formulario-cadastroLogin h2{
+    font-size: 3.5vh;
+    font-weight: 300;
+}
+
+.formulario-cadastroLogin p{
+    font-size: 2.5vh;
+}
+
+.carregando img{
+    width: 150px;
+    height: 150px;
 }
