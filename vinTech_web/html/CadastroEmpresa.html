@@ -14,62 +14,86 @@
 <body>
     <div class="pai">
         <div class="sobre">
-            <div class="sobreImagem">
-                <img src="../img/TechNoir Logo.png">
-                <img src="../img/logo_vintech.png">
+            <div class="sobreTitulo">
+                <h1>Formulário de Cadastro</h1>
             </div>
             <div class="sobreTexto">
-                <h1>Lei de Proteção de Dados Pessoais LGPD</h1>
+                <span>Lei de Proteção de Dados Pessoais LGPD</span>
                 <p>Certificamos que a TechNoir, tanto em seu site quanto em suas atividades comerciais, segue
                     rigorosamente as leis de proteção de dados pessoais do Brasil, estabelecidas pela Lei Geral de
-                    Proteção de Dados (LGPD).</p>
-
-                <p>Nosso compromisso é garantir a privacidade e segurança dos dados pessoais de nossos usuários e
+                    Proteção de Dados (LGPD).
+                    <br><br>
+                    Nosso compromisso é garantir a privacidade e segurança dos dados pessoais de nossos usuários e
                     clientes, e para isso, adotamos medidas técnicas e organizacionais para assegurar que todas as
-                    informações fornecidas sejam tratadas de forma adequada e responsável.</p>
-
-                <p>Com isso, você pode confiar na TechNoir como uma empresa comprometida com a segurança dos seus dados
+                    informações fornecidas sejam tratadas de forma adequada e responsável.
+                    <br><br>
+                    Com isso, você pode confiar na TechNoir como uma empresa comprometida com a segurança dos seus dados
                     pessoais, e que segue as normas estabelecidas pelas autoridades competentes para garantir a proteção
                     de seus direitos e privacidade. Estamos sempre à disposição para esclarecer qualquer dúvida e
-                    oferecer suporte aos nossos usuários.</p>
+                    oferecer suporte aos nossos usuários.
+                </p>
             </div>
         </div>
         <div class="coluna"></div>
         <div class="ajuste">
             <div class="formulario">
-                <h1>Formulário de Cadastro da Empresa</h1>
-
                 <h2>Informações</h2>
-
+                <br>
                 <div class="informacoes">
-                    <div class="linha">
-                        <p>Nome Empresarial:* <input type="text" id="txtNomeEmpresarial"></p>
-                        <p>Nome Fantasia: <input type="text"></p>
-                        <p>CNPJ:* <input type="text" id="txtCnpj" onkeyup="mascaraCnpj()" maxlength="18"></p>
+                    <div class="linha linha-nome">
+                        <div class="bloco">
+                            <p>Nome Empresarial:* </p><input type="text" id="txtNomeEmpresarial">
+                        </div>
+                        <div class="bloco">
+                            <p>Nome Fantasia: </p><input type="text">
+                        </div>
                     </div>
-                    <div class="linha">
-                        <p>CEP:* <input type="text" id="txtCep" onkeyup="mascaraCep()" maxlength="9"></p>
-                        <p>Logradouro:* <input type="text" id="txtLogradouro"></p>
-                        <p>Número:* <input type="text" id="txtNumero"></p>
+                    <div class="linha linha-cnpj">
+                        <div class="bloco bloco-cnpj">
+                            <p>CNPJ:* </p><input type="text" id="txtCnpj" onkeyup="mascaraCnpj()" maxlength="18">
+                        </div>
+                        <div class="bloco bloco-cep">
+                            <p>CEP:*</p> <input type="text" id="txtCep" onkeyup="mascaraCep()" maxlength="9">
+                        </div>
+                        <div class="bloco bloco-numero">
+                            <p>Número:* </p><input type="text" id="txtNumero" class="input-numero">
+                        </div>
                     </div>
-                    <div class="linha">
-                        <p>Bairro:* <input type="text" id="txtBairro"></p>
-                        <p>Cidade:* <input type="text" id="txtCidade"></p>
-                        <p>UF:* <input type="text" id="txtUf"></p>
+                    <div class="linha linha-logrBairro">
+                        <div class="bloco">
+                            <p>Logradouro:*</p> <input type="text" id="txtLogradouro">
+                        </div>
+                        <div class="bloco">
+                            <p>Bairro:*</p> <input type="text" id="txtBairro">
+                        </div>
+                    </div>
+                    <div class="linha linha-cidadeUf">
+                        <div class="bloco">
+                            <p>Cidade:*</p> <input type="text" id="txtCidade">
+                        </div>
+                        <div class="bloco">
+                            <p>UF:* </p><input type="text" id="txtUf">
+                        </div>
                     </div>
 
                 </div>
-
+                <br><br>
                 <h2>Contato</h2>
                 <div class="contato">
                     <div class="linha">
-                        <p>Telefone da empresa:* <input type="text" id="txtTelEmpresa" onkeyup="mascaraTelefone()" maxlength="14"></p>
-                        <p>Telefone secundário: <input type="text" id="txtTelSecundario" onkeyup="mascaraTelefone()" maxlength="14"></p>
-                        <p>E-mail da empresa:* <input type="text" id="txtEmailEmpresa"></p>
+                        <div class="bloco">
+                            <p>Telefone da empresa:* </p><input type="text" id="txtTelEmpresa"
+                                onkeyup="mascaraTelefone()" maxlength="14">
+                        </div>
+                        <div class="bloco">
+                            <p>Telefone secundário: </p><input type="text" id="txtTelSecundario"
+                                onkeyup="mascaraTelefone()" maxlength="14">
+                        </div>
                     </div>
                     <div class="linha">
-                        <p>Nome do Administrador:* <input type="text" id="txtNomeAdm"></p>
-                        <p>E-mail do Administrador:* <input type="text" id="txtEmailAdm"></p>
+                        <div class="bloco">
+                            <p>E-mail da empresa:* </p><input type="text" id="txtEmailEmpresa">
+                        </div>
                     </div>
                 </div>
                 <h2>Termos de Serviço</h2>
@@ -109,17 +133,17 @@
     }
 
     // verificando se a checkbox está marcada
-    function mudaCheckBox(){
-        if(checked == false){
+    function mudaCheckBox() {
+        if (checked == false) {
             checked = true
-        }else{
+        } else {
             checked = false
         }
     }
 
     // verificando campos obrigatórios vazios
 
-    function verificarCampos(){
+    function verificarCampos() {
         // campos obrigatorios
         empresa.dados.nome = txtNomeEmpresarial.value
         empresa.dados.cnpj = txtCnpj.value
@@ -131,113 +155,101 @@
         empresa.endereco.uf = txtUf.value
         empresa.contato.telefone = txtTelEmpresa.value
         empresa.contato.email = txtEmailEmpresa.value
-        empresa.adm.nome = txtNomeAdm.value
-        empresa.adm.email = txtEmailAdm.value
         var erro = false
 
         // definindo a cor das bordas para preto
-            txtNomeEmpresarial.style = 'border-color:black;'
-            txtCnpj.style = 'border-color:black;'
-            txtCep.style = 'border-color:black;'
-            txtLogradouro.style = 'border-color:black;'
-            txtNumero.style = 'border-color:black;'
-            txtCidade.style = 'border-color:black;'
-            txtBairro.style = 'border-color:black;'
-            txtUf.style = 'border-color:black;'
-            txtEmailEmpresa.style = 'border-color:black;'
-            txtTelEmpresa.style = 'border-color:black;'
-            txtNomeAdm.style = 'border-color:black;'
-            txtEmailAdm.style = 'border-color:black;'
+        txtNomeEmpresarial.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtCnpj.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtCep.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtLogradouro.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtNumero.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtCidade.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtBairro.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtUf.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtEmailEmpresa.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtTelEmpresa.style = 'box-shadow: 1px 1px 10px #4f3f585d';
 
         // verificando condições
-        if(checked == false){
+        if (checked == false) {
             erro = true
             alert("Você precisa aceitar os termos de uso para prosseguir!")
         }
-        if(empresa.dados.nome == ""){
+        if (empresa.dados.nome == "") {
             erro = true
             alert("O campo {nome empresarial} é obrigatório!")
-            txtNomeEmpresarial.style = 'border-color:red;'
-        }if(empresa.dados.cnpj == ""){
+            txtNomeEmpresarial.style = 'box-shadow: .5px .5px 10px red;'
+        } if (empresa.dados.cnpj == "") {
             erro = true
             alert("O campo {cnpj} é obrigatório!")
-            txtCnpj.style = 'border-color:red;'
-        }if(empresa.endereco.cep == ""){
+            txtCnpj.style = 'box-shadow: .5px .5px 10px red;'
+        } if (empresa.endereco.cep == "") {
             erro = true
             alert("O campo {cep} é obrigatório!")
-            txtCep.style = 'border-color:red;'
-        }if(empresa.endereco.logradouro == ""){
+            txtCep.style = 'box-shadow: .5px .5px 10px red;'
+        } if (empresa.endereco.logradouro == "") {
             erro = true
             alert("O campo {logradouro} é obrigatório!")
-            txtLogradouro.style = 'border-color:red;'
-        }if(empresa.endereco.numero == 0){
+            txtLogradouro.style = 'box-shadow: .5px .5px 10px red;'
+        } if (empresa.endereco.numero == 0) {
             erro = true
             alert("O campo {numero} está inválido! Verifique o conteúdo!")
-            txtNumero.style = 'border-color:red;'
-        }if(empresa.endereco.cidade == ""){
+            txtNumero.style = 'box-shadow: .5px .5px 10px red;'
+        } if (empresa.endereco.cidade == "") {
             erro = true
             alert("O campo {cidade} é obrigatório!")
-            txtCidade.style = 'border-color:red;'
-        }if(empresa.endereco.bairro == ""){
+            txtCidade.style = 'box-shadow: .5px .5px 10px red;'
+        } if (empresa.endereco.bairro == "") {
             erro = true
             alert("O campo {bairro} é obrigatório!")
-            txtBairro.style = 'border-color:red;'
-        }if(empresa.endereco.uf == ""){
+            txtBairro.style = 'box-shadow: .5px .5px 10px red;'
+        } if (empresa.endereco.uf == "") {
             erro = true
             alert("O campo {uf} é obrigatório!")
-            txtUf.style = 'border-color:red;'
-        }if(empresa.contato.telefone == ""){
+            txtUf.style = 'box-shadow: .5px .5px 10px red;'
+        } if (empresa.contato.telefone == "") {
             erro = true
             alert("O campo {telefone da empresa} é obrigatório!")
-            txtTelEmpresa.style = 'border-color:red;'
-        }if(empresa.contato.email == ""){
+            txtTelEmpresa.style = 'box-shadow: .5px .5px 10px red;'
+        } if (empresa.contato.email == "") {
             erro = true
             alert("O campo {email da empresa} é obrigatório!")
-            txtEmailEmpresa.style = 'border-color:red;'
-        }if(empresa.adm.nome == ""){
-            erro = true
-            alert("O campo {nome do administrador} é obrigatório!")
-            txtNomeAdm.style = 'border-color:red;'
-        }if(empresa.adm.email == ""){
-            erro = true
-            alert("O campo {email do administrador} é obrigatório!")
-            txtEmailAdm.style = 'border-color:red;'
-        }if(erro == false){
+            txtEmailEmpresa.style = 'box-shadow: .5px .5px 10px red;'
+        } if (erro == false) {
             alert("acessando formulário de pagamento...")
         }
     }
 
     // mascaras de cnpj, cep e telefone
-    function mascaraCnpj(){
+    function mascaraCnpj() {
         var tamanhoCnpj = txtCnpj.value.length
-        if(tamanhoCnpj == 2){
+        if (tamanhoCnpj == 2) {
             txtCnpj.value += '.'
-        }if(tamanhoCnpj == 6){
+        } if (tamanhoCnpj == 6) {
             txtCnpj.value += '.'
-        }if(tamanhoCnpj == 10){
+        } if (tamanhoCnpj == 10) {
             txtCnpj.value += '/'
-        }if(tamanhoCnpj == 15){
+        } if (tamanhoCnpj == 15) {
             txtCnpj.value += '-'
         }
     }
-    function mascaraCep(){
+    function mascaraCep() {
         var tamanhoCep = txtCep.value.length
-        if(tamanhoCep == 5){
+        if (tamanhoCep == 5) {
             txtCep.value += '-'
         }
     }
-    function mascaraTelefone(){
+    function mascaraTelefone() {
         var tamanhoTel1 = txtTelEmpresa.value.length
-        if(tamanhoTel1 == 2){
-            txtTelEmpresa.value += '  '
-        }if(tamanhoTel1 == 9){
+        if (tamanhoTel1 == 2) {
+            txtTelEmpresa.value = `(${txtTelEmpresa.value})`
+        } if (tamanhoTel1 == 9) {
             txtTelEmpresa.value += '-'
         }
 
         var tamanhoTel2 = txtTelSecundario.value.length
-        if(tamanhoTel2 == 2){
-            txtTelSecundario.value += '  '
-        }if(tamanhoTel2 == 9){
+        if (tamanhoTel2 == 2) {
+            txtTelSecundario.value = `(${txtTelSecundario.value})`
+        } if (tamanhoTel2 == 9) {
             txtTelSecundario.value += '-'
         }
     }
