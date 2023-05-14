@@ -103,8 +103,7 @@
                 <h2>Termos de Serviço</h2>
                 <div class="termos">
                     <p><input type="checkbox" onclick="mudaCheckBox()"> Li e aceito os Termos de Serviço da TechNoir</p>
-                    <button onclick="verificarCampos()" class="button"
-                    id="btn_continuar">Continuar</button>
+                    <button onclick="verificarCampos()" class="button" id="btn_continuar">Continuar</button>
                 </div>
             </div>
             <div class="carregando" id="divLoad">
@@ -126,8 +125,7 @@
                     </div>
                     <div class="linha">
                         <div class="bloco">
-                            <p>Senha:* </p><input type="text" id="txtSenha"
-                             oninput="">
+                            <p>Senha:* </p><input type="text" id="txtSenha" oninput="">
                         </div>
                     </div>
                     <div class="linha">
@@ -138,8 +136,7 @@
 
                 </div>
                 <div class="termos">
-                    <button onclick="verificarSenha()" class="button"
-                     id="btn_cadastrar">Cadastrar</button>
+                    <button onclick="verificarSenha()" class="button" id="btn_cadastrar">Cadastrar</button>
                 </div>
             </div>
         </div>
@@ -171,7 +168,7 @@
         adm: {
             login: "",
             email: "",
-            senha:""
+            senha: ""
         }
     }
 
@@ -351,7 +348,7 @@
             }
         }
     }
-    function verificarSenha(){
+    function verificarSenha() {
         empresa.adm.login = txtLogin.value
         empresa.adm.email = txtEmailAdm.value
         empresa.adm.senha = txtSenha.value
@@ -363,30 +360,77 @@
         txtSenha.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
         txtConfirmarSenha.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
 
-        if(empresa.adm.login.length < 8){
+        if (empresa.adm.login.length < 8) {
             erro = true
             alert('O campo Login deve ter pelo menos 8 caracteres!')
             txtLogin.style = 'box-shadow: .5px .5px 10px red;'
         }
-        if(empresa.adm.email == "" || empresa.adm.email.indexOf('@') == -1 ||
-            empresa.adm.email.indexOf('.') == -1 || empresa.adm.email.length < 10){
-                erro = true
-                txtEmailAdm.style = 'box-shadow: .5px .5px 10px red;'
+        if (empresa.adm.email == "" || empresa.adm.email.indexOf('@') == -1 ||
+            empresa.adm.email.indexOf('.') == -1 || empresa.adm.email.length < 10) {
+            erro = true
+            txtEmailAdm.style = 'box-shadow: .5px .5px 10px red;'
         }
-        if(empresa.adm.senha.length < 8){
+        if (empresa.adm.senha.length < 8) {
             erro = true
             alert('A senha deve ter pelo menos 8 caracteres!')
             txtSenha.style = 'box-shadow: .5px .5px 10px red;'
         }
-        if(confirmarSenha != empresa.adm.senha){
+        if (confirmarSenha != empresa.adm.senha) {
             erro = true
             alert('Senhas diferentes!')
             txtConfirmarSenha.style = 'box-shadow: .5px .5px 10px red;'
         }
-        if(erro == false){
+        if (erro == false) {
             cadastrar()
-        }else{
+        } else {
             alert("Alerta! Campos inválidos encontrados, verifique o conteúdo!")
         }
+    }
+
+    function cadastrar() {
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeEmpresaServer: empresa.dados.nome,
+                nomeFantasiaServer: empresa.dados.nomeFantasia,
+                cnpjServer: empresa.dados.cnpj,
+                cepServer: empresa.endereco.cep,
+                logradouroServer: empresa.endereco.logradouro,
+                numeroServer: empresa.endereco.numero,
+                bairroServer: empresa.endereco.bairro,
+                cidadeServer: empresa.endereco.cidade,
+                ufServer: empresa.endereco.uf,
+                telefoneServer: empresa.contato.telefone,
+                telefoneSecundarioServer: empresa.contato.telefoneSecundario,
+                emailEmpresaServer: empresa.contato.email,
+                emailAdmServer: empresa.adm.email,
+                loginServer: empresa.adm.login,
+                senhaServer: empresa.adm.senha
+
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                divLoad.style = 'diplay:flex;'
+                setTimeout(() => {
+                    divLoad.innerHTML = `Cadastro efetuado com sucesso! Redirecionando para a tela de login!`;
+                    setTimeout(() => {
+                        window.location = 'DashboardLogin.html'
+                    }, 2000)
+                }, 1000)
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+        return false;
     }
 </script>
