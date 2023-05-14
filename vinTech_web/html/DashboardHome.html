@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - DashBoard</title>
+    <title>Home</title>
     <link rel="icon" type="image/png" href="../img/vintech.jpg">
     <link rel="stylesheet" href="../css/style-PadraoTodos.css">
     <link rel="stylesheet" href="../css/style-PadraoDashboard.css">
@@ -21,9 +21,9 @@
             </div>
             <div class="barra-itens">
                 <ul>
-                    <li>Home</li>
-                    <li>Plantações</li>
-                    <li id="item">Configurações</li>
+                    <a href="DashboardHome.html"><li>Home</li></a>
+                    <a href="DashboardPlantacoes.html"><li>Plantações</li></a>
+                    <a href="DashboardConfig.html"><li id="item">Configurações</li></a>
                 </ul>
             </div>
             <div class="barra-usuario">
@@ -116,14 +116,14 @@
                     Estufa em estado ideal
                 </h2>    
                 </div>
-                 <canvas id="excelente"></canvas></div>
+                 <canvas id="grafico_ideal"></canvas></div>
             <div class="grafico">
                 <div class="titulo_grafico">
                    <h2>
                     Estufa em estado de perigo
                 </h2>    
                 </div>
-              <canvas id="péssimo"></canvas></div>                
+              <canvas id="grafico_perigo"></canvas></div>                
             </div>
             <div class="inferior_direita">
             <div class="uvas_cultivo">
@@ -152,17 +152,22 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js">
 </script>
 <script>
-const ctx = document.getElementById('excelente')
+const ctx = document.getElementById('grafico_ideal')
 
 new Chart(ctx, {
     type: 'line',
     data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+    labels: ['12:00', '12:15', '12:30', '12:45', '13:00', '13:15'],
       datasets: [{
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
-        borderWidth: 1
-      }]
+        label: 'Temperatura',
+        data: [15,16,14,16,20,17],
+        borderWidth: 1,
+      },{
+        label: 'Umidade',
+        data:[30,32,28,31,30,33],
+        borderWidth: 1,
+      
+      }],
     },
     options: {
       scales: {
@@ -177,17 +182,21 @@ new Chart(ctx, {
 <script src="https://cdn.jsdelivr.net/npm/chart.js">
 </script>
 <script>
-const ctx_2 = document.getElementById('péssimo')
+const ctx_2 = document.getElementById('grafico_perigo')
 
 new Chart(ctx_2, {
     type: 'line',
     data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      labels: ['12:00', '12:15', '12:30', '12:45', '13:00', '13:15'],
       datasets: [{
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
-        borderWidth: 1
-      }]
+        label: 'Temperatura',
+        data: [17,16,13,10,8,3],
+        borderWidth: 1,
+      },{
+        label: 'Umidade',
+        data:[25,22,18,18,16,14],
+        borderWidth: 1,
+    }],
     },
     options: {
       scales: {
