@@ -2,15 +2,16 @@
     "name": "banco_de_dados_sptech_cco",
     "version": "1.0.0",
     "description": "",
-    "main": "main.js",
+    "main": "app.js",
     "scripts": {
-        "start": "node app.js"
+        "start": "node app.js",
+        "dev": "nodemon --exec node app.js"
     },
     "author": "Modificações por Rafael Scheneider",
     "license": "Apenas para estudos",
     "dependencies": {
         "cors": "^2.8.5",
-        "express": "^4.18.2",
+        "express": "^4.17.1",
         "mssql": "^7.1.3",
         "mysql2": "^2.3.3",
         "nodemon": "^2.0.7",
