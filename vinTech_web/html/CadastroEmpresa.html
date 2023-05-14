@@ -42,18 +42,22 @@
                 <div class="informacoes">
                     <div class="linha linha-nome">
                         <div class="bloco">
-                            <p>Nome Empresarial:* </p><input type="text" id="txtNomeEmpresarial">
+                            <p>Nome Empresarial:* </p><input type="text" id="txtNomeEmpresarial"
+                                onkeyup="eliminarNumeros('txtNomeEmpresarial')">
                         </div>
                         <div class="bloco">
-                            <p>Nome Fantasia: </p><input type="text" id="txtNomeFantasia">
+                            <p>Nome Fantasia: </p><input type="text" id="txtNomeFantasia"
+                                onkeyup="eliminarNumeros('txtNomeFantasia')">
                         </div>
                     </div>
                     <div class="linha linha-cnpj">
                         <div class="bloco bloco-cnpj">
-                            <p>CNPJ:* </p><input type="text" id="txtCnpj" onkeyup="mascaraCnpj()" maxlength="18">
+                            <p>CNPJ:* </p><input type="text" id="txtCnpj"
+                                onkeyup="mascaraCnpj(), eliminarLetras('txtCnpj')" maxlength="18">
                         </div>
                         <div class="bloco bloco-cep">
-                            <p>CEP:*</p> <input type="text" id="txtCep" onkeyup="mascaraCep()" maxlength="9">
+                            <p>CEP:*</p> <input type="text" id="txtCep" onkeyup="mascaraCep(), eliminarLetras('txtCep')"
+                                maxlength="9">
                         </div>
                         <div class="bloco bloco-numero">
                             <p>Número:* </p><input type="text" id="txtNumero" class="input-numero">
@@ -61,18 +65,19 @@
                     </div>
                     <div class="linha linha-logrBairro">
                         <div class="bloco">
-                            <p>Logradouro:*</p> <input type="text" id="txtLogradouro">
+                            <p>Logradouro:*</p> <input type="text" id="txtLogradouro"
+                                onkeyup="eliminarNumeros('txtLogradouro')">
                         </div>
                         <div class="bloco">
-                            <p>Bairro:*</p> <input type="text" id="txtBairro">
+                            <p>Bairro:*</p> <input type="text" id="txtBairro" onkeyup="eliminarNumeros('txtBairro')">
                         </div>
                     </div>
                     <div class="linha linha-cidadeUf">
                         <div class="bloco">
-                            <p>Cidade:*</p> <input type="text" id="txtCidade">
+                            <p>Cidade:*</p> <input type="text" id="txtCidade" onkeyup="eliminarNumeros('txtCidade')">
                         </div>
                         <div class="bloco">
-                            <p>UF:* </p><input type="text" id="txtUf">
+                            <p>UF:* </p><input type="text" id="txtUf" onkeyup="eliminarNumeros('txtUf')">
                         </div>
                     </div>
                 </div>
@@ -82,11 +87,11 @@
                     <div class="linha">
                         <div class="bloco">
                             <p>Telefone da empresa:* </p><input type="text" id="txtTelEmpresa"
-                                onkeyup="mascaraTelefone()" maxlength="14">
+                                onkeyup="mascaraTelefone(), eliminarLetras(`txtTelEmpresa`)" maxlength="14">
                         </div>
                         <div class="bloco">
                             <p>Telefone secundário: </p><input type="text" id="txtTelSecundario"
-                                onkeyup="mascaraTelefone()" maxlength="14">
+                                onkeyup="mascaraTelefone(), eliminarLetras('txtTelSecundario')" maxlength="14">
                         </div>
                     </div>
                     <div class="linha">
@@ -98,7 +103,8 @@
                 <h2>Termos de Serviço</h2>
                 <div class="termos">
                     <p><input type="checkbox" onclick="mudaCheckBox()"> Li e aceito os Termos de Serviço da TechNoir</p>
-                    <button onclick="verificarCampos()" class="button">Continuar</button>
+                    <button onclick="verificarCampos()" class="button"
+                    id="btn_continuar">Continuar</button>
                 </div>
             </div>
             <div class="carregando" id="divLoad">
@@ -120,18 +126,20 @@
                     </div>
                     <div class="linha">
                         <div class="bloco">
-                            <p>Senha:* </p><input type="text" id="txtSenha">
+                            <p>Senha:* </p><input type="text" id="txtSenha"
+                             oninput="">
                         </div>
                     </div>
                     <div class="linha">
                         <div class="bloco">
-                            <p>Repetir Senha:* </p><input type="text" id="txtRepetirSenha">
+                            <p>Repetir Senha:* </p><input type="text" id="txtConfirmarSenha">
                         </div>
                     </div>
 
                 </div>
                 <div class="termos">
-                    <button onclick="verificarCampos()" class="button">Cadastrar</button>
+                    <button onclick="verificarSenha()" class="button"
+                     id="btn_cadastrar">Cadastrar</button>
                 </div>
             </div>
         </div>
@@ -161,8 +169,9 @@
             email: ""
         },
         adm: {
-            nome: "",
-            email: ""
+            login: "",
+            email: "",
+            senha:""
         }
     }
 
@@ -204,51 +213,58 @@
         txtUf.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
         txtEmailEmpresa.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
         txtTelEmpresa.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtTelSecundario.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
 
         // verificando condições
         if (checked == false) {
             erro = true
             alert("Você precisa aceitar os termos de uso para prosseguir!")
         }
-        if (empresa.dados.nome == "") {
+        if (empresa.dados.nome == "" || isNaN(empresa.dados.nome) == false) {
             erro = true
-            alert("O campo {nome empresarial} é obrigatório!")
+            // alert("O campo {nome empresarial} é obrigatório!")
             txtNomeEmpresarial.style = 'box-shadow: .5px .5px 10px red;'
-        } if (empresa.dados.cnpj == "") {
+        } if (empresa.dados.cnpj == "" || empresa.dados.cnpj.length != 18) {
             erro = true
-            alert("O campo {cnpj} é obrigatório!")
+            // alert("O campo {cnpj} é obrigatório!")
             txtCnpj.style = 'box-shadow: .5px .5px 10px red;'
-        } if (empresa.endereco.cep == "") {
+        } if (empresa.endereco.cep == "" || empresa.endereco.cep.length != 9) {
             erro = true
-            alert("O campo {cep} é obrigatório!")
+            // alert("O campo {cep} é obrigatório!")
             txtCep.style = 'box-shadow: .5px .5px 10px red;'
         } if (empresa.endereco.logradouro == "") {
             erro = true
-            alert("O campo {logradouro} é obrigatório!")
+            // alert("O campo {logradouro} é obrigatório!")
             txtLogradouro.style = 'box-shadow: .5px .5px 10px red;'
         } if (empresa.endereco.numero == 0) {
             erro = true
-            alert("O campo {numero} está inválido! Verifique o conteúdo!")
+            // alert("O campo {numero} está inválido! Verifique o conteúdo!")
             txtNumero.style = 'box-shadow: .5px .5px 10px red;'
         } if (empresa.endereco.cidade == "") {
             erro = true
-            alert("O campo {cidade} é obrigatório!")
+            // alert("O campo {cidade} é obrigatório!")
             txtCidade.style = 'box-shadow: .5px .5px 10px red;'
         } if (empresa.endereco.bairro == "") {
             erro = true
-            alert("O campo {bairro} é obrigatório!")
+            // alert("O campo {bairro} é obrigatório!")
             txtBairro.style = 'box-shadow: .5px .5px 10px red;'
-        } if (empresa.endereco.uf == "") {
+        } if (empresa.endereco.uf == "" || empresa.endereco.uf.length != 2) {
             erro = true
-            alert("O campo {uf} é obrigatório!")
+            // alert("O campo {uf} é obrigatório!")
             txtUf.style = 'box-shadow: .5px .5px 10px red;'
-        } if (empresa.contato.telefone == "") {
+        } if (empresa.contato.telefone == "" || empresa.contato.telefone.length != 14) {
             erro = true
-            alert("O campo {telefone da empresa} é obrigatório!")
+            // alert("O campo {telefone da empresa} é obrigatório!")
             txtTelEmpresa.style = 'box-shadow: .5px .5px 10px red;'
-        } if (empresa.contato.email == "") {
+        } if (empresa.contato.telefoneSecundario != "" &&
+            empresa.contato.telefoneSecundario.length != 14) {
             erro = true
-            alert("O campo {email da empresa} é obrigatório!")
+            // alert("O campo {telefone da empresa} é obrigatório!")
+            txtTelSecundario.style = 'box-shadow: .5px .5px 10px red;'
+        } if (empresa.contato.email == "" || empresa.contato.email.indexOf('@') == -1 ||
+            empresa.contato.email.indexOf('.') == -1 || empresa.contato.email.length < 10) {
+            erro = true
+            // alert("O campo {email da empresa} é obrigatório!")
             txtEmailEmpresa.style = 'box-shadow: .5px .5px 10px red;'
         } if (erro == false) {
             divLoad.style = 'display:flex;'
@@ -257,6 +273,8 @@
                 frm_infoEmpresa.style = 'display:none;'
                 frm_infoLogin.style = 'display:flex;'
             }, 1000)
+        } else {
+            alert("Alerta! Campos inválidos encontrados, verifique o conteúdo!")
         }
     }
 
@@ -293,6 +311,82 @@
             txtTelSecundario.value = `(${txtTelSecundario.value})`
         } if (tamanhoTel2 == 9) {
             txtTelSecundario.value += '-'
+        }
+    }
+
+    function eliminarLetras(id) {
+        const input = document.getElementById(id)
+        var listaLetras = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@;,?|{}[]~^'
+        // console.log(input)
+        // console.log(ultima_letra)
+        for (var i = 0; i <= 62; i++) {
+            if (input.value[input.value.length - 1] == listaLetras[i]) {
+                alert('Esse campo só aceita números!')
+                input.value = ''
+            }
+            for (var letra = 0; letra <= input.value.length - 1; letra++) {
+                if (input.value[letra] == listaLetras[i]) {
+                    alert('Esse campo só aceita números!')
+                    input.value = ''
+                }
+            }
+        }
+
+    }
+    function eliminarNumeros(id) {
+        const input = document.getElementById(id)
+        var listaLetras = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        // console.log(input)
+        // console.log(ultima_letra)
+        for (var i = 0; i <= 9; i++) {
+            if (input.value[input.value.length - 1] == listaLetras[i]) {
+                alert('Esse campo não aceita números!')
+                input.value = ''
+            }
+        }
+        for (var letra = 0; letra <= input.value.length - 1; letra++) {
+            if (isNaN(input.value[letra]) == false) {
+                alert('Esse campo não aceita números!')
+                input.value = ''
+            }
+        }
+    }
+    function verificarSenha(){
+        empresa.adm.login = txtLogin.value
+        empresa.adm.email = txtEmailAdm.value
+        empresa.adm.senha = txtSenha.value
+        const confirmarSenha = txtConfirmarSenha.value
+        var erro = false
+
+        txtLogin.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtEmailAdm.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtSenha.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtConfirmarSenha.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+
+        if(empresa.adm.login.length < 8){
+            erro = true
+            alert('O campo Login deve ter pelo menos 8 caracteres!')
+            txtLogin.style = 'box-shadow: .5px .5px 10px red;'
+        }
+        if(empresa.adm.email == "" || empresa.adm.email.indexOf('@') == -1 ||
+            empresa.adm.email.indexOf('.') == -1 || empresa.adm.email.length < 10){
+                erro = true
+                txtEmailAdm.style = 'box-shadow: .5px .5px 10px red;'
+        }
+        if(empresa.adm.senha.length < 8){
+            erro = true
+            alert('A senha deve ter pelo menos 8 caracteres!')
+            txtSenha.style = 'box-shadow: .5px .5px 10px red;'
+        }
+        if(confirmarSenha != empresa.adm.senha){
+            erro = true
+            alert('Senhas diferentes!')
+            txtConfirmarSenha.style = 'box-shadow: .5px .5px 10px red;'
+        }
+        if(erro == false){
+            cadastrar()
+        }else{
+            alert("Alerta! Campos inválidos encontrados, verifique o conteúdo!")
         }
     }
 </script>
