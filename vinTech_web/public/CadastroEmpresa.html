@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VinTech - Cadastro</title>
+    <link rel="stylesheet" href="../css/style-CadastroEmpresa.css">
+    <link rel="stylesheet" href="../css/style-PadraoTodos.css">
+    <link rel="icon" href="../img/logo.jpeg" type="image/png">
+</head>
+
+<body>
+    <div class="pai">
+        <div class="sobre">
+            <div class="sobreTitulo">
+                <h1>Formulário de Cadastro</h1>
+            </div>
+            <div class="sobreTexto">
+                <span>Lei de Proteção de Dados Pessoais LGPD</span>
+                <p>Certificamos que a TechNoir, tanto em seu site quanto em suas atividades comerciais, segue
+                    rigorosamente as leis de proteção de dados pessoais do Brasil, estabelecidas pela Lei Geral de
+                    Proteção de Dados (LGPD).
+                    <br><br>
+                    Nosso compromisso é garantir a privacidade e segurança dos dados pessoais de nossos usuários e
+                    clientes, e para isso, adotamos medidas técnicas e organizacionais para assegurar que todas as
+                    informações fornecidas sejam tratadas de forma adequada e responsável.
+                    <br><br>
+                    Com isso, você pode confiar na TechNoir como uma empresa comprometida com a segurança dos seus dados
+                    pessoais, e que segue as normas estabelecidas pelas autoridades competentes para garantir a proteção
+                    de seus direitos e privacidade. Estamos sempre à disposição para esclarecer qualquer dúvida e
+                    oferecer suporte aos nossos usuários.
+                </p>
+            </div>
+        </div>
+        <div class="coluna"></div>
+        <div class="ajuste">
+            <div class="formulario formulario-infoEmpresa" id="frm_infoEmpresa">
+                <h2>Informações</h2>
+                <br>
+                <div class="informacoes">
+                    <div class="linha linha-nome">
+                        <div class="bloco">
+                            <p>Nome Empresarial:* </p><input type="text" id="txtNomeEmpresarial"
+                                onkeyup="eliminarNumeros('txtNomeEmpresarial')">
+                        </div>
+                        <div class="bloco">
+                            <p>Nome Fantasia: </p><input type="text" id="txtNomeFantasia"
+                                onkeyup="eliminarNumeros('txtNomeFantasia')">
+                        </div>
+                    </div>
+                    <div class="linha linha-cnpj">
+                        <div class="bloco bloco-cnpj">
+                            <p>CNPJ:* </p><input type="text" id="txtCnpj"
+                                onkeyup="mascaraCnpj(), eliminarLetras('txtCnpj')" maxlength="18">
+                        </div>
+                        <div class="bloco bloco-cep">
+                            <p>CEP:*</p> <input type="text" id="txtCep" onkeyup="mascaraCep(), eliminarLetras('txtCep')"
+                                maxlength="9">
+                        </div>
+                        <div class="bloco bloco-numero">
+                            <p>Número:* </p><input type="text" id="txtNumero" class="input-numero">
+                        </div>
+                    </div>
+                    <div class="linha linha-logrBairro">
+                        <div class="bloco">
+                            <p>Logradouro:*</p> <input type="text" id="txtLogradouro"
+                                onkeyup="eliminarNumeros('txtLogradouro')">
+                        </div>
+                        <div class="bloco">
+                            <p>Bairro:*</p> <input type="text" id="txtBairro" onkeyup="eliminarNumeros('txtBairro')">
+                        </div>
+                    </div>
+                    <div class="linha linha-cidadeUf">
+                        <div class="bloco">
+                            <p>Cidade:*</p> <input type="text" id="txtCidade" onkeyup="eliminarNumeros('txtCidade')">
+                        </div>
+                        <div class="bloco">
+                            <p>UF:* </p><input type="text" id="txtUf" onkeyup="eliminarNumeros('txtUf')">
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+                <h2>Contato</h2>
+                <div class="contato">
+                    <div class="linha">
+                        <div class="bloco">
+                            <p>Telefone da empresa:* </p><input type="text" id="txtTelEmpresa"
+                                onkeyup="mascaraTelefone(), eliminarLetras(`txtTelEmpresa`)" maxlength="14">
+                        </div>
+                        <div class="bloco">
+                            <p>Telefone secundário: </p><input type="text" id="txtTelSecundario"
+                                onkeyup="mascaraTelefone(), eliminarLetras('txtTelSecundario')" maxlength="14">
+                        </div>
+                    </div>
+                    <div class="linha">
+                        <div class="bloco">
+                            <p>E-mail da empresa:* </p><input type="text" id="txtEmailEmpresa">
+                        </div>
+                    </div>
+                </div>
+                <h2>Termos de Serviço</h2>
+                <div class="termos">
+                    <p><input type="checkbox" onclick="mudaCheckBox()"> Li e aceito os Termos de Serviço da TechNoir</p>
+                    <button onclick="verificarCampos()" class="button" id="btn_continuar">Continuar</button>
+                </div>
+            </div>
+            <div class="carregando" id="divLoad">
+                <img src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif" alt="">
+            </div>
+            <div class="formulario formulario-cadastroLogin" id="frm_infoLogin">
+                <div class="administrador">
+                    <br>
+                    <h2>Dados do Administrador</h2>
+                    <div class="linha">
+                        <div class="bloco">
+                            <p>E-mail do Administrador:* </p><input type="text" id="txtEmailAdm">
+                        </div>
+                    </div>
+                    <div class="linha">
+                        <div class="bloco">
+                            <p>Login:* </p><input type="text" id="txtLogin">
+                        </div>
+                    </div>
+                    <div class="linha">
+                        <div class="bloco">
+                            <p>Senha:* </p><input type="text" id="txtSenha" oninput="">
+                        </div>
+                    </div>
+                    <div class="linha">
+                        <div class="bloco">
+                            <p>Repetir Senha:* </p><input type="text" id="txtConfirmarSenha">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="termos">
+                    <button onclick="verificarSenha()" class="button" id="btn_cadastrar">Cadastrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    var checked = false
+    var empresa = {
+        dados: {
+            nome: "",
+            nomeFantasia: "",
+            cnpj: "",
+        },
+        endereco: {
+            cep: "",
+            logradouro: "",
+            numero: 0,
+            bairro: "",
+            cidade: "",
+            uf: ""
+        },
+        contato: {
+            telefone: "",
+            telefoneSecundario: "",
+            email: ""
+        },
+        adm: {
+            login: "",
+            email: "",
+            senha: ""
+        }
+    }
+
+    // verificando se a checkbox está marcada
+    function mudaCheckBox() {
+        if (checked == false) {
+            checked = true
+        } else {
+            checked = false
+        }
+    }
+
+    // verificando campos obrigatórios vazios
+
+    function verificarCampos() {
+        // campos obrigatorios
+        empresa.dados.nome = txtNomeEmpresarial.value
+        empresa.dados.nomeFantasia = txtNomeFantasia.value
+        empresa.dados.cnpj = txtCnpj.value
+        empresa.endereco.cep = txtCep.value
+        empresa.endereco.logradouro = txtLogradouro.value
+        empresa.endereco.numero = Number(txtNumero.value)
+        empresa.endereco.bairro = txtBairro.value
+        empresa.endereco.cidade = txtCidade.value
+        empresa.endereco.uf = txtUf.value
+        empresa.contato.telefone = txtTelEmpresa.value
+        empresa.contato.telefoneSecundario = txtTelSecundario.value
+        empresa.contato.email = txtEmailEmpresa.value
+        var erro = false
+
+        // definindo a cor das bordas para preto
+        txtNomeEmpresarial.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtCnpj.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtCep.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtLogradouro.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtNumero.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtCidade.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtBairro.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtUf.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtEmailEmpresa.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtTelEmpresa.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtTelSecundario.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+
+        // verificando condições
+        if (checked == false) {
+            erro = true
+            alert("Você precisa aceitar os termos de uso para prosseguir!")
+        }
+        if (empresa.dados.nome == "" || isNaN(empresa.dados.nome) == false) {
+            erro = true
+            // alert("O campo {nome empresarial} é obrigatório!")
+            txtNomeEmpresarial.style = 'box-shadow: .5px .5px 10px red;'
+        } if (empresa.dados.cnpj == "" || empresa.dados.cnpj.length != 18) {
+            erro = true
+            // alert("O campo {cnpj} é obrigatório!")
+            txtCnpj.style = 'box-shadow: .5px .5px 10px red;'
+        } if (empresa.endereco.cep == "" || empresa.endereco.cep.length != 9) {
+            erro = true
+            // alert("O campo {cep} é obrigatório!")
+            txtCep.style = 'box-shadow: .5px .5px 10px red;'
+        } if (empresa.endereco.logradouro == "") {
+            erro = true
+            // alert("O campo {logradouro} é obrigatório!")
+            txtLogradouro.style = 'box-shadow: .5px .5px 10px red;'
+        } if (empresa.endereco.numero == 0) {
+            erro = true
+            // alert("O campo {numero} está inválido! Verifique o conteúdo!")
+            txtNumero.style = 'box-shadow: .5px .5px 10px red;'
+        } if (empresa.endereco.cidade == "") {
+            erro = true
+            // alert("O campo {cidade} é obrigatório!")
+            txtCidade.style = 'box-shadow: .5px .5px 10px red;'
+        } if (empresa.endereco.bairro == "") {
+            erro = true
+            // alert("O campo {bairro} é obrigatório!")
+            txtBairro.style = 'box-shadow: .5px .5px 10px red;'
+        } if (empresa.endereco.uf == "" || empresa.endereco.uf.length != 2) {
+            erro = true
+            // alert("O campo {uf} é obrigatório!")
+            txtUf.style = 'box-shadow: .5px .5px 10px red;'
+        } if (empresa.contato.telefone == "" || empresa.contato.telefone.length != 14) {
+            erro = true
+            // alert("O campo {telefone da empresa} é obrigatório!")
+            txtTelEmpresa.style = 'box-shadow: .5px .5px 10px red;'
+        } if (empresa.contato.telefoneSecundario != "" &&
+            empresa.contato.telefoneSecundario.length != 14) {
+            erro = true
+            // alert("O campo {telefone da empresa} é obrigatório!")
+            txtTelSecundario.style = 'box-shadow: .5px .5px 10px red;'
+        } if (empresa.contato.email == "" || empresa.contato.email.indexOf('@') == -1 ||
+            empresa.contato.email.indexOf('.') == -1 || empresa.contato.email.length < 10) {
+            erro = true
+            // alert("O campo {email da empresa} é obrigatório!")
+            txtEmailEmpresa.style = 'box-shadow: .5px .5px 10px red;'
+        } if (erro == false) {
+            divLoad.style = 'display:flex;'
+            setInterval(() => {
+                divLoad.style = 'display:none;'
+                frm_infoEmpresa.style = 'display:none;'
+                frm_infoLogin.style = 'display:flex;'
+            }, 1000)
+        } else {
+            alert("Alerta! Campos inválidos encontrados, verifique o conteúdo!")
+        }
+    }
+
+    // mascaras de cnpj, cep e telefone
+    function mascaraCnpj() {
+        var tamanhoCnpj = txtCnpj.value.length
+        if (tamanhoCnpj == 2) {
+            txtCnpj.value += '.'
+        } if (tamanhoCnpj == 6) {
+            txtCnpj.value += '.'
+        } if (tamanhoCnpj == 10) {
+            txtCnpj.value += '/'
+        } if (tamanhoCnpj == 15) {
+            txtCnpj.value += '-'
+        }
+    }
+    function mascaraCep() {
+        var tamanhoCep = txtCep.value.length
+        if (tamanhoCep == 5) {
+            txtCep.value += '-'
+        }
+    }
+    function mascaraTelefone() {
+        var tamanhoTel1 = txtTelEmpresa.value.length
+
+        if (tamanhoTel1 == 2) {
+            txtTelEmpresa.value = `(${txtTelEmpresa.value})`
+        } if (tamanhoTel1 == 9) {
+            txtTelEmpresa.value += '-'
+        }
+
+        var tamanhoTel2 = txtTelSecundario.value.length
+        if (tamanhoTel2 == 2) {
+            txtTelSecundario.value = `(${txtTelSecundario.value})`
+        } if (tamanhoTel2 == 9) {
+            txtTelSecundario.value += '-'
+        }
+    }
+
+    function eliminarLetras(id) {
+        const input = document.getElementById(id)
+        var listaLetras = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@;,?|{}[]~^'
+        // console.log(input)
+        // console.log(ultima_letra)
+        for (var i = 0; i <= 62; i++) {
+            if (input.value[input.value.length - 1] == listaLetras[i]) {
+                alert('Esse campo só aceita números!')
+                input.value = ''
+            }
+            for (var letra = 0; letra <= input.value.length - 1; letra++) {
+                if (input.value[letra] == listaLetras[i]) {
+                    alert('Esse campo só aceita números!')
+                    input.value = ''
+                }
+            }
+        }
+
+    }
+    function eliminarNumeros(id) {
+        const input = document.getElementById(id)
+        var listaLetras = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        // console.log(input)
+        // console.log(ultima_letra)
+        for (var i = 0; i <= 9; i++) {
+            if (input.value[input.value.length - 1] == listaLetras[i]) {
+                alert('Esse campo não aceita números!')
+                input.value = ''
+            }
+        }
+        for (var letra = 0; letra <= input.value.length - 1; letra++) {
+            if (isNaN(input.value[letra]) == false) {
+                alert('Esse campo não aceita números!')
+                input.value = ''
+            }
+        }
+    }
+    function verificarSenha() {
+        empresa.adm.login = txtLogin.value
+        empresa.adm.email = txtEmailAdm.value
+        empresa.adm.senha = txtSenha.value
+        const confirmarSenha = txtConfirmarSenha.value
+        var erro = false
+
+        txtLogin.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtEmailAdm.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtSenha.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtConfirmarSenha.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+
+        if (empresa.adm.login.length < 8) {
+            erro = true
+            alert('O campo Login deve ter pelo menos 8 caracteres!')
+            txtLogin.style = 'box-shadow: .5px .5px 10px red;'
+        }
+        if (empresa.adm.email == "" || empresa.adm.email.indexOf('@') == -1 ||
+            empresa.adm.email.indexOf('.') == -1 || empresa.adm.email.length < 10) {
+            erro = true
+            txtEmailAdm.style = 'box-shadow: .5px .5px 10px red;'
+        }
+        if (empresa.adm.senha.length < 8) {
+            erro = true
+            alert('A senha deve ter pelo menos 8 caracteres!')
+            txtSenha.style = 'box-shadow: .5px .5px 10px red;'
+        }
+        if (confirmarSenha != empresa.adm.senha) {
+            erro = true
+            alert('Senhas diferentes!')
+            txtConfirmarSenha.style = 'box-shadow: .5px .5px 10px red;'
+        }
+        if (erro == false) {
+            cadastrar()
+        } else {
+            alert("Alerta! Campos inválidos encontrados, verifique o conteúdo!")
+        }
+    }
+
+    function cadastrar() {
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeEmpresaServer: empresa.dados.nome,
+                nomeFantasiaServer: empresa.dados.nomeFantasia,
+                cnpjServer: empresa.dados.cnpj,
+                cepServer: empresa.endereco.cep,
+                logradouroServer: empresa.endereco.logradouro,
+                numeroServer: empresa.endereco.numero,
+                bairroServer: empresa.endereco.bairro,
+                cidadeServer: empresa.endereco.cidade,
+                ufServer: empresa.endereco.uf,
+                telefoneServer: empresa.contato.telefone,
+                telefoneSecundarioServer: empresa.contato.telefoneSecundario,
+                emailEmpresaServer: empresa.contato.email,
+                emailAdmServer: empresa.adm.email,
+                loginServer: empresa.adm.login,
+                senhaServer: empresa.adm.senha
+
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                divLoad.style = 'diplay:flex;'
+                setTimeout(() => {
+                    divLoad.innerHTML = `Cadastro efetuado com sucesso! Redirecionando para a tela de login!`;
+                    setTimeout(() => {
+                        window.location = 'DashboardLogin.html'
+                    }, 2000)
+                }, 1000)
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+        return false;
+    }
+</script>
