@@ -388,7 +388,7 @@
     }
 
     function cadastrar() {
-        fetch("/usuarios/cadastrar", {
+        fetch("/empresa/cadastrar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -418,7 +418,7 @@
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                divLoad.style = 'diplay:flex;'
+                divLoad.style = 'display:flex;'
                 setTimeout(() => {
                     divLoad.innerHTML = `Cadastro efetuado com sucesso! Redirecionando para a tela de login!`;
                     setTimeout(() => {
@@ -432,5 +432,40 @@
             console.log(`#ERRO: ${resposta}`);
         });
         return false;
+
+        // usuario
+
+        // fetch("/usuarios/cadastrar", {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json"
+        //     },
+        //     body: JSON.stringify({
+        //         // crie um atributo que recebe o valor recuperado aqui
+        //         // Agora vá para o arquivo routes/usuario.js
+        //         emailAdmServer: empresa.adm.email,
+        //         loginServer: empresa.adm.login,
+        //         senhaServer: empresa.adm.senha
+
+        //     })
+        // }).then(function (resposta) {
+
+        //     console.log("resposta: ", resposta);
+
+        //     if (resposta.ok) {
+        //         divLoad.style = 'display:flex;'
+        //         setTimeout(() => {
+        //             divLoad.innerHTML = `Cadastro efetuado com sucesso! Redirecionando para a tela de login!`;
+        //             setTimeout(() => {
+        //                 window.location = 'DashboardLogin.html'
+        //             }, 2000)
+        //         }, 1000)
+        //     } else {
+        //         throw ("Houve um erro ao tentar realizar o cadastro!");
+        //     }
+        // }).catch(function (resposta) {
+        //     console.log(`#ERRO: ${resposta}`);
+        // });
+        // return false;
     }
 </script>
