@@ -14,7 +14,7 @@ const SERIAL_BAUD_RATE = 9600;
 const SERVIDOR_PORTA = 3000;
 
 // Check para ver se pode inserir no banco de dados local
-const HABILITAR_OPERACAO_INSERIR = false;
+const HABILITAR_OPERACAO_INSERIR = true;
 
 /*
 Fezendo uma arrow function (Uma expressão arrow function possui uma sintaxe 
@@ -37,8 +37,9 @@ const serial = async (
         {
             host: 'localhost',
             port: 3306,
-            user: 'root',
-            database: 'metricas'
+            user: 'aluno',
+            password: 'sptech',
+            database: 'Sprint3'
         }
     ).promise();
 
@@ -81,8 +82,8 @@ const serial = async (
             await poolBancoDados.execute(
                 // 'INSERT INTO sensores (dht11_umidade, dht11_temperatura, luminosidade, lm35_temperatura, chave) VALUES (?, ?, ?, ?, ?)',
                 // [dht11Umidade, dht11Temperatura, luminosidade, lm35Temperatura, chave]
-                'INSERT INTO sensores (dht11_umidade, dht11_temperatura) VALUES (?, ?)',
-                [dht11Umidade, dht11Temperatura]
+                'INSERT INTO Registro (temperaturaRegistro, umidadeRegistro, dataRegistro, fkSensor) VALUES (?, ?, ? ,?)',
+                [dht11Umidade, dht11Temperatura, '2023-05-13 11:10:26', 1]
             );
         }
 
