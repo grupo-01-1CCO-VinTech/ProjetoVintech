@@ -120,11 +120,10 @@ function cadastrar(req, res) {
                     res.status(500).json(erro.sqlMessage);
                 }
             );
-    }
-    else {
+    } else {
         res.status(400).send("Alerta! Campos inválidos encontrados, verifique o conteúdo!")
     }
-  /*  Código da Júlia
+    /*  Código da Júlia
    if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
     } else if (nome.length <= 1) {
@@ -141,8 +140,8 @@ function cadastrar(req, res) {
         res.status(400).send("Sua senha está undefined!");
     } else {
  */
-        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-       /*  usuarioModel.cadastrar(nome, email, senha, cpf)
+    // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+    /*  usuarioModel.cadastrar(nome, email, senha, cpf)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -159,7 +158,7 @@ function cadastrar(req, res) {
             );
     } */
 
-module.exports = {
+    module.exports = {
         entrar,
         cadastrar,
         listar,

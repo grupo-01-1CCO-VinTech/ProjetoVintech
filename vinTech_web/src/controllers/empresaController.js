@@ -1,4 +1,5 @@
 var empresaModel = require("../models/empresaModel");
+var usuarioModel = require("../models/usuarioModel");
 
 var sessoes = [];
 
@@ -60,24 +61,66 @@ var sessoes = [];
 
 // }
 
+function cadastrarEmpresa(res){
+    empresaModel.cadastrar(cnpj, nomeEmpresa, nomeFantasia, cep, 
+        logradouro, numero, bairro, cidade, uf, telefone, telefoneSecundario, emailEmpresa)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+                cadastrarAdm(res)
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function cadastrarAdm(res){
+    empresaModel.checar_adm(cnpj)
+    .then(
+        function (resultado) {
+            console.log(`\nResultados encontrados: ${resultado.length}`);
+            console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
+            console.log(resultado[0].idEmpresa)
+            usuarioModel.cadastrar(resultado[0].idEmpresa, senhaServer, emailAdmServer, loginServer)
+        }
+    ).catch(
+        function (erro) {
+            console.log(erro);
+            console.log("\nHouve um erro ao pegar a empresa! ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        }
+    );
+}
+
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     // var nome = req.body.nomeServer;
     // var email = req.body.emailServer;
     // var senha = req.body.senhaServer;
     // var cpf = req.body.cpfServer;
-    var nomeEmpresa = req.body.nomeEmpresaServer;
-    var nomeFantasia = req.body.nomeFantasiaServer;
-    var cnpj = req.body.cnpjServer;
-    var cep = req.body.cepServer;
-    var logradouro = req.body.logradouroServer;
-    var numero = req.body.numeroServer;
-    var bairro = req.body.bairroServer;
-    var cidade = req.body.cidadeServer;
-    var uf = req.body.ufServer;
-    var telefone = req.body.telefoneServer;
-    var telefoneSecundario = req.body.telefoneSecundarioServer;
-    var emailEmpresa = req.body.emailEmpresaServer;
+    nomeEmpresa = req.body.nomeEmpresaServer;
+    nomeFantasia = req.body.nomeFantasiaServer;
+    cnpj = req.body.cnpjServer;
+    cep = req.body.cepServer;
+    logradouro = req.body.logradouroServer;
+    numero = req.body.numeroServer;
+    bairro = req.body.bairroServer;
+    cidade = req.body.cidadeServer;
+    uf = req.body.ufServer;
+    telefone = req.body.telefoneServer;
+    telefoneSecundario = req.body.telefoneSecundarioServer;
+    emailEmpresa = req.body.emailEmpresaServer;
+
+    emailAdmServer= req.body.emailAdmServer;
+    loginServer= req.body.loginServer;
+    senhaServer= req.body.senhaServer;
 
     // Faça as validações dos valores
     // if (nome == undefined) {
@@ -97,35 +140,7 @@ function cadastrar(req, res) {
     // } else {
         
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-    empresaModel.cadastrar
-    (
-        nomeEmpresa,
-        nomeFantasia,
-        cnpj,
-        cep,
-        logradouro,
-        numero,
-        bairro,
-        cidade,
-        uf,
-        telefone,
-        telefoneSecundario,
-        emailEmpresa
-    )
-        .then(
-            function (resultado) {
-                res.json(resultado);
-            }
-        ).catch(
-            function (erro) {
-                console.log(erro);
-                console.log(
-                    "\nHouve um erro ao realizar o cadastro! Erro: ",
-                    erro.sqlMessage
-                );
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
+        cadastrarEmpresa(res)
     // }
 }
 

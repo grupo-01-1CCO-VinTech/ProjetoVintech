@@ -20,19 +20,8 @@ var database = require("../database/config")
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucao
 function cadastrar
-    (
-        cnpj,
-        nomeEmpresa, 
-        nomeFantasia, 
-        cep, 
-        logradouro, 
-        numeroEmpresa, 
-        bairroEmpresa, 
-        cidadeEmpresa, 
-        UFEmpresa, 
-        telefoneEmpresa, 
-        telefoneSecundarioEmpresa, 
-        emailEmpresa
+    (cnpj, nomeEmpresa,  nomeFantasia,  cep, logradouro, numeroEmpresa, bairroEmpresa, 
+        cidadeEmpresa, UFEmpresa, telefoneEmpresa, telefoneSecundarioEmpresa, emailEmpresa
     ){
         console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nomeEmpresa, emailEmpresa, cnpj);
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
@@ -74,8 +63,18 @@ function cadastrar
     return database.executar(instrucao);
 }
 
+function checar_adm(cnpj) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", cnpj)
+    var instrucao = `
+        SELECT idEmpresa FROM Empresa WHERE CNPJEmpresa = '${cnpj}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     // entrar,
-    cadastrar
+    cadastrar,
     // listar,
+    checar_adm
 };

@@ -43,41 +43,41 @@
                     <div class="linha linha-nome">
                         <div class="bloco">
                             <p>Nome Empresarial:* </p><input type="text" id="txtNomeEmpresarial"
-                                onkeyup="eliminarNumeros('txtNomeEmpresarial')">
+                                onkeyup="eliminarNumeros('txtNomeEmpresarial')" value="teste">
                         </div>
                         <div class="bloco">
                             <p>Nome Fantasia: </p><input type="text" id="txtNomeFantasia"
-                                onkeyup="eliminarNumeros('txtNomeFantasia')">
+                                onkeyup="eliminarNumeros('txtNomeFantasia')" value="teste">
                         </div>
                     </div>
                     <div class="linha linha-cnpj">
                         <div class="bloco bloco-cnpj">
                             <p>CNPJ:* </p><input type="text" id="txtCnpj"
-                                onkeyup="mascaraCnpj(), eliminarLetras('txtCnpj')" maxlength="18">
+                                onkeyup="mascaraCnpj(), eliminarLetras('txtCnpj')" maxlength="18" value="11.111111111111111">
                         </div>
                         <div class="bloco bloco-cep">
                             <p>CEP:*</p> <input type="text" id="txtCep" onkeyup="mascaraCep(), eliminarLetras('txtCep')"
-                                maxlength="9">
+                                maxlength="9" value="111111111">
                         </div>
                         <div class="bloco bloco-numero">
-                            <p>Número:* </p><input type="text" id="txtNumero" class="input-numero">
+                            <p>Número:* </p><input type="text" id="txtNumero" class="input-numero" value="11">
                         </div>
                     </div>
                     <div class="linha linha-logrBairro">
                         <div class="bloco">
                             <p>Logradouro:*</p> <input type="text" id="txtLogradouro"
-                                onkeyup="eliminarNumeros('txtLogradouro')">
+                                onkeyup="eliminarNumeros('txtLogradouro')" value="teste">
                         </div>
                         <div class="bloco">
-                            <p>Bairro:*</p> <input type="text" id="txtBairro" onkeyup="eliminarNumeros('txtBairro')">
+                            <p>Bairro:*</p> <input type="text" id="txtBairro" onkeyup="eliminarNumeros('txtBairro')" value="teste">
                         </div>
                     </div>
                     <div class="linha linha-cidadeUf">
                         <div class="bloco">
-                            <p>Cidade:*</p> <input type="text" id="txtCidade" onkeyup="eliminarNumeros('txtCidade')">
+                            <p>Cidade:*</p> <input type="text" id="txtCidade" onkeyup="eliminarNumeros('txtCidade')" value="teste">
                         </div>
                         <div class="bloco">
-                            <p>UF:* </p><input type="text" id="txtUf" onkeyup="eliminarNumeros('txtUf')">
+                            <p>UF:* </p><input type="text" id="txtUf" onkeyup="eliminarNumeros('txtUf')" value="ts">
                         </div>
                     </div>
                 </div>
@@ -87,16 +87,16 @@
                     <div class="linha">
                         <div class="bloco">
                             <p>Telefone da empresa:* </p><input type="text" id="txtTelEmpresa"
-                                onkeyup="mascaraTelefone(), eliminarLetras(`txtTelEmpresa`)" maxlength="14">
+                                onkeyup="mascaraTelefone(), eliminarLetras(`txtTelEmpresa`)" maxlength="14" value="11111111111111">
                         </div>
                         <div class="bloco">
                             <p>Telefone secundário: </p><input type="text" id="txtTelSecundario"
-                                onkeyup="mascaraTelefone(), eliminarLetras('txtTelSecundario')" maxlength="14">
+                                onkeyup="mascaraTelefone(), eliminarLetras('txtTelSecundario')" maxlength="14" value="11111111111111">
                         </div>
                     </div>
                     <div class="linha">
                         <div class="bloco">
-                            <p>E-mail da empresa:* </p><input type="text" id="txtEmailEmpresa">
+                            <p>E-mail da empresa:* </p><input type="text" id="txtEmailEmpresa" value="teste@gmail.com">
                         </div>
                     </div>
                 </div>
@@ -115,22 +115,22 @@
                     <h2>Dados do Administrador</h2>
                     <div class="linha">
                         <div class="bloco">
-                            <p>E-mail do Administrador:* </p><input type="text" id="txtEmailAdm">
+                            <p>E-mail do Administrador:* </p><input type="text" id="txtEmailAdm"value="teste@gmail.com">
                         </div>
                     </div>
                     <div class="linha">
                         <div class="bloco">
-                            <p>Login:* </p><input type="text" id="txtLogin">
+                            <p>Login:* </p><input type="text" id="txtLogin"value="Jonaaaaas">
                         </div>
                     </div>
                     <div class="linha">
                         <div class="bloco">
-                            <p>Senha:* </p><input type="text" id="txtSenha" oninput="">
+                            <p>Senha:* </p><input type="text" id="txtSenha" oninput=""value="11111111111111">
                         </div>
                     </div>
                     <div class="linha">
                         <div class="bloco">
-                            <p>Repetir Senha:* </p><input type="text" id="txtConfirmarSenha">
+                            <p>Repetir Senha:* </p><input type="text" id="txtConfirmarSenha"value="11111111111111">
                         </div>
                     </div>
 
@@ -408,10 +408,10 @@
                 telefoneServer: empresa.contato.telefone,
                 telefoneSecundarioServer: empresa.contato.telefoneSecundario,
                 emailEmpresaServer: empresa.contato.email,
+        
                 emailAdmServer: empresa.adm.email,
                 loginServer: empresa.adm.login,
                 senhaServer: empresa.adm.senha
-
             })
         }).then(function (resposta) {
 
