@@ -112,3 +112,25 @@ button{
     font-size: large;
 }
 
+.form p{
+    font-size: large;
+    height: 7.5%;
+}
+
+.form input{
+    width: 50vh;
+    height: 100%;
+    border: solid 1px #5903af;
+    border-radius: 20px;
+}
+
+.form select{
+    text-align: center;
+    height: 100%;
+    border: solid 1px #5903af;
+    border-radius: 20px;
+}
+
+#formEditUsuario p{
+    height: 5%;
+}
