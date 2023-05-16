@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../img/logo.jpeg" type="image/png">
     <title>Configurações - DashBoard</title>
-    <link rel="stylesheet" href="../css/style-ConfiguracaoDashboard.css">
-    <link rel="stylesheet" href="../css/style-PadraoDashboard.css">
-    <link rel="stylesheet" href="../css/style-PadraoTodos.css">
+    <link rel="stylesheet" href="css/style-ConfiguracaoDashboard.css">
+    <link rel="stylesheet" href="css/style-PadraoDashboard.css">
+    <link rel="stylesheet" href="css/style-PadraoTodos.css">
 </head>
 
 <body>
@@ -17,7 +17,7 @@
         <div class="barra-lateral">
             <div class="barra-logo">
                 <span>VinTech</span>
-                <img src="../img/vintech.jpg" alt="">
+                <img src="img/vintech.jpg" alt="">
             </div>
             <div class="barra-itens">
                 <ul>
@@ -28,11 +28,11 @@
             </div>
             <div class="barra-usuario">
                 <div class="barra-fotoUsuario">
-                    <img src="../Img/usuario.png" alt="Foto Usuário">
+                    <img src="Img/usuario.png" alt="Foto Usuário">
                 </div>
             </div>
             <div class="barra-button">
-                <button onclick="sair()">Sair</button>
+                <button onclick="barraSair()">Sair</button>
             </div>
         </div>
 
@@ -44,8 +44,8 @@
 
                 <div id="formUsuario" style="display: none;" class="form">
                     <h1>Configuração de Usuários</h1>
-                    Adicionar novo Usuário <button onclick="addUsuario()"></button>
-                    Editar/Remover Usuários <button onclick="editUsuario()"></button>
+                    <button onclick="addUsuario()">Adicionar Novo Usuário</button>
+                    <button onclick="editUsuario()">Editar e Remover Usuários</button>
                 </div>
 
                 <div id="formAddUsuario" style="display: none;" class="form">
@@ -148,9 +148,9 @@
         </div>
             <div class="container-direita">
                 <div class="container-usuario">
-                    <img src="../img/eu2.jpg" alt="">
-                    <p id="nome_usuario"></p>
-                    <p id="Naosei"></p>
+                    <img src="img/eu2.jpg" alt="">
+                    <p id="nome_usuario">Davi Alexandre</p>
+                    <p id="Naosei">Administrador</p>
                 </div>
                 <div class="container-contato">
                     <h1>Contato</h1>
@@ -170,3 +170,18 @@
 </body>
 
 </html>
+
+<script>
+    function usuario(){
+        formUsuario.style.display = 'flex'
+    }
+    function plantacao(){
+
+    }
+    function estufa(){
+
+    }
+    function sair(){
+
+    }
+</script>

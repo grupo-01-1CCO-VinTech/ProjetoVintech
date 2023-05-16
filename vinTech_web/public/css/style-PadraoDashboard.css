@@ -113,3 +113,9 @@ body {
     transform: translateY(-0.3vh);
     transition: 500ms;
 }
+
+a{
+    color: white;
+    cursor: pointer;
+    text-decoration: 0;
+}

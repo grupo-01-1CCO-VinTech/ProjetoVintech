@@ -9,8 +9,8 @@
 
 .container-esquerda{
     display: flex;
-    width: 90%;
-    height: 85%;
+    width: 54vw;
+    height: 85vh;
     border: solid 1px #5903af;
     border-radius: 40px;
 }
@@ -28,7 +28,8 @@
     width: 100%;
     border-bottom: solid 1px #5903af;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
+    font-size: large;
 }
 .container-usuario img{
     width: 45%;
@@ -40,7 +41,7 @@
     flex-direction: column;
     height: 30%;
     width: 100%;
-    justify-content: space-evenly;
+    justify-content: space-between;
     border-bottom: solid 1px #5903af;
     align-items: center;
 }
@@ -56,17 +57,18 @@
 /*  */
 
 .container-contato h1{
-    align-content: center;
-    width: 100%;
+    margin-top: 5%;
+    width: auto;
     height: 25%;
-    justify-content: center;
 }
 
 .container-contato div{
-    height: 10%; 
+    height: 12.5%; 
     width: 90%;
+    padding-left: 5%;
     border-radius: 20px;
     border: solid 1px #5903af;
+    font-size: large;
 }
 .container-botoes button{
     width: 90%;
@@ -79,4 +81,13 @@
 .container-botoes #sair{
     width: 40%;
     
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: space-evenly;
+    align-items: center;
 }
