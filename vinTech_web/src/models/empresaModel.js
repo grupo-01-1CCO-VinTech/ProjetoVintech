@@ -21,7 +21,7 @@ var database = require("../database/config")
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucao
 function cadastrar
     (cnpj, nomeEmpresa,  nomeFantasia,  cep, logradouro, numeroEmpresa, bairroEmpresa, 
-        cidadeEmpresa, UFEmpresa, telefoneEmpresa, telefoneSecundarioEmpresa, emailEmpresa
+        cidadeEmpresa, ufEmpresa, telefoneEmpresa, telefoneSecEmpresa, emailEmpresa
     ){
         console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nomeEmpresa, emailEmpresa, cnpj);
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
@@ -33,14 +33,14 @@ function cadastrar
             CNPJEmpresa,
             nomeEmpresa, 
             nomeFantasia, 
-            CEPEmpresa, 
+            cepEmpresa, 
             logradouroEmpresa, 
-            numeroEmpresa, 
+            numeroLogradouro, 
             bairroEmpresa, 
             cidadeEmpresa, 
-            UFEmpresa, 
+            ufEmpresa, 
             telefoneEmpresa, 
-            telefoneSecundarioEmpresa, 
+            telefoneSecEmpresa, 
             emailEmpresa
         )
         VALUES 
@@ -53,9 +53,9 @@ function cadastrar
             '${numeroEmpresa}',
             '${bairroEmpresa}',
             '${cidadeEmpresa}',
-            '${UFEmpresa}',
+            '${ufEmpresa}',
             '${telefoneEmpresa}',
-            '${telefoneSecundarioEmpresa}',
+            '${telefoneSecEmpresa}',
             '${emailEmpresa}'
         );
     `;

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./css/style-PadraoTodos.css">
     <title>Login - VinTech</title>
     <link rel="icon" href="./img/logo.jpeg" type="image/png">
-    <script src="./js/login.js"></script>
+    <!-- <script src="./js/login.js"></script> -->
 </head>
 
 <body>
@@ -28,7 +28,7 @@
                 <h1 class="label">Senha</h1>
                 <input type="password" id="txtSenha" placeholder="****">   
                 <span class="errWarning" id="errPass"></span>
-                <button class="entrarBotao" onclick="validar()">Entrar</button>
+                <button class="entrarBotao" onclick="entrar()">Entrar</button>
                 <br>
                 <br>
                 <p><span class="span_aqui">Esqueceu a senha?</span></p>
@@ -45,7 +45,6 @@
 
 
     function entrar() {
-        aguardar();
 
         var loginVar = txtLogin.value;
         var senhaVar = txtSenha.value;
@@ -78,7 +77,7 @@
                     sessionStorage.ID_USUARIO = json.id;
 
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
+                        window.location = "DashboardHome.html";
                     }, 1000); // apenas para exibir o loading
 
                 });
