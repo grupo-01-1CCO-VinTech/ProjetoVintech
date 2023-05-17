@@ -1,19 +1,16 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../img/logo.jpeg" type="image/png">
+    <link rel="icon" href="img/logo.jpeg" type="image/png">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
-    <link rel="stylesheet" href="../css/style-PadraoDashboard.css">
-    <link rel="stylesheet" href="../css/style-PadraoTodos.css">
-    <link rel="stylesheet" href="../css/style-GraficoEstufas.css">
-    <link rel="stylesheet" href="../css/style-PadraoDashboard.css">
-    <link rel="stylesheet" href="../css/style-PadraoTodos.css">
+    <link rel="stylesheet" href="css/style-PadraoDashboard.css">
+    <link rel="stylesheet" href="css/style-PadraoTodos.css">
+    <link rel="stylesheet" href="css/style-GraficoEstufas.css">    
     <title>Página estufa</title>
 </head>
 
@@ -23,7 +20,7 @@
         <div class="barra-lateral">
             <div class="barra-logo">
                 <span>VinTech</span>
-                <img src="../img/Logo-Uva.png" alt="">
+                <img src="img/Logo-Uva.png" alt="">
             </div>
             <div class="barra-itens">
                 <ul>
@@ -35,7 +32,8 @@
             </div>
             <div class="barra-usuario">
                 <div class="barra-fotoUsuario">
-                    <img src="../img/usuario.png" alt="Foto Usuário" class="border">
+                    <img src="img/usuario.png" alt="Foto Usuário" class="border">
+                    <span id="nome_usuario"></span>
                 </div>
             </div>
             <div class="barra-button">
@@ -46,7 +44,7 @@
         <!--Inicio do container-->
         <div class="container">
             <div class="header">
-                <img src="../img/uvaDetalhe.png" alt="Detalhe Uva">
+                <img src="img/uvaDetalhe.png" alt="Detalhe Uva">
                 <a>Estufa 001</a>
                 <span>Informações</span>
                 <span class="linhaTitulo"></span>
@@ -73,11 +71,11 @@
                         <h1>Atual</h1>
                         <div class="atual_ambos">
                             <div class="atual_umidade">
-                                <img src="../img/GraficosEstufas_gotas.png">
+                                <img src="img/GraficosEstufas_gotas.png">
                                 <h2><span id="atual_umid"></span>%</h2>
                             </div>
                             <div class="atual_temp">
-                                <img src="../img/GraficosEstufas_temp.png">
+                                <img src="img/GraficosEstufas_temp.png">
                                 <h2><span id="atual_temp"></span>°C</h2>
                             </div>
                         </div>
@@ -112,7 +110,9 @@
 
 </html>
 
-<script>
+<script>    
+    nome_usuario.innerHTML = sessionStorage.NOME_USUARIO
+
     var contextoDht11Umidade = document.getElementById('dht11Umidade').getContext('2d');
     contextoDht11Umidade.canvas.width = 1000;
     contextoDht11Umidade.canvas.height = 250;
