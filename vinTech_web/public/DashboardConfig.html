@@ -42,8 +42,7 @@
 
                 </div>
                 <div id="formUsuario" style="display: none;" class="form">
-                    <h1>Configuração de Usuários <span id="uvinha" style="display: none; text-align: center;">🍇</span>
-                    </h1>
+                    <h1>Configuração de Usuários</h1>
                     <button onclick="addUsuario()" onmouseenter="uvaSurgi()" onmouseleave="sumirUva()"
                         class="botaoUsuario">Adicionar Novo Usuário </button>
                     <button onclick="editUsuario()" onmouseenter="uvaSurgi()" onmouseleave="sumirUva()"
@@ -176,7 +175,6 @@
                 <button onclick="usuario()" class="config">Configurar Usuários</button>
                 <button onclick="plantacao()" class="config">Configurar Plantação</button>
                 <button onclick="estufa()" class="config">Configurar Estufa</button>
-                <button id="sair" onclick="sair()" class="sairBotao">Sair</button>
             </div>
 
         </div>
@@ -272,11 +270,5 @@
         formAddPlantacao.style.display = 'none'
         formEditPlantacao.style.display = 'none'
         formAddEstufa.style.display = 'none'
-    }
-    function uvaSurgi() {
-        uvinha.style.display = "block";
-    }
-    function sumirUva() {
-        uvinha.style.display = "none";
     }
 </script>
