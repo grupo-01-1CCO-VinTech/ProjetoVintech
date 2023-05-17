@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./css/style-PadraoTodos.css">
     <title>Login - VinTech</title>
     <link rel="icon" href="./img/logo.jpeg" type="image/png">
-    <!-- <script src="./js/login.js"></script> -->
+    <script src="./js/login.js"></script>
 </head>
 
 <body>
@@ -23,12 +23,12 @@
                 <img src="./img/login_transparente.png" alt="">
                 
                 <h1 class="label">Login</h1>
-                <input type="email" id="txtLogin" placeholder="seulogin@dominio" value="teste@gmail.com">
+                <input type="email" id="txtLogin" placeholder="seulogin@dominio">
                 <span class="errWarning" id="errLogin"></span>
                 <h1 class="label">Senha</h1>
-                <input type="password" id="txtSenha" placeholder="****" value="12345678">   
+                <input type="password" id="txtSenha" placeholder="****">   
                 <span class="errWarning" id="errPass"></span>
-                <button class="entrarBotao" onclick="entrar()">Entrar</button>
+                <button class="entrarBotao" onclick="validar()">Entrar</button>
                 <br>
                 <br>
                 <p><span class="span_aqui">Esqueceu a senha?</span></p>
@@ -45,6 +45,7 @@
 
 
     function entrar() {
+        aguardar();
 
         var loginVar = txtLogin.value;
         var senhaVar = txtSenha.value;
@@ -70,15 +71,14 @@
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
-                    
-                    sessionStorage.ID_USUARIO = json.idFuncionario;
-                    sessionStorage.NOME_USUARIO = json.nomeFuncionario;
-                    sessionStorage.LOGIN_USUARIO = json.loginFuncionario;
-                    sessionStorage.EMAIL_USUARIO = json.emailFuncionario;
-                    sessionStorage.FK_USUARIO = json.fkEmpresa;
+
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.CPF_USUARIO = json.cpf;
+                    sessionStorage.ID_USUARIO = json.id;
 
                     setTimeout(function () {
-                        window.location = "DashboardHome.html";
+                        window.location = "./dashboard/cards.html";
                     }, 1000); // apenas para exibir o loading
 
                 });

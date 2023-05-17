@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="img/logo.jpeg" type="image/png">
-    <link rel="stylesheet" href="css/style-PadraoDashboard.css">
-    <link rel="stylesheet" href="css/style-Plantacao.css">
-    <link rel="stylesheet" href="css/style-PadraoTodos.css">
+    <link rel="icon" href="../img/logo.jpeg" type="image/png">
+    <link rel="stylesheet" href="../Css/style-Plantacao.css">
+    <link rel="stylesheet" href="../css/style-PadraoDashboard.css">
+    <link rel="stylesheet" href="../css/style-PadraoTodos.css">
     <title>Plantações</title>
 </head>
 
@@ -18,18 +18,18 @@
         <div class="barra-lateral">
             <div class="barra-logo">
                 <span>VinTech</span>
-                <img src="img/vintech.jpg" alt="">
+                <img src="../img/vintech.jpg" alt="">
             </div>
             <div class="barra-itens">
                 <ul>
-                    <a href="DashboardHome.html"><li>Home</li></a>
-                    <a id="item"><li>Plantações</li></a>
-                    <a href="DashboardConfig.html"><li>Configurações</li></a>
+                    <a href="DashboardHome.html">Home</a>
+                    <a id="item">Plantações</a>
+                    <a href="DashboardConfig.html">Configurações</a>
                 </ul>
             </div>
             <div class="barra-usuario">
                 <div class="barra-fotoUsuario">
-                    <img src="img/usuario.png" alt="Foto Usuário">
+                    <img src="../Img/usuario.png" alt="Foto Usuário">
                 </div>
             </div>
             <div class="barra-button">
@@ -39,7 +39,7 @@
     </div>
         <div class="container">
             <div class="header">
-                <img src="img/uvaDetalhe.png" alt="Detalhe Uva">
+                <img src="../img/uvaDetalhe.png" alt="Detalhe Uva">
                 <a>Suas plantações</a>
                 <span>Listagem de Estufas</span>
                 <span class="linhaTitulo"></span>
@@ -112,7 +112,7 @@
                                 </div>
                                 <div class="ordemCardpequeno">
                                     <a id="title">Status</a>
-                                    <img src="img/check-box.png" alt="Botão Tudo OK">
+                                    <img src="../img/check-box.png" alt="Botão Tudo OK">
                                 </div>
                             </div>
                             <div class="cardPequeno" id="cardMerlone">
@@ -131,7 +131,7 @@
                                 </div>
                                 <div class="ordemCardpequeno">
                                     <a id="title">Status</a>
-                                    <img src="img/warning.png" alt="Botão Tudo OK">
+                                    <img src="../img/warning.png" alt="Botão Tudo OK">
                                 </div>
                             </div>
                             <div class="cardPequeno" id="cardCarmenere">
@@ -150,7 +150,7 @@
                                 </div>
                                 <div class="ordemCardpequeno">
                                     <a id="title">Status</a>
-                                    <img src="img/cancelar.png" alt="Botão Tudo OK">
+                                    <img src="../img/cancelar.png" alt="Botão Tudo OK">
                                 </div>
                             </div>
                         </div>
@@ -181,17 +181,17 @@
                         <a>Quantidade por Status</a>
                         <div class="statusImagens">
                             <div class="status">
-                                <img src="img/check-box.png" alt="">
+                                <img src="../img/check-box.png" alt="">
                                 <a>Seguro</a>
                                 <a>3</a>
                             </div>
                             <div class="status">
-                                <img src="img/warning.png" alt="">
+                                <img src="../img/warning.png" alt="">
                                 <a>Alerta</a>
                                 <a>3</a>
                             </div>
                             <div class="status">
-                                <img src="img/cancelar.png" alt="">
+                                <img src="../img/cancelar.png" alt="">
                                 <a>Perigo</a>
                                 <a>3</a>
                             </div>
@@ -310,14 +310,14 @@
             </div>
         `
         if(jsonEstufas.estufa1.status == "Seguro"){
-            imagemStatusPinot.src = "img/check-box.png"
+            imagemStatusPinot.src = "../img/check-box.png"
             contadorSeguro++
             
         }else if(jsonEstufas.estufa1.status == "Alerta"){
-            imagemStatusPinot.src = "img/warning.png"
+            imagemStatusPinot.src = "../img/warning.png"
             contadorAlerta++
         }else if(jsonEstufas.estufa1.status == "Perigo"){
-            imagemStatusPinot.src = "img/cancelar.png"
+            imagemStatusPinot.src = "../img/cancelar.png"
             contadorPerigo++
         }
 
@@ -344,14 +344,14 @@
             </div>
         `
         if(jsonEstufas.estufa2.status == "Seguro"){
-            imagemStatusMerlone.src = "img/check-box.png"
+            imagemStatusMerlone.src = "../img/check-box.png"
             contadorSeguro++
             
         }else if(jsonEstufas.estufa2.status == "Alerta"){
-            imagemStatusMerlone.src = "img/warning.png"
+            imagemStatusMerlone.src = "../img/warning.png"
             contadorAlerta++
         }else if(jsonEstufas.estufa2.status == "Perigo"){
-            imagemStatusMerlone.src = "img/cancelar.png"
+            imagemStatusMerlone.src = "../img/cancelar.png"
             contadorPerigo++
         }
 
@@ -378,14 +378,14 @@
             </div>
         `
         if(jsonEstufas.estufa3.status == "Seguro"){
-            imagemStatusCarmenere.src = "img/check-box.png"
+            imagemStatusCarmenere.src = "../img/check-box.png"
             contadorSeguro++
             
         }else if(jsonEstufas.estufa3.status == "Alerta"){
-            imagemStatusCarmenere.src = "img/warning.png"
+            imagemStatusCarmenere.src = "../img/warning.png"
             contadorAlerta++
         }else if(jsonEstufas.estufa3.status == "Perigo"){
-            imagemStatusCarmenere.src = "img/cancelar.png"
+            imagemStatusCarmenere.src = "../img/cancelar.png"
             contadorPerigo++
         }
         listaContadores.push(contadorSeguro)
