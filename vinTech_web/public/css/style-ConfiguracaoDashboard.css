@@ -86,45 +86,40 @@ button{
     margin: 2% 0%;
 }
 #contato:hover{
-    background-color: #43018431;
-    margin: 5%;
+    background-color: #43018431;;
     box-shadow: 0.1vh 0.1vh 3vh #000;
-    transition: 1s;
+    transition: 0.5s;
 }
  #email:hover{
     background-color: #43018431;
-    margin: 8%;
     box-shadow: 0.1vh 0.1vh 3vh #000;
-    transition: 1s;
+    transition: 0.5s;
 }
 .config:hover{
     background-color: #43018431;
-    margin: 8%;
     box-shadow: 0.1vh 0.1vh 3vh #000;
-    transition: 1s;
+    transition: 0.5s;
 }
 .config{
-    transition: 1.5s;
+    transition: 0.5s;
 }
 .sairBotao:hover{
     background-color: #ff000021;
     border:0.2vh solid #d20404;
-    margin: 8%;
     box-shadow: 0.1vh 0.1vh 3vh #970101;
-    transition: 1s;
+    transition: 0.5s;
 }
 .sairBotao{
-    transition: 1.5s;
+    transition: 0.5s;
 }
 /*Adicionei o detalhe na parte usuario*/
 .botaoUsuario:hover{
     background-color: #390e6366;
-    margin: 8%;
     box-shadow: 0.1vh 0.1vh 3vh #000;
-    transition: 1s;
+    transition: 0.5s;
 }
 .botaoUsuario{
-    transition: 1.5s;
+    transition:0.5s;
 }
 .detalheUva{
     height: 30%;
