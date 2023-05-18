@@ -210,14 +210,20 @@
 </html>
 
 <script>
-    var idChefe = sessionStorage.ID_USUARIO
-    var nomeUsuario = sessionStorage.NOME_USUARIO
+    var idChefe = sessionStorage.ID_USUARIO;
+    var nomeUsuario = sessionStorage.NOME_USUARIO;
     var loginUsuario = sessionStorage.LOGIN_USUARIO;
-    var emailUsuario = sessionStorage.EMAIL_USUARIO
-    var fkEmpresa = sessionStorage.FK_USUARIO
-
+    var emailUsuario = sessionStorage.EMAIL_USUARIO;
+    var fkEmpresa = sessionStorage.FK_USUARIO;
+    var fkChefe = sessionStorage.ID_CHEFE;
+    console.log(fkChefe)
     nome_usuarioLogado.innerHTML = `${nomeUsuario}`
-    // funcao_usuario.innerHTML = `${}`
+    if(fkChefe == 'null'){
+        funcao_usuario.innerHTML = `Administrador`
+    }else{
+        alert('Saia')
+        location.href = 'DashboardHome.html'
+    }
     email.innerHTML += `${emailUsuario}`
 
     function usuario() {
