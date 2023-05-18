@@ -125,9 +125,9 @@
                 <div id="formAddPlantacao" style="display: none;" class="form">
                     <h1>Adicionar Plantação</h1>
 
-                    <p>Nome da Plantação <input type="text" id="iptNomePlantacao" placeholder="Plantação Jundiaí"></p>
+                    <!-- <p>Nome da Plantação <input type="text" id="iptNomePlantacao" placeholder="Plantação Jundiaí"></p> -->
                     <!-- <p>Localização: <input type="text" id="iptLocalizacaoPlantacao"></p> -->
-                    <p>Tamanho da Plantação: <input type="text" id="iptTamanhoPlantacao" placeholder="Em Hectares"></p>
+                    <!-- <p>Tamanho da Plantação: <input type="text" id="iptTamanhoPlantacao" placeholder="Em Hectares"></p> -->
                     <button onclick="adicionar_Plantacao()">Adicionar Plantação</button>
                 </div>
                 <div id="formEditPlantacao" style="display: none;" class="form">
@@ -304,6 +304,31 @@
         formAddEstufa.style.display = 'none'
     }
 
+    function adicionar_Plantacao(){
+        fetch("/plantacao/adicionar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                fkEmpresaServer: fkEmpresa
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                alert('Plantação adicionada com sucesso!')
+            } else {
+                throw ("Houve um erro ao tentar adicionar a plantação!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+        return false;  
+    }
     function adicionar_Usuario(){
         var nomeFunc = iptNomeUsuario.value
         var emailFunc = iptEmailUsuario.value
