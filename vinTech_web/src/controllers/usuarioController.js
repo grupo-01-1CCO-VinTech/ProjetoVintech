@@ -85,7 +85,7 @@ function cadastrar(req, res) {
     */
     // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
     var erro = false
-    if (loginServer.length < 8) {
+    if (loginAdm.length < 8) {
         erro = true
         res.status(400).send("O campo Login deve ter pelo menos 8 caracteres!");
     }
@@ -159,9 +159,74 @@ function cadastrar(req, res) {
     } */
 }
 
+function cadastrarFuncionario(req, res) {
+    /*Variveis com os dados do cad*/
+    var nomeFunc = req.body.nomeFuncServer;
+    var emailFunc = req.body.emailFuncServer;
+    var loginFunc = req.body.loginFuncServer;
+    var senhaFunc = req.body.senhaFuncServer;
+    var fkChefe = req.body.fkChefeServer;
+    var fkEmpresa = req.body.fkEmpresaServer;
+    /*
+        Dicionario das variaveis
+        nomeEmpresaServer: empresa.dados.nome,
+        nomeFantasiaServer: empresa.dados.nomeFantasia,
+        cnpjServer: empresa.dados.cnpj,
+        cepServer: empresa.endereco.cep,
+        logradouroServer: empresa.endereco.logradouro,
+        numeroServer: empresa.endereco.numero,
+        bairroServer: empresa.endereco.bairro,
+        cidadeServer: empresa.endereco.cidade,
+        ufServer: empresa.endereco.uf,
+        telefoneServer: empresa.contato.telefone,
+        telefoneSecundarioServer: empresa.contato.telefoneSecundario,
+        emailEmpresaServer: empresa.contato.email,
+        emailAdmServer: empresa.adm.email,
+        loginServer: empresa.adm.login,
+        senhaServer: empresa.adm.senha
+    */
+    // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+    var erro = false
+    if (loginFunc.length < 8) {
+        erro = true
+        res.status(400).send("O campo Login deve ter pelo menos 8 caracteres!");
+    }
+    if (emailFunc == "" || emailFunc.indexOf('@') == -1 ||
+        emailFunc.indexOf('.') == -1 || emailFunc.length < 10) {
+        erro = true
+        res.status(400).send("O campo E-mail deve ter um formato válido!");
+    }
+    if (senhaFunc.length < 8) {
+        erro = true
+        res.status(400).send("O campo Senha deve ter pelo menos 8 caracteres!");
+    }
+
+    if (erro == false) {
+        usuarioModel.cadastrarFuncionario(fkEmpresa, senhaFunc, emailFunc, loginFunc, nomeFunc, fkChefe)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                /*Erro caso consulta */
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    } else {
+        res.status(400).send("Alerta! Campos inválidos encontrados, verifique o conteúdo!")
+    }
+}
+
 module.exports = {
     entrar,
     cadastrar,
+    cadastrarFuncionario,
     listar,
     testar
 }

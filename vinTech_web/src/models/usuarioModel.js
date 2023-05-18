@@ -31,8 +31,25 @@ function cadastrar(id_empresa, senhaFuncionario, emailFuncionario, loginFunciona
     return database.executar(instrucao);
 }
 
+function cadastrarFuncionario(id_empresa, senhaFuncionario, emailFuncionario, loginFuncionario, nomeFuncionario, fk_Chefe) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():");
+    if(fk_Chefe == 'Adm'){
+        var instrucao = `
+            INSERT INTO Funcionario (nomeFuncionario, fkChefe, loginFuncionario, senhaFuncionario, emailFuncionario, fkempresa) VALUES ('${nomeFuncionario}', null, '${loginFuncionario}', '${senhaFuncionario}', '${emailFuncionario}',${id_empresa});
+        `;
+    }else{
+        var instrucao = `
+            INSERT INTO Funcionario (nomeFuncionario, fkChefe, loginFuncionario, senhaFuncionario, emailFuncionario, fkempresa) VALUES ('${nomeFuncionario}', ${fk_Chefe},
+            '${loginFuncionario}', '${senhaFuncionario}', '${emailFuncionario}',${id_empresa});
+        `;
+    }
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     entrar,
     cadastrar,
+    cadastrarFuncionario,
     listar,
 };
