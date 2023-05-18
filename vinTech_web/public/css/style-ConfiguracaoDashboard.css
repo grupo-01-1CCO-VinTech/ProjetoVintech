@@ -72,21 +72,130 @@ button{
 }
 
 .container-contato div {
-    height: 12.5%;
+    height: 18%;
     width: 90%;
     padding-left: 5%;
     border-radius: 20px;
     border: solid 1px #5903af;
     font-size: large;
+    display: flex;
+    transition: 1s;
 }
-
+/*Adicionei margem e animação com hover*/
+.container-contato .spanDivContato {
+    margin: 2% 0%;
+}
+#contato:hover{
+    background-color: #43018431;;
+    box-shadow: 0.1vh 0.1vh 3vh #000;
+    transition: 0.5s;
+}
+ #email:hover{
+    background-color: #43018431;
+    box-shadow: 0.1vh 0.1vh 3vh #000;
+    transition: 0.5s;
+}
+.config:hover{
+    background-color: #43018431;
+    box-shadow: 0.1vh 0.1vh 3vh #000;
+    transition: 0.5s;
+}
+.config{
+    transition: 0.5s;
+}
+.sairBotao:hover{
+    background-color: #ff000021;
+    border:0.2vh solid #d20404;
+    box-shadow: 0.1vh 0.1vh 3vh #970101;
+    transition: 0.5s;
+}
+.sairBotao{
+    transition: 0.5s;
+}
+/*Adicionei o detalhe na parte usuario*/
+.botaoUsuario:hover{
+    background-color: #390e6366;
+    box-shadow: 0.1vh 0.1vh 3vh #000;
+    transition: 0.5s;
+}
+.botaoUsuario{
+    transition:0.5s;
+}
+.detalheUva{
+    height: 30%;
+    width: 10%;
+    
+}
+/*Botão selecionado com a uva, sem js*/
+.botaoUva:hover{
+    display: flex;
+}
 .container-botoes button {
     width: 90%;
-    height: 10%;
+    height: 15%;
     border-radius: 20px;
     border: solid 1px #5903af;
     background: 0;
     font-size: large;
+}
+/*Configuração da pág add usuario*/
+.addUser{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    height: 100%;
+    width: 60%;
+    margin-left: 5%;
+}
+.uvaUser{
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 50%;
+    margin-left: 23%;
+    background-image: url(../img/uvaDetalhe.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.ambasUser{
+
+    display: flex;
+    flex-direction: row;
+    height: 80%;
+    width: 100%;
+}
+.tituloUser{
+    justify-content: center;
+    width: 100%;
+    display: flex;
+}
+/*Final do add user*/
+/*Inicio do edit user*/
+.form{
+    align-items: flex-start;
+}
+.editUser{
+    background-color: #9271ff70;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.tituloEdit{
+    justify-content: center;
+    width: 100%;
+    display: flex;
+}
+/*Final do edit user*/
+#formAddUsuario{
+    display: flex;
+    align-items: flex-start;
+}
+.addUser .inpInput{
+    width: 80%;
+    height: 90vh;    
 }
 
 .container-botoes #sair {

@@ -28,7 +28,8 @@
             </div>
             <div class="barra-usuario">
                 <div class="barra-fotoUsuario">
-                    <img src="img/usuario.png" alt="Foto Usuário">
+                    <img src="Img/usuario.png" alt="Foto Usuário">
+                    <span id="nome_usuario"></span>
                 </div>
             </div>
             <div class="barra-button">
@@ -41,45 +42,60 @@
                 <div style="display: none;" class="respostaForms">
 
                 </div>
-
                 <div id="formUsuario" style="display: none;" class="form">
                     <h1>Configuração de Usuários</h1>
-                    <button onclick="addUsuario()">Adicionar Novo Usuário</button>
-                    <button onclick="editUsuario()">Editar e Remover Usuários</button>
+                    <button onclick="addUsuario()" onmouseenter="uvaSurgi()" onmouseleave="sumirUva()"
+                        class="botaoUsuario">Adicionar Novo Usuário </button>
+                    <button onclick="editUsuario()" onmouseenter="uvaSurgi()" onmouseleave="sumirUva()"
+                        class="botaoUsuario">Editar e Remover Usuários </button>
                 </div>
-                
+
                 <div id="formAddUsuario" style="display: none;" class="form">
-                    <h1>Adicionar Usuário</h1>
-                    
-                    <p>Função: <select id="selectUsuarioFuncao">
-                            <option value="0">Funcionário</option>
-                            <option value="1">Administrador</option>
-                        </select></p>
-                    <p>Nome Completo: <input type="text" id="iptNomeUsuario"></p>
-                    <p>E-mail: <input type="text" id="iptEmailUsuario"></p>
-                    <p>Senha: <input type="text" id="iptSenhaUsuario"></p>
+                    <div class="tituloUser">
+                        <h1>Adicionar Usuário</h1>
+                    </div>
+                    <div class="ambasUser">
+                        <div class="addUser">
+                            <p>Função: <select id="selectUsuarioFuncao">
+                                    <option value="0">Funcionário</option>
+                                    <option value="1">Administrador</option>
+                                </select></p>
+                            <p>Nome Completo: <input type="text" id="iptNomeUsuario" class="inp_Input"
+                                    placeholder="Digite o nome completo:"></p>
+                            <p>E-mail: <input type="text" id="iptEmailUsuario" class="inp_Input"
+                                    placeholder="Digite seu email:"></p>
+                            <p>Senha: <input type="text" id="iptSenhaUsuario" class="inp_Input"
+                                    placeholder="Digite sua senha:"></p>
+                                    <button onclick="adicionar_Usuario()">Adicionar Usuário</button>
+                        </div>
+                        <div class="uvaUser"></div>
+                    </div>
                 </div>
                 <div id="formEditUsuario" style="display: none;" class="form">
-                    <h1>Editar ou remover Usuários</h1>
+                    <div class="tituloEdit"><h1>Editar ou remover Usuários</h1></div>
 
-                    <h3>Encontrar usuário</h3>
-                    <p>Por ID: <input type="text" id="iptEncontrarIdEstufa"></p>
-                    <p>Por Nome: <input type="text" id="iptEncontrarNomeUsuario"></p>
-                    <p>Por E-mail: <input type="text" id="iptEncontrarEmailUsuario"></p>
-                    <h3>Editar usuário</h3>
-                    <p>Nome: <input type="text" id="iptEditNomeUsuario"></p>
-                    <p>E-mail: <input type="text" id="iptEditEmailUsuario"></p>
-                    <p>Senha: <input type="text" id="iptEditSenhaUsuario"></p>
-                    <p>Função:
-                        <select id="selectEditFuncao">
-                            <option value="0">Funcionário</option>
-                            <option value="1">Administrador</option>
-                        </select>
-                    </p>
-                    <h3>Deletar Usuário</h3>
-                    <p>Confirmar nome: <input type="text" id="iptDeleteUsuarioConfirmacaoNome"></p>
-                    <p>Confirmar E-mail: <input type="text" id="iptDeleteUsuarioConfirmacaoEmail"></p>
-                    <button onclick="deletarUsuario()">Deletar Usuário</button>
+                    <div class="editUser">
+                        <div class="tituloEdit"><h3>Encontrar usuário</h3></div>
+                        <p>Por ID: <input type="text" id="iptEncontrarIdEstufa"></p>
+                        <p>Por Nome: <input type="text" id="iptEncontrarNomeUsuario"></p>
+                        <p>Por E-mail: <input type="text" id="iptEncontrarEmailUsuario"></p>
+                        <button onclick="encontrar_Usuario()">Encontrar Usuário</button>
+                        <div class="tituloEdit"><h3>Editar usuário</h3></div>
+                        <p>Nome: <input type="text" id="iptEditNomeUsuario"></p>
+                        <p>E-mail: <input type="text" id="iptEditEmailUsuario"></p>
+                        <p>Senha: <input type="text" id="iptEditSenhaUsuario"></p>
+                        <p>Função:
+                            <select id="selectEditFuncao">
+                                <option value="0">Funcionário</option>
+                                <option value="1">Administrador</option>
+                            </select>
+                            <button onclick="editar_Usuario()">Editar Usuário</button>
+                        </p>
+                        <div class="tituloEdit"> <h3>Deletar Usuário</h3></div>
+                        <p>Confirmar nome: <input type="text" id="iptDeleteUsuarioConfirmacaoNome"></p>
+                        <p>Confirmar E-mail: <input type="text" id="iptDeleteUsuarioConfirmacaoEmail"></p>
+                        <button onclick="deletarUsuario()">Deletar Usuário</button>
+                    </div>
                 </div>
 
                 <!-- AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
@@ -96,6 +112,7 @@
                     <p>Nome da Plantação <input type="text" id="iptNomePlantacao" placeholder="Plantação Jundiaí"></p>
                     <!-- <p>Localização: <input type="text" id="iptLocalizacaoPlantacao"></p> -->
                     <p>Tamanho da Plantação: <input type="text" id="iptTamanhoPlantacao" placeholder="Em Hectares"></p>
+                    <button onclick="adicionar_Plantacao()">Adicionar Plantação</button>
                 </div>
                 <div id="formEditPlantacao" style="display: none;" class="form">
                     <h1>Editar ou remover Plantações</h1>
@@ -104,17 +121,20 @@
                     <p>Por ID: <input type="text" id="iptEncontrarIdEstufa"></p>
                     <p>Por Nome: <input type="text" id="iptEncontrarNomePlantacao" placeholder="Plantação Jundiaí"></p>
                     <!-- <p>Por Localização: <input type="text" id="iptLocalizacaoPlantacao"></p> -->
+                    <button onclick="encontrar_Plantacao()">Encontrar Plantação</button>
                     <h3>Editar Plantação</h3>
                     <p>Nome: <input type="text" id="iptEditNomePlantação"></p>
                     <p>Tamanho: <input type="text" id="iptEditTamanhoPlantacao"></p>
                     <h3>Deletar Plantação:</h3>
                     <p>Confirmar nome: <input type="text" id="iptDeletePlantacaoConfirmacaoNome"></p>
+                    <button onclick="editar_Plantacao()">Editar Plantação</button>
                     <button onclick="deletarPlantacao()">Deletar Plantação</button>
                 </div>
 
                 <!-- AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
 
                 <div id="formEstufa" style="display: none;" class="form">
+
                     <h1>Configuração de Estufas</h1>
                     <button onclick="addEstufa()">Adicionar nova Estufa</button>
                     <button onclick="editEstufa()">Editar/Remover Estufas</button>
@@ -127,6 +147,7 @@
                     </p>
                     <p>Tipo de Uva: <input type="text" id="iptAddUvaEstufa"></p>
                     <p>Tamanho da Estufa <input type="text" id="iptAddTamanhoEstufa"></p>
+                    <button onclick="adicionar_Estufa()">Adicionar Estufa</button>
                 </div>
                 <div id="formEditEstufa" style="display: none;" class="form">
                     <h1>Editar ou remover Estufas</h1>
@@ -135,10 +156,12 @@
                     <p>Informe a plantação em que a estufa está: <input type="text" id="iptEncontrarPlantacaoEstufa">
                     </p>
                     <p>Por ID: <input type="text" id="iptEncontrarIdEstufa"></p>
+                    <button onclick="encontrar_Estufa()">Encontrar Estufa</button>
                     <!-- <p>Por Localização: <input type="text" id="iptLocalizacaoPlantacao"></p> -->
                     <h3>Editar Estufa</h3>
                     <p>Tipo de Uva: <input type="text" id="iptEditTipoUvaEstufa"></p>
                     <p>Tamanho da Estufa: <input type="text" id="iptEditTamanhoEstufa"></p>
+                    <button onclick="editar_Estufa()">Editar Estufa</button>
                     <h3>Deletar Plantação:</h3>
                     <p>Confirmar Plantação: <input type="text" id="iptDeleteEstufaConfirmacaoPlantacao"></p>
                     <p>Confirmar ID: <input type="text" id="iptDeleteEstufaConfirmacaoID"></p>
@@ -154,18 +177,17 @@
             </div>
             <div class="container-contato">
                 <h1>Contato</h1>
-                <div>Telefone:</div>
-                <div>Email:</div>
+                <div id="contato"><span class="spanDivContato">Telefone:</span></div>
+                <div id="email"><span class="spanDivContato">Email:</span></div>
                 <p>Mudar Campos</p>
             </div>
             <div class="container-botoes">
-                <button onclick="usuario()">Configurar Usuários</button>
-                <button onclick="plantacao()">Configurar Plantação</button>
-                <button onclick="estufa()">Configurar Estufa</button>
-                <button id="sair" onclick="sair()">Sair</button>
+                <button onclick="usuario()" class="config">Configurar Usuários</button>
+                <button onclick="plantacao()" class="config">Configurar Plantação</button>
+                <button onclick="estufa()" class="config">Configurar Estufa</button>
             </div>
-        </div>
 
+        </div>
     </div>
 </body>
 
