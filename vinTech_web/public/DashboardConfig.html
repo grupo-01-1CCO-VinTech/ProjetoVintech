@@ -366,4 +366,33 @@
         });
         return false;
     }
+
+    //<p>Em qual plantação você deseja cadastrar esta estufa?<input type="text" id="iptAddPlantacaoEstufa"></p>
+    //<p>Tipo de Uva: <input type="text" id="iptAddUvaEstufa"></p>
+    //<p>Tamanho da Estufa <input type="text" id="iptAddTamanhoEstufa"></p>
+    function adicionar_Estufa(){
+        fetch("/estufa/adicionar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                idPlantacao: iptAddPlantacaoEstufa.value,
+                tipoUva: iptAddUvaEstufa.value,
+                tamanho: iptAddTamanhoEstufa.value
+            })
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                alert('Cadastro efetuado com sucesso!')
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+        return false;
+    }
 </script>
