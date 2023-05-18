@@ -32,6 +32,7 @@ FOREIGN KEY (fkEmpresa) REFERENCES Empresa (idEmpresa)
 
 CREATE TABLE Plantacao(
 idPlantacao INT PRIMARY KEY AUTO_INCREMENT,
+nomePlantacao VARCHAR(45),
 fkEmpresa INT,
 FOREIGN KEY (fkEmpresa) REFERENCES Empresa (idEmpresa)
 );
