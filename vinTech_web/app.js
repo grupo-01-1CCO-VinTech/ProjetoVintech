@@ -14,6 +14,7 @@ function api_julia() {
     var empresaRouter = require("./src/routes/empresa");
     var avisosRouter = require("./src/routes/avisos");
     var medidasRouter = require("./src/routes/medidas");
+    var platacaoRouter = require("./src/routes/plantacao");
 
     app.use(express.json());
     app.use(express.urlencoded({ extended: false }));
@@ -25,7 +26,8 @@ function api_julia() {
     app.use("/usuarios", usuarioRouter);
     app.use("/empresa", empresaRouter);
     app.use("/avisos", avisosRouter);
-    app.use("/medidas", medidasRouter)
+    app.use("/medidas", medidasRouter);
+    app.use("/plantacao", platacaoRouter);
 
     app.listen(PORTA, function () {
         console.log(`Servidor do seu site já está rodando! Acesse o caminho a seguir para visualizar: http://localhost:${PORTA} \n

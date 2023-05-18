@@ -1,5 +1,4 @@
-var empresaModel = require("../models/empresaModel");
-var usuarioModel = require("../models/usuarioModel");
+var plantacaoModel = require("../models/plantacaoModel");
 
 function adicionar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
@@ -27,7 +26,7 @@ function adicionar(req, res) {
     // } else {
         
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        adicionar(res)
+        plantacaoModel.adicionar(fkEmpresa)
     // }
 }
 
