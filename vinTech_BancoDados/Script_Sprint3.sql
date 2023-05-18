@@ -23,7 +23,6 @@ idFuncionario INT PRIMARY KEY AUTO_INCREMENT,
 nomeFuncionario VARCHAR(45),
 fkChefe INT,
 FOREIGN KEY (fkChefe) REFERENCES Funcionario (idFuncionario),
-loginFuncionario VARCHAR(45),
 senhaFuncionario VARCHAR(45),
 emailFuncionario VARCHAR(60),
 fkEmpresa INT,
@@ -32,6 +31,7 @@ FOREIGN KEY (fkEmpresa) REFERENCES Empresa (idEmpresa)
 
 CREATE TABLE Plantacao(
 idPlantacao INT PRIMARY KEY AUTO_INCREMENT,
+nomePlantacao VARCHAR(45),
 fkEmpresa INT,
 FOREIGN KEY (fkEmpresa) REFERENCES Empresa (idEmpresa)
 );

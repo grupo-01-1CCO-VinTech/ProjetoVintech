@@ -1,10 +1,10 @@
 var express = require("express");
 var router = express.Router();
 
-var plantacaoController = require("../controllers/plantacaoController");
+var estufaController = require("../controllers/estufaController");
 
 router.post("/adicionar", function (req, res) {
-    plantacaoController.adicionar(req, res);
+    estufaController.cadastrar_estufa(req, res)
 })
 
 module.exports = router;
