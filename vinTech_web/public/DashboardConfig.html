@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/logo.jpeg" type="image/png">
+    <title>Configurações - DashBoard</title>
+    <link rel="stylesheet" href="css/style-ConfiguracaoDashboard.css">
+    <link rel="stylesheet" href="css/style-PadraoDashboard.css">
+    <link rel="stylesheet" href="css/style-PadraoTodos.css">
+</head>
+
+<body>
+    <div class="pagina">
+        <div class="barra-lateral">
+            <div class="barra-logo">
+                <span>VinTech</span>
+                <img src="img/vintech.jpg" alt="">
+            </div>
+            <div class="barra-itens">
+                <ul>
+                    <a href="DashboardHome.html"><li>Home</li></a>
+                    <a href="DashboardPlantacoes.html"><li>Plantações</li></a>
+                    <a id="item"><li>Configurações</li></a>
+                </ul>
+            </div>
+            <div class="barra-usuario">
+                <div class="barra-fotoUsuario">
+                    <img src="img/usuario.png" alt="Foto Usuário">
+                </div>
+            </div>
+            <div class="barra-button">
+                <button onclick="barraSair()">Sair</button>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="container-esquerda">
+                <div style="display: none;" class="respostaForms">
+
+                </div>
+
+                <div id="formUsuario" style="display: none;" class="form">
+                    <h1>Configuração de Usuários</h1>
+                    <button onclick="addUsuario()">Adicionar Novo Usuário</button>
+                    <button onclick="editUsuario()">Editar e Remover Usuários</button>
+                </div>
+                
+                <div id="formAddUsuario" style="display: none;" class="form">
+                    <h1>Adicionar Usuário</h1>
+                    
+                    <p>Função: <select id="selectUsuarioFuncao">
+                            <option value="0">Funcionário</option>
+                            <option value="1">Administrador</option>
+                        </select></p>
+                    <p>Nome Completo: <input type="text" id="iptNomeUsuario"></p>
+                    <p>E-mail: <input type="text" id="iptEmailUsuario"></p>
+                    <p>Senha: <input type="text" id="iptSenhaUsuario"></p>
+                </div>
+                <div id="formEditUsuario" style="display: none;" class="form">
+                    <h1>Editar ou remover Usuários</h1>
+
+                    <h3>Encontrar usuário</h3>
+                    <p>Por ID: <input type="text" id="iptEncontrarIdEstufa"></p>
+                    <p>Por Nome: <input type="text" id="iptEncontrarNomeUsuario"></p>
+                    <p>Por E-mail: <input type="text" id="iptEncontrarEmailUsuario"></p>
+                    <h3>Editar usuário</h3>
+                    <p>Nome: <input type="text" id="iptEditNomeUsuario"></p>
+                    <p>E-mail: <input type="text" id="iptEditEmailUsuario"></p>
+                    <p>Senha: <input type="text" id="iptEditSenhaUsuario"></p>
+                    <p>Função:
+                        <select id="selectEditFuncao">
+                            <option value="0">Funcionário</option>
+                            <option value="1">Administrador</option>
+                        </select>
+                    </p>
+                    <h3>Deletar Usuário</h3>
+                    <p>Confirmar nome: <input type="text" id="iptDeleteUsuarioConfirmacaoNome"></p>
+                    <p>Confirmar E-mail: <input type="text" id="iptDeleteUsuarioConfirmacaoEmail"></p>
+                    <button onclick="deletarUsuario()">Deletar Usuário</button>
+                </div>
+
+                <!-- AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
+
+                <div id="formPlantacao" style="display: none;" class="form">
+                    <h1>Configuração de Plantações</h1>
+                    <button onclick="addPlantacao()">Adicionar nova Plantação</button>
+                    <button onclick="editPlantacao()">Editar/Remover Plantações</button>
+                </div>
+
+                <div id="formAddPlantacao" style="display: none;" class="form">
+                    <h1>Adicionar Plantação</h1>
+
+                    <p>Nome da Plantação <input type="text" id="iptNomePlantacao" placeholder="Plantação Jundiaí"></p>
+                    <!-- <p>Localização: <input type="text" id="iptLocalizacaoPlantacao"></p> -->
+                    <p>Tamanho da Plantação: <input type="text" id="iptTamanhoPlantacao" placeholder="Em Hectares"></p>
+                </div>
+                <div id="formEditPlantacao" style="display: none;" class="form">
+                    <h1>Editar ou remover Plantações</h1>
+
+                    <h3>Encontrar Plantação</h3>
+                    <p>Por ID: <input type="text" id="iptEncontrarIdEstufa"></p>
+                    <p>Por Nome: <input type="text" id="iptEncontrarNomePlantacao" placeholder="Plantação Jundiaí"></p>
+                    <!-- <p>Por Localização: <input type="text" id="iptLocalizacaoPlantacao"></p> -->
+                    <h3>Editar Plantação</h3>
+                    <p>Nome: <input type="text" id="iptEditNomePlantação"></p>
+                    <p>Tamanho: <input type="text" id="iptEditTamanhoPlantacao"></p>
+                    <h3>Deletar Plantação:</h3>
+                    <p>Confirmar nome: <input type="text" id="iptDeletePlantacaoConfirmacaoNome"></p>
+                    <button onclick="deletarPlantacao()">Deletar Plantação</button>
+                </div>
+
+                <!-- AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
+
+                <div id="formEstufa" style="display: none;" class="form">
+                    <h1>Configuração de Estufas</h1>
+                    <button onclick="addEstufa()">Adicionar nova Estufa</button>
+                    <button onclick="editEstufa()">Editar/Remover Estufas</button>
+                </div>
+                <div id="formAddEstufa" style="display: none;" class="form">
+                    <h1>Adicionar Estufa</h1>
+
+                    <p>Em qual plantação você deseja cadastrar esta estufa?
+                        <input type="text" id="iptAddPlantacaoEstufa">
+                    </p>
+                    <p>Tipo de Uva: <input type="text" id="iptAddUvaEstufa"></p>
+                    <p>Tamanho da Estufa <input type="text" id="iptAddTamanhoEstufa"></p>
+                </div>
+                <div id="formEditEstufa" style="display: none;" class="form">
+                    <h1>Editar ou remover Estufas</h1>
+
+                    <h3>Encontrar Estufa</h3>
+                    <p>Informe a plantação em que a estufa está: <input type="text" id="iptEncontrarPlantacaoEstufa">
+                    </p>
+                    <p>Por ID: <input type="text" id="iptEncontrarIdEstufa"></p>
+                    <!-- <p>Por Localização: <input type="text" id="iptLocalizacaoPlantacao"></p> -->
+                    <h3>Editar Estufa</h3>
+                    <p>Tipo de Uva: <input type="text" id="iptEditTipoUvaEstufa"></p>
+                    <p>Tamanho da Estufa: <input type="text" id="iptEditTamanhoEstufa"></p>
+                    <h3>Deletar Plantação:</h3>
+                    <p>Confirmar Plantação: <input type="text" id="iptDeleteEstufaConfirmacaoPlantacao"></p>
+                    <p>Confirmar ID: <input type="text" id="iptDeleteEstufaConfirmacaoID"></p>
+                    <button onclick="deletarPlantacao()">Deletar Plantação</button>
+                </div>
+            </div>
+        </div>
+        <div class="container-direita">
+            <div class="container-usuario">
+                <img src="img/eu2.jpg" alt="">
+                <p id="nome_usuario">Davi Alexandre</p>
+                <p id="Naosei">Administrador</p>
+            </div>
+            <div class="container-contato">
+                <h1>Contato</h1>
+                <div>Telefone:</div>
+                <div>Email:</div>
+                <p>Mudar Campos</p>
+            </div>
+            <div class="container-botoes">
+                <button onclick="usuario()">Configurar Usuários</button>
+                <button onclick="plantacao()">Configurar Plantação</button>
+                <button onclick="estufa()">Configurar Estufa</button>
+                <button id="sair" onclick="sair()">Sair</button>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
+
+<script>
+    function usuario() {
+        formUsuario.style.display = 'flex'
+        formPlantacao.style.display = 'none'
+        formEstufa.style.display = 'none'
+        formAddUsuario.style.display = 'none'
+        formEditUsuario.style.display = 'none'
+        formAddPlantacao.style.display = 'none'
+        formEditPlantacao.style.display = 'none'
+        formAddEstufa.style.display = 'none'
+        formEditEstufa.style.display = 'none'
+    }
+    function plantacao() {
+        formUsuario.style.display = 'none'
+        formPlantacao.style.display = 'flex'
+        formEstufa.style.display = 'none'
+        formAddUsuario.style.display = 'none'
+        formEditUsuario.style.display = 'none'
+        formAddPlantacao.style.display = 'none'
+        formEditPlantacao.style.display = 'none'
+        formAddEstufa.style.display = 'none'
+        formEditEstufa.style.display = 'none'
+    }
+    function estufa() {
+        formUsuario.style.display = 'none'
+        formPlantacao.style.display = 'none'
+        formEstufa.style.display = 'flex'
+        formAddUsuario.style.display = 'none'
+        formEditUsuario.style.display = 'none'
+        formAddPlantacao.style.display = 'none'
+        formEditPlantacao.style.display = 'none'
+        formAddEstufa.style.display = 'none'
+        formEditEstufa.style.display = 'none'
+    }
+    function addUsuario() {
+        formAddUsuario.style.display = 'flex'
+        formUsuario.style.display = 'none'
+        formEditUsuario.style.display = 'none'
+        formAddPlantacao.style.display = 'none'
+        formEditPlantacao.style.display = 'none'
+        formAddEstufa.style.display = 'none'
+        formEditEstufa.style.display = 'none'
+    }
+    function editUsuario() {
+        formEditUsuario.style.display = 'flex'
+        formUsuario.style.display = 'none'
+        formAddUsuario.style.display = 'none'
+        formAddPlantacao.style.display = 'none'
+        formEditPlantacao.style.display = 'none'
+        formAddEstufa.style.display = 'none'
+        formEditEstufa.style.display = 'none'
+    }
+    function addPlantacao() {
+        formAddPlantacao.style.display = 'flex'
+        formPlantacao.style.display = 'none'
+        formAddUsuario.style.display = 'none'
+        formEditUsuario.style.display = 'none'
+        formEditPlantacao.style.display = 'none'
+        formAddEstufa.style.display = 'none'
+        formEditEstufa.style.display = 'none'
+    }
+    function editPlantacao() {
+        formEditPlantacao.style.display = 'flex'
+        formPlantacao.style.display = 'none'
+        formAddUsuario.style.display = 'none'
+        formEditUsuario.style.display = 'none'
+        formAddPlantacao.style.display = 'none'
+        formAddEstufa.style.display = 'none'
+        formEditEstufa.style.display = 'none'
+    }
+    function addEstufa() {
+        formAddEstufa.style.display = 'flex'
+        formEstufa.style.display = 'none'
+        formAddUsuario.style.display = 'none'
+        formEditUsuario.style.display = 'none'
+        formAddPlantacao.style.display = 'none'
+        formEditPlantacao.style.display = 'none'
+        formEditEstufa.style.display = 'none'
+    }
+    function editEstufa() {
+        formEditEstufa.style.display = 'flex'
+        formEstufa.style.display = 'none'
+        formAddUsuario.style.display = 'none'
+        formEditUsuario.style.display = 'none'
+        formAddPlantacao.style.display = 'none'
+        formEditPlantacao.style.display = 'none'
+        formAddEstufa.style.display = 'none'
+    }
+</script>

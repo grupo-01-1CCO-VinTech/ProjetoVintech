@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Home</title>
+    <link rel="icon" href="img/logo.jpeg" type="image/png">
+    <link rel="stylesheet" href="css/style-PadraoDashboard.css">
+    <link rel="stylesheet" href="css/style-DashboardHome.css">
+    <link rel="stylesheet" href="css/style-PadraoTodos.css">
+</head>
+
+<body>
+    <div class="pagina">
+        <div class="barra-lateral">
+            <div class="barra-logo">
+                <span>VinTech</span>
+                <img src="img/vintech.jpg" alt="">
+            </div>
+            <div class="barra-itens">
+                <ul>
+                    <a>
+                        <li id="item">Home</li>
+                    </a>
+                    <a href="DashboardPlantacoes.html">
+                        <li>Plantações</li>
+                    </a>
+                    <a href="DashboardConfig.html">
+                        <li>Configurações</li>
+                    </a>
+                </ul>
+            </div>
+            <div class="barra-usuario">
+                <div class="barra-fotoUsuario">
+                    <img src="img/usuario.png" alt="Foto Usuário">
+                    <span id="nome_usuario"></span>
+                </div>
+            </div>
+            <div class="barra-button">
+                <button onclick="sair()">Sair</button>
+            </div>
+        </div>
+        <div class="container">
+            <div class="superior">
+                <div class="superior_esquerda">
+                    <div class="titulo">
+                        <h1>
+                            Informações de hoje
+                        </h1>
+                        <span>
+                            27/04/2023
+                        </span>
+                    </div>
+                    <div class="caixas">
+                        <div class="caixa">
+                            <h3>Estufas em perigo</h3>
+                            <span> 33 </span>
+                        </div>
+                        <div class="caixa">
+                            <h3>
+                                Estufas em alerta
+                            </h3>
+                            <span>26</span>
+                        </div>
+                        <div class="caixa">
+                            <h3>
+                                Estufas em estado ideal
+                            </h3>
+                            <span>41</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="superior_direita">
+                    <div class="top_estufas">
+                        <h2>
+                            Top estufas
+                        </h2>
+                        <div class="lista">
+                            <div class="linha-lista">
+                                <li>Estufa 2</li>
+                                <div id="imagem"><img src="img/cancelar.png"></div>
+                            </div>
+                            <div class="linha-lista">
+                                <li>Estufa 3</li>
+                                <img src="img/warning.png">
+                            </div>
+                            <div class="linha-lista">
+                                <li>Estufa 4</li>
+                                <img src="img/warning.png">
+                            </div>
+                            <div class="linha-lista">
+                                <li>Estufa 5</li>
+                                <img src="img/check-box.png">
+                            </div>
+                            <div class="linha-lista">
+                                <li>Estufa 6</li>
+                                <img src="img/check-box.png">
+                            </div>
+                            <div class="linha-lista">
+                                <li>Estufa 7</li>
+                                <img src="img/check-box.png">
+                            </div>
+                            <div class="linha-lista">
+                                <li>Estufa 8</li>
+                                <img src="img/check-box.png">
+                            </div>
+                            <div class="linha-lista">
+                                <li>Estufa 13</li>
+                                <img src="img/check-box.png">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Começo da parte inferior -->
+            <div class="inferior">
+                <div class="inferior_esquerda">
+                    <div class="grafico">
+                        <div class="titulo_grafico">
+                            <h2>
+                                Estufa em estado ideal
+                            </h2>
+                        </div>
+                        <canvas id="grafico_ideal"></canvas>
+                    </div>
+                    <div class="grafico">
+                        <div class="titulo_grafico">
+                            <h2>
+                                Estufa em estado de perigo
+                            </h2>
+                        </div>
+                        <canvas id="grafico_perigo"></canvas>
+                    </div>
+                </div>
+                <div class="inferior_direita">
+                    <div class="uvas_cultivo">
+                        <h3>
+                            Uvas em cultivo
+                        </h3>
+                        <h2>Estufa 11</h2>
+                        <div class="lista_uvas">
+                            <ul>Garménère</ul>
+                            <ul>Syrah</ul>
+                            <ul>Tempranillo</ul>
+                            <ul>Malbec</ul>
+                            <ul>Merlot</ul>
+                            <ul>Chardonnay</ul>
+                            <ul>Sauvignon Blanc</ul>
+                            <ul>Pinot Noir</ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+</body>
+</html>
+<script>
+
+    nome_usuario.innerHTML = sessionStorage.NOME_USUARIO
+    const ctx = document.getElementById('grafico_ideal')
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['12:00', '12:15', '12:30', '12:45', '13:00', '13:15'],
+            datasets: [{
+                label: 'Temperatura',
+                data: [15, 16, 14, 16, 20, 17],
+                borderWidth: 1,
+            }, {
+                label: 'Umidade',
+                data: [30, 32, 28, 31, 30, 33],
+                borderWidth: 1,
+
+            }],
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    const ctx_2 = document.getElementById('grafico_perigo')
+
+    new Chart(ctx_2, {
+        type: 'line',
+        data: {
+            labels: ['12:00', '12:15', '12:30', '12:45', '13:00', '13:15'],
+            datasets: [{
+                label: 'Temperatura',
+                data: [17, 16, 13, 10, 8, 3],
+                borderWidth: 1,
+            }, {
+                label: 'Umidade',
+                data: [25, 22, 18, 18, 16, 14],
+                borderWidth: 1,
+            }],
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
