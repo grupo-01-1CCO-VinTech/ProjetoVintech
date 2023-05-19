@@ -188,8 +188,8 @@
         <div class="container-direita">
             <div class="container-usuario">
                 <img src="img/eu2.jpg" alt="">
-                <p id="nome_usuario">Davi Alexandre</p>
-                <p id="Naosei">Administrador</p>
+                <p id="nome_usuarioLogado"></p>
+                <p id="funcao_usuario"></p>
             </div>
             <div class="container-contato">
                 <h1>Contato</h1>
@@ -210,11 +210,21 @@
 </html>
 
 <script>
-    var idChefe = sessionStorage.ID_USUARIO
-    var nomeUsuario = sessionStorage.NOME_USUARIO
+    var idChefe = sessionStorage.ID_USUARIO;
+    var nomeUsuario = sessionStorage.NOME_USUARIO;
     var loginUsuario = sessionStorage.LOGIN_USUARIO;
-    var emailUsuario = sessionStorage.EMAIL_USUARIO
-    var fkEmpresa = sessionStorage.FK_USUARIO
+    var emailUsuario = sessionStorage.EMAIL_USUARIO;
+    var fkEmpresa = sessionStorage.FK_USUARIO;
+    var fkChefe = sessionStorage.ID_CHEFE;
+    console.log(fkChefe)
+    nome_usuarioLogado.innerHTML = `${nomeUsuario}`
+    if(fkChefe == 'null'){
+        funcao_usuario.innerHTML = `Administrador`
+    }else{
+        alert('Saia')
+        location.href = 'DashboardHome.html'
+    }
+    email.innerHTML += `${emailUsuario}`
 
     function usuario() {
         formUsuario.style.display = 'flex'

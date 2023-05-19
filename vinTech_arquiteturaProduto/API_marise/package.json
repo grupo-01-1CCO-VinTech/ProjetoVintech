@@ -1,0 +1,17 @@
+{
+    "name": "banco_de_dados_sptech_cco",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "author": "Modificações por Rafael Scheneider",
+    "license": "Apenas para estudos",
+    "dependencies": {
+        "express": "^4.17.1",
+        "mysql2": "^2.3.3",
+        "path": "^0.12.7",
+        "serialport": "^10.4.0"
+    }
+}
