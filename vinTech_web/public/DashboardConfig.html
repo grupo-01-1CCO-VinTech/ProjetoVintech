@@ -45,7 +45,7 @@
 
         <div class="container">
             <div class="container-esquerda">
-                <div class="respostaForms">
+                <div class="respostaForms" id="respostaForms">
                     
                 </div>
                 <div id="formUsuario" style="display: none;" class="form">
@@ -214,7 +214,7 @@
     var nomeUsuario = sessionStorage.NOME_USUARIO;
     var loginUsuario = sessionStorage.LOGIN_USUARIO;
     var emailUsuario = sessionStorage.EMAIL_USUARIO;
-    var fkEmpresa = sessionStorage.FK_USUARIO;
+    var fkEmpresa = sessionStorage.FK_EMPRESA;
     var fkChefe = sessionStorage.ID_CHEFE;
     console.log(fkChefe)
     nome_usuarioLogado.innerHTML = `${nomeUsuario}`
@@ -413,26 +413,21 @@
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                idEmpresa: fkEmpresa
+                fkEmpresaServer: fkEmpresa
             })
         }).then(function (resposta) {
             if (resposta.ok) {
                 console.log(resposta);
 
                 resposta.json().then(json => {
-                    for(let x in resposta){
-                        respostaForms.innerHTML += resposta[x]
+                    for(let x in json){
+                        respostaForms.innerHTML += `${json[x].idPlantacao}<br>`;
                     }
                 });
-
-
-
             } else {
-
                 console.log("Houve um erro ao tentar consultar as plantações");
                 resposta.text().then(texto => {
                     console.error(texto);
-                    finalizarAguardar(texto);
                 });
             }
 
@@ -442,4 +437,5 @@
 
         return false;
     }
+    listar_platacoes()
 </script>

@@ -31,14 +31,14 @@ function adicionar(req, res) {
 }
 
 function listar(req, res){
-    var id = req.body.idEmpresa;
+    var id = req.body.fkEmpresaServer;
 
     plantacaoModel.listar(id).then(
         function (resultado) {
             console.log(`\nResultados encontrados: ${resultado.length}`);
             console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
 
-            if (resultado.length == 0) {
+            if (resultado.length > 0) {
                 res.json(resultado)
             }
             else{
