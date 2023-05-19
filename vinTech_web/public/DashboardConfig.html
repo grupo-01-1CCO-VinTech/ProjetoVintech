@@ -45,8 +45,8 @@
 
         <div class="container">
             <div class="container-esquerda">
-                <div style="display: none;" class="respostaForms">
-
+                <div class="respostaForms">
+                    
                 </div>
                 <div id="formUsuario" style="display: none;" class="form">
                     <h1>Configuração de Usuários</h1>
@@ -393,6 +393,43 @@
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
         });
+        return false;
+    }
+
+    function listar_platacoes(){
+        fetch("/plantacao/listar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idEmpresa: fkEmpresa
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    for(let x in resposta){
+                        respostaForms.innerHTML += resposta[x]
+                    }
+                });
+
+
+
+            } else {
+
+                console.log("Houve um erro ao tentar consultar as plantações");
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
         return false;
     }
 </script>
