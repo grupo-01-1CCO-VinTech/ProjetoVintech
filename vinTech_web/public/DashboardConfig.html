@@ -52,9 +52,9 @@
                 </div>
                 <div id="formUsuario" style="display: none;" class="form">
                     <h1>Configuração de Usuários</h1>
-                    <button onclick="addUsuario()" onmouseenter="uvaSurgi()" onmouseleave="sumirUva()"
+                    <button onclick="apagarDivs('formAddUsuario')" onmouseenter="uvaSurgi()" onmouseleave="sumirUva()"
                         class="botaoUsuario">Adicionar Novo Usuário </button>
-                    <button onclick="editUsuario()" onmouseenter="uvaSurgi()" onmouseleave="sumirUva()"
+                    <button onclick="apagarDivs('formEditUsuario')" onmouseenter="uvaSurgi()" onmouseleave="sumirUva()"
                         class="botaoUsuario">Editar e Remover Usuários </button>
                 </div>
 
@@ -120,8 +120,8 @@
 
                 <div id="formPlantacao" style="display: none;" class="form">
                     <h1>Configuração de Plantações</h1>
-                    <button onclick="addPlantacao()">Adicionar nova Plantação</button>
-                    <button onclick="editPlantacao()">Editar/Remover Plantações</button>
+                    <button onclick="apagarDivs('formAddPlantacao')">Adicionar nova Plantação</button>
+                    <button onclick="apagarDivs('formEditPlantacao')">Editar/Remover Plantações</button>
                 </div>
 
                 <div id="formAddPlantacao" style="display: none;" class="form">
@@ -154,8 +154,8 @@
                 <div id="formEstufa" style="display: none;" class="form">
 
                     <h1>Configuração de Estufas</h1>
-                    <button onclick="addEstufa()">Adicionar nova Estufa</button>
-                    <button onclick="editEstufa()">Editar/Remover Estufas</button>
+                    <button onclick="apagarDivs('formAddEstufa')">Adicionar nova Estufa</button>
+                    <button onclick="apagarDivs('formEditEstufa')">Editar/Remover Estufas</button>
                 </div>
                 <div id="formAddEstufa" style="display: none;" class="form">
                     <h1>Adicionar Estufa</h1>
@@ -200,9 +200,9 @@
                 <p>Mudar Campos</p>
             </div>
             <div class="container-botoes">
-                <button onclick="usuario()" class="config">Configurar Usuários</button>
-                <button onclick="plantacao()" class="config">Configurar Plantação</button>
-                <button onclick="estufa()" class="config">Configurar Estufa</button>
+                <button onclick="apagarDivs('formUsuario')" class="config">Configurar Usuários</button>
+                <button onclick="apagarDivs('formPlantacao')" class="config">Configurar Plantação</button>
+                <button onclick="apagarDivs('formEstufa')" class="config">Configurar Estufa</button>
             </div>
 
         </div>
@@ -229,8 +229,8 @@
     }
     email.innerHTML += `${emailUsuario}`
 
-    function usuario() {
-        formUsuario.style.display = 'flex'
+    function apagarDivs(id){
+        formUsuario.style.display = 'none'
         formPlantacao.style.display = 'none'
         formEstufa.style.display = 'none'
         formAddUsuario.style.display = 'none'
@@ -239,82 +239,9 @@
         formEditPlantacao.style.display = 'none'
         formAddEstufa.style.display = 'none'
         formEditEstufa.style.display = 'none'
-    }
-    function plantacao() {
-        formUsuario.style.display = 'none'
-        formPlantacao.style.display = 'flex'
-        formEstufa.style.display = 'none'
-        formAddUsuario.style.display = 'none'
-        formEditUsuario.style.display = 'none'
-        formAddPlantacao.style.display = 'none'
-        formEditPlantacao.style.display = 'none'
-        formAddEstufa.style.display = 'none'
-        formEditEstufa.style.display = 'none'
-    }
-    function estufa() {
-        formUsuario.style.display = 'none'
-        formPlantacao.style.display = 'none'
-        formEstufa.style.display = 'flex'
-        formAddUsuario.style.display = 'none'
-        formEditUsuario.style.display = 'none'
-        formAddPlantacao.style.display = 'none'
-        formEditPlantacao.style.display = 'none'
-        formAddEstufa.style.display = 'none'
-        formEditEstufa.style.display = 'none'
-    }
-    function addUsuario() {
-        formAddUsuario.style.display = 'flex'
-        formUsuario.style.display = 'none'
-        formEditUsuario.style.display = 'none'
-        formAddPlantacao.style.display = 'none'
-        formEditPlantacao.style.display = 'none'
-        formAddEstufa.style.display = 'none'
-        formEditEstufa.style.display = 'none'
-    }
-    function editUsuario() {
-        formEditUsuario.style.display = 'flex'
-        formUsuario.style.display = 'none'
-        formAddUsuario.style.display = 'none'
-        formAddPlantacao.style.display = 'none'
-        formEditPlantacao.style.display = 'none'
-        formAddEstufa.style.display = 'none'
-        formEditEstufa.style.display = 'none'
-    }
-    function addPlantacao() {
-        formAddPlantacao.style.display = 'flex'
-        formPlantacao.style.display = 'none'
-        formAddUsuario.style.display = 'none'
-        formEditUsuario.style.display = 'none'
-        formEditPlantacao.style.display = 'none'
-        formAddEstufa.style.display = 'none'
-        formEditEstufa.style.display = 'none'
-    }
-    function editPlantacao() {
-        formEditPlantacao.style.display = 'flex'
-        formPlantacao.style.display = 'none'
-        formAddUsuario.style.display = 'none'
-        formEditUsuario.style.display = 'none'
-        formAddPlantacao.style.display = 'none'
-        formAddEstufa.style.display = 'none'
-        formEditEstufa.style.display = 'none'
-    }
-    function addEstufa() {
-        formAddEstufa.style.display = 'flex'
-        formEstufa.style.display = 'none'
-        formAddUsuario.style.display = 'none'
-        formEditUsuario.style.display = 'none'
-        formAddPlantacao.style.display = 'none'
-        formEditPlantacao.style.display = 'none'
-        formEditEstufa.style.display = 'none'
-    }
-    function editEstufa() {
-        formEditEstufa.style.display = 'flex'
-        formEstufa.style.display = 'none'
-        formAddUsuario.style.display = 'none'
-        formEditUsuario.style.display = 'none'
-        formAddPlantacao.style.display = 'none'
-        formEditPlantacao.style.display = 'none'
-        formAddEstufa.style.display = 'none'
+
+        var form = document.getElementById(id)
+        form.style.display = 'flex'
     }
 
     function adicionar_Plantacao(){
