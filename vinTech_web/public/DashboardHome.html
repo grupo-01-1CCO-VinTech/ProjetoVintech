@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/funcoes.js"></script>
     <title>Home</title>
     <link rel="icon" href="img/logo.jpeg" type="image/png">
     <link rel="stylesheet" href="css/style-PadraoDashboard.css">
@@ -28,7 +29,7 @@
                     <a href="DashboardPlantacoes.html">
                         <li>Plantações</li>
                     </a>
-                    <a href="DashboardConfig.html">
+                    <a href="DashboardConfig.html" id="item_config">
                         <li>Configurações</li>
                     </a>
                 </ul>
@@ -37,10 +38,11 @@
                 <div class="barra-fotoUsuario">
                     <img src="img/usuario.png" alt="Foto Usuário">
                     <span id="nome_usuario"></span>
+                    <span id="cargo_usuario"></span>
                 </div>
             </div>
             <div class="barra-button">
-                <button onclick="sair()">Sair</button>
+                <button onclick="limparSessao()">Sair</button>
             </div>
         </div>
         <div class="container">
@@ -156,10 +158,18 @@
             </div>
 
 </body>
+
 </html>
 <script>
+    var idChefe = sessionStorage.ID_USUARIO;
+    var nomeUsuario = sessionStorage.NOME_USUARIO;
+    var loginUsuario = sessionStorage.LOGIN_USUARIO;
+    var emailUsuario = sessionStorage.EMAIL_USUARIO;
+    var fkEmpresa = sessionStorage.FK_EMPRESA;
+    var fkChefe = sessionStorage.ID_CHEFE;
 
-    nome_usuario.innerHTML = sessionStorage.NOME_USUARIO
+    validarSessao()
+    
     const ctx = document.getElementById('grafico_ideal')
 
     new Chart(ctx, {

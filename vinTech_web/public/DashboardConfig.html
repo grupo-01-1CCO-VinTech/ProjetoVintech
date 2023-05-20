@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/style-ConfiguracaoDashboard.css">
     <link rel="stylesheet" href="css/style-PadraoDashboard.css">
     <link rel="stylesheet" href="css/style-PadraoTodos.css">
+    <script src="js/funcoes.js"></script>
 </head>
 
 <body>
@@ -27,7 +28,7 @@
                     <a href="DashboardPlantacoes.html">
                         <li>Plantações</li>
                     </a>
-                    <a id="item">
+                    <a id="item_config">
                         <li>Configurações</li>
                     </a>
                 </ul>
@@ -36,10 +37,11 @@
                 <div class="barra-fotoUsuario">
                     <img src="Img/usuario.png" alt="Foto Usuário">
                     <span id="nome_usuario"></span>
+                    <span id="cargo_usuario"></span>
                 </div>
             </div>
             <div class="barra-button">
-                <button onclick="barraSair()">Sair</button>
+                <button onclick="limparSessao()">Sair</button>
             </div>
         </div>
 
@@ -216,12 +218,13 @@
     var emailUsuario = sessionStorage.EMAIL_USUARIO;
     var fkEmpresa = sessionStorage.FK_EMPRESA;
     var fkChefe = sessionStorage.ID_CHEFE;
-    console.log(fkChefe)
+
+    validarSessao()
+
     nome_usuarioLogado.innerHTML = `${nomeUsuario}`
     if(fkChefe == 'null'){
         funcao_usuario.innerHTML = `Administrador`
     }else{
-        alert('Saia')
         location.href = 'DashboardHome.html'
     }
     email.innerHTML += `${emailUsuario}`
