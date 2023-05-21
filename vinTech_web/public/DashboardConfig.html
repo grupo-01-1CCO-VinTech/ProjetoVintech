@@ -13,7 +13,7 @@
     <script src="js/funcoes.js"></script>
 </head>
 
-<body>
+<body onload="listar_Uvas()">
     <div class="pagina">
         <div class="barra-lateral">
             <div class="barra-logo">
@@ -48,7 +48,7 @@
         <div class="container">
             <div class="container-esquerda">
                 <div class="respostaForms" id="respostaForms">
-                    
+
                 </div>
                 <div id="formUsuario" style="display: none;" class="form">
                     <h1>Configuração de Usuários</h1>
@@ -65,7 +65,7 @@
                     <div class="ambasUser">
                         <div class="addUser">
                             <p>Função: <select name="optFunc" id="selectUsuarioFuncao">
-                                    <option value="0" >Funcionário</option>
+                                    <option value="0">Funcionário</option>
                                     <option value="1">Administrador</option>
                                 </select></p>
                             <p>Nome Completo: <input type="text" id="iptNomeUsuario" class="inp_Input"
@@ -134,17 +134,15 @@
                 </div>
                 <div id="formEditPlantacao" style="display: none;" class="form">
                     <h1>Editar ou remover Plantações</h1>
-
-                    <h3>Encontrar Plantação</h3>
                     <p>Por ID: <input type="text" id="iptEncontrarIdEstufa"></p>
                     <p>Por Nome: <input type="text" id="iptEncontrarNomePlantacao" placeholder="Plantação Jundiaí"></p>
-                    <!-- <p>Por Localização: <input type="text" id="iptLocalizacaoPlantacao"></p> -->
+                    <p>Por Localização: <input type="text" id="iptLocalizacaoPlantacao"></p>
                     <button onclick="encontrar_Plantacao()">Encontrar Plantação</button>
-                    <h3>Editar Plantação</h3>
+                    <!-- <h3>Editar Plantação</h3>
                     <p>Nome: <input type="text" id="iptEditNomePlantação"></p>
                     <p>Tamanho: <input type="text" id="iptEditTamanhoPlantacao"></p>
                     <h3>Deletar Plantação:</h3>
-                    <p>Confirmar nome: <input type="text" id="iptDeletePlantacaoConfirmacaoNome"></p>
+                    <p>Confirmar nome: <input type="text" id="iptDeletePlantacaoConfirmacaoNome"></p> -->
                     <button onclick="editar_Plantacao()">Editar Plantação</button>
                     <button onclick="deletarPlantacao()">Deletar Plantação</button>
                 </div>
@@ -159,11 +157,17 @@
                 </div>
                 <div id="formAddEstufa" style="display: none;" class="form">
                     <h1>Adicionar Estufa</h1>
-
-                    <p>Em qual plantação você deseja cadastrar esta estufa?
-                        <input type="text" id="iptAddPlantacaoEstufa">
+                    <p>Nome da Estufa
+                        <input type="text" id="iptAddNomeEstufa" placeholder="Estufa 001">
                     </p>
-                    <p>Tipo de Uva: <input type="text" id="iptAddUvaEstufa"></p>
+                    <p>Em qual plantação você deseja cadastrar esta estufa?
+                        <input type="text" id="iptAddPlantacaoEstufa" placeholder="Id da Plantação">
+                    </p>
+                    <p>Tipo de Uva:
+                        <select id="iptAddUvaEstufa">
+                            <option value="0">Adicionar Uva</option>
+                        </select>
+                    </p>
                     <p>Tamanho da Estufa <input type="text" id="iptAddTamanhoEstufa"></p>
                     <button onclick="adicionar_Estufa()">Adicionar Estufa</button>
                 </div>
@@ -177,7 +181,11 @@
                     <button onclick="encontrar_Estufa()">Encontrar Estufa</button>
                     <!-- <p>Por Localização: <input type="text" id="iptLocalizacaoPlantacao"></p> -->
                     <h3>Editar Estufa</h3>
-                    <p>Tipo de Uva: <input type="text" id="iptEditTipoUvaEstufa"></p>
+                    <p>Tipo de Uva:
+                        <select id="iptEditUvaEstufa">
+                            <option value="0">Adicionar Uva</option>
+                        </select>
+                    </p>
                     <p>Tamanho da Estufa: <input type="text" id="iptEditTamanhoEstufa"></p>
                     <button onclick="editar_Estufa()">Editar Estufa</button>
                     <h3>Deletar Plantação:</h3>
@@ -222,14 +230,14 @@
     validarSessao()
 
     nome_usuarioLogado.innerHTML = `${nomeUsuario}`
-    if(fkChefe == 'null'){
+    if (fkChefe == 'null') {
         funcao_usuario.innerHTML = `Administrador`
-    }else{
+    } else {
         location.href = 'DashboardHome.html'
     }
     email.innerHTML += `${emailUsuario}`
 
-    function apagarDivs(id){
+    function apagarDivs(id) {
         formUsuario.style.display = 'none'
         formPlantacao.style.display = 'none'
         formEstufa.style.display = 'none'
@@ -244,7 +252,7 @@
         form.style.display = 'flex'
     }
 
-    function adicionar_Plantacao(){
+    function adicionar_Plantacao() {
         fetch("/plantacao/adicionar", {
             method: "POST",
             headers: {
@@ -267,9 +275,9 @@
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
         });
-        return false;  
+        return false;
     }
-    function adicionar_Usuario(){
+    function adicionar_Usuario() {
         var nomeFunc = iptNomeUsuario.value
         var emailFunc = iptEmailUsuario.value
         var loginFunc = iptLoginUsuario.value
@@ -310,33 +318,38 @@
     //<p>Em qual plantação você deseja cadastrar esta estufa?<input type="text" id="iptAddPlantacaoEstufa"></p>
     //<p>Tipo de Uva: <input type="text" id="iptAddUvaEstufa"></p>
     //<p>Tamanho da Estufa <input type="text" id="iptAddTamanhoEstufa"></p>
-    function adicionar_Estufa(){
-        fetch("/estufa/adicionar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-                idPlantacao: iptAddPlantacaoEstufa.value,
-                tipoUva: iptAddUvaEstufa.value,
-                tamanho: iptAddTamanhoEstufa.value
-            })
-        }).then(function (resposta) {
+    function adicionar_Estufa() {
+        if (iptAddUvaEstufa.value == 0) {
+            adicionar_Uva()
+        } else {
+            fetch("/estufa/adicionar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    nomeEstufa : iptAddUvaEstufa.value,
+                    idPlantacao: iptAddPlantacaoEstufa.value,
+                    tipoUva: iptAddUvaEstufa.value,
+                    tamanho: iptAddTamanhoEstufa.value
+                })
+            }).then(function (resposta) {
 
-            if (resposta.ok) {
-                alert('Cadastro efetuado com sucesso!')
-            } else {
-                throw ("Houve um erro ao tentar realizar o cadastro!");
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
-        return false;
+                if (resposta.ok) {
+                    alert('Cadastro efetuado com sucesso!')
+                } else {
+                    throw ("Houve um erro ao tentar realizar o cadastro!");
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+            return false;
+        }
     }
 
-    function listar_platacoes(){
+    function listar_platacoes() {
         fetch("/plantacao/listar", {
             method: "POST",
             headers: {
@@ -350,8 +363,12 @@
                 console.log(resposta);
 
                 resposta.json().then(json => {
-                    for(let x in json){
-                        respostaForms.innerHTML += `${json[x].idPlantacao}<br>`;
+                    for (let x in json) {
+                        respostaForms.innerHTML +=
+                            `
+                        ID da Plantação: ${json[x].idPlantacao} <br>
+                        Nome da Plantação: ${json[x].nomePlantacao}<br>
+                        `;
                     }
                 });
             } else {
@@ -367,5 +384,44 @@
 
         return false;
     }
-    listar_platacoes()
+
+    function listar_Uvas() {
+        fetch("/uva/listar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                fkEmpresaServer: fkEmpresa
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    for (let x in json) {
+                        iptAddUvaEstufa.innerHTML +=
+                            `
+                        <option value="${json[x].nomeUva}">${json[x].nomeUva}</option>
+                        `;
+                        iptEditUvaEstufa.innerHTML +=
+                            `
+                        <option value="${json[x].nomeUva}">${json[x].nomeUva}</option>
+                        `;
+                    }
+                });
+            } else {
+                console.log("Houve um erro ao tentar consultar as uvas");
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+    // listar_platacoes()
 </script>
