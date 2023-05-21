@@ -22,7 +22,7 @@ body {
     width: 20vw;
     height: 100vh;
     border-radius: 0px 4vh 4vh 0px;
-    background-color: #5903AF;
+    background-image: linear-gradient(to bottom, #5903AF,#4f009e,#45008a);
     transition: 1000ms;
 }
 
@@ -81,7 +81,7 @@ body {
     color: white;
 }
 
-.barra-itens #item {
+.barra-itens .selected {
     border-bottom: solid 0.1vh white;
 }
 
