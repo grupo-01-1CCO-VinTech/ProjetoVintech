@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/funcoes.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="img/logo.jpeg" type="image/png">
     <link rel="stylesheet" href="css/style-PadraoDashboard.css">
@@ -22,193 +23,210 @@
             </div>
             <div class="barra-itens">
                 <ul>
-                    <a href="DashboardHome.html"><li>Home</li></a>
-                    <a id="item"><li>Plantações</li></a>
-                    <a href="DashboardConfig.html"><li>Configurações</li></a>
+                    <a href="DashboardHome.html">
+                        <li>Home</li>
+                    </a>
+                    <a class="selected">
+                        <li>Plantações</li>
+                    </a>
+                    <a href="DashboardConfig.html" id="item_config">
+                        <li>Configurações</li>
+                    </a>
                 </ul>
             </div>
             <div class="barra-usuario">
                 <div class="barra-fotoUsuario">
                     <img src="img/usuario.png" alt="Foto Usuário">
+                    <span id="nome_usuario"></span>
+                    <span id="cargo_usuario"></span>
                 </div>
             </div>
             <div class="barra-button">
-                <button onclick="sair()">Sair</button>
+                <button onclick="limparSessao()">Sair</button>
             </div>
         </div>
     </div>
-        <div class="container">
-            <div class="header">
-                <img src="img/uvaDetalhe.png" alt="Detalhe Uva">
-                <a>Suas plantações</a>
-                <span>Listagem de Estufas</span>
-                <span class="linhaTitulo"></span>
-            </div>
-            <div class="containerCard-Grande">
-                <div class="cardGrande">
-                    <div class="primeiraParte">
-                        <div class="areaInput">
-                            <input type="text" placeholder="Digite o nome da Plantação" class="inputPesquisa">
-                        </div>
-                        <div class="areaBtn">
-                            <div class="cardBtns">
-                                <div class="areaBotoes">
-                                    <div class="tituloBtn">
-                                        <h3>Por Status</h3>
-                                    </div>
-                                    <div class="botoes">
-                                        <button class="btnSeguro"><b>Seguro</b></button>
-                                        <button class="btnAlerta"><b>Alerta</b></button>
-                                        <button class="btnPerigo"><b>Perigo</b></button>
-                                    </div>
+    <div class="container">
+        <div class="header">
+            <img src="img/uvaDetalhe.png" alt="Detalhe Uva">
+            <a>Suas plantações</a>
+            <span>Listagem de Estufas</span>
+            <span class="linhaTitulo"></span>
+        </div>
+        <div class="containerCard-Grande">
+            <div class="cardGrande">
+                <div class="primeiraParte">
+                    <div class="areaInput">
+                        <input type="text" placeholder="Digite o nome da Plantação" class="inputPesquisa">
+                    </div>
+                    <div class="areaBtn">
+                        <div class="cardBtns">
+                            <div class="areaBotoes">
+                                <div class="tituloBtn">
+                                    <h3>Por Status</h3>
                                 </div>
-                                <div class="selectUva">
-                                    <h3>Por Uva</h3>
-                                    <select id="">
-                                        <option value="">Tipos de Uvas</option>
-                                        <option value="">Pinot Noir</option>
-                                        <option value="">Malbec</option>
-                                        <option value="">Syrah</option>
-                                        <option value="">Merlot</option>
-                                        <option value="">Carménère</option>
-                                    </select>
+                                <div class="botoes">
+                                    <button class="btnSeguro"><b>Seguro</b></button>
+                                    <button class="btnAlerta"><b>Alerta</b></button>
+                                    <button class="btnPerigo"><b>Perigo</b></button>
                                 </div>
+                            </div>
+                            <div class="selectUva">
+                                <h3>Por Uva</h3>
+                                <select id="">
+                                    <option value="">Tipos de Uvas</option>
+                                    <option value="">Pinot Noir</option>
+                                    <option value="">Malbec</option>
+                                    <option value="">Syrah</option>
+                                    <option value="">Merlot</option>
+                                    <option value="">Carménère</option>
+                                </select>
+                            </div>
 
-                                <div class="selectUva">
-                                    <h3>Por Plantação</h3>
-                                    <select id="">
-                                        <option value="">Plantações</option>
-                                        <option value="">Plantação 1 - Borgonha</option>
-                                        <option value="">Plantação 2 - Viterbo</option>
-                                        <option value="">Plantação 2 - Califórnia</option>
-                                    </select>
-                                </div>
-                                <div class="selectUva">
-                                    <h3>Ordenar por</h3>
-                                    <select id="select">
-                                        <option value="">Perigos</option>
-                                        <option value="">Temperatura acima do Ideal</option>
-                                        <option value="">Umidade Muito Alta</option>
-                                        <option value="">Dias Chuvosos</option>
-                                        <option value="">Dias com a maior Temperatura</option>
-                                    </select>
-                                </div>
+                            <div class="selectUva">
+                                <h3>Por Plantação</h3>
+                                <select id="">
+                                    <option value="">Plantações</option>
+                                    <option value="">Plantação 1 - Borgonha</option>
+                                    <option value="">Plantação 2 - Viterbo</option>
+                                    <option value="">Plantação 2 - Califórnia</option>
+                                </select>
+                            </div>
+                            <div class="selectUva">
+                                <h3>Ordenar por</h3>
+                                <select id="select">
+                                    <option value="">Perigos</option>
+                                    <option value="">Temperatura acima do Ideal</option>
+                                    <option value="">Umidade Muito Alta</option>
+                                    <option value="">Dias Chuvosos</option>
+                                    <option value="">Dias com a maior Temperatura</option>
+                                </select>
                             </div>
                         </div>
-                        <div class="areaCardsPequenos">
-                            <div class="cardPequeno" id="cardPinotNoir">
-                                <h2><a href="DashboardGraficosEstufas.html">Estufa 001</a></h2>
-                                <div class="ordemCardpequeno">
-                                    <a id="title">Tipo de Uva</a>
-                                    <a></a>
-                                </div>
-                                <div class="ordemCardpequeno">
-                                    <a id="title">Umidade Atual (%)</a>
-                                    <a></a>
-                                </div>
-                                <div class="ordemCardpequeno">
-                                    <a id="title">Temperatura Atual(°C)</a>
-                                    <a></a>
-                                </div>
-                                <div class="ordemCardpequeno">
-                                    <a id="title">Status</a>
-                                    <img src="img/check-box.png" alt="Botão Tudo OK">
-                                </div>
+                    </div>
+                    <div class="areaCardsPequenos">
+                        <div class="cardPequeno" id="cardPinotNoir">
+                            <h2><a href="DashboardGraficosEstufas.html">Estufa 001</a></h2>
+                            <div class="ordemCardpequeno">
+                                <a id="title">Tipo de Uva</a>
+                                <a></a>
                             </div>
-                            <div class="cardPequeno" id="cardMerlone">
-                                <h2>Estufa 002</h2>
-                                <div class="ordemCardpequeno">
-                                    <a id="title">Tipo de Uva</a>
-                                    <a>Merlot</a>
-                                </div>
-                                <div class="ordemCardpequeno">
-                                    <a id="title">Umidade Atual (%)</a>
-                                    <a>60%</a>
-                                </div>
-                                <div class="ordemCardpequeno">
-                                    <a id="title">Temperatura Atual(°C)</a>
-                                    <a>19°C</a>
-                                </div>
-                                <div class="ordemCardpequeno">
-                                    <a id="title">Status</a>
-                                    <img src="img/warning.png" alt="Botão Tudo OK">
-                                </div>
+                            <div class="ordemCardpequeno">
+                                <a id="title">Umidade Atual (%)</a>
+                                <a></a>
                             </div>
-                            <div class="cardPequeno" id="cardCarmenere">
-                                <h2>Estufa 003</h2>
-                                <div class="ordemCardpequeno">
-                                    <a id="title">Tipo de Uva</a>
-                                    <a>Carménère</a>
-                                </div>
-                                <div class="ordemCardpequeno">
-                                    <a id="title">Umidade Atual (%)</a>
-                                    <a>2%</a>
-                                </div>
-                                <div class="ordemCardpequeno">
-                                    <a id="title">Temperatura Atual(°C)</a>
-                                    <a>45°C</a>
-                                </div>
-                                <div class="ordemCardpequeno">
-                                    <a id="title">Status</a>
-                                    <img src="img/cancelar.png" alt="Botão Tudo OK">
-                                </div>
+                            <div class="ordemCardpequeno">
+                                <a id="title">Temperatura Atual(°C)</a>
+                                <a></a>
+                            </div>
+                            <div class="ordemCardpequeno">
+                                <a id="title">Status</a>
+                                <img src="img/check-box.png" alt="Botão Tudo OK">
+                            </div>
+                        </div>
+                        <div class="cardPequeno" id="cardMerlone">
+                            <h2>Estufa 002</h2>
+                            <div class="ordemCardpequeno">
+                                <a id="title">Tipo de Uva</a>
+                                <a>Merlot</a>
+                            </div>
+                            <div class="ordemCardpequeno">
+                                <a id="title">Umidade Atual (%)</a>
+                                <a>60%</a>
+                            </div>
+                            <div class="ordemCardpequeno">
+                                <a id="title">Temperatura Atual(°C)</a>
+                                <a>19°C</a>
+                            </div>
+                            <div class="ordemCardpequeno">
+                                <a id="title">Status</a>
+                                <img src="img/warning.png" alt="Botão Tudo OK">
+                            </div>
+                        </div>
+                        <div class="cardPequeno" id="cardCarmenere">
+                            <h2>Estufa 003</h2>
+                            <div class="ordemCardpequeno">
+                                <a id="title">Tipo de Uva</a>
+                                <a>Carménère</a>
+                            </div>
+                            <div class="ordemCardpequeno">
+                                <a id="title">Umidade Atual (%)</a>
+                                <a>2%</a>
+                            </div>
+                            <div class="ordemCardpequeno">
+                                <a id="title">Temperatura Atual(°C)</a>
+                                <a>45°C</a>
+                            </div>
+                            <div class="ordemCardpequeno">
+                                <a id="title">Status</a>
+                                <img src="img/cancelar.png" alt="Botão Tudo OK">
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="containerGraficos">
-                    <h2>Sequência de Dias</h2>
-                    <div class="graficoBarraHorizontal">
-                        <select id="">
-                            <option value="">Mês: Janeiro</option>
-                            <option value="">Mês: Fevereiro</option>
-                            <option value="">Mês: Março</option>
-                            <option value="">Mês: Abril</option>
-                            <option value="">Mês: Maio</option>
-                            <option value="">Mês: Junho</option>
-                            <option value="">Mês: Julho</option>
-                            <option value="">Mês: Agosto</option>
-                            <option value="">Mês: Setembro</option>
-                            <option value="">Mês: Outubro</option>
-                            <option value="">Mês: Novembro</option>
-                            <option value="">Mês: Dezembro</option>
-                        </select>
-                        <div>
-                            <canvas id="graficoBarraDeitado"></canvas>
+            </div>
+            <div class="containerGraficos">
+                <h2>Sequência de Dias</h2>
+                <div class="graficoBarraHorizontal">
+                    <select id="">
+                        <option value="">Mês: Janeiro</option>
+                        <option value="">Mês: Fevereiro</option>
+                        <option value="">Mês: Março</option>
+                        <option value="">Mês: Abril</option>
+                        <option value="">Mês: Maio</option>
+                        <option value="">Mês: Junho</option>
+                        <option value="">Mês: Julho</option>
+                        <option value="">Mês: Agosto</option>
+                        <option value="">Mês: Setembro</option>
+                        <option value="">Mês: Outubro</option>
+                        <option value="">Mês: Novembro</option>
+                        <option value="">Mês: Dezembro</option>
+                    </select>
+                    <div>
+                        <canvas id="graficoBarraDeitado"></canvas>
+                    </div>
+                </div>
+                <div class="container-graficoPizza">
+                    <a>Quantidade por Status</a>
+                    <div class="statusImagens">
+                        <div class="status">
+                            <img src="img/check-box.png" alt="">
+                            <a>Seguro</a>
+                            <a>3</a>
+                        </div>
+                        <div class="status">
+                            <img src="img/warning.png" alt="">
+                            <a>Alerta</a>
+                            <a>3</a>
+                        </div>
+                        <div class="status">
+                            <img src="img/cancelar.png" alt="">
+                            <a>Perigo</a>
+                            <a>3</a>
                         </div>
                     </div>
-                    <div class="container-graficoPizza">
-                        <a>Quantidade por Status</a>
-                        <div class="statusImagens">
-                            <div class="status">
-                                <img src="img/check-box.png" alt="">
-                                <a>Seguro</a>
-                                <a>3</a>
-                            </div>
-                            <div class="status">
-                                <img src="img/warning.png" alt="">
-                                <a>Alerta</a>
-                                <a>3</a>
-                            </div>
-                            <div class="status">
-                                <img src="img/cancelar.png" alt="">
-                                <a>Perigo</a>
-                                <a>3</a>
-                            </div>
-                        </div>
-                        <div class="areaGrafico">
-                            <canvas id="graficoPizza" class="graficoPizza"></canvas>
-                        </div>
+                    <div class="areaGrafico">
+                        <canvas id="graficoPizza" class="graficoPizza"></canvas>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </body>
 
 </html>
 <script>
-    var listaContadores = [] 
+    var idChefe = sessionStorage.ID_USUARIO;
+    var nomeUsuario = sessionStorage.NOME_USUARIO;
+    var loginUsuario = sessionStorage.LOGIN_USUARIO;
+    var emailUsuario = sessionStorage.EMAIL_USUARIO;
+    var fkEmpresa = sessionStorage.FK_EMPRESA;
+    var fkChefe = sessionStorage.ID_CHEFE;
+
+    validarSessao()
+
+    var listaContadores = []
     var contadorSeguro = 0
     var contadorAlerta = 0
     var contadorPerigo = 0
@@ -252,7 +270,7 @@
         data: {
             datasets: [{
                 label: 'Status',
-                data: [3,3,3],
+                data: [3, 3, 3],
                 borderWidth: 1,
                 backgroundColor: [
                     '#00BF15',
@@ -264,21 +282,21 @@
     });
 
     var jsonEstufas = {
-        estufa1:{
-            nome:  "Estufa 001",
+        estufa1: {
+            nome: "Estufa 001",
             tipoUva: "Pinot Noir",
             umidAtual: "",
             tempAtual: "",
             status: ""
         },
-        estufa2:{
-            nome:  "Estufa 002",
+        estufa2: {
+            nome: "Estufa 002",
             tipoUva: "Merlot",
             umidAtual: "",
             tempAtual: "",
             status: ""
         },
-        estufa3:{
+        estufa3: {
             nome: "Estufa 003",
             tipoUva: "Carmenere",
             umidAtual: "",
@@ -287,10 +305,10 @@
         },
     }
 
-    function atualizarHTML(){
+    function atualizarHTML() {
         // PinotNoir
-        cardPinotNoir.innerHTML = 
-        `
+        cardPinotNoir.innerHTML =
+            `
         <h2><a href="DashboardGraficosEstufas.html">${jsonEstufas.estufa1.nome}</a></h2>
             <div class="ordemCardpequeno">
                 <a id="title">Tipo de Uva</a>
@@ -309,22 +327,22 @@
                 <img src="" alt="Botão Tudo OK" id="imagemStatusPinot">
             </div>
         `
-        if(jsonEstufas.estufa1.status == "Seguro"){
+        if (jsonEstufas.estufa1.status == "Seguro") {
             imagemStatusPinot.src = "img/check-box.png"
             contadorSeguro++
-            
-        }else if(jsonEstufas.estufa1.status == "Alerta"){
+
+        } else if (jsonEstufas.estufa1.status == "Alerta") {
             imagemStatusPinot.src = "img/warning.png"
             contadorAlerta++
-        }else if(jsonEstufas.estufa1.status == "Perigo"){
+        } else if (jsonEstufas.estufa1.status == "Perigo") {
             imagemStatusPinot.src = "img/cancelar.png"
             contadorPerigo++
         }
 
         // Merlone
 
-        cardMerlone.innerHTML = 
-        `
+        cardMerlone.innerHTML =
+            `
         <h2><a href="DashboardGraficosEstufas.html">${jsonEstufas.estufa2.nome}</a></h2>
             <div class="ordemCardpequeno">
                 <a id="title">Tipo de Uva</a>
@@ -343,22 +361,22 @@
                 <img src="" alt="Botão Tudo OK" id="imagemStatusMerlone">
             </div>
         `
-        if(jsonEstufas.estufa2.status == "Seguro"){
+        if (jsonEstufas.estufa2.status == "Seguro") {
             imagemStatusMerlone.src = "img/check-box.png"
             contadorSeguro++
-            
-        }else if(jsonEstufas.estufa2.status == "Alerta"){
+
+        } else if (jsonEstufas.estufa2.status == "Alerta") {
             imagemStatusMerlone.src = "img/warning.png"
             contadorAlerta++
-        }else if(jsonEstufas.estufa2.status == "Perigo"){
+        } else if (jsonEstufas.estufa2.status == "Perigo") {
             imagemStatusMerlone.src = "img/cancelar.png"
             contadorPerigo++
         }
 
         // Carmenere
 
-        cardCarmenere.innerHTML = 
-        `
+        cardCarmenere.innerHTML =
+            `
         <h2><a href="DashboardGraficosEstufas.html">${jsonEstufas.estufa3.nome}</a></h2>
             <div class="ordemCardpequeno">
                 <a id="title">Tipo de Uva</a>
@@ -377,14 +395,14 @@
                 <img src="" alt="Botão Tudo OK" id="imagemStatusCarmenere">
             </div>
         `
-        if(jsonEstufas.estufa3.status == "Seguro"){
+        if (jsonEstufas.estufa3.status == "Seguro") {
             imagemStatusCarmenere.src = "img/check-box.png"
             contadorSeguro++
-            
-        }else if(jsonEstufas.estufa3.status == "Alerta"){
+
+        } else if (jsonEstufas.estufa3.status == "Alerta") {
             imagemStatusCarmenere.src = "img/warning.png"
             contadorAlerta++
-        }else if(jsonEstufas.estufa3.status == "Perigo"){
+        } else if (jsonEstufas.estufa3.status == "Perigo") {
             imagemStatusCarmenere.src = "img/cancelar.png"
             contadorPerigo++
         }
@@ -393,7 +411,7 @@
         listaContadores.push(contadorPerigo)
     }
 
-    (function definirValores(){
+    (function definirValores() {
         // PinotNoir
         var umidAtual1 = (30 + Math.random() * (50 - 30)).toFixed()
         var tempAtual1 = (12 + Math.random() * (30 - 12)).toFixed()
@@ -401,15 +419,15 @@
         jsonEstufas.estufa1.umidAtual = `${umidAtual1}%`
         jsonEstufas.estufa1.tempAtual = `${tempAtual1}°C`
 
-        if((umidAtual1 >= 39 && umidAtual1 <= 42) && (tempAtual1 >= 20 && tempAtual1 <= 24)){
+        if ((umidAtual1 >= 39 && umidAtual1 <= 42) && (tempAtual1 >= 20 && tempAtual1 <= 24)) {
             jsonEstufas.estufa1.status = "Seguro"
-            
+
         }
-        else if((((umidAtual1 >= 43 && umidAtual1 <= 45) || (umidAtual1 >= 34 && umidAtual1 <= 38))
-         || ((tempAtual1 >= 25 && tempAtual1 <= 27) || (tempAtual1 >= 17 && tempAtual1 <= 19)))){
+        else if ((((umidAtual1 >= 43 && umidAtual1 <= 45) || (umidAtual1 >= 34 && umidAtual1 <= 38))
+            || ((tempAtual1 >= 25 && tempAtual1 <= 27) || (tempAtual1 >= 17 && tempAtual1 <= 19)))) {
             jsonEstufas.estufa1.status = "Alerta"
         }
-        else if((umidAtual1 >= 46 || umidAtual1 <= 33) || (tempAtual1 >= 28 || tempAtual1 <= 16)){
+        else if ((umidAtual1 >= 46 || umidAtual1 <= 33) || (tempAtual1 >= 28 || tempAtual1 <= 16)) {
             jsonEstufas.estufa1.status = "Perigo"
         }
 
@@ -421,15 +439,15 @@
         jsonEstufas.estufa2.umidAtual = `${umidAtual2}%`
         jsonEstufas.estufa2.tempAtual = `${tempAtual2}°C`
 
-        if((umidAtual2 >= 35 && umidAtual2 <= 40) && (tempAtual2 >= 25 && tempAtual2 <= 30)){
+        if ((umidAtual2 >= 35 && umidAtual2 <= 40) && (tempAtual2 >= 25 && tempAtual2 <= 30)) {
             jsonEstufas.estufa2.status = "Seguro"
-            
+
         }
-        else if((((umidAtual2 >= 41 && umidAtual2 <= 46) || (umidAtual2 >= 29 && umidAtual2 <= 34))
-         || ((tempAtual2 >= 31 && tempAtual2 <= 36) || (tempAtual2 >= 19 && tempAtual2 <= 24)))){
+        else if ((((umidAtual2 >= 41 && umidAtual2 <= 46) || (umidAtual2 >= 29 && umidAtual2 <= 34))
+            || ((tempAtual2 >= 31 && tempAtual2 <= 36) || (tempAtual2 >= 19 && tempAtual2 <= 24)))) {
             jsonEstufas.estufa2.status = "Alerta"
         }
-        else if((umidAtual2 >= 47 || umidAtual2 <= 30) || (tempAtual2 >= 37 || tempAtual2 <= 18)){
+        else if ((umidAtual2 >= 47 || umidAtual2 <= 30) || (tempAtual2 >= 37 || tempAtual2 <= 18)) {
             jsonEstufas.estufa2.status = "Perigo"
         }
 
@@ -441,15 +459,15 @@
         jsonEstufas.estufa3.umidAtual = `${umidAtual3}%`
         jsonEstufas.estufa3.tempAtual = `${tempAtual3}°C`
 
-        if((umidAtual3 >= 24 && umidAtual3 <= 26) && (tempAtual3 >= 15 && tempAtual3 <= 18)){
+        if ((umidAtual3 >= 24 && umidAtual3 <= 26) && (tempAtual3 >= 15 && tempAtual3 <= 18)) {
             jsonEstufas.estufa3.status = "Seguro"
-            
+
         }
-        else if((((umidAtual3 >= 27 && umidAtual3 <= 29) || (umidAtual3 >= 21 && umidAtual3 <= 23))
-         || ((tempAtual3 >= 19 && tempAtual3 <= 21) || (tempAtual3 >= 12 && tempAtual3 <= 14)))){
+        else if ((((umidAtual3 >= 27 && umidAtual3 <= 29) || (umidAtual3 >= 21 && umidAtual3 <= 23))
+            || ((tempAtual3 >= 19 && tempAtual3 <= 21) || (tempAtual3 >= 12 && tempAtual3 <= 14)))) {
             jsonEstufas.estufa3.status = "Alerta"
         }
-        else if((umidAtual3 >= 30 || umidAtual3 <= 20) || (tempAtual3 >= 22 || tempAtual3 <= 11)){
+        else if ((umidAtual3 >= 30 || umidAtual3 <= 20) || (tempAtual3 >= 22 || tempAtual3 <= 11)) {
             jsonEstufas.estufa3.status = "Perigo"
         }
         atualizarHTML()
