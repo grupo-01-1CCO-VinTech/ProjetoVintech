@@ -18,11 +18,11 @@ function pegar_valores_plantacao(idPlantacao) {
     return database.executar(instrucao);
 }
 
-function adicionar (areaEstufa, fkPlantacao, fkUva){
+function adicionar (areaEstufa, fkPlantacao, fkUva, nomeEstufa){
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():");
     var instrucao =
 
-        `INSERT INTO Estufa (areaEstufa, fkPlantacao, fkUva) VALUES ('${areaEstufa}','${fkPlantacao}','${fkUva}');`;
+        `INSERT INTO Estufa (nomeEstufa,areaEstufa, fkPlantacao, fkUva) VALUES ('${nomeEstufa}','${areaEstufa}',${fkPlantacao},${fkUva});`;
 
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);    

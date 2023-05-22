@@ -1,6 +1,7 @@
 var estufaModel = require("../models/estufaModel");
 
 function cadastrar_estufa(req, res){
+    nomeEstufaServer = req.body.nomeEstufa;
     idPlantacaoServer = req.body.idPlantacao;
     tipoUvaServer = req.body.tipoUva;
     tamanhoServer = req.body.tamanho;
@@ -17,7 +18,7 @@ function cadastrar_estufa(req, res){
                     console.log(`\nResultados encontrados: ${resultado.length}`);
                     console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
                     idPlantacaoSelect = resultado[0].idPlantacao
-                    estufaModel.adicionar(tamanhoServer, idPlantacaoSelect, tipoUvaSelect)
+                    estufaModel.adicionar(tamanhoServer, idPlantacaoSelect, tipoUvaSelect,nomeEstufaServer)
                 }
             ).catch(
                 function (erro) {

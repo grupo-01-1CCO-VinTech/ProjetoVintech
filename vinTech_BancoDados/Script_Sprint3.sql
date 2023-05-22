@@ -54,6 +54,7 @@ idEstufa INT PRIMARY KEY AUTO_INCREMENT,
 areaEstufa INT,
 fkPlantacao INT,
 fkUva INT,
+nomeEstufa varchar(45),
 FOREIGN KEY (fkPlantacao) REFERENCES Plantacao (idPlantacao),
 FOREIGN KEY (fkUva) REFERENCES Uva (idUva)
 );
@@ -80,6 +81,14 @@ dataRegistro DATETIME,
 fkSensor INT,
 FOREIGN KEY (fkSensor) REFERENCES Sensor (idSensor)
 );
+
+select *from empresa;
+select *from funcionario;
+select *from plantacao;
+select *from estufa;
+select *from uva;
+select *from sensor;
+select *from registro;
 
     
 INSERT INTO Empresa VALUES (NULL, '12.092.839/0201-23', 'INHANDUVA PARTICIPACOES LTDA' , 'INHANDUVA', '91320-000', 'Rua Sete de Setembro', 601, 'Centro Histórico', 'Porto Alegre', 'RS', '(41)92326-3234', NULL, 'inhaduva@gmail.com'),
