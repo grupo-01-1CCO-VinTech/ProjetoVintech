@@ -14,7 +14,7 @@
     <title>Plantações</title>
 </head>
 
-<body>
+<body onload="listar_Uvas()">
     <div class="pagina">
         <div class="barra-lateral">
             <div class="barra-logo">
@@ -73,13 +73,7 @@
                             </div>
                             <div class="selectUva">
                                 <h3>Por Uva</h3>
-                                <select id="">
-                                    <option value="">Tipos de Uvas</option>
-                                    <option value="">Pinot Noir</option>
-                                    <option value="">Malbec</option>
-                                    <option value="">Syrah</option>
-                                    <option value="">Merlot</option>
-                                    <option value="">Carménère</option>
+                                <select id="selectTipoUva">
                                 </select>
                             </div>
 
@@ -222,6 +216,36 @@
             }]
         },
     });
+
+    function listar_Uvas() {
+        fetch("/uva/listar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                fkEmpresaServer: fkEmpresa
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    for (let x in json) {
+                        selectTipoUva.innerHTML +=`<option value="${json[x].nomeUva}">${json[x].nomeUva}</option>`;
+                    }
+                });
+            } else {
+                console.log("Houve um erro ao tentar consultar as uvas");
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+        return false;
+    }
 
     function listar_estufas() {
         fetch("/estufa/listar_plant", {
