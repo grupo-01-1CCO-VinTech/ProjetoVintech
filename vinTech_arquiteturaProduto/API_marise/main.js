@@ -40,7 +40,7 @@ const serial = async (
             port: 3306,
             user: 'aluno',
             password: 'sptech',
-            database: 'Sprint3'
+            database: 'Vin_tech_Sprint3'
         }
     ).promise();
 
@@ -83,8 +83,8 @@ const serial = async (
             await poolBancoDados.execute(
                 // 'INSERT INTO sensores (dht11_umidade, dht11_temperatura, luminosidade, lm35_temperatura, chave) VALUES (?, ?, ?, ?, ?)',
                 // [dht11Umidade, dht11Temperatura, luminosidade, lm35Temperatura, chave]
-                'INSERT INTO Registro (temperaturaRegistro, umidadeRegistro, dataRegistro, fkSensor) VALUES (?, ?, ? ,?)',
-                [dht11Umidade, dht11Temperatura, '2023-05-13 11:10:26', 1]
+                'INSERT INTO Registro (temperaturaRegistro, umidadeRegistro, dataRegistro, fkSensor) VALUES (?, ?, now() ,?)',
+                [dht11Umidade, dht11Temperatura, 1]
             );
         }
 

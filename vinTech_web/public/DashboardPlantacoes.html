@@ -104,26 +104,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="areaCardsPequenos" id="areaCardsPequenos">
-                        <!-- <div class="cardPequeno" id="card">
-                            <h2><a href="DashboardGraficosEstufas.html">Estufa 001</a></h2>
-                            <div class="ordemCardpequeno">
-                                <a id="title">Tipo de Uva</a>
-                                <a></a>
-                            </div>
-                            <div class="ordemCardpequeno">
-                                <a id="title">Umidade Atual (%)</a>
-                                <a></a>
-                            </div>
-                            <div class="ordemCardpequeno">
-                                <a id="title">Temperatura Atual(°C)</a>
-                                <a></a>
-                            </div>
-                            <div class="ordemCardpequeno">
-                                <a id="title">Status</a>
-                                <img src="img/check-box.png" alt="Botão Tudo OK">
-                            </div>
-                        </div> -->
+                    <div class="areaCardsPequenos" id="areaCardsPequenos">  
                     </div>
                 </div>
             </div>
@@ -179,14 +160,19 @@
 
 </html>
 <script>
+    
     var idChefe = sessionStorage.ID_USUARIO;
     var nomeUsuario = sessionStorage.NOME_USUARIO;
     var loginUsuario = sessionStorage.LOGIN_USUARIO;
     var emailUsuario = sessionStorage.EMAIL_USUARIO;
     var fkEmpresa = sessionStorage.FK_EMPRESA;
     var fkChefe = sessionStorage.ID_CHEFE;
-
+    
     validarSessao()
+    
+    var qtdSeguro = 0
+    var qtdAlerta = 0
+    var qtdPerigo = 0
 
     const graficoBarraDeitado = document.getElementById('graficoBarraDeitado');
     new Chart(graficoBarraDeitado, {
@@ -252,9 +238,34 @@
 
                 resposta.json().then(json => {
                     for (let x in json) {
+                        let tempRegis = json[x].temperaturaRegistro;
+                        let temperaturaMaxima = json[x].tempMax;
+                        let temperaturaMinima = json[x].tempMin;
+                        let temperaturaIdeal = (temperaturaMaxima + temperaturaMinima) / 2
+                        let temperaturaAlertaSuperior = temperaturaIdeal + ((5/100) * temperaturaIdeal)
+                        let temperaturaAlertaInferior = temperaturaIdeal - ((5/100) * temperaturaIdeal)
+                        
+                        let umidRegis = json[x].umidadeRegistro;
+                        let umidadeMaxima = json[x].umidMax;
+                        let umidadeMinima = json[x].umidMin;
+                        let umidadeIdeal = (umidadeMaxima + umidadeMinima) / 2
+                        let umidadeAlertaSuperior = umidadeIdeal + ((5/100) * umidadeIdeal)
+                        let umidadeAlertaInferior = umidadeIdeal - ((5/100) * umidadeIdeal)
+
+                        let string = ""
+
+                        if((tempRegis < temperaturaAlertaSuperior && tempRegis > temperaturaAlertaInferior) && (umidRegis < umidadeAlertaSuperior && umidRegis > umidadeAlertaInferior)){
+                            string = "../img/check-box.png"
+                        }
+                        else if(((tempRegis > temperaturaAlertaSuperior && tempRegis < temperaturaMaxima) || (tempRegis < temperaturaAlertaInferior && tempRegis > temperaturaMinima)) || ((umidRegis > umidadeAlertaSuperior && umidRegis < umidadeMaxima) || (umidRegis < umidadeAlertaInferior && umidRegis > umidadeMinima))){
+                            string = "../img/warning.png"
+                        }
+                        else if((tempRegis <= temperaturaMinima || tempRegis >= temperaturaMaxima) || (umidRegis <= umidadeMinima || umidRegis >= umidadeMaxima)){
+                            string = "../img/cancelar.png"
+                        }
                         areaCardsPequenos.innerHTML +=
-                        `
-                            <div class="cardPequeno" id="card">
+                            `
+                            <div class="cardPequeno" id='card${json[x].idEstufa}'>
                                 <h2><a href="DashboardGraficosEstufas.html">${json[x].nomeEstufa}</a></h2>
                                 <div class="ordemCardpequeno">
                                     <a id="title">Tipo de Uva</a>
@@ -267,13 +278,14 @@
                                 <div class="ordemCardpequeno">
                                     <a id="title">Temperatura Atual(°C)</a>
                                     <a>${json[x].umidadeRegistro}</a>
-                                </div>
+                                </div> 
                                 <div class="ordemCardpequeno">
                                     <a id="title">Status</a>
-                                    <img src="" alt="Botão Tudo OK" id="imagemStatusCarmenere">
-                                </div>  
+                                    <img src="${string}" alt="Botão Tudo OK">
+                                </div>
                             </div>  
                         `
+
                     }
                 });
             } else {

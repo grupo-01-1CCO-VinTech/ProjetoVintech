@@ -136,6 +136,8 @@ INSERT INTO Estufa VALUES (NULL, 1100, 1, 1),
 
 INSERT INTO TipoSensor VALUES (NULL, 'DHT-11');
 
+INSERT INTO Sensor VALUES (NULL, 'Corredor 1', 1, 1);
+
 INSERT INTO Sensor VALUES (NULL, 'Corredor 1', 1, 1),
 						  (NULL, 'Corredor 2', 1, 1),
                           (NULL, 'Corredor 3', 1, 1),
