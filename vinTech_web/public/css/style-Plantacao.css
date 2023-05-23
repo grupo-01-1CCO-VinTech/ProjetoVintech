@@ -181,6 +181,8 @@ select {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .cardPequeno {

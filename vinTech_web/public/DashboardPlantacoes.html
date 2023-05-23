@@ -238,12 +238,12 @@
 
                 resposta.json().then(json => {
                     for (let x in json) {
-                        let tempRegis = json[x].temperaturaRegistro;
-                        let temperaturaMaxima = json[x].tempMax;
-                        let temperaturaMinima = json[x].tempMin;
-                        let temperaturaIdeal = (temperaturaMaxima + temperaturaMinima) / 2
-                        let temperaturaAlertaSuperior = temperaturaIdeal + ((5/100) * temperaturaIdeal)
-                        let temperaturaAlertaInferior = temperaturaIdeal - ((5/100) * temperaturaIdeal)
+                        let tempRegis = Number(json[x].temperaturaRegistro);
+                        let temperaturaMaxima = Number(json[x].tempMax);
+                        let temperaturaMinima = Number(json[x].tempMin);
+                        let temperaturaIdeal = Number((temperaturaMaxima + temperaturaMinima) / 2)
+                        let temperaturaAlertaSuperior = Number(temperaturaIdeal + ((5/100) * temperaturaIdeal))
+                        let temperaturaAlertaInferior = Number(temperaturaIdeal - ((5/100) * temperaturaIdeal))
                         
                         let umidRegis = json[x].umidadeRegistro;
                         let umidadeMaxima = json[x].umidMax;
