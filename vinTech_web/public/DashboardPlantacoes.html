@@ -237,7 +237,7 @@
         },
     });
 
-    function listar_estufas(){
+    function listar_estufas() {
         fetch("/estufa/listar_plant", {
             method: "POST",
             headers: {
@@ -251,28 +251,28 @@
                 console.log(resposta);
 
                 resposta.json().then(json => {
-                    for(let x in json){
-                        areaCardsPequenos.innerHTML += 
+                    for (let x in json) {
+                        areaCardsPequenos.innerHTML +=
                         `
-                        <div class="cardPequeno" id="card">
-                            <h2><a href="DashboardGraficosEstufas.html">${json[x].nomeEstufa}</a></h2>
-                            <div class="ordemCardpequeno">
-                                <a id="title">Tipo de Uva</a>
-                                <a>${json[x].nomeUva}</a>
-                            </div>
-                            <div class="ordemCardpequeno">
-                                <a id="title">Umidade Atual (%)</a>
-                                <a>${json[x].temperaturaRegistro}</a>
-                            </div>
-                            <div class="ordemCardpequeno">
-                                <a id="title">Temperatura Atual(°C)</a>
-                                <a>${json[x].umidadeRegistro}</a>
-                            </div>
-                            <div class="ordemCardpequeno">
-                                <a id="title">Status</a>
-                                <img src="" alt="Botão Tudo OK" id="imagemStatusCarmenere">
+                            <div class="cardPequeno" id="card">
+                                <h2><a href="DashboardGraficosEstufas.html">${json[x].nomeEstufa}</a></h2>
+                                <div class="ordemCardpequeno">
+                                    <a id="title">Tipo de Uva</a>
+                                    <a>${json[x].nomeUva}</a>
+                                </div>
+                                <div class="ordemCardpequeno">
+                                    <a id="title">Umidade Atual (%)</a>
+                                    <a>${json[x].temperaturaRegistro}</a>
+                                </div>
+                                <div class="ordemCardpequeno">
+                                    <a id="title">Temperatura Atual(°C)</a>
+                                    <a>${json[x].umidadeRegistro}</a>
+                                </div>
+                                <div class="ordemCardpequeno">
+                                    <a id="title">Status</a>
+                                    <img src="" alt="Botão Tudo OK" id="imagemStatusCarmenere">
+                                </div>  
                             </div>  
-                        </div>  
                         `
                     }
                 });
@@ -324,5 +324,5 @@
     //listaContadores.push(contadorAlerta)
     //listaContadores.push(contadorPerigo)
 
-        listar_estufas()
+    listar_estufas()
 </script>

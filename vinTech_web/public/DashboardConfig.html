@@ -138,9 +138,9 @@
                     <p>Por Nome: <input type="text" id="iptEncontrarNomePlantacao" placeholder="Plantação Jundiaí"></p>
                     <p>Por Localização: <input type="text" id="iptLocalizacaoPlantacao"></p>
                     <button onclick="encontrar_Plantacao()">Encontrar Plantação</button>
-                    <!-- <h3>Editar Plantação</h3>
+                    <h3>Editar Plantação</h3>
                     <p>Nome: <input type="text" id="iptEditNomePlantação"></p>
-                    <p>Tamanho: <input type="text" id="iptEditTamanhoPlantacao"></p>
+                    <!--<p>Tamanho: <input type="text" id="iptEditTamanhoPlantacao"></p>
                     <h3>Deletar Plantação:</h3>
                     <p>Confirmar nome: <input type="text" id="iptDeletePlantacaoConfirmacaoNome"></p> -->
                     <button onclick="editar_Plantacao()">Editar Plantação</button>
@@ -263,7 +263,7 @@
             body: JSON.stringify({
                 // crie um atributo que recebe o valor recuperado aqui
                 // Agora vá para o arquivo routes/usuario.js
-                nomePlantacaoServer: iptNomePlantacao.value, 
+                nomePlantacaoServer: iptNomePlantacao.value,
                 fkEmpresaServer: fkEmpresa
             })
         }).then(function (resposta) {
@@ -280,6 +280,7 @@
         });
         return false;
     }
+
     function adicionar_Usuario() {
         var nomeFunc = iptNomeUsuario.value
         var emailFunc = iptEmailUsuario.value
@@ -333,7 +334,7 @@
                 body: JSON.stringify({
                     // crie um atributo que recebe o valor recuperado aqui
                     // Agora vá para o arquivo routes/usuario.js
-                    nomeEstufa : iptAddNomeEstufa.value,
+                    nomeEstufa: iptAddNomeEstufa.value,
                     idPlantacao: iptAddPlantacaoEstufa.value,
                     tipoUva: iptAddUvaEstufa.value,
                     tamanho: iptAddTamanhoEstufa.value
@@ -368,7 +369,7 @@
                 resposta.json().then(json => {
                     for (let x in json) {
                         respostaForms.innerHTML +=
-                         `
+                            `
                             ID da Plantação: ${json[x].idPlantacao} <br>
                             Nome da Plantação: ${json[x].nomePlantacao}<br>
                         `;
@@ -403,14 +404,8 @@
 
                 resposta.json().then(json => {
                     for (let x in json) {
-                        iptAddUvaEstufa.innerHTML +=
-                            `
-                        <option value="${json[x].nomeUva}">${json[x].nomeUva}</option>
-                        `;
-                        iptEditUvaEstufa.innerHTML +=
-                            `
-                        <option value="${json[x].nomeUva}">${json[x].nomeUva}</option>
-                        `;
+                        iptAddUvaEstufa.innerHTML +=`<option value="${json[x].nomeUva}">${json[x].nomeUva}</option>`;
+                        iptEditUvaEstufa.innerHTML +=`<option value="${json[x].nomeUva}">${json[x].nomeUva}</option> `;
                     }
                 });
             } else {
@@ -419,11 +414,9 @@
                     console.error(texto);
                 });
             }
-
         }).catch(function (erro) {
             console.log(erro);
         })
-
         return false;
     }
     listar_platacoes()
