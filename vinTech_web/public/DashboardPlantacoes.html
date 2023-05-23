@@ -98,33 +98,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="areaCardsPequenos" id="areaCardsPequenos">  
+                    <div class="areaCardsPequenos" id="areaCardsPequenos">
                     </div>
                 </div>
             </div>
             <div class="containerGraficos">
-                <h2>Sequência de Dias</h2>
+                <h2>Quantidade por Status</h2>
+                <br><br>
                 <div class="graficoBarraHorizontal">
-                    <select id="">
-                        <option value="">Mês: Janeiro</option>
-                        <option value="">Mês: Fevereiro</option>
-                        <option value="">Mês: Março</option>
-                        <option value="">Mês: Abril</option>
-                        <option value="">Mês: Maio</option>
-                        <option value="">Mês: Junho</option>
-                        <option value="">Mês: Julho</option>
-                        <option value="">Mês: Agosto</option>
-                        <option value="">Mês: Setembro</option>
-                        <option value="">Mês: Outubro</option>
-                        <option value="">Mês: Novembro</option>
-                        <option value="">Mês: Dezembro</option>
-                    </select>
-                    <div>
-                        <canvas id="graficoBarraDeitado"></canvas>
-                    </div>
-                </div>
-                <div class="container-graficoPizza">
-                    <a>Quantidade por Status</a>
                     <div class="statusImagens">
                         <div class="status">
                             <img src="img/check-box.png" alt="">
@@ -142,6 +123,13 @@
                             <a>3</a>
                         </div>
                     </div>
+                    <br><br>
+                    <div>
+                        <canvas id="graficoBarraDeitado"></canvas>
+                    </div>
+                </div>
+                <div class="container-graficoPizza">
+
                     <div class="areaGrafico">
                         <canvas id="graficoPizza" class="graficoPizza"></canvas>
                     </div>
@@ -154,16 +142,16 @@
 
 </html>
 <script>
-    
+
     var idChefe = sessionStorage.ID_USUARIO;
     var nomeUsuario = sessionStorage.NOME_USUARIO;
     var loginUsuario = sessionStorage.LOGIN_USUARIO;
     var emailUsuario = sessionStorage.EMAIL_USUARIO;
     var fkEmpresa = sessionStorage.FK_EMPRESA;
     var fkChefe = sessionStorage.ID_CHEFE;
-    
+
     validarSessao()
-    
+
     var qtdSeguro = 0
     var qtdAlerta = 0
     var qtdPerigo = 0
@@ -232,7 +220,7 @@
 
                 resposta.json().then(json => {
                     for (let x in json) {
-                        selectTipoUva.innerHTML +=`<option value="${json[x].nomeUva}">${json[x].nomeUva}</option>`;
+                        selectTipoUva.innerHTML += `<option value="${json[x].nomeUva}">${json[x].nomeUva}</option>`;
                     }
                 });
             } else {
@@ -266,25 +254,25 @@
                         let temperaturaMaxima = Number(json[x].tempMax);
                         let temperaturaMinima = Number(json[x].tempMin);
                         let temperaturaIdeal = Number((temperaturaMaxima + temperaturaMinima) / 2)
-                        let temperaturaAlertaSuperior = Number(temperaturaIdeal + ((5/100) * temperaturaIdeal))
-                        let temperaturaAlertaInferior = Number(temperaturaIdeal - ((5/100) * temperaturaIdeal))
-                        
+                        let temperaturaAlertaSuperior = Number(temperaturaIdeal + ((5 / 100) * temperaturaIdeal))
+                        let temperaturaAlertaInferior = Number(temperaturaIdeal - ((5 / 100) * temperaturaIdeal))
+
                         let umidRegis = json[x].umidadeRegistro;
                         let umidadeMaxima = json[x].umidMax;
                         let umidadeMinima = json[x].umidMin;
                         let umidadeIdeal = (umidadeMaxima + umidadeMinima) / 2
-                        let umidadeAlertaSuperior = umidadeIdeal + ((5/100) * umidadeIdeal)
-                        let umidadeAlertaInferior = umidadeIdeal - ((5/100) * umidadeIdeal)
+                        let umidadeAlertaSuperior = umidadeIdeal + ((5 / 100) * umidadeIdeal)
+                        let umidadeAlertaInferior = umidadeIdeal - ((5 / 100) * umidadeIdeal)
 
                         let string = ""
 
-                        if((tempRegis < temperaturaAlertaSuperior && tempRegis > temperaturaAlertaInferior) && (umidRegis < umidadeAlertaSuperior && umidRegis > umidadeAlertaInferior)){
+                        if ((tempRegis < temperaturaAlertaSuperior && tempRegis > temperaturaAlertaInferior) && (umidRegis < umidadeAlertaSuperior && umidRegis > umidadeAlertaInferior)) {
                             string = "../img/check-box.png"
                         }
-                        else if(((tempRegis > temperaturaAlertaSuperior && tempRegis < temperaturaMaxima) || (tempRegis < temperaturaAlertaInferior && tempRegis > temperaturaMinima)) || ((umidRegis > umidadeAlertaSuperior && umidRegis < umidadeMaxima) || (umidRegis < umidadeAlertaInferior && umidRegis > umidadeMinima))){
+                        else if (((tempRegis > temperaturaAlertaSuperior && tempRegis < temperaturaMaxima) || (tempRegis < temperaturaAlertaInferior && tempRegis > temperaturaMinima)) || ((umidRegis > umidadeAlertaSuperior && umidRegis < umidadeMaxima) || (umidRegis < umidadeAlertaInferior && umidRegis > umidadeMinima))) {
                             string = "../img/warning.png"
                         }
-                        else if((tempRegis <= temperaturaMinima || tempRegis >= temperaturaMaxima) || (umidRegis <= umidadeMinima || umidRegis >= umidadeMaxima)){
+                        else if ((tempRegis <= temperaturaMinima || tempRegis >= temperaturaMaxima) || (umidRegis <= umidadeMinima || umidRegis >= umidadeMaxima)) {
                             string = "../img/cancelar.png"
                         }
                         areaCardsPequenos.innerHTML +=
