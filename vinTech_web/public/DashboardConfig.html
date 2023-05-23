@@ -5,68 +5,419 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../img/logo.jpeg" type="image/png">
+    <link rel="icon" href="img/logo.jpeg" type="image/png">
     <title>Configurações - DashBoard</title>
-    <link rel="stylesheet" href="../css/style-ConfiguracaoDashboard.css">
-    <link rel="stylesheet" href="../css/style-PadraoDashboard.css">
-    <link rel="stylesheet" href="../css/style-PadraoTodos.css">
+    <link rel="stylesheet" href="css/style-ConfiguracaoDashboard.css">
+    <link rel="stylesheet" href="css/style-PadraoDashboard.css">
+    <link rel="stylesheet" href="css/style-PadraoTodos.css">
+    <script src="js/funcoes.js"></script>
 </head>
 
-<body>
+<body onload="listar_Uvas()">
     <div class="pagina">
         <div class="barra-lateral">
             <div class="barra-logo">
                 <span>VinTech</span>
-                <img src="../img/vintech.jpg" alt="">
+                <img src="img/vintech.jpg" alt="">
             </div>
             <div class="barra-itens">
                 <ul>
-                    <a href="DashboardHome.html">Home</a>
-                    <a href="DashboardPlantacoes.html">Plantações</a>
-                    <a id="item">Configurações</a>
+                    <a href="DashboardHome.html">
+                        <li>Home</li>
+                    </a>
+                    <a href="DashboardPlantacoes.html">
+                        <li>Plantações</li>
+                    </a>
+                    <a id="item_config" class="selected">
+                        <li>Configurações</li>
+                    </a>
                 </ul>
             </div>
             <div class="barra-usuario">
                 <div class="barra-fotoUsuario">
-                    <img src="../Img/usuario.png" alt="Foto Usuário">
+                    <img src="Img/usuario.png" alt="Foto Usuário">
+                    <span id="nome_usuario"></span>
+                    <span id="cargo_usuario"></span>
                 </div>
             </div>
             <div class="barra-button">
-                <button onclick="sair()">Sair</button>
+                <button onclick="limparSessao()">Sair</button>
             </div>
         </div>
-    </div>
-    <div class="container">
-        <div class="container-esquerda">
-            <div style="display: none;" class="usuario">
-                <h1>Configuração de Usuários</h1>
-            </div>
-            <div style="display: none;" class="plantacao">
-            </div>
-            <div style="display: none;" class="estufa">
-            </div>
 
+        <div class="container">
+            <div class="container-esquerda">
+                <div class="respostaForms" id="respostaForms">
+
+                </div>
+                <div id="formUsuario" style="display: none;" class="form">
+                    <h1>Configuração de Usuários</h1>
+                    <button onclick="apagarDivs('formAddUsuario')" onmouseenter="uvaSurgi()" onmouseleave="sumirUva()"
+                        class="botaoUsuario">Adicionar Novo Usuário </button>
+                    <button onclick="apagarDivs('formEditUsuario')" onmouseenter="uvaSurgi()" onmouseleave="sumirUva()"
+                        class="botaoUsuario">Editar e Remover Usuários </button>
+                </div>
+
+                <div id="formAddUsuario" style="display: none;" class="form">
+                    <div class="tituloUser">
+                        <h1>Adicionar Usuário</h1>
+                    </div>
+                    <div class="ambasUser">
+                        <div class="addUser">
+                            <p>Função: <select name="optFunc" id="selectUsuarioFuncao">
+                                    <option value="0">Funcionário</option>
+                                    <option value="1">Administrador</option>
+                                </select></p>
+                            <p>Nome Completo: <input type="text" id="iptNomeUsuario" class="inp_Input"
+                                    placeholder="Digite o nome completo:"></p>
+                            <p>E-mail: <input type="text" id="iptEmailUsuario" class="inp_Input"
+                                    placeholder="Digite o Email:"></p>
+                            <p>Login: <input type="text" id="iptLoginUsuario" class="inp_Input"
+                                    placeholder="Digite o Login:"></p>
+                            <p>Senha: <input type="text" id="iptSenhaUsuario" class="inp_Input"
+                                    placeholder="Digite sua senha:"></p>
+                            <button onclick="adicionar_Usuario()">Adicionar Usuário</button>
+                        </div>
+                        <div class="uvaUser"></div>
+                    </div>
+                </div>
+                <div id="formEditUsuario" style="display: none;" class="form">
+                    <div class="tituloEdit">
+                        <h1>Editar ou remover Usuários</h1>
+                    </div>
+
+                    <div class="editUser">
+                        <div class="tituloEdit">
+                            <h3>Encontrar usuário</h3>
+                        </div>
+                        <p>Por ID: <input type="text" id="iptEncontrarIdEstufa"></p>
+                        <p>Por Nome: <input type="text" id="iptEncontrarNomeUsuario"></p>
+                        <p>Por E-mail: <input type="text" id="iptEncontrarEmailUsuario"></p>
+                        <button onclick="encontrar_Usuario()">Encontrar Usuário</button>
+                        <div class="tituloEdit">
+                            <h3>Editar usuário</h3>
+                        </div>
+                        <p>Nome: <input type="text" id="iptEditNomeUsuario"></p>
+                        <p>E-mail: <input type="text" id="iptEditEmailUsuario"></p>
+                        <p>Senha: <input type="text" id="iptEditSenhaUsuario"></p>
+                        <p>Função:
+                            <select id="selectEditFuncao">
+                                <option value="0">Funcionário</option>
+                                <option value="1">Administrador</option>
+                            </select>
+                            <button onclick="editar_Usuario()">Editar Usuário</button>
+                        </p>
+                        <div class="tituloEdit">
+                            <h3>Deletar Usuário</h3>
+                        </div>
+                        <p>Confirmar nome: <input type="text" id="iptDeleteUsuarioConfirmacaoNome"></p>
+                        <p>Confirmar E-mail: <input type="text" id="iptDeleteUsuarioConfirmacaoEmail"></p>
+                        <button onclick="deletarUsuario()">Deletar Usuário</button>
+                    </div>
+                </div>
+
+                <!-- AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
+
+                <div id="formPlantacao" style="display: none;" class="form">
+                    <h1>Configuração de Plantações</h1>
+                    <button onclick="apagarDivs('formAddPlantacao')">Adicionar nova Plantação</button>
+                    <button onclick="apagarDivs('formEditPlantacao')">Editar/Remover Plantações</button>
+                </div>
+
+                <div id="formAddPlantacao" style="display: none;" class="form">
+                    <h1>Adicionar Plantação</h1>
+
+                    <p>Nome da Plantação <input type="text" id="iptNomePlantacao" placeholder="Plantação Jundiaí"></p>
+                    <!-- <p>Localização: <input type="text" id="iptLocalizacaoPlantacao"></p> -->
+                    <!-- <p>Tamanho da Plantação: <input type="text" id="iptTamanhoPlantacao" placeholder="Em Hectares"></p> -->
+                    <button onclick="adicionar_Plantacao()">Adicionar Plantação</button>
+                </div>
+                <div id="formEditPlantacao" style="display: none;" class="form">
+                    <h1>Editar ou remover Plantações</h1>
+                    <p>Por ID: <input type="text" id="iptEncontrarIdEstufa"></p>
+                    <p>Por Nome: <input type="text" id="iptEncontrarNomePlantacao" placeholder="Plantação Jundiaí"></p>
+                    <p>Por Localização: <input type="text" id="iptLocalizacaoPlantacao"></p>
+                    <button onclick="encontrar_Plantacao()">Encontrar Plantação</button>
+                    <h3>Editar Plantação</h3>
+                    <p>Nome: <input type="text" id="iptEditNomePlantação"></p>
+                    <!--<p>Tamanho: <input type="text" id="iptEditTamanhoPlantacao"></p>
+                    <h3>Deletar Plantação:</h3>
+                    <p>Confirmar nome: <input type="text" id="iptDeletePlantacaoConfirmacaoNome"></p> -->
+                    <button onclick="editar_Plantacao()">Editar Plantação</button>
+                    <button onclick="deletarPlantacao()">Deletar Plantação</button>
+                </div>
+
+                <!-- AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
+
+                <div id="formEstufa" style="display: none;" class="form">
+
+                    <h1>Configuração de Estufas</h1>
+                    <button onclick="apagarDivs('formAddEstufa')">Adicionar nova Estufa</button>
+                    <button onclick="apagarDivs('formEditEstufa')">Editar/Remover Estufas</button>
+                </div>
+                <div id="formAddEstufa" style="display: none;" class="form">
+                    <h1>Adicionar Estufa</h1>
+                    <p>Nome da Estufa
+                        <input type="text" id="iptAddNomeEstufa" placeholder="Estufa 001">
+                    </p>
+                    <p>Em qual plantação você deseja cadastrar esta estufa?
+                        <input type="text" id="iptAddPlantacaoEstufa" placeholder="Id da Plantação">
+                    </p>
+                    <p>Tipo de Uva:
+                        <select id="iptAddUvaEstufa">
+                            <option value="0">Adicionar Uva</option>
+                        </select>
+                    </p>
+                    <p>Tamanho da Estufa <input type="text" id="iptAddTamanhoEstufa"></p>
+                    <button onclick="adicionar_Estufa()">Adicionar Estufa</button>
+                </div>
+                <div id="formEditEstufa" style="display: none;" class="form">
+                    <h1>Editar ou remover Estufas</h1>
+
+                    <h3>Encontrar Estufa</h3>
+                    <p>Informe a plantação em que a estufa está: <input type="text" id="iptEncontrarPlantacaoEstufa">
+                    </p>
+                    <p>Por ID: <input type="text" id="iptEncontrarIdEstufa"></p>
+                    <button onclick="encontrar_Estufa()">Encontrar Estufa</button>
+                    <!-- <p>Por Localização: <input type="text" id="iptLocalizacaoPlantacao"></p> -->
+                    <h3>Editar Estufa</h3>
+                    <p>Tipo de Uva:
+                        <select id="iptEditUvaEstufa">
+                            <option value="0">Adicionar Uva</option>
+                        </select>
+                    </p>
+                    <p>Tamanho da Estufa: <input type="text" id="iptEditTamanhoEstufa"></p>
+                    <button onclick="editar_Estufa()">Editar Estufa</button>
+                    <h3>Deletar Plantação:</h3>
+                    <p>Confirmar Plantação: <input type="text" id="iptDeleteEstufaConfirmacaoPlantacao"></p>
+                    <p>Confirmar ID: <input type="text" id="iptDeleteEstufaConfirmacaoID"></p>
+                    <button onclick="deletarPlantacao()">Deletar Plantação</button>
+                </div>
+            </div>
         </div>
         <div class="container-direita">
             <div class="container-usuario">
-                <div class="foto-usuario"></div>
-                <p></p>
-                <p></p>
+                <img src="img/eu2.jpg" alt="">
+                <p id="nome_usuarioLogado"></p>
+                <p id="funcao_usuario"></p>
             </div>
             <div class="container-contato">
                 <h1>Contato</h1>
-                <p>Telefone:</p>
-                <p>Email:</p>
+                <div id="contato"><span class="spanDivContato">Telefone:</span></div>
+                <div id="email"><span class="spanDivContato">Email:</span></div>
                 <p>Mudar Campos</p>
             </div>
             <div class="container-botoes">
-                <button onclick="usuario()">Configurar Usuários</button>
-                <button onclick="plantacao()">Configurar Plantação</button>
-                <button onclick="estufa()">Configurar Estufa</button>
-                <button onclick="sair()">Sair</button>
+                <button onclick="apagarDivs('formUsuario')" class="config">Configurar Usuários</button>
+                <button onclick="apagarDivs('formPlantacao')" class="config">Configurar Plantação</button>
+                <button onclick="apagarDivs('formEstufa')" class="config">Configurar Estufa</button>
             </div>
+
         </div>
     </div>
 </body>
 
 </html>
+
+<script>
+    var idChefe = sessionStorage.ID_USUARIO;
+    var nomeUsuario = sessionStorage.NOME_USUARIO;
+    var loginUsuario = sessionStorage.LOGIN_USUARIO;
+    var emailUsuario = sessionStorage.EMAIL_USUARIO;
+    var fkEmpresa = sessionStorage.FK_EMPRESA;
+    var fkChefe = sessionStorage.ID_CHEFE;
+
+    validarSessao()
+
+    nome_usuarioLogado.innerHTML = `${nomeUsuario}`
+    if (fkChefe == 'null') {
+        funcao_usuario.innerHTML = `Administrador`
+    } else {
+        location.href = 'DashboardHome.html'
+    }
+    email.innerHTML += `${emailUsuario}`
+
+    function apagarDivs(id) {
+        formUsuario.style.display = 'none'
+        formPlantacao.style.display = 'none'
+        formEstufa.style.display = 'none'
+        formAddUsuario.style.display = 'none'
+        formEditUsuario.style.display = 'none'
+        formAddPlantacao.style.display = 'none'
+        formEditPlantacao.style.display = 'none'
+        formAddEstufa.style.display = 'none'
+        formEditEstufa.style.display = 'none'
+        respostaForms.style.display = 'none'
+
+
+        const form = document.getElementById(id)
+        form.style.display = 'flex'
+    }
+
+    function adicionar_Plantacao() {
+        fetch("/plantacao/adicionar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomePlantacaoServer: iptNomePlantacao.value,
+                fkEmpresaServer: fkEmpresa
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                alert('Plantação adicionada com sucesso!')
+            } else {
+                throw ("Houve um erro ao tentar adicionar a plantação!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+        return false;
+    }
+
+    function adicionar_Usuario() {
+        var nomeFunc = iptNomeUsuario.value
+        var emailFunc = iptEmailUsuario.value
+        var loginFunc = iptLoginUsuario.value
+        var senhaFunc = iptSenhaUsuario.value
+        var fkChefe = selectUsuarioFuncao.value == 0 ? idChefe : "Adm"
+        // alert(fkChefe)
+
+        fetch("/usuarios/cadastrarFuncionario", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeFuncServer: nomeFunc,
+                emailFuncServer: emailFunc,
+                loginFuncServer: loginFunc,
+                senhaFuncServer: senhaFunc,
+                fkChefeServer: fkChefe,
+                fkEmpresaServer: fkEmpresa
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                alert('Cadastro efetuado com sucesso!')
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+        return false;
+    }
+
+    //<p>Em qual plantação você deseja cadastrar esta estufa?<input type="text" id="iptAddPlantacaoEstufa"></p>
+    //<p>Tipo de Uva: <input type="text" id="iptAddUvaEstufa"></p>
+    //<p>Tamanho da Estufa <input type="text" id="iptAddTamanhoEstufa"></p>
+    function adicionar_Estufa() {
+        if (iptAddUvaEstufa.value == 0) {
+            adicionar_Uva()
+        } else {
+            fetch("/estufa/adicionar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    nomeEstufa: iptAddNomeEstufa.value,
+                    idPlantacao: iptAddPlantacaoEstufa.value,
+                    tipoUva: iptAddUvaEstufa.value,
+                    tamanho: iptAddTamanhoEstufa.value
+                })
+            }).then(function (resposta) {
+
+                if (resposta.ok) {
+                    alert('Cadastro efetuado com sucesso!')
+                } else {
+                    throw ("Houve um erro ao tentar realizar o cadastro!");
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+            return false;
+        }
+    }
+
+    function listar_platacoes() {
+        fetch("/plantacao/listar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                fkEmpresaServer: fkEmpresa
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    for (let x in json) {
+                        respostaForms.innerHTML +=
+                            `
+                            ID da Plantação: ${json[x].idPlantacao} <br>
+                            Nome da Plantação: ${json[x].nomePlantacao}<br>
+                        `;
+                    }
+                });
+            } else {
+                console.log("Houve um erro ao tentar consultar as plantações");
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function listar_Uvas() {
+        fetch("/uva/listar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                fkEmpresaServer: fkEmpresa
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    for (let x in json) {
+                        iptAddUvaEstufa.innerHTML +=`<option value="${json[x].nomeUva}">${json[x].nomeUva}</option>`;
+                        iptEditUvaEstufa.innerHTML +=`<option value="${json[x].nomeUva}">${json[x].nomeUva}</option> `;
+                    }
+                });
+            } else {
+                console.log("Houve um erro ao tentar consultar as uvas");
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+        return false;
+    }
+    listar_platacoes()
+</script>

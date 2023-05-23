@@ -2,86 +2,80 @@ CREATE DATABASE Vin_tech_Sprint3;
 
 USE Vin_tech_Sprint3;
 
-select idEstufa, nomeUva, temperaturaRegistro, umidadeRegistro, max(dataRegistro) from Estufa, Uva, Registro, empresa, 
-(select idPlantacao from plantacao, empresa where fkEmpresa = idEmpresa and idEmpresa = 1) as plantaEmpresa
-where fkUva = idUva and fkSensor = idEstufa and plantaEmpresa.idPlantacao = fkPlantacao group by idEstufa order by dataRegistro desc;
-
 CREATE TABLE Empresa(
-    idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
-    CNPJEmpresa CHAR(18),
-    nomeEmpresa VARCHAR(60),
-    nomeFantasia VARCHAR(45),
-    cepEmpresa CHAR(9),
-    logradouroEmpresa VARCHAR(60),
-    numeroLogradouro INT,
-    bairroEmpresa VARCHAR(45),
-    cidadeEmpresa VARCHAR(50),
-    ufEmpresa CHAR(2),
-    telefoneEmpresa CHAR(16),
-    telefoneSecEmpresa CHAR(16),
-    emailEmpresa VARCHAR(60)
+idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
+CNPJEmpresa CHAR(18),
+nomeEmpresa VARCHAR(60),
+nomeFantasia VARCHAR(45),
+cepEmpresa CHAR(9),
+logradouroEmpresa VARCHAR(60),
+numeroLogradouro INT,
+bairroEmpresa VARCHAR(45),
+cidadeEmpresa VARCHAR(50),
+ufEmpresa CHAR(2),
+telefoneEmpresa CHAR(16),
+telefoneSecEmpresa CHAR(16),
+emailEmpresa VARCHAR(60)
 );
 
 CREATE TABLE Funcionario(
-    idFuncionario INT PRIMARY KEY AUTO_INCREMENT,
-    nomeFuncionario VARCHAR(45),
-    fkChefe INT,
-    FOREIGN KEY (fkChefe) REFERENCES Funcionario (idFuncionario),
-    senhaFuncionario VARCHAR(45),
-    emailFuncionario VARCHAR(60),
-    fkEmpresa INT,
-    FOREIGN KEY (fkEmpresa) REFERENCES Empresa (idEmpresa)
+idFuncionario INT PRIMARY KEY AUTO_INCREMENT,
+nomeFuncionario VARCHAR(45),
+fkChefe INT,
+FOREIGN KEY (fkChefe) REFERENCES Funcionario (idFuncionario),
+senhaFuncionario VARCHAR(45),
+emailFuncionario VARCHAR(60),
+fkEmpresa INT,
+FOREIGN KEY (fkEmpresa) REFERENCES Empresa (idEmpresa)
 );
 
 CREATE TABLE Plantacao(
-    idPlantacao INT PRIMARY KEY AUTO_INCREMENT,
-    nomePlantacao VARCHAR(45),
-    fkEmpresa INT,
-    FOREIGN KEY (fkEmpresa) REFERENCES Empresa (idEmpresa)
+idPlantacao INT PRIMARY KEY AUTO_INCREMENT,
+nomePlantacao VARCHAR(45),
+fkEmpresa INT,
+FOREIGN KEY (fkEmpresa) REFERENCES Empresa (idEmpresa)
 );
 
 CREATE TABLE Uva(
-    idUva INT PRIMARY KEY AUTO_INCREMENT,
-    nomeUva VARCHAR(45),
-    tempMax DECIMAL(4,2),
-    tempMin DECIMAL(4,2),
-    umidMax INT(2),
-    umidMin INT(2)
+idUva INT PRIMARY KEY AUTO_INCREMENT,
+nomeUva VARCHAR(45),
+tempMax DECIMAL(4,2),
+tempMin DECIMAL(4,2),
+umidMax INT(2),
+umidMin INT(2)
 );
 
 CREATE TABLE Estufa(
-    idEstufa INT PRIMARY KEY AUTO_INCREMENT,
-    areaEstufa INT,
-    fkPlantacao INT,
-    fkUva INT,
-    nomeEstufa varchar(45),
-    FOREIGN KEY (fkPlantacao) REFERENCES Plantacao (idPlantacao),
-    FOREIGN KEY (fkUva) REFERENCES Uva (idUva)
+idEstufa INT PRIMARY KEY AUTO_INCREMENT,
+areaEstufa INT,
+fkPlantacao INT,
+fkUva INT,
+FOREIGN KEY (fkPlantacao) REFERENCES Plantacao (idPlantacao),
+FOREIGN KEY (fkUva) REFERENCES Uva (idUva)
+);
+
+CREATE TABLE TipoSensor(
+idTipoSensor INT PRIMARY KEY AUTO_INCREMENT,
+nomeSensor VARCHAR(10)
 );
 
 CREATE TABLE Sensor(
-    idSensor INT PRIMARY KEY AUTO_INCREMENT,
-    localSensor VARCHAR(45),
-    fkEstufa INT,
-    FOREIGN KEY (fkEstufa) REFERENCES Estufa (idEstufa),
+idSensor INT PRIMARY KEY AUTO_INCREMENT,
+localSensor VARCHAR(45),
+fkEstufa INT,
+fkTipoSensor INT,
+FOREIGN KEY (fkEstufa) REFERENCES Estufa (idEstufa),
+FOREIGN KEY (fkTipoSensor) REFERENCES TipoSensor (idTipoSensor)
 );
 
 CREATE TABLE Registro(
-    idRegistro INT PRIMARY KEY AUTO_INCREMENT,
-    temperaturaRegistro DECIMAL(4,2),
-    umidadeRegistro DECIMAL(4,2),
-    dataRegistro DATETIME,
-    fkSensor INT,
-    FOREIGN KEY (fkSensor) REFERENCES Sensor (idSensor)
+idRegistro INT PRIMARY KEY AUTO_INCREMENT,
+temperaturaRegistro DECIMAL(4,2),
+umidadeRegistro DECIMAL(4,2),
+dataRegistro DATETIME,
+fkSensor INT,
+FOREIGN KEY (fkSensor) REFERENCES Sensor (idSensor)
 );
-
-select *from empresa;
-select *from funcionario;
-select *from plantacao;
-select *from estufa;
-select *from uva;
-select *from sensor;
-select *from registro;
 
     
 INSERT INTO Empresa VALUES (NULL, '12.092.839/0201-23', 'INHANDUVA PARTICIPACOES LTDA' , 'INHANDUVA', '91320-000', 'Rua Sete de Setembro', 601, 'Centro Histórico', 'Porto Alegre', 'RS', '(41)92326-3234', NULL, 'inhaduva@gmail.com'),
@@ -106,11 +100,11 @@ INSERT INTO Funcionario VALUES (NULL, 'Pedro Almeida', NULL, 'PedroAlmeida', 'pe
                                (NULL, 'Kevin Kujo', 14, 'KevinKj', 'kevin_watch', 'kevin_kj@outlook.com', 4),
                                (NULL, 'Violeta Carvalho', 14, 'VioletCarv', 'violetadasrosas', 'vi_carv@hotmail.com', 4);
 
-INSERT INTO Plantacao VALUES (NULL, 1),
-						     (NULL, 2),
-							 (NULL, 2),
-                             (NULL, 3),
-                             (NULL, 4);
+INSERT INTO Plantacao VALUES (NULL, "Plantacao Norte",1),
+						     (NULL, "Plantacao Sul",2),
+							 (NULL, "Plantacao Sudeste",2),
+                             (NULL, "Platancao Centro-Oeste",3),
+                             (NULL, "Plantacao Nordeste",4);
 
 INSERT INTO Uva VALUES (NULL, 'Pinot Noir', 10.00, 17.00, 75, 12),
                        (NULL, 'Carménère', 5.30, 15.80, 43, 05),
@@ -135,8 +129,6 @@ INSERT INTO Estufa VALUES (NULL, 1100, 1, 1),
                           (NULL, 4500, 5, 5);
 
 INSERT INTO TipoSensor VALUES (NULL, 'DHT-11');
-
-INSERT INTO Sensor VALUES (NULL, 'Corredor 1', 1, 1);
 
 INSERT INTO Sensor VALUES (NULL, 'Corredor 1', 1, 1),
 						  (NULL, 'Corredor 2', 1, 1),
@@ -454,3 +446,34 @@ INSERT INTO Registro VALUES (NULL, 12.5, 43.2, '2023-05-13 17:45:56', 1),
                             (NULL, 16.2, 65.3, '2023-05-13 09:06:46', 45),
                             (NULL, 13.2, 48.9, '2023-05-13 08:15:09', 45),
                             (NULL, 13.2, 48.9, '2023-05-13 12:15:09', 45);
+
+desc Estufa;
+desc Uva;
+desc Registro;
+desc Sensor;
+desc Plantacao;
+
+select distinct idPlantacao, idEstufa, nomeUva, umidadeRegistro, temperaturaRegistro from Plantacao p
+		join Estufa e on fkPlantacao = idPlantacao
+		join Uva u on idUva = fkUva
+		join Sensor s on s.fkEstufa = e.idEstufa
+		join Registro r on s.idSensor = r.fkSensor
+		where e.fkUva = u.idUva;
+        
+select idPlantacao "Plantacao",idEstufa "Estufa" from Estufa join Plantacao on fkPlantacao = idPlantacao;
+
+select idEstufa,dataRegistro,temperaturaRegistro,umidadeRegistro from Registro 
+		join sensor on fkSensor = idSensor
+		join estufa on idEstufa = fkEstufa;
+
+SELECT  *
+FROM    (
+        SELECT  idEstufa,dataRegistro,temperaturaRegistro,umidadeRegistro, ROW_NUMBER() OVER (PARTITION BY idEstufa ORDER BY dataRegistro DESC) rn
+        FROM  Registro join sensor on fkSensor = idSensor
+		join estufa on idEstufa = fkEstufa
+        ) x
+WHERE   x.rn = 1;
+
+select *from registro order by dataRegistro desc, fkSensor;
+insert into registro values
+(null,28,17,now(),8);
