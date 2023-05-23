@@ -10,7 +10,8 @@ function validarSessao() {
 
     if (email == undefined || nome == undefined || login == undefined) {
         window.location = "../DashboardLogin.html";
-    }else{
+    }
+    else{
         spanNomeUsuario.innerHTML = nome
         spanCargoUsuario.innerHTML = cargo
         var itemConfiguracoes = document.getElementById('item_config');

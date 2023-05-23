@@ -7,79 +7,72 @@ select idEstufa, nomeUva, temperaturaRegistro, umidadeRegistro, max(dataRegistro
 where fkUva = idUva and fkSensor = idEstufa and plantaEmpresa.idPlantacao = fkPlantacao group by idEstufa order by dataRegistro desc;
 
 CREATE TABLE Empresa(
-idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
-CNPJEmpresa CHAR(18),
-nomeEmpresa VARCHAR(60),
-nomeFantasia VARCHAR(45),
-cepEmpresa CHAR(9),
-logradouroEmpresa VARCHAR(60),
-numeroLogradouro INT,
-bairroEmpresa VARCHAR(45),
-cidadeEmpresa VARCHAR(50),
-ufEmpresa CHAR(2),
-telefoneEmpresa CHAR(16),
-telefoneSecEmpresa CHAR(16),
-emailEmpresa VARCHAR(60)
+    idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
+    CNPJEmpresa CHAR(18),
+    nomeEmpresa VARCHAR(60),
+    nomeFantasia VARCHAR(45),
+    cepEmpresa CHAR(9),
+    logradouroEmpresa VARCHAR(60),
+    numeroLogradouro INT,
+    bairroEmpresa VARCHAR(45),
+    cidadeEmpresa VARCHAR(50),
+    ufEmpresa CHAR(2),
+    telefoneEmpresa CHAR(16),
+    telefoneSecEmpresa CHAR(16),
+    emailEmpresa VARCHAR(60)
 );
 
 CREATE TABLE Funcionario(
-idFuncionario INT PRIMARY KEY AUTO_INCREMENT,
-nomeFuncionario VARCHAR(45),
-fkChefe INT,
-FOREIGN KEY (fkChefe) REFERENCES Funcionario (idFuncionario),
-senhaFuncionario VARCHAR(45),
-emailFuncionario VARCHAR(60),
-fkEmpresa INT,
-FOREIGN KEY (fkEmpresa) REFERENCES Empresa (idEmpresa)
+    idFuncionario INT PRIMARY KEY AUTO_INCREMENT,
+    nomeFuncionario VARCHAR(45),
+    fkChefe INT,
+    FOREIGN KEY (fkChefe) REFERENCES Funcionario (idFuncionario),
+    senhaFuncionario VARCHAR(45),
+    emailFuncionario VARCHAR(60),
+    fkEmpresa INT,
+    FOREIGN KEY (fkEmpresa) REFERENCES Empresa (idEmpresa)
 );
 
 CREATE TABLE Plantacao(
-idPlantacao INT PRIMARY KEY AUTO_INCREMENT,
-nomePlantacao VARCHAR(45),
-fkEmpresa INT,
-FOREIGN KEY (fkEmpresa) REFERENCES Empresa (idEmpresa)
+    idPlantacao INT PRIMARY KEY AUTO_INCREMENT,
+    nomePlantacao VARCHAR(45),
+    fkEmpresa INT,
+    FOREIGN KEY (fkEmpresa) REFERENCES Empresa (idEmpresa)
 );
 
 CREATE TABLE Uva(
-idUva INT PRIMARY KEY AUTO_INCREMENT,
-nomeUva VARCHAR(45),
-tempMax DECIMAL(4,2),
-tempMin DECIMAL(4,2),
-umidMax INT(2),
-umidMin INT(2)
+    idUva INT PRIMARY KEY AUTO_INCREMENT,
+    nomeUva VARCHAR(45),
+    tempMax DECIMAL(4,2),
+    tempMin DECIMAL(4,2),
+    umidMax INT(2),
+    umidMin INT(2)
 );
 
 CREATE TABLE Estufa(
-idEstufa INT PRIMARY KEY AUTO_INCREMENT,
-areaEstufa INT,
-fkPlantacao INT,
-fkUva INT,
-nomeEstufa varchar(45),
-FOREIGN KEY (fkPlantacao) REFERENCES Plantacao (idPlantacao),
-FOREIGN KEY (fkUva) REFERENCES Uva (idUva)
-);
-
-CREATE TABLE TipoSensor(
-idTipoSensor INT PRIMARY KEY AUTO_INCREMENT,
-nomeSensor VARCHAR(10)
+    idEstufa INT PRIMARY KEY AUTO_INCREMENT,
+    areaEstufa INT,
+    fkPlantacao INT,
+    fkUva INT,
+    nomeEstufa varchar(45),
+    FOREIGN KEY (fkPlantacao) REFERENCES Plantacao (idPlantacao),
+    FOREIGN KEY (fkUva) REFERENCES Uva (idUva)
 );
 
 CREATE TABLE Sensor(
-idSensor INT PRIMARY KEY AUTO_INCREMENT,
-localSensor VARCHAR(45),
-fkEstufa INT,
-fkTipoSensor INT,
-FOREIGN KEY (fkEstufa) REFERENCES Estufa (idEstufa),
-FOREIGN KEY (fkTipoSensor) REFERENCES TipoSensor (idTipoSensor)
+    idSensor INT PRIMARY KEY AUTO_INCREMENT,
+    localSensor VARCHAR(45),
+    fkEstufa INT,
+    FOREIGN KEY (fkEstufa) REFERENCES Estufa (idEstufa),
 );
 
 CREATE TABLE Registro(
-idRegistro INT PRIMARY KEY AUTO_INCREMENT,
-temperaturaRegistro DECIMAL(4,2),
-umidadeRegistro DECIMAL(4,2),
-dataRegistro DATETIME,
-fkSensor INT,
-FOREIGN KEY (fkSensor) REFERENCES Sensor (idSensor)
+    idRegistro INT PRIMARY KEY AUTO_INCREMENT,
+    temperaturaRegistro DECIMAL(4,2),
+    umidadeRegistro DECIMAL(4,2),
+    dataRegistro DATETIME,
+    fkSensor INT,
+    FOREIGN KEY (fkSensor) REFERENCES Sensor (idSensor)
 );
 
 select *from empresa;

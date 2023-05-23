@@ -127,7 +127,7 @@
                 <div id="formAddPlantacao" style="display: none;" class="form">
                     <h1>Adicionar Plantação</h1>
 
-                    <!-- <p>Nome da Plantação <input type="text" id="iptNomePlantacao" placeholder="Plantação Jundiaí"></p> -->
+                    <p>Nome da Plantação <input type="text" id="iptNomePlantacao" placeholder="Plantação Jundiaí"></p>
                     <!-- <p>Localização: <input type="text" id="iptLocalizacaoPlantacao"></p> -->
                     <!-- <p>Tamanho da Plantação: <input type="text" id="iptTamanhoPlantacao" placeholder="Em Hectares"></p> -->
                     <button onclick="adicionar_Plantacao()">Adicionar Plantação</button>
@@ -247,8 +247,10 @@
         formEditPlantacao.style.display = 'none'
         formAddEstufa.style.display = 'none'
         formEditEstufa.style.display = 'none'
+        respostaForms.style.display = 'none'
 
-        var form = document.getElementById(id)
+
+        const form = document.getElementById(id)
         form.style.display = 'flex'
     }
 
@@ -261,6 +263,7 @@
             body: JSON.stringify({
                 // crie um atributo que recebe o valor recuperado aqui
                 // Agora vá para o arquivo routes/usuario.js
+                nomePlantacaoServer: iptNomePlantacao.value, 
                 fkEmpresaServer: fkEmpresa
             })
         }).then(function (resposta) {
@@ -330,7 +333,7 @@
                 body: JSON.stringify({
                     // crie um atributo que recebe o valor recuperado aqui
                     // Agora vá para o arquivo routes/usuario.js
-                    nomeEstufa : iptAddUvaEstufa.value,
+                    nomeEstufa : iptAddNomeEstufa.value,
                     idPlantacao: iptAddPlantacaoEstufa.value,
                     tipoUva: iptAddUvaEstufa.value,
                     tamanho: iptAddTamanhoEstufa.value
@@ -365,9 +368,9 @@
                 resposta.json().then(json => {
                     for (let x in json) {
                         respostaForms.innerHTML +=
-                            `
-                        ID da Plantação: ${json[x].idPlantacao} <br>
-                        Nome da Plantação: ${json[x].nomePlantacao}<br>
+                         `
+                            ID da Plantação: ${json[x].idPlantacao} <br>
+                            Nome da Plantação: ${json[x].nomePlantacao}<br>
                         `;
                     }
                 });
@@ -423,5 +426,5 @@
 
         return false;
     }
-    // listar_platacoes()
+    listar_platacoes()
 </script>
