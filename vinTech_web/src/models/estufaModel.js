@@ -31,10 +31,9 @@ function adicionar (areaEstufa, fkPlantacao, fkUva, nomeEstufa){
 function listar(idEmpresa) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar(): ", idEmpresa)
     var instrucao = `
-        select idEstufa, nomeEstufa, nomeUva, tempMax, tempMin, umidMax, umidMin, temperaturaRegistro, umidadeRegistro, max(dataRegistro) from Estufa, Uva, Registro, empresa, 
-        (select idPlantacao from plantacao, empresa where fkEmpresa = idEmpresa and idEmpresa = ${idEmpresa}) as plantaEmpresa
-        where fkUva = idUva and fkSensor = idEstufa and plantaEmpresa.idPlantacao = fkPlantacao and 
-        dataRegistro = (select max(dataRegistro) from registro) group by idEstufa order by dataRegistro desc;
+        select nomeEstufa, idSensor, umidadeRegistro, temperaturaRegistro, idRecente.idRegistro, nomeUva, tempMax, tempMin, umidMax, umidMin
+        from registro, (select max(idregistro) as idRegistro from registro group by fkSensor) as idRecente, sensor, estufa, plantacao, empresa, uva
+        where idRecente.idRegistro = registro.idRegistro and Registro.fkSensor = idSensor and fkEstufa = idEstufa and fkPlantacao = idPlantacao and fkEmpresa = ${idEmpresa} and fkUva = idUva;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
