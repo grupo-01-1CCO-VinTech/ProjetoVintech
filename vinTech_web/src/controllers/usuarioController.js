@@ -8,20 +8,21 @@ function testar(req, res) {
 }
 
 function listar(req, res) {
-    usuarioModel.listar()
-        .then(function (resultado) {
-            if (resultado.length > 0) {
-                res.status(200).json(resultado);
-            } else {
-                res.status(204).send("Nenhum resultado encontrado!")
-            }
-        }).catch(
-            function (erro) {
-                console.log(erro);
-                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
+    var email = req.body.emailServer
+    usuarioModel.listar(email)
+    .then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(
+        function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+       }
+    );
 }
 
 function entrar(req, res) {
@@ -202,7 +203,7 @@ function cadastrarFuncionario(req, res) {
     }
 
     if (erro == false) {
-        usuarioModel.cadastrarFuncionario(fkEmpresa, senhaFunc, emailFunc, loginFunc, nomeFunc, fkChefe)
+        usuarioModel.cadastrarFuncionarioModel(fkEmpresa, senhaFunc, emailFunc, loginFunc, nomeFunc, fkChefe)
             .then(
                 function (resultado) {
                     res.json(resultado);

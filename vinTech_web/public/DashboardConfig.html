@@ -52,9 +52,9 @@
                 </div>
                 <div id="formUsuario" style="display: none;" class="form">
                     <h1>Configuração de Usuários</h1>
-                    <button onclick="apagarDivs('formAddUsuario')" onmouseenter="uvaSurgi()" onmouseleave="sumirUva()"
+                    <button onclick="apagarDivs('formAddUsuario')"
                         class="botaoUsuario">Adicionar Novo Usuário </button>
-                    <button onclick="apagarDivs('formEditUsuario')" onmouseenter="uvaSurgi()" onmouseleave="sumirUva()"
+                    <button onclick="apagarDivs('formEditUsuario')"
                         class="botaoUsuario">Editar e Remover Usuários </button>
                 </div>
 
@@ -78,7 +78,6 @@
                                     placeholder="Digite sua senha:"></p>
                             <button onclick="adicionar_Usuario()">Adicionar Usuário</button>
                         </div>
-                        <div class="uvaUser"></div>
                     </div>
                 </div>
                 <div id="formEditUsuario" style="display: none;" class="form">
@@ -88,7 +87,7 @@
 
                     <div class="editUser">
                         <div class="linha-form">
-                            <input type="text" placeholder="Email do Usuário">
+                            <input type="text" placeholder="Email do Usuário" id="ipt_email_user">
                             <button onclick="consultar_usuario()">Consultar</button> 
                         </div>
                     </div>
@@ -272,10 +271,9 @@
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
                 nomeFuncServer: nomeFunc,
                 emailFuncServer: emailFunc,
+                //loginFunc está cagado
                 loginFuncServer: loginFunc,
                 senhaFuncServer: senhaFunc,
                 fkChefeServer: fkChefe,
@@ -293,6 +291,47 @@
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
         });
+        return false;
+    }
+
+    function consultar_usuario(){
+        if (ipt_email_user.value == 0){
+            alert('coloque o email de quem tu vai consultar')
+            return
+        }
+        fetch("/usuarios/listar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer : ipt_email_user.value
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
         return false;
     }
 

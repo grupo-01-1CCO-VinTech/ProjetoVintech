@@ -7,7 +7,7 @@ router.get("/", function (req, res) {
     usuarioController.testar(req, res);
 });
 
-router.get("/listar", function (req, res) {
+router.post("/listar", function (req, res) {
     usuarioController.listar(req, res);
 });
 
