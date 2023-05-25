@@ -269,11 +269,11 @@
                         if ((tempRegis < temperaturaAlertaSuperior && tempRegis > temperaturaAlertaInferior) && (umidRegis < umidadeAlertaSuperior && umidRegis > umidadeAlertaInferior)) {
                             string = "../img/check-box.png"
                         }
-                        else if (((tempRegis > temperaturaAlertaSuperior && tempRegis < temperaturaMaxima) || (tempRegis < temperaturaAlertaInferior && tempRegis > temperaturaMinima)) || ((umidRegis > umidadeAlertaSuperior && umidRegis < umidadeMaxima) || (umidRegis < umidadeAlertaInferior && umidRegis > umidadeMinima))) {
-                            string = "../img/warning.png"
-                        }
                         else if ((tempRegis <= temperaturaMinima || tempRegis >= temperaturaMaxima) || (umidRegis <= umidadeMinima || umidRegis >= umidadeMaxima)) {
                             string = "../img/cancelar.png"
+                        }
+                        else{
+                            string = "../img/warning.png"
                         }
                         areaCardsPequenos.innerHTML +=
                             `
@@ -285,11 +285,11 @@
                                 </div>
                                 <div class="ordemCardpequeno">
                                     <a id="title">Umidade Atual (%)</a>
-                                    <a>${json[x].temperaturaRegistro}</a>
+                                    <a>${json[x].umidadeRegistro}</a>
                                 </div>
                                 <div class="ordemCardpequeno">
                                     <a id="title">Temperatura Atual(°C)</a>
-                                    <a>${json[x].umidadeRegistro}</a>
+                                    <a>${json[x].temperaturaRegistro}</a>
                                 </div> 
                                 <div class="ordemCardpequeno">
                                     <a id="title">Status</a>

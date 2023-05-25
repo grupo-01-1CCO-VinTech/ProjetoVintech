@@ -44,6 +44,6 @@ function listar(req, res) {
 }
 
 module.exports = {
-    adicionar,
+    // adicionar,
     listar
 }
