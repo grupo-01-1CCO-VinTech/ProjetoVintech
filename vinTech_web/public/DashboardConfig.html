@@ -87,32 +87,10 @@
                     </div>
 
                     <div class="editUser">
-                        <div class="tituloEdit">
-                            <h3>Encontrar usuário</h3>
+                        <div class="linha-form">
+                            <input type="text" placeholder="Email do Usuário">
+                            <button onclick="consultar_usuario()">Consultar</button> 
                         </div>
-                        <p>Por ID: <input type="text" id="iptEncontrarIdEstufa"></p>
-                        <p>Por Nome: <input type="text" id="iptEncontrarNomeUsuario"></p>
-                        <p>Por E-mail: <input type="text" id="iptEncontrarEmailUsuario"></p>
-                        <button onclick="encontrar_Usuario()">Encontrar Usuário</button>
-                        <div class="tituloEdit">
-                            <h3>Editar usuário</h3>
-                        </div>
-                        <p>Nome: <input type="text" id="iptEditNomeUsuario"></p>
-                        <p>E-mail: <input type="text" id="iptEditEmailUsuario"></p>
-                        <p>Senha: <input type="text" id="iptEditSenhaUsuario"></p>
-                        <p>Função:
-                            <select id="selectEditFuncao">
-                                <option value="0">Funcionário</option>
-                                <option value="1">Administrador</option>
-                            </select>
-                            <button onclick="editar_Usuario()">Editar Usuário</button>
-                        </p>
-                        <div class="tituloEdit">
-                            <h3>Deletar Usuário</h3>
-                        </div>
-                        <p>Confirmar nome: <input type="text" id="iptDeleteUsuarioConfirmacaoNome"></p>
-                        <p>Confirmar E-mail: <input type="text" id="iptDeleteUsuarioConfirmacaoEmail"></p>
-                        <button onclick="deletarUsuario()">Deletar Usuário</button>
                     </div>
                 </div>
 
@@ -165,7 +143,7 @@
                     </p>
                     <p>Tipo de Uva:
                         <select id="iptAddUvaEstufa">
-                            <option value="0">Adicionar Uva</option>
+                            <option value="0"></option>
                         </select>
                     </p>
                     <p>Tamanho da Estufa <input type="text" id="iptAddTamanhoEstufa"></p>
@@ -183,7 +161,7 @@
                     <h3>Editar Estufa</h3>
                     <p>Tipo de Uva:
                         <select id="iptEditUvaEstufa">
-                            <option value="0">Adicionar Uva</option>
+                            <option value="0"></option>
                         </select>
                     </p>
                     <p>Tamanho da Estufa: <input type="text" id="iptEditTamanhoEstufa"></p>
@@ -198,14 +176,14 @@
         <div class="container-direita">
             <div class="container-usuario">
                 <img src="img/eu2.jpg" alt="">
-                <p id="nome_usuarioLogado"></p>
-                <p id="funcao_usuario"></p>
+                <p id="nomeAdm"></p>
+                <p id="emailAdm"></p>
             </div>
             <div class="container-contato">
-                <h1>Contato</h1>
-                <div id="contato"><span class="spanDivContato">Telefone:</span></div>
-                <div id="email"><span class="spanDivContato">Email:</span></div>
-                <p>Mudar Campos</p>
+                <h1>Informações</h1>
+                <div id="empresaAdm" class="linha-infoAdm"><span class="spanDivContato">Empresa:</span></div>
+                <div id="cargoAdm" class="linha-infoAdm"><span class="spanDivContato">Cargo:</span></div>
+                <p>
             </div>
             <div class="container-botoes">
                 <button onclick="apagarDivs('formUsuario')" class="config">Configurar Usuários</button>
@@ -222,20 +200,19 @@
 <script>
     var idChefe = sessionStorage.ID_USUARIO;
     var nomeUsuario = sessionStorage.NOME_USUARIO;
-    var loginUsuario = sessionStorage.LOGIN_USUARIO;
     var emailUsuario = sessionStorage.EMAIL_USUARIO;
     var fkEmpresa = sessionStorage.FK_EMPRESA;
     var fkChefe = sessionStorage.ID_CHEFE;
 
     validarSessao()
 
-    nome_usuarioLogado.innerHTML = `${nomeUsuario}`
+    nomeAdm.innerHTML = `${nomeUsuario}`
+    emailAdm.innerHTML += `${emailUsuario}`
     if (fkChefe == 'null') {
-        funcao_usuario.innerHTML = `Administrador`
+        cargoAdm.innerHTML += 'Administrador'
     } else {
         location.href = 'DashboardHome.html'
     }
-    email.innerHTML += `${emailUsuario}`
 
     function apagarDivs(id) {
         formUsuario.style.display = 'none'
@@ -404,8 +381,8 @@
 
                 resposta.json().then(json => {
                     for (let x in json) {
-                        iptAddUvaEstufa.innerHTML +=`<option value="${json[x].nomeUva}">${json[x].nomeUva}</option>`;
-                        iptEditUvaEstufa.innerHTML +=`<option value="${json[x].nomeUva}">${json[x].nomeUva}</option> `;
+                        iptAddUvaEstufa.innerHTML += `<option value="${json[x].nomeUva}">${json[x].nomeUva}</option>`;
+                        iptEditUvaEstufa.innerHTML += `<option value="${json[x].nomeUva}">${json[x].nomeUva}</option> `;
                     }
                 });
             } else {
@@ -420,4 +397,38 @@
         return false;
     }
     listar_platacoes()
+
+    // function adicionar_Uva() {
+    //     var nomeUvaServer = iptAddNomeUva.value
+    //     var tempMaxServer = iptAddTempMaxUva.value
+    //     var tempMinServer = iptAddTempMinUva.value
+    //     var umidMaxServer = iptAddUmidMaxUva.value
+    //     var umidMinServer = iptAddUmidMinUva.value
+
+    //     fetch("/uva/adicionar", {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         },
+    //         body: JSON.stringify({
+    //             nomeUva: nomeUvaServer,
+    //             tempMax: tempMaxServer,
+    //             tempMin: tempMinServer,
+    //             umidMax: umidMaxServer,
+    //             umidMin: umidMinServer
+    //         })
+    //     }).then(function (resposta) {
+    //         if (resposta.ok) {
+    //             console.log(resposta);
+    //         } else {
+    //             console.log("Houve um erro ao tentar inserir as uvas");
+    //             resposta.text().then(texto => {
+    //                 console.error(texto);
+    //             });
+    //         }
+    //     }).catch(function (erro) {
+    //         console.log(erro);
+    //     })
+    //     return false;
+    // }
 </script>
