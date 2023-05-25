@@ -110,17 +110,17 @@
                         <div class="status">
                             <img src="img/check-box.png" alt="">
                             <a>Seguro</a>
-                            <a>3</a>
+                            <a id="txtSeguro"></a>
                         </div>
                         <div class="status">
                             <img src="img/warning.png" alt="">
                             <a>Alerta</a>
-                            <a>3</a>
+                            <a id="txtAlerta"></a>
                         </div>
                         <div class="status">
                             <img src="img/cancelar.png" alt="">
                             <a>Perigo</a>
-                            <a>3</a>
+                            <a id="txtPerigo"></a>
                         </div>
                     </div>
                     <br><br>
@@ -152,10 +152,6 @@
 
     validarSessao()
 
-    var qtdSeguro = 0
-    var qtdAlerta = 0
-    var qtdPerigo = 0
-
     const graficoBarraDeitado = document.getElementById('graficoBarraDeitado');
     new Chart(graficoBarraDeitado, {
         type: 'bar',
@@ -163,7 +159,7 @@
             labels: ['Seguro', 'Alerta', 'Perigo'],
             datasets: [{
                 label: 'Seguro',
-                data: [12, 15, 03],
+                data: [],
                 borderWidth: 1,
                 backgroundColor: [
                     '#00BF15',
@@ -194,7 +190,7 @@
         data: {
             datasets: [{
                 label: 'Status',
-                data: [3, 3, 3],
+                data: [],
                 borderWidth: 1,
                 backgroundColor: [
                     '#00BF15',
@@ -248,6 +244,13 @@
             if (resposta.ok) {
                 console.log(resposta);
 
+                listaAlertas =
+                    [
+                        0, //Seguro
+                        0, //Alerta
+                        0 // Perigo
+                    ]
+
                 resposta.json().then(json => {
                     for (let x in json) {
                         let tempRegis = Number(json[x].temperaturaRegistro);
@@ -268,13 +271,22 @@
 
                         if ((tempRegis < temperaturaAlertaSuperior && tempRegis > temperaturaAlertaInferior) && (umidRegis < umidadeAlertaSuperior && umidRegis > umidadeAlertaInferior)) {
                             string = "../img/check-box.png"
+                            listaAlertas[0]++
                         }
                         else if ((tempRegis <= temperaturaMinima || tempRegis >= temperaturaMaxima) || (umidRegis <= umidadeMinima || umidRegis >= umidadeMaxima)) {
                             string = "../img/cancelar.png"
+                            listaAlertas[1]++
                         }
-                        else{
+                        else {
                             string = "../img/warning.png"
+                            listaAlertas[2]++
                         }
+                        txtSeguro.innerHTML = `${listaAlertas[0]}`
+                        txtPerigo.innerHTML = `${listaAlertas[1]}`
+                        txtAlerta.innerHTML = `${listaAlertas[2]}`
+
+                        
+
                         areaCardsPequenos.innerHTML +=
                             `
                             <div class="cardPequeno" id='card${json[x].idEstufa}'>
@@ -347,6 +359,6 @@
     //listaContadores.push(contadorSeguro)
     //listaContadores.push(contadorAlerta)
     //listaContadores.push(contadorPerigo)
-
+    
     listar_estufas()
 </script>
