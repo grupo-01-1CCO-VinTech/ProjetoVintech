@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="css/style-PadraoTodos.css">
 </head>
 
-<body>
+<body onload="listar_estufas()">
     <div class="pagina">
         <div class="barra-lateral">
             <div class="barra-logo">
@@ -220,4 +220,49 @@
             }
         }
     });
+    function listar_estufas() {
+        fetch("/estufa/listar_plant", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                fkEmpresaServer: fkEmpresa
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    for (let x in json) {
+                        //let tempRegis = Number(json[x].temperaturaRegistro);
+                        //let temperaturaMaxima = Number(json[x].tempMax);
+                        //let temperaturaMinima = Number(json[x].tempMin);
+                        //let temperaturaIdeal = Number((temperaturaMaxima + temperaturaMinima) / 2)
+                        //let temperaturaAlertaSuperior = Number(temperaturaIdeal + ((5 / 100) * temperaturaIdeal))
+                        //let temperaturaAlertaInferior = Number(temperaturaIdeal - ((5 / 100) * temperaturaIdeal))
+
+                        //let umidRegis = json[x].umidadeRegistro;
+                        //let umidadeMaxima = json[x].umidMax;
+                        //let umidadeMinima = json[x].umidMin;
+                        //let umidadeIdeal = (umidadeMaxima + umidadeMinima) / 2
+                        //let umidadeAlertaSuperior = umidadeIdeal + ((5 / 100) * umidadeIdeal)
+                        //let umidadeAlertaInferior = umidadeIdeal - ((5 / 100) * umidadeIdeal)
+
+                        console.log(json[x])
+                    }
+                });
+            } else {
+                console.log("Houve um erro ao tentar consultar as plantações");
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
 </script>
