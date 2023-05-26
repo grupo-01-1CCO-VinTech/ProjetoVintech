@@ -299,6 +299,7 @@ html {
 }
 .simule button:hover{
     background-color: #d2b0dc;
+    box-shadow: 1vh 1vh 5vh 1vh #000000;
     transition: 1.5s;
 }
 
