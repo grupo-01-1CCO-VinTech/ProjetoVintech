@@ -150,16 +150,18 @@
     var fkEmpresa = sessionStorage.FK_EMPRESA;
     var fkChefe = sessionStorage.ID_CHEFE;
 
+    dados_grafico = []
+
     validarSessao()
 
     const graficoBarraDeitado = document.getElementById('graficoBarraDeitado');
-    new Chart(graficoBarraDeitado, {
+    var grafico_deitado = new Chart(graficoBarraDeitado, {
         type: 'bar',
         data: {
             labels: ['Seguro', 'Alerta', 'Perigo'],
             datasets: [{
                 label: 'Seguro',
-                data: [],
+                data: dados_grafico,
                 borderWidth: 1,
                 backgroundColor: [
                     '#00BF15',
@@ -281,11 +283,7 @@
                             string = "../img/warning.png"
                             listaAlertas[2]++
                         }
-                        txtSeguro.innerHTML = `${listaAlertas[0]}`
-                        txtPerigo.innerHTML = `${listaAlertas[1]}`
-                        txtAlerta.innerHTML = `${listaAlertas[2]}`
 
-                        
 
                         areaCardsPequenos.innerHTML +=
                             `
@@ -311,6 +309,13 @@
                         `
 
                     }
+                    txtSeguro.innerHTML = `${listaAlertas[0]}`
+                    txtPerigo.innerHTML = `${listaAlertas[1]}`
+                    txtAlerta.innerHTML = `${listaAlertas[2]}`
+                    grafico_deitado.data.datasets[0].data.push(listaAlertas[0])
+                    grafico_deitado.data.datasets[0].data.push(listaAlertas[2])
+                    grafico_deitado.data.datasets[0].data.push(listaAlertas[1])
+                    grafico_deitado.update()
                 });
             } else {
                 console.log("Houve um erro ao tentar consultar as plantações");
