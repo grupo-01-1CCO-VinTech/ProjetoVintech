@@ -80,39 +80,7 @@
                         <h2>
                             Top estufas
                         </h2>
-                        <div class="lista">
-                            <div class="linha-lista">
-                                <li>Estufa 2</li>
-                                <div id="imagem"><img src="img/cancelar.png"></div>
-                            </div>
-                            <div class="linha-lista">
-                                <li>Estufa 3</li>
-                                <img src="img/warning.png">
-                            </div>
-                            <div class="linha-lista">
-                                <li>Estufa 4</li>
-                                <img src="img/warning.png">
-                            </div>
-                            <div class="linha-lista">
-                                <li>Estufa 5</li>
-                                <img src="img/check-box.png">
-                            </div>
-                            <div class="linha-lista">
-                                <li>Estufa 6</li>
-                                <img src="img/check-box.png">
-                            </div>
-                            <div class="linha-lista">
-                                <li>Estufa 7</li>
-                                <img src="img/check-box.png">
-                            </div>
-                            <div class="linha-lista">
-                                <li>Estufa 8</li>
-                                <img src="img/check-box.png">
-                            </div>
-                            <div class="linha-lista">
-                                <li>Estufa 13</li>
-                                <img src="img/check-box.png">
-                            </div>
+                        <div class="lista" id="top_estufas">
                         </div>
                     </div>
                 </div>
@@ -257,19 +225,20 @@
 
                         if ((tempRegis < temperaturaAlertaSuperior && tempRegis > temperaturaAlertaInferior) && (umidRegis < umidadeAlertaSuperior && umidRegis > umidadeAlertaInferior)) {
                             string = "../img/check-box.png"
+                            alert('teste')
                             listaAlertas[0]++
-                            lista_estufa_ = []
+                            lista_estufa_segura.push(json[x].nomeEstufa)
                             
                         }
                         else if ((tempRegis <= temperaturaMinima || tempRegis >= temperaturaMaxima) || (umidRegis <= umidadeMinima || umidRegis >= umidadeMaxima)) {
                             string = "../img/warning.png"
                             listaAlertas[2]++
-                            lista_estufa_ = []
+                            lista_estufa_alerta.push(json[x].nomeEstufa)
                         }
                         else {
                             string = "../img/cancelar.png"
                             listaAlertas[1]++
-                            lista_estufa_ = []
+                            lista_estufa_perigo.push(json[x].nomeEstufa)
                         }
                         if(lista_uva_js.indexOf(json[x].nomeUva == -1)){
                             lista_uva_js.push(json[x].nomeUva)
@@ -280,6 +249,32 @@
                     num_ideal.innerHTML = listaAlertas[0]
                     num_perigo.innerHTML = listaAlertas[1]
                     num_alerta.innerHTML = listaAlertas[2]
+
+                    for(x in lista_estufa_perigo){
+                        top_estufas.innerHTML += `
+                            <div class="linha-lista">
+                                <li>${json[x].nomeEstufa}</li>
+                                <div id="imagem"><img src="img/cancelar.png"></div>
+                            </div>
+                        `
+                    }
+                    for(y in lista_estufa_alerta){
+                        top_estufas.innerHTML += `
+                            <div class="linha-lista">
+                                <li>${json[y].nomeEstufa}</li>
+                                <div id="imagem"><img src="img/warning.png"></div>
+                            </div>
+                        `
+                    }
+                    for(z in lista_estufa_segura){
+                        top_estufas.innerHTML += `
+                            <div class="linha-lista">
+                                <li>${json[z].nomeEstufa}</li>
+                                <div id="imagem"><img src="img/check-box.png"></div>
+                            </div>
+                        `
+                    }
+
                 });
             } else {
                 console.log("Houve um erro ao tentar consultar as plantações");

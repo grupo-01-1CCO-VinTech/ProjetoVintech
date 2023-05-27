@@ -276,11 +276,11 @@
                             listaAlertas[0]++
                         }
                         else if ((tempRegis <= temperaturaMinima || tempRegis >= temperaturaMaxima) || (umidRegis <= umidadeMinima || umidRegis >= umidadeMaxima)) {
-                            string = "../img/cancelar.png"
+                            string = "../img/warning.png"
                             listaAlertas[1]++
                         }
                         else {
-                            string = "../img/warning.png"
+                            string = "../img/cancelar.png"
                             listaAlertas[2]++
                         }
 
@@ -310,11 +310,11 @@
 
                     }
                     txtSeguro.innerHTML = `${listaAlertas[0]}`
-                    txtPerigo.innerHTML = `${listaAlertas[1]}`
-                    txtAlerta.innerHTML = `${listaAlertas[2]}`
+                    txtPerigo.innerHTML = `${listaAlertas[2]}`
+                    txtAlerta.innerHTML = `${listaAlertas[1]}`
                     grafico_deitado.data.datasets[0].data.push(listaAlertas[0])
-                    grafico_deitado.data.datasets[0].data.push(listaAlertas[2])
                     grafico_deitado.data.datasets[0].data.push(listaAlertas[1])
+                    grafico_deitado.data.datasets[0].data.push(listaAlertas[2])
                     grafico_deitado.update()
                 });
             } else {
