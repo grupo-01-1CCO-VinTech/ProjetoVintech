@@ -4,7 +4,7 @@ function listar(email) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
     console.log(email)
     var instrucao = `
-        SELECT * FROM Funcionario where emailFuncionario = '${email}';
+        SELECT f.*, e.nomeEmpresa FROM Funcionario f join Empresa e on idEmpresa = fkEmpresa where emailFuncionario = '${email}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -32,7 +32,7 @@ function cadastrar(id_empresa, senhaFuncionario, emailFuncionario, loginFunciona
     return database.executar(instrucao);
 }
 
-function cadastrarFuncionarioModel(id_empresa, senhaFuncionario, emailFuncionario, loginFuncionario, nomeFuncionario, fk_Chefe) {
+function cadastrarFuncionarioModel(id_empresa, senhaFuncionario, emailFuncionario, nomeFuncionario, fk_Chefe) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():");
     if(fk_Chefe == 'Adm'){
         var instrucao = `
@@ -47,9 +47,18 @@ function cadastrarFuncionarioModel(id_empresa, senhaFuncionario, emailFuncionari
     return database.executar(instrucao);
 }
 
+function alterar(id_empresa, senhaFuncionario, emailFuncionario, nomeFuncionario, fk_Chefe, idFuncionario){
+var instrucao = `
+        update Funcionario set nomeFuncionario = '${nomeFuncionario}', fkChefe = ${fk_Chefe},
+        senhaFuncionario = '${senhaFuncionario}', emailFuncionario = '${emailFuncionario}', fkEmpresa = ${id_empresa} where idFuncionario = ${idFuncionario}
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
 module.exports = {
     entrar,
     cadastrar,
     cadastrarFuncionarioModel,
     listar,
+    alterar,
 };
