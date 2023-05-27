@@ -10,19 +10,19 @@ function testar(req, res) {
 function listar(req, res) {
     var email = req.body.emailServer
     usuarioModel.listar(email)
-    .then(function (resultado) {
-        if (resultado.length > 0) {
-            res.status(200).json(resultado);
-        } else {
-            res.status(204).send("Nenhum resultado encontrado!")
-        }
-    }).catch(
-        function (erro) {
-            console.log(erro);
-            console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
-            res.status(500).json(erro.sqlMessage);
-       }
-    );
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
 }
 
 function entrar(req, res) {
@@ -164,7 +164,6 @@ function cadastrarFuncionario(req, res) {
     /*Variveis com os dados do cad*/
     var nomeFunc = req.body.nomeFuncServer;
     var emailFunc = req.body.emailFuncServer;
-    var loginFunc = req.body.loginFuncServer;
     var senhaFunc = req.body.senhaFuncServer;
     var fkChefe = req.body.fkChefeServer;
     var fkEmpresa = req.body.fkEmpresaServer;
@@ -188,10 +187,6 @@ function cadastrarFuncionario(req, res) {
     */
     // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
     var erro = false
-    if (loginFunc.length < 8) {
-        erro = true
-        res.status(400).send("O campo Login deve ter pelo menos 8 caracteres!");
-    }
     if (emailFunc == "" || emailFunc.indexOf('@') == -1 ||
         emailFunc.indexOf('.') == -1 || emailFunc.length < 10) {
         erro = true
@@ -203,7 +198,7 @@ function cadastrarFuncionario(req, res) {
     }
 
     if (erro == false) {
-        usuarioModel.cadastrarFuncionarioModel(fkEmpresa, senhaFunc, emailFunc, loginFunc, nomeFunc, fkChefe)
+        usuarioModel.cadastrarFuncionarioModel(fkEmpresa, senhaFunc, emailFunc, nomeFunc, fkChefe)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -224,10 +219,60 @@ function cadastrarFuncionario(req, res) {
     }
 }
 
+function alterar(req, res) {
+    var idFunc = req.body.idUserServer;
+    var nomeFunc = req.body.nomeUserServer;
+    var emailFunc = req.body.emailUserServer;
+    var senhaFunc = req.body.senhaUserServer;
+    var fkChefe = req.body.chefeUserServer;
+    var fkEmpresa = req.body.empresaUserServer;
+
+    usuarioModel.alterar(fkEmpresa, senhaFunc, emailFunc, nomeFunc, fkChefe, idFunc)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            /*Erro caso alterar */
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar a alteração! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function excluir(req, res) {
+    var idFunc = req.body.idUserServer;
+
+    usuarioModel.excluir(idFunc)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            /*Erro caso alterar */
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar a exclusão! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+
 module.exports = {
     entrar,
     cadastrar,
     cadastrarFuncionario,
     listar,
-    testar
+    testar,
+    alterar,
+    excluir
 }
