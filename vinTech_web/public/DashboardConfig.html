@@ -424,6 +424,39 @@
         return false;
     }
 
+    function excluir_usuario(){
+        var idUserDelete = ipt_id_user.value
+        if (ipt_id_user.value == 0) {
+            alert('Consulte um usuário antes de alterar!')
+            return
+        }
+        fetch("/usuarios/excluir", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idUserServer: idUserDelete
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                console.log(resposta);
+            } else {
+
+                console.log("Houve um erro ao tentar deletar o usuario!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
     //<p>Em qual plantação você deseja cadastrar esta estufa?<input type="text" id="iptAddPlantacaoEstufa"></p>
     //<p>Tipo de Uva: <input type="text" id="iptAddUvaEstufa"></p>
     //<p>Tamanho da Estufa <input type="text" id="iptAddTamanhoEstufa"></p>

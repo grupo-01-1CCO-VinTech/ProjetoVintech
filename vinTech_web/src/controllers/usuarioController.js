@@ -237,13 +237,35 @@ function alterar(req, res) {
             function (erro) {
                 console.log(erro);
                 console.log(
-                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    "\nHouve um erro ao realizar a alteração! Erro: ",
                     erro.sqlMessage
                 );
                 res.status(500).json(erro.sqlMessage);
             }
         );
 }
+
+function excluir(req, res) {
+    var idFunc = req.body.idUserServer;
+
+    usuarioModel.excluir(idFunc)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            /*Erro caso alterar */
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar a exclusão! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 
 module.exports = {
     entrar,
@@ -252,4 +274,5 @@ module.exports = {
     listar,
     testar,
     alterar,
+    excluir
 }
