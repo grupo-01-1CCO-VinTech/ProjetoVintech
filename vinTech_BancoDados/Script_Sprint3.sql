@@ -2,9 +2,14 @@ CREATE DATABASE Vin_tech_Sprint3;
 
 USE Vin_tech_Sprint3;
 
-select idEstufa, nomeUva, temperaturaRegistro, umidadeRegistro, max(dataRegistro) from Estufa, Uva, Registro, empresa, 
-(select idPlantacao from plantacao, empresa where fkEmpresa = idEmpresa and idEmpresa = 1) as plantaEmpresa
-where fkUva = idUva and fkSensor = idEstufa and plantaEmpresa.idPlantacao = fkPlantacao group by idEstufa order by dataRegistro desc;
+select nomeEstufa, idSensor, umidadeRegistro, temperaturaRegistro, nomeUva, tempMax, tempMin, umidMax, umidMin
+from registro, (select max(idregistro) as idRegistro from registro group by fkSensor) as idRecente, sensor, estufa, plantacao, empresa, uva
+where idRecente.idRegistro = registro.idRegistro and Registro.fkSensor = idSensor and fkEstufa = idEstufa and fkPlantacao = idPlantacao and fkEmpresa = 1 and fkUva = idUva;
+
+select idEstufa, nomeEstufa, nomeUva, tempMax, tempMin, umidMax, umidMin, temperaturaRegistro, umidadeRegistro, max(dataRegistro) from Estufa, Uva, Registro, empresa, 
+        (select idPlantacao from plantacao, empresa where fkEmpresa = idEmpresa and idEmpresa = 1) as plantaEmpresa
+        where fkUva = idUva and fkSensor = idEstufa and plantaEmpresa.idPlantacao = fkPlantacao and 
+        dataRegistro = (select max(dataRegistro) from registro) group by idEstufa order by dataRegistro desc;
 
 CREATE TABLE Empresa(
     idEmpresa INT PRIMARY KEY AUTO_INCREMENT,

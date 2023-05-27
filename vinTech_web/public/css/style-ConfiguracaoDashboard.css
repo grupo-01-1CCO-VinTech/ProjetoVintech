@@ -13,6 +13,8 @@
     height: 85vh;
     border: solid 1px #5903af;
     border-radius: 40px;
+    align-items: center;
+    justify-content: center;
 }
 
 .container-direita {
@@ -67,6 +69,9 @@
     height: 100%;
 }
 
+.linha-form{
+    display: flex;
+}
 
 button{
     cursor: pointer;
@@ -92,12 +97,17 @@ button{
 .container-contato .spanDivContato {
     margin: 2% 0%;
 }
-#contato:hover{
+.container-contato .linha-infoAdm{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+#empresaAdm:hover{
     background-color: #43018431;;
     box-shadow: 0.1vh 0.1vh 3vh #000;
     transition: 0.5s;
 }
- #email:hover{
+ #cargoAdm:hover{
     background-color: #43018431;
     box-shadow: 0.1vh 0.1vh 3vh #000;
     transition: 0.5s;
@@ -184,7 +194,8 @@ button{
     align-items: flex-start;
 }
 .editUser{
-    background-color: #9271ff70;
+    /* background-color: #9271ff70; */
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -213,10 +224,11 @@ button{
 .form {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 90%;
     height: 100%;
     justify-content: space-evenly;
     align-items: center;
+    border: 2px solid red;
 }
 
 .form button{

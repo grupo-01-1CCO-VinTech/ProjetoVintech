@@ -14,7 +14,7 @@
     <title>Plantações</title>
 </head>
 
-<body>
+<body onload="listar_Uvas()">
     <div class="pagina">
         <div class="barra-lateral">
             <div class="barra-logo">
@@ -73,13 +73,7 @@
                             </div>
                             <div class="selectUva">
                                 <h3>Por Uva</h3>
-                                <select id="">
-                                    <option value="">Tipos de Uvas</option>
-                                    <option value="">Pinot Noir</option>
-                                    <option value="">Malbec</option>
-                                    <option value="">Syrah</option>
-                                    <option value="">Merlot</option>
-                                    <option value="">Carménère</option>
+                                <select id="selectTipoUva">
                                 </select>
                             </div>
 
@@ -104,50 +98,38 @@
                             </div>
                         </div>
                     </div>
-                    <div class="areaCardsPequenos" id="areaCardsPequenos">  
+                    <div class="areaCardsPequenos" id="areaCardsPequenos">
                     </div>
                 </div>
             </div>
             <div class="containerGraficos">
-                <h2>Sequência de Dias</h2>
+                <h2>Quantidade por Status</h2>
+                <br><br>
                 <div class="graficoBarraHorizontal">
-                    <select id="">
-                        <option value="">Mês: Janeiro</option>
-                        <option value="">Mês: Fevereiro</option>
-                        <option value="">Mês: Março</option>
-                        <option value="">Mês: Abril</option>
-                        <option value="">Mês: Maio</option>
-                        <option value="">Mês: Junho</option>
-                        <option value="">Mês: Julho</option>
-                        <option value="">Mês: Agosto</option>
-                        <option value="">Mês: Setembro</option>
-                        <option value="">Mês: Outubro</option>
-                        <option value="">Mês: Novembro</option>
-                        <option value="">Mês: Dezembro</option>
-                    </select>
+                    <div class="statusImagens">
+                        <div class="status">
+                            <img src="img/check-box.png" alt="">
+                            <a>Seguro</a>
+                            <a id="txtSeguro"></a>
+                        </div>
+                        <div class="status">
+                            <img src="img/warning.png" alt="">
+                            <a>Alerta</a>
+                            <a id="txtAlerta"></a>
+                        </div>
+                        <div class="status">
+                            <img src="img/cancelar.png" alt="">
+                            <a>Perigo</a>
+                            <a id="txtPerigo"></a>
+                        </div>
+                    </div>
+                    <br><br>
                     <div>
                         <canvas id="graficoBarraDeitado"></canvas>
                     </div>
                 </div>
                 <div class="container-graficoPizza">
-                    <a>Quantidade por Status</a>
-                    <div class="statusImagens">
-                        <div class="status">
-                            <img src="img/check-box.png" alt="">
-                            <a>Seguro</a>
-                            <a>3</a>
-                        </div>
-                        <div class="status">
-                            <img src="img/warning.png" alt="">
-                            <a>Alerta</a>
-                            <a>3</a>
-                        </div>
-                        <div class="status">
-                            <img src="img/cancelar.png" alt="">
-                            <a>Perigo</a>
-                            <a>3</a>
-                        </div>
-                    </div>
+
                     <div class="areaGrafico">
                         <canvas id="graficoPizza" class="graficoPizza"></canvas>
                     </div>
@@ -160,28 +142,26 @@
 
 </html>
 <script>
-    
+
     var idChefe = sessionStorage.ID_USUARIO;
     var nomeUsuario = sessionStorage.NOME_USUARIO;
     var loginUsuario = sessionStorage.LOGIN_USUARIO;
     var emailUsuario = sessionStorage.EMAIL_USUARIO;
     var fkEmpresa = sessionStorage.FK_EMPRESA;
     var fkChefe = sessionStorage.ID_CHEFE;
-    
+
+    dados_grafico = []
+
     validarSessao()
-    
-    var qtdSeguro = 0
-    var qtdAlerta = 0
-    var qtdPerigo = 0
 
     const graficoBarraDeitado = document.getElementById('graficoBarraDeitado');
-    new Chart(graficoBarraDeitado, {
+    var grafico_deitado = new Chart(graficoBarraDeitado, {
         type: 'bar',
         data: {
             labels: ['Seguro', 'Alerta', 'Perigo'],
             datasets: [{
                 label: 'Seguro',
-                data: [12, 15, 03],
+                data: dados_grafico,
                 borderWidth: 1,
                 backgroundColor: [
                     '#00BF15',
@@ -212,7 +192,7 @@
         data: {
             datasets: [{
                 label: 'Status',
-                data: [3, 3, 3],
+                data: [],
                 borderWidth: 1,
                 backgroundColor: [
                     '#00BF15',
@@ -222,6 +202,36 @@
             }]
         },
     });
+
+    function listar_Uvas() {
+        fetch("/uva/listar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                fkEmpresaServer: fkEmpresa
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    for (let x in json) {
+                        selectTipoUva.innerHTML += `<option value="${json[x].nomeUva}">${json[x].nomeUva}</option>`;
+                    }
+                });
+            } else {
+                console.log("Houve um erro ao tentar consultar as uvas");
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+        return false;
+    }
 
     function listar_estufas() {
         fetch("/estufa/listar_plant", {
@@ -236,33 +246,45 @@
             if (resposta.ok) {
                 console.log(resposta);
 
+                listaAlertas =
+                    [
+                        0, //Seguro
+                        0, //Alerta
+                        0 // Perigo
+                    ]
+
                 resposta.json().then(json => {
                     for (let x in json) {
-                        let tempRegis = json[x].temperaturaRegistro;
-                        let temperaturaMaxima = json[x].tempMax;
-                        let temperaturaMinima = json[x].tempMin;
-                        let temperaturaIdeal = (temperaturaMaxima + temperaturaMinima) / 2
-                        let temperaturaAlertaSuperior = temperaturaIdeal + ((5/100) * temperaturaIdeal)
-                        let temperaturaAlertaInferior = temperaturaIdeal - ((5/100) * temperaturaIdeal)
-                        
+                        let tempRegis = Number(json[x].temperaturaRegistro);
+                        let temperaturaMaxima = Number(json[x].tempMax);
+                        let temperaturaMinima = Number(json[x].tempMin);
+                        let temperaturaIdeal = Number((temperaturaMaxima + temperaturaMinima) / 2)
+                        let temperaturaAlertaSuperior = Number(temperaturaIdeal + ((5 / 100) * temperaturaIdeal))
+                        let temperaturaAlertaInferior = Number(temperaturaIdeal - ((5 / 100) * temperaturaIdeal))
+
                         let umidRegis = json[x].umidadeRegistro;
                         let umidadeMaxima = json[x].umidMax;
                         let umidadeMinima = json[x].umidMin;
                         let umidadeIdeal = (umidadeMaxima + umidadeMinima) / 2
-                        let umidadeAlertaSuperior = umidadeIdeal + ((5/100) * umidadeIdeal)
-                        let umidadeAlertaInferior = umidadeIdeal - ((5/100) * umidadeIdeal)
+                        let umidadeAlertaSuperior = umidadeIdeal + ((5 / 100) * umidadeIdeal)
+                        let umidadeAlertaInferior = umidadeIdeal - ((5 / 100) * umidadeIdeal)
 
                         let string = ""
 
-                        if((tempRegis < temperaturaAlertaSuperior && tempRegis > temperaturaAlertaInferior) && (umidRegis < umidadeAlertaSuperior && umidRegis > umidadeAlertaInferior)){
+                        if ((tempRegis < temperaturaAlertaSuperior && tempRegis > temperaturaAlertaInferior) && (umidRegis < umidadeAlertaSuperior && umidRegis > umidadeAlertaInferior)) {
                             string = "../img/check-box.png"
+                            listaAlertas[0]++
                         }
-                        else if(((tempRegis > temperaturaAlertaSuperior && tempRegis < temperaturaMaxima) || (tempRegis < temperaturaAlertaInferior && tempRegis > temperaturaMinima)) || ((umidRegis > umidadeAlertaSuperior && umidRegis < umidadeMaxima) || (umidRegis < umidadeAlertaInferior && umidRegis > umidadeMinima))){
+                        else if ((tempRegis <= temperaturaMinima || tempRegis >= temperaturaMaxima) || (umidRegis <= umidadeMinima || umidRegis >= umidadeMaxima)) {
                             string = "../img/warning.png"
+                            listaAlertas[1]++
                         }
-                        else if((tempRegis <= temperaturaMinima || tempRegis >= temperaturaMaxima) || (umidRegis <= umidadeMinima || umidRegis >= umidadeMaxima)){
+                        else {
                             string = "../img/cancelar.png"
+                            listaAlertas[2]++
                         }
+
+
                         areaCardsPequenos.innerHTML +=
                             `
                             <div class="cardPequeno" id='card${json[x].idEstufa}'>
@@ -273,11 +295,11 @@
                                 </div>
                                 <div class="ordemCardpequeno">
                                     <a id="title">Umidade Atual (%)</a>
-                                    <a>${json[x].temperaturaRegistro}</a>
+                                    <a>${json[x].umidadeRegistro}</a>
                                 </div>
                                 <div class="ordemCardpequeno">
                                     <a id="title">Temperatura Atual(°C)</a>
-                                    <a>${json[x].umidadeRegistro}</a>
+                                    <a>${json[x].temperaturaRegistro}</a>
                                 </div> 
                                 <div class="ordemCardpequeno">
                                     <a id="title">Status</a>
@@ -287,6 +309,13 @@
                         `
 
                     }
+                    txtSeguro.innerHTML = `${listaAlertas[0]}`
+                    txtPerigo.innerHTML = `${listaAlertas[2]}`
+                    txtAlerta.innerHTML = `${listaAlertas[1]}`
+                    grafico_deitado.data.datasets[0].data.push(listaAlertas[0])
+                    grafico_deitado.data.datasets[0].data.push(listaAlertas[1])
+                    grafico_deitado.data.datasets[0].data.push(listaAlertas[2])
+                    grafico_deitado.update()
                 });
             } else {
                 console.log("Houve um erro ao tentar consultar as plantações");
@@ -335,6 +364,6 @@
     //listaContadores.push(contadorSeguro)
     //listaContadores.push(contadorAlerta)
     //listaContadores.push(contadorPerigo)
-
+    
     listar_estufas()
 </script>

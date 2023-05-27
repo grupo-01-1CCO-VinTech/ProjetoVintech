@@ -181,6 +181,8 @@ select {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .cardPequeno {
@@ -231,7 +233,7 @@ select {
 .graficoBarraHorizontal {
     width: 90%;
     height: 40%;
-    border: solid 0.2vh #150437;
+    /* border: solid 0.2vh #150437; */
     display: flex;
     border-radius: 3vh;
     flex-direction: column;
@@ -253,7 +255,7 @@ select {
 .container-graficoPizza {
     width: 90%;
     height: 50%;
-    border: solid 0.2vh #150437;
+    /* border: solid 0.2vh #150437; */
     display: flex;
     border-radius: 3vh;
     flex-direction: column;

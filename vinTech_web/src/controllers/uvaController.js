@@ -1,11 +1,26 @@
 var uvaModel = require("../models/uvaModel");
 
-function adicionar(req, res) {
-    fkEmpresa = req.body.fkEmpresaServer;
-        uvaModel.adicionar(fkEmpresa)
-}
+// function adicionar(req, res) {
+//     var nomeUva = req.body.nomeUva;
+//     var tempMax = req.body.tempMax;
+//     var tempMin = req.body.tempMin;
+//     var umidMax = req.body.umidMax;
+//     var umidMin = req.body.umidMin;
+//     uvaModel.adicionar(nomeUva, tempMax, tempMin, umidMax, umidMin)
+//     .then(
+//         function (resultado) {
+//             console.log(resultado)
+//         }
+//     ).catch(
+//         function (erro) {
+//             console.log(erro);
+//             console.log("\nHouve um erro ao realizar o cadastro das uvas! Erro: ", erro.sqlMessage);
+//             res.status(500).json(erro.sqlMessage);
+//         }
+//     );
+// }
 
-function listar(req, res){
+function listar(req, res) {
 
     uvaModel.listar().then(
         function (resultado) {
@@ -15,7 +30,7 @@ function listar(req, res){
             if (resultado.length > 0) {
                 res.json(resultado)
             }
-            else{
+            else {
                 res.status(403).send("Ainda nenhuma uva cadastrada");
             }
         }
@@ -26,9 +41,8 @@ function listar(req, res){
             res.status(500).json(erro.sqlMessage);
         }
     );
-}   
+}
 
 module.exports = {
-    adicionar,
     listar
 }

@@ -7,7 +7,7 @@ router.get("/", function (req, res) {
     usuarioController.testar(req, res);
 });
 
-router.get("/listar", function (req, res) {
+router.post("/listar", function (req, res) {
     usuarioController.listar(req, res);
 });
 
@@ -23,5 +23,13 @@ router.post("/cadastrarFuncionario", function (req, res) {
 router.post("/autenticar", function (req, res) {
     usuarioController.entrar(req, res);
 });
+
+router.post("/alterar", function (req,res){
+    usuarioController.alterar(req,res)
+})
+
+router.post("/excluir", function (req,res){
+    usuarioController.excluir(req,res)
+})
 
 module.exports = router;
