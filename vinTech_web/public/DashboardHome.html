@@ -59,19 +59,19 @@
                     <div class="caixas">
                         <div class="caixa">
                             <h3>Estufas em perigo</h3>
-                            <span> 33 </span>
+                            <span id="num_perigo">0</span>
                         </div>
                         <div class="caixa">
                             <h3>
                                 Estufas em alerta
                             </h3>
-                            <span>26</span>
+                            <span id="num_alerta">0</span>
                         </div>
                         <div class="caixa">
                             <h3>
                                 Estufas em estado ideal
                             </h3>
-                            <span>41</span>
+                            <span id="num_ideal">0</span>
                         </div>
                     </div>
                 </div>
@@ -138,20 +138,11 @@
                     </div>
                 </div>
                 <div class="inferior_direita">
-                    <div class="uvas_cultivo">
+                    <div class="uvas_cultivo" id="uvas_cultivo">
                         <h3>
                             Uvas em cultivo
                         </h3>
-                        <h2>Estufa 11</h2>
-                        <div class="lista_uvas">
-                            <ul>Garménère</ul>
-                            <ul>Syrah</ul>
-                            <ul>Tempranillo</ul>
-                            <ul>Malbec</ul>
-                            <ul>Merlot</ul>
-                            <ul>Chardonnay</ul>
-                            <ul>Sauvignon Blanc</ul>
-                            <ul>Pinot Noir</ul>
+                        <div class="lista_uvas" id="lista_uvas">
                         </div>
                     </div>
                 </div>
@@ -233,39 +224,62 @@
             if (resposta.ok) {
                 console.log(resposta);
 
+                listaAlertas =
+                    [
+                        0, //Seguro
+                        0, //Alerta
+                        0 // Perigo
+                    ]
+
+                lista_estufa_perigo = []
+                lista_estufa_alerta = []
+                lista_estufa_segura = []    
+
+                lista_uva_js = []
+
                 resposta.json().then(json => {
                     for (let x in json) {
-                        //let tempRegis = Number(json[x].temperaturaRegistro);
-                        //let temperaturaMaxima = Number(json[x].tempMax);
-                        //let temperaturaMinima = Number(json[x].tempMin);
-                        //let temperaturaIdeal = Number((temperaturaMaxima + temperaturaMinima) / 2)
-                        //let temperaturaAlertaSuperior = Number(temperaturaIdeal + ((5 / 100) * temperaturaIdeal))
-                        //let temperaturaAlertaInferior = Number(temperaturaIdeal - ((5 / 100) * temperaturaIdeal))
+                        let tempRegis = Number(json[x].temperaturaRegistro);
+                        let temperaturaMaxima = Number(json[x].tempMax);
+                        let temperaturaMinima = Number(json[x].tempMin);
+                        let temperaturaIdeal = Number((temperaturaMaxima + temperaturaMinima) / 2)
+                        let temperaturaAlertaSuperior = Number(temperaturaIdeal + ((5 / 100) * temperaturaIdeal))
+                        let temperaturaAlertaInferior = Number(temperaturaIdeal - ((5 / 100) * temperaturaIdeal))
 
-                        //let umidRegis = json[x].umidadeRegistro;
-                        //let umidadeMaxima = json[x].umidMax;
-                        //let umidadeMinima = json[x].umidMin;
-                        //let umidadeIdeal = (umidadeMaxima + umidadeMinima) / 2
-                        //let umidadeAlertaSuperior = umidadeIdeal + ((5 / 100) * umidadeIdeal)
-                        //let umidadeAlertaInferior = umidadeIdeal - ((5 / 100) * umidadeIdeal)
+                        let umidRegis = json[x].umidadeRegistro;
+                        let umidadeMaxima = json[x].umidMax;
+                        let umidadeMinima = json[x].umidMin;
+                        let umidadeIdeal = (umidadeMaxima + umidadeMinima) / 2
+                        let umidadeAlertaSuperior = umidadeIdeal + ((5 / 100) * umidadeIdeal)
+                        let umidadeAlertaInferior = umidadeIdeal - ((5 / 100) * umidadeIdeal)
 
-                        //if ((tempRegis < temperaturaAlertaSuperior && tempRegis > temperaturaAlertaInferior) && (umidRegis < umidadeAlertaSuperior && umidRegis > umidadeAlertaInferior)) {
-                        //    string = "../img/check-box.png"
-                        //    listaAlertas[0]++
+                        lista_uva_js = []
+
+                        if ((tempRegis < temperaturaAlertaSuperior && tempRegis > temperaturaAlertaInferior) && (umidRegis < umidadeAlertaSuperior && umidRegis > umidadeAlertaInferior)) {
+                            string = "../img/check-box.png"
+                            listaAlertas[0]++
+                            lista_estufa_ = []
                             
-                            
-                        //}
-                        //else if ((tempRegis <= temperaturaMinima || tempRegis >= temperaturaMaxima) || (umidRegis <= umidadeMinima || umidRegis >= umidadeMaxima)) {
-                        //    string = "../img/cancelar.png"
-                        //    listaAlertas[1]++
-                        //}
-                        //else {
-                        //    string = "../img/warning.png"
-                        //    listaAlertas[2]++
-                        //}
-
-                        console.log(json[x])
+                        }
+                        else if ((tempRegis <= temperaturaMinima || tempRegis >= temperaturaMaxima) || (umidRegis <= umidadeMinima || umidRegis >= umidadeMaxima)) {
+                            string = "../img/warning.png"
+                            listaAlertas[2]++
+                            lista_estufa_ = []
+                        }
+                        else {
+                            string = "../img/cancelar.png"
+                            listaAlertas[1]++
+                            lista_estufa_ = []
+                        }
+                        if(lista_uva_js.indexOf(json[x].nomeUva == -1)){
+                            lista_uva_js.push(json[x].nomeUva)
+                            lista_uvas.innerHTML += `<h2>${json[x].nomeEstufa}</h2>`
+                            lista_uvas.innerHTML += `<ul>${json[x].nomeUva}</ul>`
+                        }
                     }
+                    num_ideal.innerHTML = listaAlertas[0]
+                    num_perigo.innerHTML = listaAlertas[1]
+                    num_alerta.innerHTML = listaAlertas[2]
                 });
             } else {
                 console.log("Houve um erro ao tentar consultar as plantações");
