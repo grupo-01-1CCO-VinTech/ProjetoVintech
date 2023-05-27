@@ -235,9 +235,9 @@
 
                 resposta.json().then(json => {
                     for (let x in json) {
-                        //let tempRegis = Number(json[x].temperaturaRegistro);
-                        //let temperaturaMaxima = Number(json[x].tempMax);
-                        //let temperaturaMinima = Number(json[x].tempMin);
+                        let tempRegis = Number(json[x].temperaturaRegistro);
+                        let temperaturaMaxima = Number(json[x].tempMax);
+                        let temperaturaMinima = Number(json[x].tempMin);
                         //let temperaturaIdeal = Number((temperaturaMaxima + temperaturaMinima) / 2)
                         //let temperaturaAlertaSuperior = Number(temperaturaIdeal + ((5 / 100) * temperaturaIdeal))
                         //let temperaturaAlertaInferior = Number(temperaturaIdeal - ((5 / 100) * temperaturaIdeal))
@@ -249,20 +249,18 @@
                         //let umidadeAlertaSuperior = umidadeIdeal + ((5 / 100) * umidadeIdeal)
                         //let umidadeAlertaInferior = umidadeIdeal - ((5 / 100) * umidadeIdeal)
 
-                        //if ((tempRegis < temperaturaAlertaSuperior && tempRegis > temperaturaAlertaInferior) && (umidRegis < umidadeAlertaSuperior && umidRegis > umidadeAlertaInferior)) {
-                        //    string = "../img/check-box.png"
-                        //    listaAlertas[0]++
-                            
-                            
-                        //}
-                        //else if ((tempRegis <= temperaturaMinima || tempRegis >= temperaturaMaxima) || (umidRegis <= umidadeMinima || umidRegis >= umidadeMaxima)) {
-                        //    string = "../img/cancelar.png"
-                        //    listaAlertas[1]++
-                        //}
-                        //else {
-                        //    string = "../img/warning.png"
-                        //    listaAlertas[2]++
-                        //}
+                        if ((tempRegis < temperaturaAlertaSuperior && tempRegis > temperaturaAlertaInferior) && (umidRegis < umidadeAlertaSuperior && umidRegis > umidadeAlertaInferior)) {
+                            // string = "../img/check-box.png" 
+                            console.log('Ideal') 
+                        }
+                        else if ((tempRegis <= temperaturaMinima || tempRegis >= temperaturaMaxima) || (umidRegis <= umidadeMinima || umidRegis >= umidadeMaxima)) {
+                            // string = "../img/cancelar.png"
+                            console.log('Perigo')
+                        }
+                        else {
+                            // string = "../img/warning.png"
+                            console.log('Alerta')
+                        }
 
                         console.log(json[x])
                     }

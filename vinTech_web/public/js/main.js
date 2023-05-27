@@ -39,7 +39,7 @@ const serial = async (
             port: 3306,
             user: 'aluno',
             password: 'sptech',
-            database: 'Sprint3'
+            database: 'Vin_tech_Sprint3'
         }
     ).promise();
 
