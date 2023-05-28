@@ -221,6 +221,25 @@ button{
 
 }
 
+#formEditEstufa{ 
+display: flex;
+align-items: center
+}
+#formEditEstufa p{
+    height: 7%;
+}
+#iptEncontrarIdEstufa{
+    width: 44vw;
+}
+#iptEditTamanhoEstufa{
+    width: 36.5vw;
+}
+#iptDeleteEstufaConfirmacaoPlantacao{
+    width: 35.5vw;
+}
+#iptDeleteEstufaConfirmacaoID{
+    width: 40vw;
+}
 .form {
     display: flex;
     flex-direction: column;
@@ -232,8 +251,8 @@ button{
 }
 
 .form button{
-    width: 90%;
-    height: 10%;
+    width: 40%;
+    height: 7.5%;
     border-radius: 20px;
     border: solid 1px #5903af;
     background: 0;
