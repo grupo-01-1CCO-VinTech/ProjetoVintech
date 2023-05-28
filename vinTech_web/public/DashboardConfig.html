@@ -529,11 +529,7 @@
             })
         }).then(function (resposta) {
             if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                            iptAlterNomePlantacao.value = `${json[0].nomePlantacao}`
-                });
+                console.log('teste')
             } else {
                 console.log("Houve um erro ao tentar consultar as plantações");
                 resposta.text().then(texto => {

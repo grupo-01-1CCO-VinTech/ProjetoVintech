@@ -27,29 +27,49 @@ function consultar(id,nomePlant){
 }
 
 function deletar(id,nomePlant){
+    var estufa = undefined
     var instrucao = `
-    SELECT idPlantacao FROM Plantacao WHERE nomePlantacao = '${nomePlant}' AND fkEmpresa = ${id};
+        SELECT idPlantacao FROM Plantacao WHERE nomePlantacao = 'jundia' AND fkEmpresa = ${id};
     `;
     var plantacao = database.executar(instrucao);
-    console.log(plantacao);
+    plantacao.then(
+        function(resultado){
+            console.log(resultado)
+            if (resultado.length == 0){
+                console.log('teste')
+                return new Promise(() => {return 0})
+            }
+            instrucao = `
+                SELECT idEstufa FROM Estufa WHERE fkPlantacao = '${resultado[0].idPlantacao}';
+            `;
+            var estufas = database.executar(instrucao);
+            estufas.then(
+                function(resultado){
+                    estufas.then(
+                        function(resultado){
+                            estufa = resultado
+                            instrucao = `
+                                SELECT idSensor FROM Sensor WHERE fkEstufa = '${resultado[0].idEstufa}';
+                            `;
 
-    instrucao = `
-    SELECT idEstufa FROM Estufa WHERE fkPlantacao = '${plantacao[0].idPlantacao}';
-    `;
-    var estufas = database.executar(instrucao);
+                            var sensores = database.executar(instrucao);
 
-    instrucao = `
-    SELECT idSensor FROM Sensor WHERE fkEstufa = '${estufas[0].idEstufa}';
-    `;
-    var sensores = database.executar(instrucao);
-
-    var instrucao = `
-    DELETE FROM Registro WHERE fkSensor = '${sensores[0].idSensor}';
-    DELETE FROM Sensor WHERE idSensor = '${sensores[0].idSensor}';
-    DELETE FROM Estufa WHERE idEstufa = '${estufas[0].idEstufa}';
-    DELETE FROM Plantacao WHERE fkPlantacao = '${nomePlant}';
-    `
-    return database.executar(instrucao);
+                            sensores.then(
+                                function(resultado){
+                                    var instrucao = `DELETE FROM Registro WHERE fkSensor = (select fkSensor from sensor, registro where idSensor = ${resultado[0].idSensor}); DELETE FROM Sensor WHERE fkEstufa = (select fkEstufa from sensor, estufa where idEstufa = ${estufa[0].idEstufa}); DELETE FROM Estufa WHERE fkPlantacao = 1;DELETE FROM Plantacao WHERE idPlantacao = (select idPlantacao from plantacao where nomePlantacao = ${nomePlant});`
+                                    return database.executar(instrucao);
+                                }
+                        
+                            )
+                
+                        }
+                    )
+        
+                }
+            )
+        }
+    )
+    return new Promise(() => {return 0})
 }
 
 module.exports = {

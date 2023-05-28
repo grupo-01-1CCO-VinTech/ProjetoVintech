@@ -59,8 +59,10 @@ function deletar(req, res){
     var id = req.body.fkEmpresaServer;
     var nomePlant = req.body.nomePlantacaoServer;
 
+
     plantacaoModel.deletar(id,nomePlant).then(
         function (resultado) {
+            console.log(resultado)
             console.log(`\nResultados encontrados: ${resultado.length}`);
             console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
 
