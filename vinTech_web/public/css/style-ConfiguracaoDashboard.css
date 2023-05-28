@@ -1,0 +1,264 @@
+.container {
+    display: flex;
+    width: 60vw;
+    height: 100vh;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center
+}
+
+.container-esquerda {
+    display: flex;
+    width: 54vw;
+    height: 85vh;
+    border: solid 1px #5903af;
+    border-radius: 40px;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-direita {
+    display: flex;
+    width: 20vw;
+    height: 100vh;
+    flex-direction: column;
+    border: solid 1px #5903af;
+}
+
+.container-usuario {
+    display: flex;
+    flex-direction: column;
+    height: 30%;
+    width: 100%;
+    border-bottom: solid 1px #5903af;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: large;
+}
+
+.container-usuario img {
+    width: 45%;
+    height: 65%;
+    border-radius: 50%;
+}
+
+.container-contato {
+    display: flex;
+    flex-direction: column;
+    height: 30%;
+    width: 100%;
+    justify-content: space-between;
+    border-bottom: solid 1px #5903af;
+    align-items: center;
+}
+
+.container-botoes {
+    display: flex;
+    flex-direction: column;
+    height: 40%;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.respostaForms{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.linha-form{
+    display: flex;
+}
+
+button{
+    cursor: pointer;
+}
+
+.container-contato h1 {
+    margin-top: 5%;
+    width: auto;
+    height: 25%;
+}
+
+.container-contato div {
+    height: 18%;
+    width: 90%;
+    padding-left: 5%;
+    border-radius: 20px;
+    border: solid 1px #5903af;
+    font-size: large;
+    display: flex;
+    transition: 1s;
+}
+/*Adicionei margem e animação com hover*/
+.container-contato .spanDivContato {
+    margin: 2% 0%;
+}
+.container-contato .linha-infoAdm{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+#empresaAdm:hover{
+    background-color: #43018431;;
+    box-shadow: 0.1vh 0.1vh 3vh #000;
+    transition: 0.5s;
+}
+ #cargoAdm:hover{
+    background-color: #43018431;
+    box-shadow: 0.1vh 0.1vh 3vh #000;
+    transition: 0.5s;
+}
+.config:hover{
+    background-color: #43018431;
+    box-shadow: 0.1vh 0.1vh 3vh #000;
+    transition: 0.5s;
+}
+.config{
+    transition: 0.5s;
+}
+.sairBotao:hover{
+    background-color: #ff000021;
+    border:0.2vh solid #d20404;
+    box-shadow: 0.1vh 0.1vh 3vh #970101;
+    transition: 0.5s;
+}
+.sairBotao{
+    transition: 0.5s;
+}
+/*Adicionei o detalhe na parte usuario*/
+.botaoUsuario:hover{
+    background-color: #390e6366;
+    box-shadow: 0.1vh 0.1vh 3vh #000;
+    transition: 0.5s;
+}
+.botaoUsuario{
+    transition:0.5s;
+}
+.detalheUva{
+    height: 30%;
+    width: 10%;
+    
+}
+/*Botão selecionado com a uva, sem js*/
+.botaoUva:hover{
+    display: flex;
+}
+.container-botoes button {
+    width: 90%;
+    height: 15%;
+    border-radius: 20px;
+    border: solid 1px #5903af;
+    background: 0;
+    font-size: large;
+}
+/*Configuração da pág add usuario*/
+.addUser{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    height: 100%;
+    width: 60%;
+    margin-left: 5%;
+}
+.uvaUser{
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 50%;
+    margin-left: 23%;
+    background-image: url(../img/uvaDetalhe.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.ambasUser{
+
+    display: flex;
+    flex-direction: row;
+    height: 80%;
+    width: 100%;
+}
+.tituloUser{
+    justify-content: center;
+    width: 100%;
+    display: flex;
+}
+/*Final do add user*/
+/*Inicio do edit user*/
+.form{
+    align-items: flex-start;
+}
+.editUser{
+    /* background-color: #9271ff70; */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.tituloEdit{
+    justify-content: center;
+    width: 100%;
+    display: flex;
+}
+/*Final do edit user*/
+#formAddUsuario{
+    display: flex;
+    align-items: flex-start;
+}
+.addUser .inpInput{
+    width: 80%;
+    height: 90vh;    
+}
+
+.container-botoes #sair {
+    width: 40%;
+
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 2px solid red;
+}
+
+.form button{
+    width: 90%;
+    height: 10%;
+    border-radius: 20px;
+    border: solid 1px #5903af;
+    background: 0;
+    font-size: large;
+}
+
+.form p{
+    font-size: large;
+    height: 7.5%;
+}
+
+.form input{
+    width: 50vh;
+    height: 100%;
+    border: solid 1px #5903af;
+    border-radius: 20px;
+}
+
+.form select{
+    text-align: center;
+    height: 100%;
+    border: solid 1px #5903af;
+    border-radius: 20px;
+}
+
+#formEditUsuario p{
+    height: 5%;
+}
