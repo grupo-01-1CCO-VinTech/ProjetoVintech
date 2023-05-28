@@ -18,7 +18,43 @@ function listar(id) {
     return database.executar(instrucao);
 }
 
+function consultar(id,nomePlant){
+    var instrucao = `
+    SELECT nomePlantacao, idPlantacao FROM Plantacao WHERE nomePlantacao = '${nomePlant}' AND fkEmpresa = ${id};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function deletar(id,nomePlant){
+    var instrucao = `
+    SELECT idPlantacao FROM Plantacao WHERE nomePlantacao = '${nomePlant}' AND fkEmpresa = ${id};
+    `;
+    var plantacao = database.executar(instrucao);
+    console.log(plantacao);
+
+    instrucao = `
+    SELECT idEstufa FROM Estufa WHERE fkPlantacao = '${plantacao[0].idPlantacao}';
+    `;
+    var estufas = database.executar(instrucao);
+
+    instrucao = `
+    SELECT idSensor FROM Sensor WHERE fkEstufa = '${estufas[0].idEstufa}';
+    `;
+    var sensores = database.executar(instrucao);
+
+    var instrucao = `
+    DELETE FROM Registro WHERE fkSensor = '${sensores[0].idSensor}';
+    DELETE FROM Sensor WHERE idSensor = '${sensores[0].idSensor}';
+    DELETE FROM Estufa WHERE idEstufa = '${estufas[0].idEstufa}';
+    DELETE FROM Plantacao WHERE fkPlantacao = '${nomePlant}';
+    `
+    return database.executar(instrucao);
+}
+
 module.exports = {
     adicionar,
-    listar
+    listar,
+    deletar,
+    consultar
 };
