@@ -48,7 +48,6 @@
         <div class="container">
             <div class="container-esquerda">
                 <div class="respostaForms" id="respostaForms">
-
                 </div>
                 <div id="formUsuario" style="display: none;" class="form">
                     <h1>Configuração de Usuários</h1>
@@ -120,23 +119,19 @@
                     <h1>Adicionar Plantação</h1>
 
                     <p>Nome da Plantação <input type="text" id="iptNomePlantacao" placeholder="Plantação Jundiaí"></p>
+
                     <!-- <p>Localização: <input type="text" id="iptLocalizacaoPlantacao"></p> -->
                     <!-- <p>Tamanho da Plantação: <input type="text" id="iptTamanhoPlantacao" placeholder="Em Hectares"></p> -->
                     <button onclick="adicionar_Plantacao()">Adicionar Plantação</button>
                 </div>
                 <div id="formEditPlantacao" style="display: none;" class="form">
                     <h1>Editar ou remover Plantações</h1>
-                    <p>Por ID: <input type="text" id="iptEncontrarIdEstufa"></p>
                     <p>Por Nome: <input type="text" id="iptEncontrarNomePlantacao" placeholder="Plantação Jundiaí"></p>
-                    <p>Por Localização: <input type="text" id="iptLocalizacaoPlantacao"></p>
-                    <button onclick="encontrar_Plantacao()">Encontrar Plantação</button>
+                    <button onclick="consultar_plantacao()">Encontrar Plantação</button>
                     <h3>Editar Plantação</h3>
-                    <p>Nome: <input type="text" id="iptEditNomePlantação"></p>
-                    <!--<p>Tamanho: <input type="text" id="iptEditTamanhoPlantacao"></p>
-                    <h3>Deletar Plantação:</h3>
-                    <p>Confirmar nome: <input type="text" id="iptDeletePlantacaoConfirmacaoNome"></p> -->
+                    <p>Nome: <input type="text" id="iptAlterNomePlantacao"></p>
                     <button onclick="editar_Plantacao()">Editar Plantação</button>
-                    <button onclick="deletarPlantacao()">Deletar Plantação</button>
+                    <button onclick="deletar_Plantacao()">Deletar Plantação</button>
                 </div>
 
                 <!-- AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
@@ -489,6 +484,68 @@
             });
             return false;
         }
+    }
+
+    function consultar_plantacao() {
+        fetch("/plantacao/consultar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nomePlantacaoServer: iptEncontrarNomePlantacao.value,
+                fkEmpresaServer: fkEmpresa
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                            iptAlterNomePlantacao.value = `${json[0].nomePlantacao}`
+                });
+            } else {
+                console.log("Houve um erro ao tentar consultar as plantações");
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function deletar_Plantacao() {
+        fetch("/plantacao/deletar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nomePlantacaoServer: iptEncontrarNomePlantacao.value,
+                fkEmpresaServer: fkEmpresa
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                            iptAlterNomePlantacao.value = `${json[0].nomePlantacao}`
+                });
+            } else {
+                console.log("Houve um erro ao tentar consultar as plantações");
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
     }
 
     function listar_platacoes() {
