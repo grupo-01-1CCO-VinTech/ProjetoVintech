@@ -32,7 +32,7 @@ CREATE TABLE Funcionario(
     nomeFuncionario VARCHAR(45),
     fkChefe INT,
     FOREIGN KEY (fkChefe) REFERENCES Funcionario (idFuncionario),
-    imagemUsuario VARCHAR(600),
+    imagemUsuario VARCHAR(15000),
     senhaFuncionario VARCHAR(45),
     emailFuncionario VARCHAR(60),
     fkEmpresa INT,

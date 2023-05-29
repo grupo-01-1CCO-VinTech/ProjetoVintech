@@ -22,19 +22,24 @@
         <div class="barra-lateral">
             <div class="barra-logo">
                 <span>VinTech</span>
-                <img src="../img/Logo-Uva.png" alt="">
+                <img src="img/vintech.jpg" alt="">
             </div>
             <div class="barra-itens">
                 <ul>
-                    <li>Home</li>
-                    <li id="item">Plantações</li>
-                    <li id="nomeEstufa"> ➡ Estufa 001</li>
-                    <li id="item_config">Configurações</li>
+                    <a href="DashboardHome.html">
+                        <li>Home</li>
+                    </a>
+                    <a class="selected">
+                        <li>Plantações</li>
+                    </a>
+                    <a href="DashboardConfig.html" id="item_config">
+                        <li>Configurações</li>
+                    </a>
                 </ul>
             </div>
             <div class="barra-usuario">
                 <div class="barra-fotoUsuario">
-                    <img src="img/usuario.png" alt="Foto Usuário" class="border">
+                    <img  id="imagemUsuario" src="" alt="Foto Usuário">
                     <span id="nome_usuario"></span>
                     <span id="cargo_usuario"></span>
                 </div>
@@ -43,6 +48,7 @@
                 <button onclick="limparSessao()">Sair</button>
             </div>
         </div>
+    </div>
         <!--Navbar lateral - final -->
         <!--Inicio do container-->
         <div class="container">
@@ -120,7 +126,9 @@
     var emailUsuario = sessionStorage.EMAIL_USUARIO;
     var fkEmpresa = sessionStorage.FK_EMPRESA;
     var fkChefe = sessionStorage.ID_CHEFE;
+    var imagemAdm = sessionStorage.IMAGEM_USUARIO;
 
+    imagemUsuario.src = imagemAdm
     validarSessao()
     
     var contextoDht11Umidade = document.getElementById('dht11Umidade').getContext('2d');

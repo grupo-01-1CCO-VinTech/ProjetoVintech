@@ -36,7 +36,7 @@
             </div>
             <div class="barra-usuario">
                 <div class="barra-fotoUsuario">
-                    <img src="img/usuario.png" alt="Foto Usuário">
+                    <img  id="imagemUsuario" src="" alt="Foto Usuário">
                     <span id="nome_usuario"></span>
                     <span id="cargo_usuario"></span>
                 </div>
@@ -149,6 +149,9 @@
     var emailUsuario = sessionStorage.EMAIL_USUARIO;
     var fkEmpresa = sessionStorage.FK_EMPRESA;
     var fkChefe = sessionStorage.ID_CHEFE;
+    var imagemAdm = sessionStorage.IMAGEM_USUARIO;
+
+    imagemUsuario.src = imagemAdm
 
     dados_grafico = []
 

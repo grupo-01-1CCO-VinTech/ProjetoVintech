@@ -35,7 +35,7 @@
             </div>
             <div class="barra-usuario">
                 <div class="barra-fotoUsuario">
-                    <img src="Img/usuario.png" alt="Foto Usuário">
+                    <img  id="imagemUsuario" src="" alt="Foto Usuário">
                     <span id="nome_usuario"></span>
                     <span id="cargo_usuario"></span>
                 </div>
@@ -184,7 +184,7 @@
         </div>
         <div class="container-direita">
             <div class="container-usuario">
-                <img src="img/eu2.jpg" alt="">
+                <img src="" alt="" id="imagemUsuario2">
                 <p id="nomeAdm"></p>
                 <p id="emailAdm"></p>
             </div>
@@ -212,6 +212,10 @@
     var emailUsuario = sessionStorage.EMAIL_USUARIO;
     var fkEmpresa = sessionStorage.FK_EMPRESA;
     var fkChefe = sessionStorage.ID_CHEFE;
+    var imagemAdm = sessionStorage.IMAGEM_USUARIO;
+
+    imagemUsuario.src = imagemAdm
+    imagemUsuario2.src = imagemAdm
 
     validarSessao()
 
