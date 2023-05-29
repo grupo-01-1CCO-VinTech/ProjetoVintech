@@ -88,7 +88,7 @@ function cadastrarAdm(res){
             console.log(`\nResultados encontrados: ${resultado.length}`);
             console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
             console.log(resultado[0].idEmpresa)
-            usuarioModel.cadastrar(resultado[0].idEmpresa, senhaServer, emailAdmServer, loginServer)
+            usuarioModel.cadastrar(resultado[0].idEmpresa, senhaServer, emailAdmServer, loginServer, imagemServer)
         }
     ).catch(
         function (erro) {
@@ -121,6 +121,7 @@ function cadastrar(req, res) {
     emailAdmServer= req.body.emailAdmServer;
     loginServer= req.body.loginServer;
     senhaServer= req.body.senhaServer;
+    imagemServer = req.body.imagemServer;
 
     // Faça as validações dos valores
     // if (nome == undefined) {

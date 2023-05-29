@@ -87,11 +87,6 @@ function cadastrar(req, res) {
     */
     // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
     var erro = false
-    if (imagemServer == 'undefined'){
-        erro= true
-        alert(imagemServer)
-    }
-
     if (loginAdm.length < 8) {
         erro = true
         res.status(400).send("O campo Login deve ter pelo menos 8 caracteres!");

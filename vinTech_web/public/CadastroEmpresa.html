@@ -136,7 +136,7 @@
                     <div class="linha linha-imagemUsuario">
                         <div class="bloco bloco-imagem">
                             <p>Insira sua imagem de Perfil <br>(Url da Imagem)</p>
-                            <input type="" id="txtImagem">
+                            <input type="text" id="txtImagem">
                         </div>
                     </div>
                 </div>
@@ -359,6 +359,7 @@
         empresa.adm.imagem = txtImagem.value
         empresa.adm.email = txtEmailAdm.value
         empresa.adm.senha = txtSenha.value
+        alert(empresa.adm.imagem)
         const confirmarSenha = txtConfirmarSenha.value
         var erro = false
 
