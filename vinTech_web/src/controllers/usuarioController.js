@@ -64,8 +64,9 @@ function entrar(req, res) {
 function cadastrar(req, res) {
     /*Variveis com os dados do cad*/
     var emailAdmServer = req.body.emailAdmServer;
-    var loginAdm = req.body.loginServer;
+    var nomeAdm = req.body.loginServer;
     var senhaServer = req.body.senhaServer;
+    var imagemServer = req.body.imagemServer;
     /*
         Dicionario das variaveis
         nomeEmpresaServer: empresa.dados.nome,
@@ -86,6 +87,11 @@ function cadastrar(req, res) {
     */
     // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
     var erro = false
+    if (imagemServer == 'undefined'){
+        erro= true
+        alert(imagemServer)
+    }
+
     if (loginAdm.length < 8) {
         erro = true
         res.status(400).send("O campo Login deve ter pelo menos 8 caracteres!");
@@ -105,9 +111,10 @@ function cadastrar(req, res) {
     }
 
     if (erro == false) {
-        usuarioModel.cadastrar(emailAdmServer, loginAdm, senhaServer)
-            .then(
-                function (resultado) {
+        usuarioModel.cadastrar(emailAdmServer, nomeAdm, senhaServer, imagemServer)
+        .then(
+            function (resultado) {
+                    console.log(imagemServer);
                     res.json(resultado);
                 }
             ).catch(

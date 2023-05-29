@@ -133,7 +133,12 @@
                             <p>Repetir Senha:* </p><input type="text" id="txtConfirmarSenha"value="11111111111111">
                         </div>
                     </div>
-
+                    <div class="linha linha-imagemUsuario">
+                        <div class="bloco bloco-imagem">
+                            <p>Insira sua imagem de Perfil <br>(Url da Imagem)</p>
+                            <input type="" id="txtImagem">
+                        </div>
+                    </div>
                 </div>
                 <div class="termos">
                     <button onclick="verificarSenha()" class="button" id="btn_cadastrar">Cadastrar</button>
@@ -167,6 +172,7 @@
         },
         adm: {
             login: "",
+            imagem: "",
             email: "",
             senha: ""
         }
@@ -350,6 +356,7 @@
     }
     function verificarSenha() {
         empresa.adm.login = txtLogin.value
+        empresa.adm.imagem = txtImagem.value
         empresa.adm.email = txtEmailAdm.value
         empresa.adm.senha = txtSenha.value
         const confirmarSenha = txtConfirmarSenha.value
@@ -409,8 +416,9 @@
                 telefoneSecundarioServer: empresa.contato.telefoneSecundario,
                 emailEmpresaServer: empresa.contato.email,
         
-                emailAdmServer: empresa.adm.email,
                 loginServer: empresa.adm.login,
+                imagemServer: empresa.adm.imagem,
+                emailAdmServer: empresa.adm.email,
                 senhaServer: empresa.adm.senha
             })
         }).then(function (resposta) {

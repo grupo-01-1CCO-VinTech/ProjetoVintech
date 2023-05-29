@@ -1,14 +1,14 @@
 /* Definindo as classes e seus atributos */
 
-.pai{
-display: flex;
-justify-content: row;
-background: url(../img/vintech_roxo.png);
-background-repeat: no-repeat;
-background-size: cover;
+.pai {
+    display: flex;
+    justify-content: row;
+    background: url(../img/vintech_roxo.png);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-.button{
+.button {
     margin-top: 1vh;
     width: 30%;
     height: 60%;
@@ -22,7 +22,7 @@ background-size: cover;
     margin-right: 2vw;
 }
 
-.sobre{
+.sobre {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,7 +33,7 @@ background-size: cover;
     /* background-color: blueviolet; */
 }
 
-.sobreTitulo{
+.sobreTitulo {
     display: flex;
     width: 100%;
     height: 15vh;
@@ -43,7 +43,7 @@ background-size: cover;
     justify-content: center;
 }
 
-.sobreTexto{
+.sobreTexto {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -57,7 +57,7 @@ background-size: cover;
     font-size: 1vh;
 }
 
-.coluna{
+.coluna {
     display: flex;
     width: 1%;
     height: 100vh;
@@ -66,7 +66,7 @@ background-size: cover;
     box-shadow: 5px 0px 30px rgb(58, 20, 58);
 }
 
-.ajuste{
+.ajuste {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -74,7 +74,7 @@ background-size: cover;
     height: 100vh;
 }
 
-.formulario{
+.formulario {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -86,17 +86,19 @@ background-size: cover;
     /* padding-bottom: 3vh; */
     /* border: solid 3px black; */
 }
-.formulario-infoEmpresa{
+
+.formulario-infoEmpresa {
     width: 65%;
     height: 95%;
 }
-.formulario-cadastroLogin{
+
+.formulario-cadastroLogin {
     display: none;
     width: 50%;
     height: 60%;
 }
 
-.informacoes{
+.informacoes {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -106,7 +108,7 @@ background-size: cover;
     /* background-color: cornflowerblue; */
 }
 
-.linha{
+.linha {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -117,7 +119,7 @@ background-size: cover;
     /* border: 2px solid red; */
 }
 
-.contato{
+.contato {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -127,7 +129,7 @@ background-size: cover;
     /* border: 1px solid red; */
 }
 
-.administrador{
+.administrador {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -136,7 +138,7 @@ background-size: cover;
     height: 90%;
 }
 
-.termos{
+.termos {
     display: flex;
     height: 10vh;
     width: 100%;
@@ -146,7 +148,7 @@ background-size: cover;
     font-size: 2vh;
 }
 
-.carregando{
+.carregando {
     width: 200px;
     height: 200px;
     position: absolute;
@@ -158,90 +160,107 @@ background-size: cover;
 }
 
 /* Definindo atributos das tags dentro das classes */
-.sobreTitulo h1{
+.sobreTitulo h1 {
     font-size: 2vw;
     letter-spacing: 2px;
     font-family: tt-travels;
 }
-.sobreTexto p{
+
+.sobreTexto p {
     letter-spacing: 1px;
     font-size: 2.2vh;
     line-height: 2.7vh;
 }
-.sobreTexto span{
+
+.sobreTexto span {
     font-size: 25px;
     letter-spacing: 2px;
     text-align: center;
     font-weight: 900;
 }
 
-.linha input{
+.linha input {
     width: 10vw;
     height: 6vh;
     /* border: solid 1px rgb(111, 88, 122); */
     border: none;
     border-radius: 5px;
-    background-color: #ffffff98 ;
+    background-color: #ffffff98;
     padding-left: 15px;
     box-shadow: 1px 1px 10px #4f3f585d;
     letter-spacing: 2px;
 }
 
-.linha p{
+.linha p {
     width: 80%;
     font-size: 2vh;
 }
 
-.linha .bloco, .linha .bloco input{
+.linha .bloco,
+.linha .bloco input {
     width: 100%;
     margin-top: 0.5vh;
     /* border: 2px solid red; */
 }
-.linha .bloco p{
+
+.linha .bloco p {
     margin-top: 0.5vh;
     font-weight: bold;
 }
-.linha-cnpj .bloco-cnpj{
+
+.linha-cnpj .bloco-cnpj {
     width: 40%;
 }
-.linha-cnpj .bloco-cep{
+
+.linha-cnpj .bloco-cep {
     width: 35%;
 }
-.linha-cnpj .bloco-numero{
+
+.linha-cnpj .bloco-numero {
     width: 15%;
 }
 
-.formulario-infoEmpresa h1{
+.formulario-infoEmpresa h1 {
     font-size: 4vh;
 }
 
-.formulario-infoEmpresa h2{
+.linha-imagemUsuario .bloco-imagem {
+    width: 100%;
+    height: 100%;
+}
+
+.formulario-infoEmpresa h2 {
     font-size: 3.5vh;
     width: 80%;
     font-weight: 500;
 }
 
-.formulario-infoEmpresa h2:last-of-type{
+.formulario-infoEmpresa h2:last-of-type {
     /* border: 2px solid red; */
     width: auto;
     font-size: 3vh;
 }
 
-.formulario-cadastroLogin .linha, .formulario-cadastroLogin .linha .bloco{
+.formulario-cadastroLogin{
+    height: 70%;
+}
+
+.formulario-cadastroLogin .linha,
+.formulario-cadastroLogin .linha .bloco {
     width: 90%;
     /* border: 2px solid red; */
 }
 
-.formulario-cadastroLogin h2{
+.formulario-cadastroLogin h2 {
     font-size: 3.5vh;
     font-weight: 300;
 }
 
-.formulario-cadastroLogin p{
+.formulario-cadastroLogin p {
     font-size: 2.5vh;
 }
 
-.carregando img{
+.carregando img {
     width: 150px;
     height: 150px;
 }

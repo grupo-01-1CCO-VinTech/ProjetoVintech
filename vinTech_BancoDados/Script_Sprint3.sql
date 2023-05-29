@@ -32,6 +32,7 @@ CREATE TABLE Funcionario(
     nomeFuncionario VARCHAR(45),
     fkChefe INT,
     FOREIGN KEY (fkChefe) REFERENCES Funcionario (idFuncionario),
+    imagemUsuario VARCHAR(600),
     senhaFuncionario VARCHAR(45),
     emailFuncionario VARCHAR(60),
     fkEmpresa INT,
@@ -68,7 +69,7 @@ CREATE TABLE Sensor(
     idSensor INT PRIMARY KEY AUTO_INCREMENT,
     localSensor VARCHAR(45),
     fkEstufa INT,
-    FOREIGN KEY (fkEstufa) REFERENCES Estufa (idEstufa),
+    FOREIGN KEY (fkEstufa) REFERENCES Estufa (idEstufa)
 );
 
 CREATE TABLE Registro(
