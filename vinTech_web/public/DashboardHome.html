@@ -158,6 +158,10 @@
                 lista_uva_js = []
 
                 resposta.json().then(json => {
+                    var maior_temp = -9999
+                    var menor_temp = 9999
+                    var maior_umid = -9999
+                    var menor_umid = 9999
                     for (let x in json) {
                         let tempRegis = Number(json[x].temperaturaRegistro);
                         let temperaturaMaxima = Number(json[x].tempMax);
@@ -181,7 +185,13 @@
                         }
                         else if ((tempRegis <= temperaturaMinima || tempRegis >= temperaturaMaxima) || (umidRegis <= umidadeMinima || umidRegis >= umidadeMaxima)) {
                             string = "../img/cancelar.png"
-                            estufa_perigo.innerHTML = `${json[x].nomeEstufa}<br> Temp: ${tempRegis} / Umid: ${umidRegis}`
+                            if (umidRegis > maior_umid || umidRegis < menor_umid || tempRegis > maior_temp || tempRegis < menor_temp){
+                                maior_umid = umidRegis
+                                menor_umid = umidRegis
+                                menor_temp = tempRegis
+                                maior_temp = tempRegis
+                                estufa_perigo.innerHTML = `${json[x].nomeEstufa}<br> Temp: ${tempRegis} / Umid: ${umidRegis}`
+                            }
                             listaAlertas[1]++
                         }
                         else {
