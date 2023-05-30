@@ -264,6 +264,12 @@
                         let temperaturaIdeal = Number((temperaturaMaxima + temperaturaMinima) / 2)
                         let temperaturaAlertaSuperior = Number(temperaturaIdeal + ((5 / 100) * temperaturaIdeal))
                         let temperaturaAlertaInferior = Number(temperaturaIdeal - ((5 / 100) * temperaturaIdeal))
+                        console.log(`Temperatura registro ${tempRegis}`)
+                        console.log(`Temperatura Ideal: ${temperaturaIdeal}`)
+                        console.log(`Temperatura Maxima: ${temperaturaMaxima}`)
+                        console.log(`Temperatura Minima: ${temperaturaMinima}`)
+                        console.log(`Temperatura Alerta Superior: ${temperaturaAlertaSuperior}`)
+                        console.log(`Temperatura Alerta Inferior: ${temperaturaAlertaInferior}`)
 
                         let umidRegis = json[x].umidadeRegistro;
                         let umidadeMaxima = json[x].umidMax;
@@ -271,6 +277,14 @@
                         let umidadeIdeal = (umidadeMaxima + umidadeMinima) / 2
                         let umidadeAlertaSuperior = umidadeIdeal + ((5 / 100) * umidadeIdeal)
                         let umidadeAlertaInferior = umidadeIdeal - ((5 / 100) * umidadeIdeal)
+                        console.log(`Umidade registro ${umidRegis}`)
+                        console.log(`Umidade Ideal: ${umidadeIdeal}`)
+                        console.log(`Umidade Maxima: ${umidadeMaxima}`)
+                        console.log(`Umidade Minima: ${umidadeMinima}`)
+                        console.log(`Umidade Alerta Superior: ${umidadeAlertaSuperior}`)
+                        console.log(`Umidade Alerta Inferior: ${umidadeAlertaInferior}`)
+
+
 
                         let string = ""
 
