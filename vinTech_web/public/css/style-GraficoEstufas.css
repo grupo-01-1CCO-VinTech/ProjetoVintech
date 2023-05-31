@@ -25,6 +25,7 @@
 .header a {
     font-size: 7vh;
     letter-spacing: 0.2vh;
+    color: #000;
 }
 
 .header span {

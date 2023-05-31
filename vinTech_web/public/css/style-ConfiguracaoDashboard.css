@@ -39,6 +39,7 @@
 .container-usuario img {
     width: 45%;
     height: 65%;
+    image-rendering: auto;
     border-radius: 50%;
 }
 

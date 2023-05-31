@@ -29,7 +29,7 @@
                     <a href="DashboardHome.html">
                         <li>Home</li>
                     </a>
-                    <a class="selected">
+                    <a class="selected" href="DashboardPlantacoes.html">
                         <li>Plantações</li>
                     </a>
                     <a href="DashboardConfig.html" id="item_config">
@@ -40,9 +40,9 @@
             <div class="barra-usuario">
                 <div class="barra-fotoUsuario">
                     <img  id="imagemUsuario" src="" alt="Foto Usuário">
-                    <span id="nome_usuario"></span>
-                    <span id="cargo_usuario"></span>
                 </div>
+                <span id="nome_usuario"></span>
+                <span id="cargo_usuario"></span>
             </div>
             <div class="barra-button">
                 <button onclick="limparSessao()">Sair</button>
@@ -54,7 +54,7 @@
         <div class="container">
             <div class="header">
                 <img src="img/uvaDetalhe.png" alt="Detalhe Uva">
-                <a>Estufa 001</a>
+                <a id="tituloEstufa">Estufa </a>
                 <span>Informações</span>
                 <span class="linhaTitulo"></span>
             </div>
@@ -127,6 +127,14 @@
     var fkEmpresa = sessionStorage.FK_EMPRESA;
     var fkChefe = sessionStorage.ID_CHEFE;
     var imagemAdm = sessionStorage.IMAGEM_USUARIO;
+    var idEstufa = sessionStorage.ID_ESTUFA;
+
+    if(Number(idEstufa) < 10){
+        tituloEstufa.innerHTML += 0    
+    }
+    else{
+        tituloEstufa.innerHTML += idEstufa 
+    }
 
     imagemUsuario.src = imagemAdm
     validarSessao()
