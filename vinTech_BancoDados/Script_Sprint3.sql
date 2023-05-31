@@ -1,4 +1,5 @@
 CREATE DATABASE Vin_tech_Sprint3;
+
 USE Vin_tech_Sprint3;
 
 CREATE TABLE Empresa(
@@ -49,10 +50,10 @@ CREATE TABLE Uva(
 
 CREATE TABLE Estufa(
     idEstufa INT PRIMARY KEY AUTO_INCREMENT,
+    nomeEstufa VARCHAR(45),
     areaEstufa INT,
     fkPlantacao INT,
     fkUva INT,
-    nomeEstufa varchar(45),
     FOREIGN KEY (fkPlantacao) REFERENCES Plantacao (idPlantacao),
     FOREIGN KEY (fkUva) REFERENCES Uva (idUva)
 );
@@ -78,16 +79,37 @@ INSERT INTO Uva VALUES
 	(NULL, 'Carménère', 15.80, 5.30, 43, 05),
 	(NULL, 'Syrah', 18.20, 13.85, 82, 23),                       
 	(NULL, 'Tempranillo', 15.80, 5.30, 21, 01),
-	(NULL, 'Merlot', 24.23, 12.72, 72, 34);	
+	(NULL, 'Merlot', 24.23, 12.72, 72, 34);	select * from empresa;
+        
+-- select nomeEstufa, idSensor, umidadeRegistro, temperaturaRegistro, nomeUva, tempMax, tempMin, umidMax, umidMin
+-- from registro, (select max(idregistro) as idRegistro
+-- from registro group by fkSensor) as idRecente, sensor, estufa, plantacao, empresa, uva
+-- where idRecente.idRegistro = registro.idRegistro and
+-- Registro.fkSensor = idSensor and fkEstufa = idEstufa and fkPlantacao = idPlantacao and fkEmpresa = 1 and fkUva = idUva;
 
-select * from empresa;
+
+-- Aqui para realizar este INSERT precisa de ter uma empresa cadastrada, cadastre pela página de cadastro
+INSERT INTO Plantacao VALUES (NULL, 'Plantação Manaus', 'Manaus', 'AM', 1);
+
+-- Só de INSERT na estufa, caso queira testar e não tenha configurado na tela de DashboardConfig.html 
+INSERT INTO Estufa VALUES (NULL, 100, 'Estufa Balão Mágico', 1, 1); 
+
+INSERT INTO Sensor values (null,'Corredor 3', 1);
+
+-- Se quiser testar aqui com outros sensores, mude a fkSensor
+
+INSERT INTO Registro values (null, 12, 80, now(), 1);
+INSERT INTO Registro values (null, 12, 80, now(), 1);
+INSERT INTO Registro values (null, 29, 34, now(), 1);
+INSERT INTO Registro values (null, 29, 34, now(), 1);
+INSERT INTO Registro values (null, 29, 34, now(), 1);
+
 select * from funcionario;
 select * from plantacao;
 select * from estufa;
 select * from uva;
 select * from sensor;
 select * from registro;
-
 
 select 
 	idEstufa, nomeEstufa, nomeUva, tempMax, tempMin, umidMax, umidMin, temperaturaRegistro, umidadeRegistro, max(dataRegistro)
@@ -97,18 +119,3 @@ from
 where
 	fkUva = idUva and fkSensor = idEstufa and plantaEmpresa.idPlantacao = fkPlantacao and 
 	dataRegistro = (select max(dataRegistro) from registro) group by idEstufa order by dataRegistro desc;
-        
--- select nomeEstufa, idSensor, umidadeRegistro, temperaturaRegistro, nomeUva, tempMax, tempMin, umidMax, umidMin
--- from registro, (select max(idregistro) as idRegistro
--- from registro group by fkSensor) as idRecente, sensor, estufa, plantacao, empresa, uva
--- where idRecente.idRegistro = registro.idRegistro and
--- Registro.fkSensor = idSensor and fkEstufa = idEstufa and fkPlantacao = idPlantacao and fkEmpresa = 1 and fkUva = idUva;
-
-					
-INSERT INTO Plantacao (nomePlantacao, fkEmpresa) VALUES ('Plantação Manaus','1');
-INSERT INTO Sensor values (null,'Corredor 3', 5);
-INSERT INTO Registro values (null, 12, 80, now(), 5);
-INSERT INTO Registro values (null, 12, 80, now(), 4);
-INSERT INTO Registro values (null, 29, 34, now(), 3);
-INSERT INTO Registro values (null, 29, 34, now(), 2);
-INSERT INTO Registro values (null, 29, 34, now(), 1);
