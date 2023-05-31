@@ -102,6 +102,8 @@ body {
     align-items: center;
     justify-content: space-evenly;
     width: 100%;
+    align-items:flex-start;
+    margin-left: 17%;
 }
 
 .barra-itens ul li {
