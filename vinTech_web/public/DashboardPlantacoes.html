@@ -266,12 +266,6 @@
                         let temperaturaIdeal = Number((temperaturaMaxima + temperaturaMinima) / 2)
                         let temperaturaAlertaSuperior = Number(temperaturaIdeal + ((5 / 100) * temperaturaIdeal))
                         let temperaturaAlertaInferior = Number(temperaturaIdeal - ((5 / 100) * temperaturaIdeal))
-                        console.log(`Temperatura registro ${tempRegis}`)
-                        console.log(`Temperatura Ideal: ${temperaturaIdeal}`)
-                        console.log(`Temperatura Maxima: ${temperaturaMaxima}`)
-                        console.log(`Temperatura Minima: ${temperaturaMinima}`)
-                        console.log(`Temperatura Alerta Superior: ${temperaturaAlertaSuperior}`)
-                        console.log(`Temperatura Alerta Inferior: ${temperaturaAlertaInferior}`)
 
                         let umidRegis = json[x].umidadeRegistro;
                         let umidadeMaxima = json[x].umidMax;
@@ -279,35 +273,32 @@
                         let umidadeIdeal = (umidadeMaxima + umidadeMinima) / 2
                         let umidadeAlertaSuperior = umidadeIdeal + ((5 / 100) * umidadeIdeal)
                         let umidadeAlertaInferior = umidadeIdeal - ((5 / 100) * umidadeIdeal)
-                        console.log(`Umidade registro ${umidRegis}`)
-                        console.log(`Umidade Ideal: ${umidadeIdeal}`)
-                        console.log(`Umidade Maxima: ${umidadeMaxima}`)
-                        console.log(`Umidade Minima: ${umidadeMinima}`)
-                        console.log(`Umidade Alerta Superior: ${umidadeAlertaSuperior}`)
-                        console.log(`Umidade Alerta Inferior: ${umidadeAlertaInferior}`)
-
-
 
                         let string = ""
 
                         if ((tempRegis < temperaturaAlertaSuperior && tempRegis > temperaturaAlertaInferior) && (umidRegis < umidadeAlertaSuperior && umidRegis > umidadeAlertaInferior)) {
+                            classe = "Seguro"
                             string = "../img/check-box.png"
                             listaAlertas[0]++
                         }
                         else if ((tempRegis <= temperaturaMinima || tempRegis >= temperaturaMaxima) || (umidRegis <= umidadeMinima || umidRegis >= umidadeMaxima)) {
+                            classe = "Perigo"
                             string = "../img/cancelar.png"
                             listaAlertas[2]++
                         }
                         else {
+                            classe = "Alerta"
                             string = "../img/warning.png"
                             listaAlertas[1]++
                         }
 
-
                         areaCardsPequenos.innerHTML +=
                             `
-                            <div class="cardPequeno" id='card${json[x].idEstufa}'>
-                                <h2><a href="DashboardGraficosEstufas.html">${json[x].nomeEstufa}</a></h2>
+                            <div class="cardPequeno ${classe}" id='card${json[x].idEstufa}' onclick='verEstufa(${json[x].idEstufa})'>
+                                <div class="ordemCardpequeno">
+                                    <a id="title">Id da Estufa: ${json[x].idEstufa}</a>
+                                    <a>${json[x].nomeEstufa}</a>
+                                </div>
                                 <div class="ordemCardpequeno">
                                     <a id="title">Tipo de Uva</a>
                                     <a>${json[x].nomeUva}</a>

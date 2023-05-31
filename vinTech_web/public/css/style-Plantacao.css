@@ -179,10 +179,14 @@ select {
     height: 60%;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: top;
+    gap: 5%;
     align-items: center;
-    overflow-y: auto;
+    overflow-y: scroll;
     overflow-x: hidden;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    /* background-color: red; */
 }
 
 .cardPequeno {
@@ -194,11 +198,44 @@ select {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    transition: .5s;
+}
+
+.cardPequeno:hover {
+    cursor: pointer;
+    transition: .5s;
 }
 
 .cardPequeno a{
     color: black;
     text-decoration: none;
+}
+
+.Seguro{
+    border-color: green;
+    box-shadow: 0 5px 2px green;
+}
+
+.Seguro:hover{
+    background-color: rgba(0, 128, 0, 0.363);
+}
+
+.Alerta{
+    border-color: rgb(221, 170, 1);
+    box-shadow: 0 5px 2px rgb(221, 170, 1);
+}
+
+.Alerta:hover{
+    background-color: rgba(221, 170, 1, 0.377);
+}
+
+.Perigo{
+    border-color: red;
+    box-shadow: 0 5px 2px red;
+}
+
+.Perigo:hover{
+    background-color: rgba(255, 0, 0, 0.39);
 }
 
 .ordemCardpequeno {
