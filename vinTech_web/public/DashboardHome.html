@@ -179,6 +179,7 @@
 
                         if ((tempRegis < temperaturaAlertaSuperior && tempRegis > temperaturaAlertaInferior) && (umidRegis < umidadeAlertaSuperior && umidRegis > umidadeAlertaInferior)) {
                             string = "../img/check-box.png"
+                            lista_estufa_segura.push(json[x].idEstufa)
                             listaAlertas[0]++
                             estufa_ideal.innerHTML = `${json[x].nomeEstufa}<br> Temp: ${tempRegis} / Umid: ${umidRegis}`
                             
@@ -192,11 +193,13 @@
                                 maior_temp = tempRegis
                                 estufa_perigo.innerHTML = `${json[x].nomeEstufa}<br> Temp: ${tempRegis} / Umid: ${umidRegis}`
                             }
+                            lista_estufa_perigo.push(json[x].idEstufa)
                             listaAlertas[1]++
                         }
                         else {
                             string = "../img/warning.png"
                             listaAlertas[2]++
+                            lista_estufa_alerta.push(json[x].idEstufa)
                         }
                         if(lista_uva_js.indexOf(json[x].nomeUva == -1)){
                             lista_uva_js.push(json[x].nomeUva)
@@ -276,22 +279,22 @@
         var grauDeAviso = '';
         // Criação do json com as metricas
         var limites_temp = {
-         perigo_baixo   : 11,
-         alerta_baixo: 12,
-         bom_baixo: 13,
-         ideal: 15,
-         bom_alto: 17,
-         alerta_alto: 20,
-         perigo_alto: 21
+            perigo_baixo   : 11,
+            alerta_baixo: 12,
+            bom_baixo: 13,
+            ideal: 15,
+            bom_alto: 17,
+            alerta_alto: 20,
+            perigo_alto: 21
         };
         var limites_umd = {
-        perigo_baixo: 17,
-        alerta_baixo: 19,
-        bom_baixo: 24,
-        ideal: 30,
-        bom_alto: 35,
-        alerta_alto: 37,
-        perigo_alto: 38
+            perigo_baixo: 17,
+            alerta_baixo: 19,
+            bom_baixo: 24,
+            ideal: 30,
+            bom_alto: 35,
+            alerta_alto: 37,
+            perigo_alto: 38
         };
 
         var classe_temperatura = 'cor-alerta';
