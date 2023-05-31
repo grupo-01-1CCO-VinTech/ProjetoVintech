@@ -153,7 +153,8 @@
 
     imagemUsuario.src = imagemAdm
 
-    dados_grafico = []
+    dados_grafico_deitado = []
+    dados_grafico_rosca = []
 
     validarSessao()
 
@@ -164,7 +165,7 @@
             labels: ['Seguro', 'Alerta', 'Perigo'],
             datasets: [{
                 label: 'Seguro',
-                data: dados_grafico,
+                data: dados_grafico_deitado,
                 borderWidth: 1,
                 backgroundColor: [
                     '#00BF15',
@@ -190,12 +191,13 @@
         }
     });
 
-    new Chart(graficoPizza, {
+    const graficoPizza = document.getElementById('graficoPizza');
+    var grafico_rosca = new Chart(graficoPizza, {
         type: 'pie',
         data: {
             datasets: [{
                 label: 'Status',
-                data: [],
+                data: dados_grafico_rosca,
                 borderWidth: 1,
                 backgroundColor: [
                     '#00BF15',
@@ -293,12 +295,12 @@
                             listaAlertas[0]++
                         }
                         else if ((tempRegis <= temperaturaMinima || tempRegis >= temperaturaMaxima) || (umidRegis <= umidadeMinima || umidRegis >= umidadeMaxima)) {
-                            string = "../img/warning.png"
-                            listaAlertas[1]++
-                        }
-                        else {
                             string = "../img/cancelar.png"
                             listaAlertas[2]++
+                        }
+                        else {
+                            string = "../img/warning.png"
+                            listaAlertas[1]++
                         }
 
 
@@ -332,7 +334,13 @@
                     grafico_deitado.data.datasets[0].data.push(listaAlertas[0])
                     grafico_deitado.data.datasets[0].data.push(listaAlertas[1])
                     grafico_deitado.data.datasets[0].data.push(listaAlertas[2])
+
+                    grafico_rosca.data.datasets[0].data.push(listaAlertas[0])
+                    grafico_rosca.data.datasets[0].data.push(listaAlertas[1])
+                    grafico_rosca.data.datasets[0].data.push(listaAlertas[2])
+
                     grafico_deitado.update()
+                    grafico_rosca.update()
                 });
             } else {
                 console.log("Houve um erro ao tentar consultar as plantações");
