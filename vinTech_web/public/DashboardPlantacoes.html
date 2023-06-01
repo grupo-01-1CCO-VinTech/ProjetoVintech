@@ -295,7 +295,7 @@
 
                         areaCardsPequenos.innerHTML +=
                             `
-                            <div class="cardPequeno ${classe}" id='card${json[x].idEstufa}' onclick='verEstufa(${json[x].idEstufa})'>
+                            <div class="cardPequeno ${classe}" id='card${json[x].idEstufa}' onclick='verEstufa(${json[x].idSensor})'>
                                 <div class="ordemCardpequeno">
                                     <a id="title">Id da Estufa: ${json[x].idEstufa}</a>
                                     <a>${json[x].nomeEstufa}</a>
@@ -384,8 +384,8 @@
     
     listar_estufas()
 
-    function verEstufa(idEstufa){
-        sessionStorage.ID_ESTUFA = idEstufa
+    function verEstufa(idSensor){
+        sessionStorage.ID_SENSOR = idSensor
         window.location.href = "DashboardGraficosEstufas.html"
     }
 

@@ -8,7 +8,7 @@ function validarSessao() {
     var spanCargoUsuario = document.getElementById('cargo_usuario')
     console.log(`Login: ${login}, Email: ${email}, Nome: ${nome}, FkChefe: ${fkChefe}`)
 
-    if (email == undefined || nome == undefined || login == undefined) {
+    if (email == undefined || nome == undefined) {
         window.location = "../DashboardLogin.html";
     }
     else{

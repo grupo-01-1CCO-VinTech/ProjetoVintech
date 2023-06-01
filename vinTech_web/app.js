@@ -16,6 +16,7 @@
     var platacaoRouter = require("./src/routes/plantacao");
     var estufaRouter = require("./src/routes/estufa");
     var uvaRouter = require("./src/routes/uva");
+    var sensorRouter = require("./src/routes/sensor");
 
     app.use(express.json());
     app.use(express.urlencoded({ extended: false }));
@@ -31,6 +32,7 @@
     app.use("/plantacao", platacaoRouter);
     app.use("/estufa", estufaRouter);
     app.use("/uva", uvaRouter);
+    app.use("/sensor", sensorRouter);
 
     app.listen(PORTA, function () {
         console.log(`Servidor do seu site já está rodando! Acesse o caminho a seguir para visualizar: http://localhost:${PORTA} \n
