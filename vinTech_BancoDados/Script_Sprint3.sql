@@ -1,4 +1,5 @@
 CREATE DATABASE Vin_tech_Sprint3;
+
 USE Vin_tech_Sprint3;
 
 CREATE TABLE Empresa(
@@ -49,10 +50,10 @@ CREATE TABLE Uva(
 
 CREATE TABLE Estufa(
     idEstufa INT PRIMARY KEY AUTO_INCREMENT,
+    nomeEstufa VARCHAR(45),
     areaEstufa INT,
     fkPlantacao INT,
     fkUva INT,
-    nomeEstufa varchar(45),
     FOREIGN KEY (fkPlantacao) REFERENCES Plantacao (idPlantacao),
     FOREIGN KEY (fkUva) REFERENCES Uva (idUva)
 );
@@ -72,6 +73,12 @@ CREATE TABLE Registro(
     fkSensor INT,
     FOREIGN KEY (fkSensor) REFERENCES Sensor (idSensor)
 );
+        
+-- select nomeEstufa, idSensor, umidadeRegistro, temperaturaRegistro, nomeUva, tempMax, tempMin, umidMax, umidMin
+-- from registro, (select max(idregistro) as idRegistro
+-- from registro group by fkSensor) as idRecente, sensor, estufa, plantacao, empresa, uva
+-- where idRecente.idRegistro = registro.idRegistro and
+-- Registro.fkSensor = idSensor and fkEstufa = idEstufa and fkPlantacao = idPlantacao and fkEmpresa = 1 and fkUva = idUva;
 
 INSERT INTO Uva VALUES 
 	(NULL, 'Pinot Noir', 17.00, 10.00, 75, 12),                       
@@ -80,35 +87,35 @@ INSERT INTO Uva VALUES
 	(NULL, 'Tempranillo', 15.80, 5.30, 21, 01),
 	(NULL, 'Merlot', 24.23, 12.72, 72, 34);	
 
-select * from empresa;
-select * from funcionario;
-select * from plantacao;
-select * from estufa;
-select * from uva;
-select * from sensor;
-select * from registro;
+-- Aqui para realizar este INSERT precisa de ter uma empresa cadastrada, cadastre pela página de cadastro
+INSERT INTO Plantacao VALUES (NULL, 'Plantação Manaus', 'Manaus', 'AM', 1);
 
+-- Só de INSERT na estufa, caso queira testar e não tenha configurado na tela de DashboardConfig.html 
+INSERT INTO Estufa VALUES (NULL, 'Estufa Balão Mágico', 100, 1, 1); 
 
-select 
-	idEstufa, nomeEstufa, nomeUva, tempMax, tempMin, umidMax, umidMin, temperaturaRegistro, umidadeRegistro, max(dataRegistro)
-from 
+INSERT INTO Sensor values (NULL,'Corredor 3', 1);
+
+-- Se quiser testar aqui com outros sensores, mude a fkSensor
+
+INSERT INTO Registro VALUES (NULL, 14, 45, now(), 1);
+INSERT INTO Registro VALUES (NULL, 12, 80, now(), 1);
+INSERT INTO Registro VALUES (NULL, 29, 34, now(), 1);
+INSERT INTO Registro VALUES (NULL, 29, 34, now(), 1);
+INSERT INTO Registro VALUES (NULL, 29, 34, now(), 1);
+
+SELECT * FROM Empresa;
+SELECT * FROM Funcionario;
+SELECT * FROM Plantacao;
+SELECT * FROM Estufa;
+SELECT * FROM Uva;
+SELECT * FROM Sensor;
+SELECT * FROM Registro;
+
+SELECT 
+	idEstufa, nomeEstufa, nomeUva, tempMax, tempMin, umidMax, umidMin, temperaturaRegistro, umidadeRegistro, MAX(dataRegistro)
+FROM 
 	Estufa, Uva, Registro, empresa, 
-	(select idPlantacao from plantacao, empresa where fkEmpresa = idEmpresa and idEmpresa = 1) as plantaEmpresa
-where
-	fkUva = idUva and fkSensor = idEstufa and plantaEmpresa.idPlantacao = fkPlantacao and 
-	dataRegistro = (select max(dataRegistro) from registro) group by idEstufa order by dataRegistro desc;
-        
--- select nomeEstufa, idSensor, umidadeRegistro, temperaturaRegistro, nomeUva, tempMax, tempMin, umidMax, umidMin
--- from registro, (select max(idregistro) as idRegistro
--- from registro group by fkSensor) as idRecente, sensor, estufa, plantacao, empresa, uva
--- where idRecente.idRegistro = registro.idRegistro and
--- Registro.fkSensor = idSensor and fkEstufa = idEstufa and fkPlantacao = idPlantacao and fkEmpresa = 1 and fkUva = idUva;
-
-					
-INSERT INTO Plantacao (nomePlantacao, fkEmpresa) VALUES ('Plantação Manaus','1');
-INSERT INTO Sensor values (null,'Corredor 3', 5);
-INSERT INTO Registro values (null, 12, 80, now(), 5);
-INSERT INTO Registro values (null, 12, 80, now(), 4);
-INSERT INTO Registro values (null, 29, 34, now(), 3);
-INSERT INTO Registro values (null, 29, 34, now(), 2);
-INSERT INTO Registro values (null, 29, 34, now(), 1);
+	(SELECT idPlantacao FROM plantacao, empresa WHERE fkEmpresa = idEmpresa AND idEmpresa = 1) AS plantaEmpresa
+WHERE
+	fkUva = idUva AND fkSensor = idEstufa and plantaEmpresa.idPlantacao = fkPlantacao AND
+	dataRegistro = (SELECT MAX(dataRegistro) FROM registro) GROUP BY idEstufa ORDER BY dataRegistro DESC;

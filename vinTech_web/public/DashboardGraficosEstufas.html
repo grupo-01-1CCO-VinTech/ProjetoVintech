@@ -16,7 +16,7 @@
     <title>Página estufa</title>
 </head>
 
-<body>
+<body onload="pegarDadosEstufa()">
     <!--Navbar lateral - inicio -->
     <div class="pagina">
         <div class="barra-lateral">
@@ -29,7 +29,7 @@
                     <a href="DashboardHome.html">
                         <li>Home</li>
                     </a>
-                    <a class="selected">
+                    <a class="selected" href="DashboardPlantacoes.html">
                         <li>Plantações</li>
                     </a>
                     <a href="DashboardConfig.html" id="item_config">
@@ -40,9 +40,9 @@
             <div class="barra-usuario">
                 <div class="barra-fotoUsuario">
                     <img  id="imagemUsuario" src="" alt="Foto Usuário">
-                    <span id="nome_usuario"></span>
-                    <span id="cargo_usuario"></span>
                 </div>
+                <span id="nome_usuario"></span>
+                <span id="cargo_usuario"></span>
             </div>
             <div class="barra-button">
                 <button onclick="limparSessao()">Sair</button>
@@ -54,7 +54,7 @@
         <div class="container">
             <div class="header">
                 <img src="img/uvaDetalhe.png" alt="Detalhe Uva">
-                <a>Estufa 001</a>
+                <a id="tituloEstufa"></a>
                 <span>Informações</span>
                 <span class="linhaTitulo"></span>
             </div>
@@ -94,21 +94,24 @@
                         </div>
                     </div>
                     Informações estufa
-                    <div class="informacoes">
+                    <div class="informacoes" id="respostaInfo">
                         <h1>Informações</h1>
                         <div class="info_estufa">
                             <h5>Informações estufa</h5>
-                            <p>Plantação: <span id="plantacao">2012</span></p>
-                            <p>Estufa: <span id="estufa"> 001</span></p>
-                            <p>Tipo da Uva: <span id="tipo_uva">Pinot Noir</span></p>
-                            <p>Tamanho: <span id="tamanho">200Hec</span></p>
+                            <p>Plantação: <span id="plantacao"></span></p>
+                            <p>Estufa: <span id="estufa"></span></p>
+                            <p>Tipo da Uva: <span id="tipo_uva"></span></p>
+                            <p>Tamanho: <span id="tamanho"></span></p>
+                            <p>Id do Sensor: <span id="id_sensor"></span></p>
+                            <p>Local do Sensor: <span id="local_sensor"></span></p>
                         </div>
+                        <br>
                         <div class="info_dados">
                             <h5>Informações dados</h5>
-                            <p>Temp. Min: <span id="temp_min">1000</span></p>
-                            <p>Temp. Max: <span id="temp_max">-10</span></p>
-                            <p>Umid. Min: <span id="umidade_min">1000</span></p>
-                            <p>Umid. Max: <span id="umidade_max">-10</span></p>
+                            <p>Temp. Min: <span id="temp_min"></span></p>
+                            <p>Temp. Max: <span id="temp_max"></span></p>
+                            <p>Umid. Min: <span id="umidade_min"></span></p>
+                            <p>Umid. Max: <span id="umidade_max"></span></p>
                         </div>
                     </div>
                 </div>
@@ -127,9 +130,47 @@
     var fkEmpresa = sessionStorage.FK_EMPRESA;
     var fkChefe = sessionStorage.ID_CHEFE;
     var imagemAdm = sessionStorage.IMAGEM_USUARIO;
-
-    imagemUsuario.src = imagemAdm
+    var idSensor = sessionStorage.ID_SENSOR;
+    imagemUsuario.src = imagemAdm;
     validarSessao()
+
+    function pegarDadosEstufa(){
+        fetch("/sensor/buscarInformacoes", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idSensorServer: idSensor
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                console.log(resposta);
+                resposta.json().then(json => {
+                    tituloEstufa.innerHTML = json[0].nomeEstufa
+                    plantacao.innerHTML = `${json[0].nomePlantacao}`
+                    estufa.innerHTML = `${json[0].nomeEstufa}`
+                    tipo_uva.innerHTML = `${json[0].nomeUva}`
+                    tamanho.innerHTML = `${json[0].areaEstufa}m²`
+                    id_sensor.innerHTML = `${idSensor}`
+                    local_sensor.innerHTML = `${json[0].localSensor}`
+                    temp_min.innerHTML = `${json[0].tempMin}°C`
+                    temp_max.innerHTML = `${json[0].tempMax}°C`
+                    umidade_min.innerHTML = `${json[0].umidMin}%`
+                    umidade_max.innerHTML = `${json[0].umidMax}%`
+
+                })
+            } else {
+                console.log("Houve um erro ao tentar consultar as informações");
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+        return false;
+    }
     
     var contextoDht11Umidade = document.getElementById('dht11Umidade').getContext('2d');
     contextoDht11Umidade.canvas.width = 1000;
@@ -269,11 +310,11 @@
     }
 
     //aqui está rodando as funções a cada um segundo
-    setInterval(() => {
-        obterDados(dht11Umidade, 'dht11/umidade', umid_max_element, umid_min_element, 38, 17, atual_umid_element);
-        obterDados(dht11Temperatura, 'dht11/temperatura', temp_max_element, temp_min_element, 20, 12, atual_temp_element);
-        //obterDados(luminosidade, 'luminosidade');
-        //obterDados(lm35Temperatura, 'lm35/temperatura');
-        //obterDados(chave, 'chave');
-    }, 2000);
+        // setInterval(() => {
+        //     obterDados(dht11Umidade, 'dht11/umidade', umid_max_element, umid_min_element, 38, 17, atual_umid_element);
+        //     obterDados(dht11Temperatura, 'dht11/temperatura', temp_max_element, temp_min_element, 20, 12, atual_temp_element);
+        //     //obterDados(luminosidade, 'luminosidade');
+        //     //obterDados(lm35Temperatura, 'lm35/temperatura');
+        //     //obterDados(chave, 'chave');
+        // }, 2000);
 </script>

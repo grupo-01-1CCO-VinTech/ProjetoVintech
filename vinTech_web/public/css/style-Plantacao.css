@@ -206,35 +206,35 @@ select {
     transition: .5s;
 }
 
-.cardPequeno a{
+.cardPequeno a {
     color: black;
     text-decoration: none;
 }
 
-.Seguro{
+.Seguro {
     border-color: green;
     box-shadow: 0 5px 2px green;
 }
 
-.Seguro:hover{
+.Seguro:hover {
     background-color: rgba(0, 128, 0, 0.363);
 }
 
-.Alerta{
+.Alerta {
     border-color: rgb(221, 170, 1);
     box-shadow: 0 5px 2px rgb(221, 170, 1);
 }
 
-.Alerta:hover{
+.Alerta:hover {
     background-color: rgba(221, 170, 1, 0.377);
 }
 
-.Perigo{
+.Perigo {
     border-color: red;
     box-shadow: 0 5px 2px red;
 }
 
-.Perigo:hover{
+.Perigo:hover {
     background-color: rgba(255, 0, 0, 0.39);
 }
 

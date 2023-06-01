@@ -25,6 +25,7 @@
 .header a {
     font-size: 7vh;
     letter-spacing: 0.2vh;
+    color: #000;
 }
 
 .header span {
@@ -70,8 +71,6 @@
     width: 100%;
     margin-top: 5%;
     margin-bottom: 5%;
-    border: 3px dashed purple;
-    border-radius: 5%;
 }
 
 .grafico_umidade{
@@ -83,8 +82,6 @@
     width: 100%;
     margin-top: 5%;
     margin-bottom: 5%;
-    border: 3px dashed purple;
-    border-radius: 5%;
 }
 
 .direita{
@@ -179,9 +176,6 @@ h2{
     margin-bottom: 2.5%;
     height: 40%;
     width: 95%;
-    border: 2px purple solid;
-    border-radius: 5%;
-
     font-size: 3vh;
 }
 
@@ -193,9 +187,6 @@ h2{
     margin-bottom: 2.5%;
     height: 40%;
     width: 95%;
-    border: 2px purple solid;
-    border-radius: 5%;
-
     font-size: 3vh;
 }
 

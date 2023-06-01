@@ -37,9 +37,9 @@
             <div class="barra-usuario">
                 <div class="barra-fotoUsuario">
                     <img  id="imagemUsuario" src="" alt="Foto Usuário">
-                    <span id="nome_usuario"></span>
-                    <span id="cargo_usuario"></span>
                 </div>
+                <span id="nome_usuario"></span>
+                <span id="cargo_usuario"></span>
             </div>
             <div class="barra-button">
                 <button onclick="limparSessao()">Sair</button>
@@ -150,6 +150,7 @@
     var fkEmpresa = sessionStorage.FK_EMPRESA;
     var fkChefe = sessionStorage.ID_CHEFE;
     var imagemAdm = sessionStorage.IMAGEM_USUARIO;
+    
 
     imagemUsuario.src = imagemAdm
 
@@ -294,7 +295,7 @@
 
                         areaCardsPequenos.innerHTML +=
                             `
-                            <div class="cardPequeno ${classe}" id='card${json[x].idEstufa}' onclick='verEstufa(${json[x].idEstufa})'>
+                            <div class="cardPequeno ${classe}" id='card${json[x].idEstufa}' onclick='verEstufa(${json[x].idSensor})'>
                                 <div class="ordemCardpequeno">
                                     <a id="title">Id da Estufa: ${json[x].idEstufa}</a>
                                     <a>${json[x].nomeEstufa}</a>
@@ -382,4 +383,11 @@
     //listaContadores.push(contadorPerigo)
     
     listar_estufas()
+
+    function verEstufa(idSensor){
+        sessionStorage.ID_SENSOR = idSensor
+        window.location.href = "DashboardGraficosEstufas.html"
+    }
+
+
 </script>
