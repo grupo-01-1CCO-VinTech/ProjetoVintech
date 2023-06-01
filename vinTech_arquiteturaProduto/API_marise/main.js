@@ -84,7 +84,7 @@ const serial = async (
                 // 'INSERT INTO sensores (dht11_umidade, dht11_temperatura, luminosidade, lm35_temperatura, chave) VALUES (?, ?, ?, ?, ?)',
                 // [dht11Umidade, dht11Temperatura, luminosidade, lm35Temperatura, chave]
                 'INSERT INTO Registro (temperaturaRegistro, umidadeRegistro, dataRegistro, fkSensor) VALUES (?, ?, now() ,?)',
-                [dht11Umidade, dht11Temperatura, 1]
+                [dht11Temperatura, dht11Umidade, 4]
             );
         }
 
