@@ -203,11 +203,12 @@
                             listaAlertas[2]++
                             lista_estufa_alerta.push(json[x].idEstufa)
                         }
-                        if(lista_uva_js.indexOf(json[x].nomeUva == -1)){
-                            lista_uva_js.push(json[x].nomeUva)
-                            lista_uvas.innerHTML += `<h2>${json[x].nomeEstufa}</h2>`
-                            lista_uvas.innerHTML += `<ul>${json[x].nomeUva}</ul>`
-                        }
+                            if(lista_uva_js.indexOf(json[x].nomeUva == -1)){
+                                lista_uva_js.push(json[x].nomeUva)
+                                lista_uvas.innerHTML += `<h2>${json[x].nomeEstufa}</h2>`
+                                lista_uvas.innerHTML += `<h5>${json[x].nomeUva}</h5>`
+                            }
+                        
                     }
                     num_ideal.innerHTML = listaAlertas[0]
                     num_perigo.innerHTML = listaAlertas[1]
@@ -216,7 +217,7 @@
                     for(x in lista_estufa_perigo){
                         top_estufas.innerHTML += `
                             <div class="linha-lista">
-                            <li>${json[x].nomeEstufa}</li>
+                                <li>${json[x].nomeEstufa}</li>
                                 <div id="imagem"><img src="img/cancelar.png"></div>
                             </div>`
                         }
@@ -227,7 +228,6 @@
                                 <div id="imagem"><img src="img/warning.png"></div>
                                 </div>
                                 `
-                                top_estufas.style.color = 'red';
                     }
                     // for(z in lista_estufa_segura){
                     //     top_estufas.innerHTML += `
@@ -251,14 +251,6 @@
         })
 
         return false;
-    }
-    function trocaCor()
-    {
-      if(top_estufas.style.color == "black")
-      {
-       top_estufas.style.color = "red";
-    //    setTimeout("trocaCor();", 1000);
-      }    
     }
     var alertas = [];
     // Incio da funçao de alertas

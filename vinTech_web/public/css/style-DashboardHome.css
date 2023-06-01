@@ -88,10 +88,10 @@ body{
     height: 85%;
     align-items: center;
     flex-direction: column;
-    background-image: url(/img/uvaDetalhe.png);
     background-size: 5vw, 5vh;
     background-repeat: no-repeat;
     background-position:right top;  
+    overflow-y: scroll;
 }
 
 .imagem_uva{
@@ -146,12 +146,17 @@ canvas{
 }
 
 .segundo_grafico{
+    display: flex;
     width: 40%;
-    height: 100%;
+    height: 40vh;
+    margin-top: 1%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 .inferior_direita{
     display: flex;
-    width: 25%;
+    width: 27%;
     height: 100%;
 }
 .uvas_cultivo{
@@ -162,12 +167,12 @@ canvas{
     height: 90%;
     border: solid 1px purple;
     border-radius:30px ;
-    background-image: url(/img/uvaDetalhe.png);
     background-position:right top;  
     background-size: 5vw, 5vh;
     background-repeat: no-repeat;
     margin-top: 12px;
     margin-left: 8px;
+    overflow-y: scroll;
 }
 .uvas_cultivo h3{
     margin-top: 15px;
