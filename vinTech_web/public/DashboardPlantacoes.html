@@ -104,32 +104,29 @@
             </div>
             <div class="containerGraficos">
                 <h2>Quantidade por Status</h2>
-                <br><br>
-                <div class="graficoBarraHorizontal">
+                <div class="containerStatus">
                     <div class="statusImagens">
                         <div class="status">
                             <img src="img/check-box.png" alt="">
-                            <a>Seguro</a>
+                            <a><b>Seguro</b></a>
                             <a id="txtSeguro"></a>
                         </div>
                         <div class="status">
                             <img src="img/warning.png" alt="">
-                            <a>Alerta</a>
+                            <a><b>Alerta</b></a>
                             <a id="txtAlerta"></a>
                         </div>
                         <div class="status">
                             <img src="img/cancelar.png" alt="">
-                            <a>Perigo</a>
+                            <a><b>Perigo</b></a>
                             <a id="txtPerigo"></a>
                         </div>
                     </div>
-                    <br><br>
-                    <div>
-                        <canvas id="graficoBarraDeitado"></canvas>
-                    </div>
+                </div>
+                <div class="container-graficoBarra">
+                    <canvas id="graficoBarraDeitado"></canvas>
                 </div>
                 <div class="container-graficoPizza">
-
                     <div class="areaGrafico">
                         <canvas id="graficoPizza" class="graficoPizza"></canvas>
                     </div>
@@ -162,15 +159,28 @@
     const graficoBarraDeitado = document.getElementById('graficoBarraDeitado');
     var grafico_deitado = new Chart(graficoBarraDeitado, {
         type: 'bar',
+        
         data: {
-            labels: ['Seguro', 'Alerta', 'Perigo'],
+            labels: ['Valores'],
             datasets: [{
-                label: 'Seguro',
-                data: dados_grafico_deitado,
+                label: ['Seguro'],
+                data: [],
                 borderWidth: 1,
                 backgroundColor: [
-                    '#00BF15',
-                    '#FFDE59',
+                    '#00BF15'
+                ]
+            },{
+                label: ['Alerta'],
+                data: [],
+                borderWidth: 1,
+                backgroundColor: [   
+                    '#FFDE59'
+                ]
+            },{
+                label: ['Perigo'],
+                data: [],
+                borderWidth: 1,
+                backgroundColor: [
                     '#FF3131'
                 ]
             }]
@@ -321,11 +331,11 @@
 
                     }
                     txtSeguro.innerHTML = `${listaAlertas[0]}`
-                    txtPerigo.innerHTML = `${listaAlertas[2]}`
                     txtAlerta.innerHTML = `${listaAlertas[1]}`
+                    txtPerigo.innerHTML = `${listaAlertas[2]}`
                     grafico_deitado.data.datasets[0].data.push(listaAlertas[0])
-                    grafico_deitado.data.datasets[0].data.push(listaAlertas[1])
-                    grafico_deitado.data.datasets[0].data.push(listaAlertas[2])
+                    grafico_deitado.data.datasets[1].data.push(listaAlertas[1])
+                    grafico_deitado.data.datasets[2].data.push(listaAlertas[2])
 
                     grafico_rosca.data.datasets[0].data.push(listaAlertas[0])
                     grafico_rosca.data.datasets[0].data.push(listaAlertas[1])
