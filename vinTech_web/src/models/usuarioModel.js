@@ -26,7 +26,6 @@ function cadastrar(id_empresa, senhaFuncionario, emailFuncionario, loginFunciona
         INSERT INTO Funcionario (nomeFuncionario, fkChefe, imagemUsuario, senhaFuncionario, emailFuncionario, fkempresa) VALUES ('${loginFuncionario}', null, '${imagemUsuario}', '${senhaFuncionario}', '${emailFuncionario}', ${id_empresa});
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
-    console.log(imagemUsuario)
     return database.executar(instrucao);
 }
 
