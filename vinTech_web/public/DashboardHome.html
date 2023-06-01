@@ -78,7 +78,7 @@
                 <div class="superior_direita">
                     <div class="top_estufas">
                         <h2>
-                            Top estufas
+                            Estufas em problema
                         </h2>
                         <div class="lista" id="top_estufas">
                         </div>
@@ -193,11 +193,13 @@
                                 maior_temp = tempRegis
                                 estufa_perigo.innerHTML = `${json[x].nomeEstufa}<br> Temp: ${tempRegis} / Umid: ${umidRegis}`
                             }
+                            
                             lista_estufa_perigo.push(json[x].idEstufa)
                             listaAlertas[1]++
                         }
                         else {
                             string = "../img/warning.png"
+                           
                             listaAlertas[2]++
                             lista_estufa_alerta.push(json[x].idEstufa)
                         }
@@ -214,26 +216,27 @@
                     for(x in lista_estufa_perigo){
                         top_estufas.innerHTML += `
                             <div class="linha-lista">
-                                <li>${json[x].nomeEstufa}</li>
+                            <li>${json[x].nomeEstufa}</li>
                                 <div id="imagem"><img src="img/cancelar.png"></div>
                             </div>`
-                    }
-                    for(y in lista_estufa_alerta){
+                        }
+                        for(y in lista_estufa_alerta){
                         top_estufas.innerHTML += `
                             <div class="linha-lista">
                                 <li>${json[y].nomeEstufa}</li>
                                 <div id="imagem"><img src="img/warning.png"></div>
-                            </div>
-                            `
+                                </div>
+                                `
+                                top_estufas.style.color = 'red';
                     }
-                    for(z in lista_estufa_segura){
-                        top_estufas.innerHTML += `
-                            <div class="linha-lista">
-                                <li>${json[z].nomeEstufa}</li>
-                                <div id="imagem"><img src="img/check-box.png"></div>
-                            </div>
-                            `
-                    }
+                    // for(z in lista_estufa_segura){
+                    //     top_estufas.innerHTML += `
+                    //         <div class="linha-lista">
+                    //             <li>${json[z].nomeEstufa}</li>
+                    //             <div id="imagem"><img src="img/check-box.png"></div>
+                    //         </div>
+                    //         `
+                    // }
 
                 });
             } else {
@@ -249,7 +252,14 @@
 
         return false;
     }
-
+    function trocaCor()
+    {
+      if(top_estufas.style.color == "black")
+      {
+       top_estufas.style.color = "red";
+    //    setTimeout("trocaCor();", 1000);
+      }    
+    }
     var alertas = [];
     // Incio da funçao de alertas
     function obterdados(idPlantacao,temperaturaRegistro,umidadeRegistro){
