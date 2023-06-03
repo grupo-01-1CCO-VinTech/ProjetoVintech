@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="img/logo.jpeg" type="image/png">
-    <title>Configurações - DashBoard</title>
+    <title>Configurações - DashBoard 2</title>
     <link rel="stylesheet" href="css/style-ConfiguracaoDashboard.css">
     <link rel="stylesheet" href="css/style-PadraoDashboard.css">
     <link rel="stylesheet" href="css/style-PadraoTodos.css">
@@ -35,10 +35,10 @@
             </div>
             <div class="barra-usuario">
                 <div class="barra-fotoUsuario">
-                    <img  id="imagemUsuario" src="" alt="Foto Usuário">
+                    <img src="Img/usuario.png" alt="Foto Usuário">
+                    <span id="nome_usuario"></span>
+                    <span id="cargo_usuario"></span>
                 </div>
-                <span id="nome_usuario"></span>
-                <span id="cargo_usuario"></span>
             </div>
             <div class="barra-button">
                 <button onclick="limparSessao()">Sair</button>
@@ -48,6 +48,7 @@
         <div class="container">
             <div class="container-esquerda">
                 <div class="respostaForms" id="respostaForms">
+
                 </div>
                 <div id="formUsuario" style="display: none;" class="form">
                     <h1>Configuração de Usuários</h1>
@@ -68,27 +69,30 @@
                                 </select></p>
                             <p>Nome Completo: <input type="text" id="iptNomeUsuario" class="inp_Input"
                                     placeholder="Digite o nome completo:"></p>
-                            <p>E-mail: <input type="text" id="iptEmailUsuario" class="inp_Input"
+                            <p>E-mail: <br><input type="text" id="iptEmailUsuario" class="inp_Input"
                                     placeholder="Digite o Email:"></p>
-                            <p>Senha: <input type="text" id="iptSenhaUsuario" class="inp_Input"
+                            <p>Senha: <br><input type="text" id="iptSenhaUsuario" class="inp_Input"
                                     placeholder="Digite sua senha:"></p>
                             <button onclick="adicionar_Usuario()">Adicionar Usuário</button>
                         </div>
                     </div>
                 </div>
+                <!--Formulário de edição do user-->
                 <div id="formEditUsuario" style="display: none;" class="form">
                     <div class="tituloEdit">
                         <h1>Editar ou remover Usuários</h1>
                     </div>
                     <div class="editUser">
-                        <div class="linha-form">
-                            <input type="text" placeholder="Email do Usuário" id="ipt_email_user">
-                            <button onclick="consultar_usuario()">Consultar</button>
+                        <div class="linha-form" id="tu">
+                            <input type="text" placeholder="Email do Usuário" id="ipt_email_user" class="inp_edit">
+
+                            <button onclick="consultar_usuario()" class="btn_edit">Consultar</button>
                         </div>
                         <div class="linha-form">
-                            <input type="text" placeholder="Id do Usuário" id="ipt_id_user" disabled style="display: none;">
-                            <input type="text" placeholder="Nome do Usuário" id="ipt_nome_user">
-                            <input type="text" placeholder="Email do Usuário" id="ipt_emailAlter_user">
+                            <input type="text" placeholder="Id do Usuário" class="inp_edit" id="ipt_id_user" disabled
+                                style="display: none;">
+                            <input type="text" placeholder="Nome do Usuário" class="inp_edit" id="ipt_nome_user">
+                            <input type="text" placeholder="Email do Usuário" class="inp_edit" id="ipt_emailAlter_user">
                             <select name="" id="ipt_cargo_user">
                                 <option value="Funcionario">Funcionário</option>
                                 <option value="Administrador">Administrador</option>
@@ -96,13 +100,15 @@
 
                         </div>
                         <div class="linha-form">
-                            <input type="text" placeholder="Senha do Usuário" id="ipt_senha_user">
-                            <input type="text" placeholder="Empresa do Usuário" id="ipt_nomeEmpresa_user" disabled>
-                            <input type="text" placeholder="Id da Empresa" id="ipt_idEmpresa_user" disabled style="display: none;">
+                            <input type="text" placeholder="Senha do Usuário" class="inp_edit" id="ipt_senha_user">
+                            <input type="text" placeholder="Empresa do Usuário" class="inp_edit"
+                                id="ipt_nomeEmpresa_user" disabled>
+                            <input type="text" placeholder="Id da Empresa" class="inp_edit" id="ipt_idEmpresa_user"
+                                disabled style="display: none;">
                         </div>
-                        <div class="linha-form">
-                            <button onclick="alterar_usuario()">Alterar</button>
-                            <button onclick="excluir_usuario()">Excluir</button>
+                        <div class="linha-form" id="btns">
+                            <button onclick="alterar_usuario()" class="btn_edit">Alterar</button>
+                            <button onclick="excluir_usuario()" class="btn_edit">Excluir</button>
                         </div>
                     </div>
                 </div>
@@ -114,24 +120,34 @@
                     <button onclick="apagarDivs('formAddPlantacao')">Adicionar nova Plantação</button>
                     <button onclick="apagarDivs('formEditPlantacao')">Editar/Remover Plantações</button>
                 </div>
-
+                <!--Adicionar nova plantação-->
                 <div id="formAddPlantacao" style="display: none;" class="form">
                     <h1>Adicionar Plantação</h1>
 
                     <p>Nome da Plantação <input type="text" id="iptNomePlantacao" placeholder="Plantação Jundiaí"></p>
-
                     <!-- <p>Localização: <input type="text" id="iptLocalizacaoPlantacao"></p> -->
                     <!-- <p>Tamanho da Plantação: <input type="text" id="iptTamanhoPlantacao" placeholder="Em Hectares"></p> -->
                     <button onclick="adicionar_Plantacao()">Adicionar Plantação</button>
                 </div>
+                <!--Editar e remover plantação-->
                 <div id="formEditPlantacao" style="display: none;" class="form">
-                    <h1>Editar ou remover Plantações</h1>
-                    <p>Por Nome: <input type="text" id="iptEncontrarNomePlantacao" placeholder="Plantação Jundiaí"></p>
-                    <button onclick="consultar_plantacao()">Encontrar Plantação</button>
+                    <h1 class="title_edit_plant">Editar ou remover Plantações</h1>
+                    <div class="formPlantaEdit">
+                        <p>Por ID:<br> <input type="text" id="iptEncontrarIdEstufa"></p>
+                        <p>Por Nome:<br> <input type="text" id="iptEncontrarNomePlantacao" placeholder="Plantação Jundiaí">
+                        </p>
+                        <p>Por Localização: <br><input type="text" id="iptLocalizacaoPlantacao"></p>
+                    </div>
+                    <button onclick="encontrar_Plantacao()">Encontrar Plantação</button>
                     <h3>Editar Plantação</h3>
-                    <p>Nome: <input type="text" id="iptAlterNomePlantacao"></p>
+                    <div class="PlantaEdit">
+                    <p>Nome: <br><input type="text" id="iptEditNomePlantação"></p>
+                </div>
+                    <!--<p>Tamanho: <input type="text" id="iptEditTamanhoPlantacao"></p>
+                    <h3>Deletar Plantação:</h3>
+                    <p>Confirmar nome: <input type="text" id="iptDeletePlantacaoConfirmacaoNome"></p> -->
                     <button onclick="editar_Plantacao()">Editar Plantação</button>
-                    <button onclick="deletar_Plantacao()">Deletar Plantação</button>
+                    <button onclick="deletarPlantacao()">Deletar Plantação</button>
                 </div>
 
                 <!-- AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
@@ -142,12 +158,14 @@
                     <button onclick="apagarDivs('formAddEstufa')">Adicionar nova Estufa</button>
                     <button onclick="apagarDivs('formEditEstufa')">Editar/Remover Estufas</button>
                 </div>
+                <!--Inicio do add estufa-->
                 <div id="formAddEstufa" style="display: none;" class="form">
                     <h1>Adicionar Estufa</h1>
-                    <p>Nome da Estufa
+                   <div class="form_AddEstufa">
+                    <p>Nome da Estufa: <br>
                         <input type="text" id="iptAddNomeEstufa" placeholder="Estufa 001">
                     </p>
-                    <p>Em qual plantação você deseja cadastrar esta estufa?
+                    <p>Em qual plantação você deseja cadastrar esta estufa? <br>
                         <input type="text" id="iptAddPlantacaoEstufa" placeholder="Id da Plantação">
                     </p>
                     <p>Tipo de Uva:
@@ -155,36 +173,46 @@
                             <option value="0"></option>
                         </select>
                     </p>
-                    <p>Tamanho da Estufa <input type="text" id="iptAddTamanhoEstufa"></p>
-                    <button onclick="adicionar_Estufa()">Adicionar Estufa</button>
+                    <p>Tamanho da Estufa: <br> <input type="text" id="iptAddTamanhoEstufa"></p>
                 </div>
+                <button onclick="adicionar_Estufa()">Adicionar Estufa</button>
+                </div>
+                <!--aaaaaaeeeeeeeeeeeeeeeeeeeeeeeeeepqaaaaaaaaaaaaaaa-->
                 <div id="formEditEstufa" style="display: none;" class="form">
                     <h1>Editar ou remover Estufas</h1>
 
                     <h3>Encontrar Estufa</h3>
-                    <p>Informe a plantação em que a estufa está: <input type="text" id="iptEncontrarPlantacaoEstufa">
+                   <div class="formEncontrar">
+                    <p>Informe a plantação em que a estufa está: <br>
+                         <input type="text" id="iptEncontrarPlantacaoEstufa">
                     </p>
-                    <p>Por ID: <input type="text" id="iptEncontrarIdEstufa"></p>
+                    <p>Por ID: <br>
+                         <input type="text" id="iptEncontrarIdEstufa"></p>
+                   </div>
                     <button onclick="encontrar_Estufa()">Encontrar Estufa</button>
                     <!-- <p>Por Localização: <input type="text" id="iptLocalizacaoPlantacao"></p> -->
                     <h3>Editar Estufa</h3>
+                   <div class="editEstufa">
                     <p>Tipo de Uva:
                         <select id="iptEditUvaEstufa">
                             <option value="0"></option>
                         </select>
                     </p>
-                    <p>Tamanho da Estufa: <input type="text" id="iptEditTamanhoEstufa"></p>
+                    <p>Tamanho da Estufa: <br> <input type="text" id="iptEditTamanhoEstufa"></p>
+                   </div>
                     <button onclick="editar_Estufa()">Editar Estufa</button>
                     <h3>Deletar Plantação:</h3>
-                    <p>Confirmar Plantação: <input type="text" id="iptDeleteEstufaConfirmacaoPlantacao"></p>
-                    <p>Confirmar ID: <input type="text" id="iptDeleteEstufaConfirmacaoID"></p>
+                    <div class="delete">
+                        <p>Confirmar Plantação: <br> <input type="text" id="iptDeleteEstufaConfirmacaoPlantacao"></p>
+                    <p>Confirmar ID: <br> <input type="text" id="iptDeleteEstufaConfirmacaoID"></p>
+                    </div>
                     <button onclick="deletarPlantacao()">Deletar Plantação</button>
                 </div>
             </div>
         </div>
         <div class="container-direita">
             <div class="container-usuario">
-                <img src="" alt="" id="imagemUsuarioAdm">
+                <img src="img/eu2.jpg" alt="">
                 <p id="nomeAdm"></p>
                 <p id="emailAdm"></p>
             </div>
@@ -212,10 +240,6 @@
     var emailUsuario = sessionStorage.EMAIL_USUARIO;
     var fkEmpresa = sessionStorage.FK_EMPRESA;
     var fkChefe = sessionStorage.ID_CHEFE;
-    var imagemAdm = sessionStorage.IMAGEM_USUARIO;
-
-    imagemUsuario.src = imagemAdm
-    imagemUsuarioAdm.src = imagemAdm
 
     validarSessao()
 
@@ -335,7 +359,7 @@
                         ipt_emailAlter_user.value = json[0].emailFuncionario
                         ipt_id_user.value = json[0].idFuncionario
                         ipt_senha_user.value = json[0].senhaFuncionario
-                        ipt_cargo_user.value =  json[0].fkChefe== null ? 'Administrador' : "Funcionario"
+                        ipt_cargo_user.value = json[0].fkChefe == null ? 'Administrador' : "Funcionario"
                         ipt_nomeEmpresa_user.value = json[0].nomeEmpresa
                         ipt_idEmpresa_user.value = json[0].fkEmpresa
                         console.log(JSON.stringify(json));
@@ -405,18 +429,6 @@
                     ipt_cargo_user.value = json[0].fkChefe == null ? 'Administrador' : "Funcionario"
                     console.log(JSON.stringify(json));
                 });
-
-                if(idUserAlter == idChefe){
-                    sessionStorage.ID_USUARIO = ipt_id_user.value;
-                    sessionStorage.NOME_USUARIO = ipt_nome_user.value;
-                    sessionStorage.EMAIL_USUARIO = ipt_emailAlter_user.value;
-                    validarSessao()
-                    nomeAdm.innerHTML = `${ipt_nome_user.value}`
-                    emailAdm.innerHTML = `${ipt_emailAlter_user.value}`
-                    // sessionStorage.IMAGEM_USUARIO = json.imagemUsuario;
-                }
-                alert('Usuário Alterado com Sucesso!')
-
 
             } else {
 
@@ -500,64 +512,6 @@
             });
             return false;
         }
-    }
-
-    function consultar_plantacao() {
-        fetch("/plantacao/consultar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                nomePlantacaoServer: iptEncontrarNomePlantacao.value,
-                fkEmpresaServer: fkEmpresa
-            })
-        }).then(function (resposta) {
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                            iptAlterNomePlantacao.value = `${json[0].nomePlantacao}`
-                });
-            } else {
-                console.log("Houve um erro ao tentar consultar as plantações");
-                resposta.text().then(texto => {
-                    console.error(texto);
-                });
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-
-        return false;
-    }
-
-    function deletar_Plantacao() {
-        fetch("/plantacao/deletar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                nomePlantacaoServer: iptEncontrarNomePlantacao.value,
-                fkEmpresaServer: fkEmpresa
-            })
-        }).then(function (resposta) {
-            if (resposta.ok) {
-                console.log('teste')
-            } else {
-                console.log("Houve um erro ao tentar consultar as plantações");
-                resposta.text().then(texto => {
-                    console.error(texto);
-                });
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-
-        return false;
     }
 
     function listar_platacoes() {
