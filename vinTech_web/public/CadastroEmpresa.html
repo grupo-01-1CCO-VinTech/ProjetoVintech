@@ -338,17 +338,17 @@
     }
     function eliminarNumeros(id) {
         const input = document.getElementById(id)
-        var listaLetras = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        var listaLetras = ['0','1','2','3','4','5','6','7','8','9']
         // console.log(input)
         // console.log(ultima_letra)
         for (var i = 0; i <= 9; i++) {
-            if (input.value[input.value.length - 1] == listaLetras[i]) {
+            if (input.value[input.value.length - 1] == Number(listaLetras[i]) && input.value[input.value.length - 1] != ' ') {
                 alert('Esse campo não aceita números!')
                 input.value = ''
             }
         }
         for (var letra = 0; letra <= input.value.length - 1; letra++) {
-            if (isNaN(input.value[letra]) == false) {
+            if (isNaN(input.value[letra]) == false && input.value[letra] != ' ') {
                 alert('Esse campo não aceita números!')
                 input.value = ''
             }
