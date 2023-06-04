@@ -25,20 +25,20 @@
                     <a href="DashboardHome.html">
                         <li>Home</li>
                     </a>
-                    <a href="DashboardPlantacoes.html">
+                    <a class="selected">
                         <li>Plantações</li>
                     </a>
-                    <a id="item_config" class="selected">
+                    <a href="DashboardConfig.html" id="item_config">
                         <li>Configurações</li>
                     </a>
                 </ul>
             </div>
             <div class="barra-usuario">
                 <div class="barra-fotoUsuario">
-                    <img src="Img/usuario.png" alt="Foto Usuário">
-                    <span id="nome_usuario"></span>
-                    <span id="cargo_usuario"></span>
+                    <img  id="imagemUsuario" src="" alt="Foto Usuário">
                 </div>
+                <span id="nome_usuario"></span>
+                <span id="cargo_usuario"></span>
             </div>
             <div class="barra-button">
                 <button onclick="limparSessao()">Sair</button>
@@ -212,7 +212,7 @@
         </div>
         <div class="container-direita">
             <div class="container-usuario">
-                <img src="img/eu2.jpg" alt="">
+                <img src="" alt="" id="imagemCfg">
                 <p id="nomeAdm"></p>
                 <p id="emailAdm"></p>
             </div>
@@ -240,6 +240,11 @@
     var emailUsuario = sessionStorage.EMAIL_USUARIO;
     var fkEmpresa = sessionStorage.FK_EMPRESA;
     var fkChefe = sessionStorage.ID_CHEFE;
+    var imagemAdm = sessionStorage.IMAGEM_USUARIO;
+    
+
+    imagemUsuario.src = imagemAdm;
+    imagemCfg.src = imagemAdm;
 
     validarSessao()
 
