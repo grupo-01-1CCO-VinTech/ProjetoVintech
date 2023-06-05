@@ -115,7 +115,7 @@ const serial = async (
                 // 'INSERT INTO sensores (dht11_umidade, dht11_temperatura, luminosidade, lm35_temperatura, chave) VALUES (?, ?, ?, ?, ?)',
                 // [dht11Umidade, dht11Temperatura, luminosidade, lm35Temperatura, chave]
                 'INSERT INTO Registro (temperaturaRegistro, umidadeRegistro, dataRegistro, fkSensor) VALUES (?, ?, now() ,?)',
-                [variarValores(dht11Temperatura) - 5, variarValores(dht11Umidade) - 40, 5]
+                [variarValores(dht11Temperatura) - 10, variarValores(dht11Umidade) - 45, 5]
             );
             await poolBancoDados.execute(
                 // 'INSERT INTO sensores (dht11_umidade, dht11_temperatura, luminosidade, lm35_temperatura, chave) VALUES (?, ?, ?, ?, ?)',
