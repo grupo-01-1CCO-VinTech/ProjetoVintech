@@ -28,15 +28,15 @@
                     <a href="DashboardPlantacoes.html">
                         <li>Plantações</li>
                     </a>
-                    <a  class="selected" id="item_config">
+                    <a class="selected" id="item_config">
                         <li>Configurações</li>
                     </a>
                 </ul>
             </div>
             <div class="barra-usuario">
-                <div class="barra-fotoUsuario">
-                    <img  id="imagemUsuario" src="" alt="Foto Usuário">
-                </div>
+                <button class="barra-fotoUsuario" onclick="alterarImagem()">
+                    <img id="imagemUsuario" src="" alt="Foto Usuário">
+                </button>
                 <span id="nome_usuario"></span>
                 <span id="cargo_usuario"></span>
             </div>
@@ -134,15 +134,16 @@
                     <h1 class="title_edit_plant">Editar ou remover Plantações</h1>
                     <div class="formPlantaEdit">
                         <p>Por ID:<br> <input type="text" id="iptEncontrarIdEstufa"></p>
-                        <p>Por Nome:<br> <input type="text" id="iptEncontrarNomePlantacao" placeholder="Plantação Jundiaí">
+                        <p>Por Nome:<br> <input type="text" id="iptEncontrarNomePlantacao"
+                                placeholder="Plantação Jundiaí">
                         </p>
                         <p>Por Localização: <br><input type="text" id="iptLocalizacaoPlantacao"></p>
                     </div>
                     <button onclick="encontrar_Plantacao()">Encontrar Plantação</button>
                     <h3>Editar Plantação</h3>
                     <div class="PlantaEdit">
-                    <p>Nome: <br><input type="text" id="iptEditNomePlantação"></p>
-                </div>
+                        <p>Nome: <br><input type="text" id="iptEditNomePlantação"></p>
+                    </div>
                     <!--<p>Tamanho: <input type="text" id="iptEditTamanhoPlantacao"></p>
                     <h3>Deletar Plantação:</h3>
                     <p>Confirmar nome: <input type="text" id="iptDeletePlantacaoConfirmacaoNome"></p> -->
@@ -161,50 +162,50 @@
                 <!--Inicio do add estufa-->
                 <div id="formAddEstufa" style="display: none;" class="form">
                     <h1>Adicionar Estufa</h1>
-                   <div class="form_AddEstufa">
-                    <p>Nome da Estufa: <br>
-                        <input type="text" id="iptAddNomeEstufa" placeholder="Estufa 001">
-                    </p>
-                    <p>Em qual plantação você deseja cadastrar esta estufa? <br>
-                        <input type="text" id="iptAddPlantacaoEstufa" placeholder="Id da Plantação">
-                    </p>
-                    <p>Tipo de Uva:
-                        <select id="iptAddUvaEstufa">
-                            <option value="0"></option>
-                        </select>
-                    </p>
-                    <p>Tamanho da Estufa: <br> <input type="text" id="iptAddTamanhoEstufa"></p>
-                </div>
-                <button onclick="adicionar_Estufa()">Adicionar Estufa</button>
+                    <div class="form_AddEstufa">
+                        <p>Nome da Estufa: <br>
+                            <input type="text" id="iptAddNomeEstufa" placeholder="Estufa 001">
+                        </p>
+                        <p>Em qual plantação você deseja cadastrar esta estufa? <br>
+                            <input type="text" id="iptAddPlantacaoEstufa" placeholder="Id da Plantação">
+                        </p>
+                        <p>Tipo de Uva:
+                            <select id="iptAddUvaEstufa">
+                                <option value="0"></option>
+                            </select>
+                        </p>
+                        <p>Tamanho da Estufa: <br> <input type="text" id="iptAddTamanhoEstufa"></p>
+                    </div>
+                    <button onclick="adicionar_Estufa()">Adicionar Estufa</button>
                 </div>
                 <!--aaaaaaeeeeeeeeeeeeeeeeeeeeeeeeeepqaaaaaaaaaaaaaaa-->
                 <div id="formEditEstufa" style="display: none;" class="form">
                     <h1>Editar ou remover Estufas</h1>
 
                     <h3>Encontrar Estufa</h3>
-                   <div class="formEncontrar">
-                    <p>Informe a plantação em que a estufa está: <br>
-                         <input type="text" id="iptEncontrarPlantacaoEstufa">
-                    </p>
-                    <p>Por ID: <br>
-                         <input type="text" id="iptEncontrarIdEstufa"></p>
-                   </div>
+                    <div class="formEncontrar">
+                        <p>Informe a plantação em que a estufa está: <br>
+                            <input type="text" id="iptEncontrarPlantacaoEstufa">
+                        </p>
+                        <p>Por ID: <br>
+                            <input type="text" id="iptEncontrarIdEstufa"></p>
+                    </div>
                     <button onclick="encontrar_Estufa()">Encontrar Estufa</button>
                     <!-- <p>Por Localização: <input type="text" id="iptLocalizacaoPlantacao"></p> -->
                     <h3>Editar Estufa</h3>
-                   <div class="editEstufa">
-                    <p>Tipo de Uva:
-                        <select id="iptEditUvaEstufa">
-                            <option value="0"></option>
-                        </select>
-                    </p>
-                    <p>Tamanho da Estufa: <br> <input type="text" id="iptEditTamanhoEstufa"></p>
-                   </div>
+                    <div class="editEstufa">
+                        <p>Tipo de Uva:
+                            <select id="iptEditUvaEstufa">
+                                <option value="0"></option>
+                            </select>
+                        </p>
+                        <p>Tamanho da Estufa: <br> <input type="text" id="iptEditTamanhoEstufa"></p>
+                    </div>
                     <button onclick="editar_Estufa()">Editar Estufa</button>
                     <h3>Deletar Plantação:</h3>
                     <div class="delete">
                         <p>Confirmar Plantação: <br> <input type="text" id="iptDeleteEstufaConfirmacaoPlantacao"></p>
-                    <p>Confirmar ID: <br> <input type="text" id="iptDeleteEstufaConfirmacaoID"></p>
+                        <p>Confirmar ID: <br> <input type="text" id="iptDeleteEstufaConfirmacaoID"></p>
                     </div>
                     <button onclick="deletarPlantacao()">Deletar Plantação</button>
                 </div>
@@ -241,7 +242,7 @@
     var fkEmpresa = sessionStorage.FK_EMPRESA;
     var fkChefe = sessionStorage.ID_CHEFE;
     var imagemAdm = sessionStorage.IMAGEM_USUARIO;
-    
+
 
     imagemUsuario.src = imagemAdm;
     imagemCfg.src = imagemAdm;
@@ -254,6 +255,10 @@
         cargoAdm.innerHTML += 'Administrador'
     } else {
         location.href = 'DashboardHome.html'
+    }
+
+    function alterarImagem() {
+        window.location = "DashboardImagem.html"
     }
 
     function apagarDivs(id) {
@@ -570,8 +575,10 @@
 
                 resposta.json().then(json => {
                     for (let x in json) {
-                        iptAddUvaEstufa.innerHTML += `<option value="${json[x].nomeUva}">${json[x].nomeUva}</option>`;
-                        iptEditUvaEstufa.innerHTML += `<option value="${json[x].nomeUva}">${json[x].nomeUva}</option> `;
+                        iptAddUvaEstufa.innerHTML +=
+                            `<option value="${json[x].nomeUva}">${json[x].nomeUva}</option>`;
+                        iptEditUvaEstufa.innerHTML +=
+                            `<option value="${json[x].nomeUva}">${json[x].nomeUva}</option> `;
                     }
                 });
             } else {

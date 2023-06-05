@@ -1,0 +1,16 @@
+.areaAlterarImagem {
+    width: 80%;
+    height: 90%;
+    border: red 2px solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.areaCardImagem {
+    border: black 2px solid;
+    width: 25%;
+    height: 50%;
+    border-radius: 50%;
+}

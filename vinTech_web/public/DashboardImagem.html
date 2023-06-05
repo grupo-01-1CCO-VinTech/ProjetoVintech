@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="img/logo.jpeg" type="image/png">
+    <link rel="stylesheet" href="css/style-PadraoDashboard.css">
+    <link rel="stylesheet" href="css/style-PadraoTodos.css">
+    <link rel="stylesheet" href="css/style-ImagemDashboard.css">
+    <script src="js/funcoes.js"></script>
+    <title>Dashboard - Alterar Imagem</title>
+</head>
+
+<body>
+    <div class="pagina">
+        <div class="barra-lateral">
+            <div class="barra-logo">
+                <span>VinTech</span>
+                <img src="img/vintech.jpg" alt="">
+            </div>
+            <div class="barra-itens">
+                <ul>
+                    <a href="DashboardHome.html">
+                        <li>Home</li>
+                    </a>
+                    <a class="selected">
+                        <li>Plantações</li>
+                    </a>
+                    <a href="DashboardConfig.html" id="item_config">
+                        <li>Configurações</li>
+                    </a>
+                </ul>
+            </div>
+            <div class="barra-usuario">
+                <button class="barra-fotoUsuario" onclick="alterarImagem()">
+                    <img id="imagemUsuario" src="" alt="Foto Usuário">
+                </button>
+                <span id="nome_usuario"></span>
+                <span id="cargo_usuario"></span>
+            </div>
+            <div class="barra-button">
+                <button onclick="limparSessao()">Sair</button>
+            </div>
+        </div>
+        <div class="areaAlterarImagem">
+            <div class="areaCardImagem"> </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    var idChefe = sessionStorage.ID_USUARIO;
+    var nomeUsuario = sessionStorage.NOME_USUARIO;
+    var loginUsuario = sessionStorage.LOGIN_USUARIO;
+    var emailUsuario = sessionStorage.EMAIL_USUARIO;
+    var fkEmpresa = sessionStorage.FK_EMPRESA;
+    var fkChefe = sessionStorage.ID_CHEFE;
+    var imagemAdm = sessionStorage.IMAGEM_USUARIO;
+    
+    imagemUsuario.src = imagemAdm
+
+    validarSessao()
+        
+
+</script>
