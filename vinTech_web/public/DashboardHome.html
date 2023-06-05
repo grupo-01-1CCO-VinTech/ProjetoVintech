@@ -162,6 +162,8 @@
                     var menor_temp = 9999
                     var maior_umid = -9999
                     var menor_umid = 9999
+                    var alertas = [];
+
                     for (let x in json) {
                         let tempRegis = Number(json[x].temperaturaRegistro);
                         let temperaturaMaxima = Number(json[x].tempMax);
@@ -215,12 +217,16 @@
                     num_alerta.innerHTML = listaAlertas[2]
 
                     for(x in lista_estufa_perigo){
-                        top_estufas.innerHTML += `
-                            <div class="linha-lista">
+                        if (alertas.length < 4) {
+                            top_estufas.innerHTML += `
+                            <div class="linha-lista">   
                                 <li>${json[x].nomeEstufa}</li>
                                 <div id="imagem"><img src="img/cancelar.png"></div>
-                            </div>`
+                                </div>`
+                            }    
+                            alertas++
                         }
+
                     //     for(y in lista_estufa_alerta){
                     //     top_estufas.innerHTML += `
                     //         <div class="linha-lista">
@@ -251,124 +257,6 @@
         })
 
         return false;
-    }
-    var alertas = [];
-    // Incio da funçao de alertas
-    function obterdados(idPlantacao,temperaturaRegistro,umidadeRegistro){
-        fetch(`/medidas/tempo-real/${idPlantacao},${temperaturaRegistro},${umidadeRegistro}`)
-        .then(resposta => {
-
-            if (resposta.ok) {
-                resposta.json().then(resposta => {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    alertar(resposta,idPlantacao);
-                });
-            } else{
-                console.error('Nenhum dado encontrado')
-            }
-        })
-        .catch(function(error) {
-            console.error(`Erro na obtenção dos dados da plantação para o gráfico:
-            ${error.message}`);
-        });
-    }
-
-    function alertar (resposta,idPlantacao,temperaturaRegistro,umidadeRegistro){
-        var temp = resposta[0].temperatura;
-        var umd = resposta[0].umidade;
-
-        console.log(idPlantacao == resposta[0].fkPlantacao)
-        var grauDeAviso = '';
-        // Criação do json com as metricas
-        var limites_temp = {
-            perigo_baixo   : 11,
-            alerta_baixo: 12,
-            bom_baixo: 13,
-            ideal: 15,
-            bom_alto: 17,
-            alerta_alto: 20,
-            perigo_alto: 21
-        };
-        var limites_umd = {
-            perigo_baixo: 17,
-            alerta_baixo: 19,
-            bom_baixo: 24,
-            ideal: 30,
-            bom_alto: 35,
-            alerta_alto: 37,
-            perigo_alto: 38
-        };
-
-        var classe_temperatura = 'cor-alerta';
-        var classe_umidade = 'cor-alerta';
-        
-        if (temperaturaRegistro >= limites_temp.perigo_alto) {
-        classe_temperatura = 'cor-alerta perigo-quente';
-        grauDeAviso = 'perigo quente'
-        grauDeAvisoCor = 'cor-alerta perigo-quente' 
-        exibirAlerta(temperaturaRegistro,idPlantacao,grauDeAviso,grauDeAvisoCor)
-        } else if( temperaturaRegistro >= limites_temp.bom_alto && temperaturaRegistro < limites_temp.alerta_alto){
-        classe_temperaturaRegistro = 'cor-alerta alerta-quente';
-        grauDeAviso = 'alerta quente'
-        grauDeAvisoCor = 'cor-alerta alerta-quente'
-        exibirAlerta(temperaturaRegistro,idPlantacao,grauDeAviso,grauDeAvisoCor)
-        }else if(temperaturaRegistro > limites_temp.perigo_baixo && temperaturaRegistro < limites_temp.bom_baixo){
-        classe_temperaturaRegistro = 'cor-alerta alerta-frio';
-        grauDeAviso = 'alerta frio'
-        grauDeAvisoCor = 'cor-alerta alerta-frio'
-        exibirAlerta(temperaturaRegistro,idPlantacao,grauDeAviso,grauDeAvisoCor)
-        }else if( temperaturaRegistro < limites_temp.alerta_baixo && temperaturaRegistro.limites_temp.perigo_baixo){
-        classe_temperaturaRegistro = 'cor-alerta perigo-frio';
-        grauDeAviso = 'perigo frio'
-        grauDeAvisoCor = 'cor-alerta perigo-quente'
-        exibirAlerta(temperaturaRegistro,idPlantacao,grauDeAviso,grauDeAvisoCor)
-        }
-
-        if (umidadeRegistro >= limites_umd.perigo_alto) {
-        classe_umidade = 'cor-alerta perigo-quente';
-        grauDeAviso = 'perigo quente'
-        grauDeAvisoCor = 'cor-alerta perigo-quente'     
-        exibirAlerta(umidadeRegistro,idPlantacao,grauDeAviso,grauDeAvisoCor)
-        } else if( umidadeRegistro >= limites_umd.bom_alto && umidadeRegistro < limites_umd.alerta_alto){
-        classe_umidadeRegistro = 'cor-alerta alerta-quente';
-        grauDeAviso = 'alerta quente'
-        grauDeAvisoCor = 'cor-alerta alerta-quente'
-        exibirAlerta(umidadeRegistro,idPlantacao,grauDeAviso,grauDeAvisoCor)
-        }else if(umidadeRegistro > limites_umd.perigo_baixo && umidadeRegistro < limites_umd.bom_baixo){
-        classe_umidadeRegistro = 'cor-alerta alerta-frio';
-        grauDeAviso = 'alerta frio'
-        grauDeAvisoCor = 'cor-alerta alerta-frio'
-        exibirAlerta(umidadeRegistro,idPlantacao,grauDeAviso,grauDeAvisoCor)
-        }else if( umidadeRegistro < limites_umd.alerta_baixo && umidadeRegistro.limites_umd.perigo_baixo){
-        classe_umidadeRegistro = 'cor-alerta perigo-frio';
-        grauDeAviso = 'perigo frio'
-        grauDeAvisoCor = 'cor-alerta perigo-quente'
-        exibirAlerta(umidadeRegistro,idPlantacao,grauDeAviso,grauDeAvisoCor)
-        }        
-    }
-    function exibirCards(){
-        alerta.innerHTML = '';
-
-        for (var i = 0; i < alertas.length; i++) {
-            var mensagem = alertas[index];
-            alerta.innerHTML += transformarEmDiv(mensagem);
-        }
-    }
-    function transformarEmDiv(){
-        return `<div classs = "mensagem-alarme">
-            <small>Temperatura ${temperaturaRegistro}.</small>
-            <small> Umidade ${umidadeRegistro}.</small>
-            </div>`
-    }
-    function exibirAlerta(temperaturaRegistro,umidadeRegistro,idPlantacao,grauDeAviso,grauDeAvisoCor){
-    var indice = alertas.findIndex(item => item.idPlantacao == idPlantacao);
-
-    if (indice >= 0) {
-    alertas[indice] = {idPlantacao,temperaturaRegistro,umidadeRegistro,grauDeAviso,grauDeAvisoCor}
-    }else {
-        alertas.push({idPlantacao,temperaturaRegistro,umidadeRegistro,grauDeAviso,grauDeAvisoCor});
-    }
-    exibirCards()
     }
 
 </script>
