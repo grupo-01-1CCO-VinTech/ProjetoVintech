@@ -166,6 +166,7 @@ h2{
     width: 90%;
     border: 2px purple solid;
     border-radius: 5%;
+    overflow-y: scroll;
 }
 
 .info_estufa{
