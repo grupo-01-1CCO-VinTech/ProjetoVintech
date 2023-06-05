@@ -14,7 +14,7 @@
     <title>Plantações</title>
 </head>
 
-<body onload="listar_Uvas(), lista">
+<body onload="listar_Uvas(), listar_platacoes()">
     <div class="pagina">
         <div class="barra-lateral">
             <div class="barra-logo">
@@ -361,7 +361,7 @@
 
                 resposta.json().then(json => {
                     for (let x in json) {
-                        selectPlant.innerHTML += `<option></option>`;
+                        selectPlant.innerHTML += `<option id='${json[x].nomePlantacao}'>${json[x].nomePlantacao}</option>`;
                     }
                 });
             } else {
