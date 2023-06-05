@@ -26,6 +26,13 @@ não podem ser usadas como construtoras) assincrona (uma função assincrona é 
 não tenho resposta na hora e eu não preciso esperar essa resposta para seguir o meu
 processamento/código)
 */
+
+function variarValores(valor){
+    let aleatorio = Number((-10 + Math.random() * 20).toFixed())
+    let novoNumero = Number((valor + (valor * (aleatorio/100))).toFixed(2))
+    return novoNumero
+}
+
 const serial = async (
     valoresDht11Umidade,
     valoresDht11Temperatura,
@@ -84,7 +91,37 @@ const serial = async (
                 // 'INSERT INTO sensores (dht11_umidade, dht11_temperatura, luminosidade, lm35_temperatura, chave) VALUES (?, ?, ?, ?, ?)',
                 // [dht11Umidade, dht11Temperatura, luminosidade, lm35Temperatura, chave]
                 'INSERT INTO Registro (temperaturaRegistro, umidadeRegistro, dataRegistro, fkSensor) VALUES (?, ?, now() ,?)',
+                [variarValores(dht11Temperatura) - 8, variarValores(dht11Umidade) - 20, 1]
+            );
+            await poolBancoDados.execute(
+                // 'INSERT INTO sensores (dht11_umidade, dht11_temperatura, luminosidade, lm35_temperatura, chave) VALUES (?, ?, ?, ?, ?)',
+                // [dht11Umidade, dht11Temperatura, luminosidade, lm35Temperatura, chave]
+                'INSERT INTO Registro (temperaturaRegistro, umidadeRegistro, dataRegistro, fkSensor) VALUES (?, ?, now() ,?)',
+                [dht11Temperatura, dht11Umidade, 2]
+            );
+            await poolBancoDados.execute(
+                // 'INSERT INTO sensores (dht11_umidade, dht11_temperatura, luminosidade, lm35_temperatura, chave) VALUES (?, ?, ?, ?, ?)',
+                // [dht11Umidade, dht11Temperatura, luminosidade, lm35Temperatura, chave]
+                'INSERT INTO Registro (temperaturaRegistro, umidadeRegistro, dataRegistro, fkSensor) VALUES (?, ?, now() ,?)',
+                [dht11Temperatura, dht11Umidade, 3]
+            );
+            await poolBancoDados.execute(
+                // 'INSERT INTO sensores (dht11_umidade, dht11_temperatura, luminosidade, lm35_temperatura, chave) VALUES (?, ?, ?, ?, ?)',
+                // [dht11Umidade, dht11Temperatura, luminosidade, lm35Temperatura, chave]
+                'INSERT INTO Registro (temperaturaRegistro, umidadeRegistro, dataRegistro, fkSensor) VALUES (?, ?, now() ,?)',
                 [dht11Temperatura, dht11Umidade, 4]
+            );
+            await poolBancoDados.execute(
+                // 'INSERT INTO sensores (dht11_umidade, dht11_temperatura, luminosidade, lm35_temperatura, chave) VALUES (?, ?, ?, ?, ?)',
+                // [dht11Umidade, dht11Temperatura, luminosidade, lm35Temperatura, chave]
+                'INSERT INTO Registro (temperaturaRegistro, umidadeRegistro, dataRegistro, fkSensor) VALUES (?, ?, now() ,?)',
+                [dht11Temperatura, dht11Umidade, 5]
+            );
+            await poolBancoDados.execute(
+                // 'INSERT INTO sensores (dht11_umidade, dht11_temperatura, luminosidade, lm35_temperatura, chave) VALUES (?, ?, ?, ?, ?)',
+                // [dht11Umidade, dht11Temperatura, luminosidade, lm35Temperatura, chave]
+                'INSERT INTO Registro (temperaturaRegistro, umidadeRegistro, dataRegistro, fkSensor) VALUES (?, ?, now() ,?)',
+                [dht11Temperatura, dht11Umidade, 6]
             );
         }
 

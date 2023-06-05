@@ -14,7 +14,7 @@
     <title>Plantações</title>
 </head>
 
-<body onload="listar_Uvas()">
+<body onload="listar_Uvas(), lista">
     <div class="pagina">
         <div class="barra-lateral">
             <div class="barra-logo">
@@ -73,27 +73,15 @@
                             </div>
                             <div class="selectUva">
                                 <h3>Por Uva</h3>
-                                <select id="selectTipoUva">
+                                <select id="selectUva">
+                                    <option value=""></option>
                                 </select>
                             </div>
 
                             <div class="selectUva">
                                 <h3>Por Plantação</h3>
-                                <select id="">
-                                    <option value="">Plantações</option>
-                                    <option value="">Plantação 1 - Borgonha</option>
-                                    <option value="">Plantação 2 - Viterbo</option>
-                                    <option value="">Plantação 2 - Califórnia</option>
-                                </select>
-                            </div>
-                            <div class="selectUva">
-                                <h3>Ordenar por</h3>
-                                <select id="select">
-                                    <option value="">Perigos</option>
-                                    <option value="">Temperatura acima do Ideal</option>
-                                    <option value="">Umidade Muito Alta</option>
-                                    <option value="">Dias Chuvosos</option>
-                                    <option value="">Dias com a maior Temperatura</option>
+                                <select id="selectPlant">
+                                    <option value=""></option>
                                 </select>
                             </div>
                         </div>
@@ -234,7 +222,7 @@
 
                 resposta.json().then(json => {
                     for (let x in json) {
-                        selectTipoUva.innerHTML += `<option value="${json[x].nomeUva}">${json[x].nomeUva}</option>`;
+                        selectUva.innerHTML += `<option value="${json[x].nomeUva}" onchange="filtrarPlant()">${json[x].nomeUva}</option>`;
                     }
                 });
             } else {
@@ -275,15 +263,15 @@
                         let temperaturaMaxima = Number(json[x].tempMax);
                         let temperaturaMinima = Number(json[x].tempMin);
                         let temperaturaIdeal = Number((temperaturaMaxima + temperaturaMinima) / 2)
-                        let temperaturaAlertaSuperior = Number(temperaturaIdeal + ((5 / 100) * temperaturaIdeal))
-                        let temperaturaAlertaInferior = Number(temperaturaIdeal - ((5 / 100) * temperaturaIdeal))
+                        let temperaturaAlertaSuperior = Number(temperaturaIdeal + ((10 / 100) * temperaturaIdeal))
+                        let temperaturaAlertaInferior = Number(temperaturaIdeal - ((10 / 100) * temperaturaIdeal))
 
                         let umidRegis = json[x].umidadeRegistro;
                         let umidadeMaxima = json[x].umidMax;
                         let umidadeMinima = json[x].umidMin;
                         let umidadeIdeal = (umidadeMaxima + umidadeMinima) / 2
-                        let umidadeAlertaSuperior = umidadeIdeal + ((5 / 100) * umidadeIdeal)
-                        let umidadeAlertaInferior = umidadeIdeal - ((5 / 100) * umidadeIdeal)
+                        let umidadeAlertaSuperior = umidadeIdeal + ((10 / 100) * umidadeIdeal)
+                        let umidadeAlertaInferior = umidadeIdeal - ((10 / 100) * umidadeIdeal)
 
                         let string = ""
 
@@ -343,6 +331,38 @@
 
                     grafico_deitado.update()
                     grafico_rosca.update()
+                });
+            } else {
+                console.log("Houve um erro ao tentar consultar as plantações");
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function listar_platacoes() {
+        fetch("/plantacao/listar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                fkEmpresaServer: fkEmpresa
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    for (let x in json) {
+                        selectPlant.innerHTML += `<option></option>`;
+                    }
                 });
             } else {
                 console.log("Houve um erro ao tentar consultar as plantações");
