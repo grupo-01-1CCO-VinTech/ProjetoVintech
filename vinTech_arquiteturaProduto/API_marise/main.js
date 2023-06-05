@@ -103,25 +103,25 @@ const serial = async (
                 // 'INSERT INTO sensores (dht11_umidade, dht11_temperatura, luminosidade, lm35_temperatura, chave) VALUES (?, ?, ?, ?, ?)',
                 // [dht11Umidade, dht11Temperatura, luminosidade, lm35Temperatura, chave]
                 'INSERT INTO Registro (temperaturaRegistro, umidadeRegistro, dataRegistro, fkSensor) VALUES (?, ?, now() ,?)',
-                [dht11Temperatura, dht11Umidade, 3]
+                [variarValores(dht11Temperatura) - 6, variarValores(dht11Umidade) + 10, 3]
             );
             await poolBancoDados.execute(
                 // 'INSERT INTO sensores (dht11_umidade, dht11_temperatura, luminosidade, lm35_temperatura, chave) VALUES (?, ?, ?, ?, ?)',
                 // [dht11Umidade, dht11Temperatura, luminosidade, lm35Temperatura, chave]
                 'INSERT INTO Registro (temperaturaRegistro, umidadeRegistro, dataRegistro, fkSensor) VALUES (?, ?, now() ,?)',
-                [dht11Temperatura, dht11Umidade, 4]
+                [variarValores(dht11Temperatura) - 8, variarValores(dht11Umidade) - 25, 4]
             );
             await poolBancoDados.execute(
                 // 'INSERT INTO sensores (dht11_umidade, dht11_temperatura, luminosidade, lm35_temperatura, chave) VALUES (?, ?, ?, ?, ?)',
                 // [dht11Umidade, dht11Temperatura, luminosidade, lm35Temperatura, chave]
                 'INSERT INTO Registro (temperaturaRegistro, umidadeRegistro, dataRegistro, fkSensor) VALUES (?, ?, now() ,?)',
-                [dht11Temperatura, dht11Umidade, 5]
+                [variarValores(dht11Temperatura) - 5, variarValores(dht11Umidade) - 40, 5]
             );
             await poolBancoDados.execute(
                 // 'INSERT INTO sensores (dht11_umidade, dht11_temperatura, luminosidade, lm35_temperatura, chave) VALUES (?, ?, ?, ?, ?)',
                 // [dht11Umidade, dht11Temperatura, luminosidade, lm35Temperatura, chave]
                 'INSERT INTO Registro (temperaturaRegistro, umidadeRegistro, dataRegistro, fkSensor) VALUES (?, ?, now() ,?)',
-                [dht11Temperatura, dht11Umidade, 6]
+                [variarValores(dht11Temperatura) - 10, variarValores(dht11Umidade) - 20, 6]
             );
         }
 

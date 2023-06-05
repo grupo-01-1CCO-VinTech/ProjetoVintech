@@ -36,7 +36,7 @@
             </div>
             <div class="barra-usuario">
                 <div class="barra-fotoUsuario">
-                    <img  id="imagemUsuario" src="" alt="Foto Usuário">
+                    <img id="imagemUsuario" src="" alt="Foto Usuário">
                 </div>
                 <span id="nome_usuario"></span>
                 <span id="cargo_usuario"></span>
@@ -135,7 +135,7 @@
     var fkEmpresa = sessionStorage.FK_EMPRESA;
     var fkChefe = sessionStorage.ID_CHEFE;
     var imagemAdm = sessionStorage.IMAGEM_USUARIO;
-    
+
 
     imagemUsuario.src = imagemAdm
 
@@ -147,7 +147,7 @@
     const graficoBarraDeitado = document.getElementById('graficoBarraDeitado');
     var grafico_deitado = new Chart(graficoBarraDeitado, {
         type: 'bar',
-        
+
         data: {
             labels: ['Valores'],
             datasets: [{
@@ -157,14 +157,14 @@
                 backgroundColor: [
                     '#00BF15'
                 ]
-            },{
+            }, {
                 label: ['Alerta'],
                 data: [],
                 borderWidth: 1,
-                backgroundColor: [   
+                backgroundColor: [
                     '#FFDE59'
                 ]
-            },{
+            }, {
                 label: ['Perigo'],
                 data: [],
                 borderWidth: 1,
@@ -238,6 +238,16 @@
     }
 
     function listar_estufas() {
+        areaCardsPequenos.innerHTML = ''
+        grafico_deitado.data.datasets[0].data = []
+        grafico_deitado.data.datasets[1].data = []
+        grafico_deitado.data.datasets[2].data = []
+
+        grafico_rosca.data.datasets[0].data = []
+
+        grafico_deitado.update()
+        grafico_rosca.update()
+
         fetch("/estufa/listar_plant", {
             method: "POST",
             headers: {
@@ -321,6 +331,8 @@
                     txtSeguro.innerHTML = `${listaAlertas[0]}`
                     txtAlerta.innerHTML = `${listaAlertas[1]}`
                     txtPerigo.innerHTML = `${listaAlertas[2]}`
+
+
                     grafico_deitado.data.datasets[0].data.push(listaAlertas[0])
                     grafico_deitado.data.datasets[1].data.push(listaAlertas[1])
                     grafico_deitado.data.datasets[2].data.push(listaAlertas[2])
@@ -411,13 +423,15 @@
     //listaContadores.push(contadorSeguro)
     //listaContadores.push(contadorAlerta)
     //listaContadores.push(contadorPerigo)
-    
+
     listar_estufas()
 
-    function verEstufa(idSensor){
+    function verEstufa(idSensor) {
         sessionStorage.ID_SENSOR = idSensor
         window.location.href = "DashboardGraficosEstufas.html"
     }
 
-
+    setInterval(() => {
+        listar_estufas()
+    }, 10000)
 </script>
