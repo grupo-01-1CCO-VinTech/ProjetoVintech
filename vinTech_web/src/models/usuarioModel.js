@@ -1,10 +1,10 @@
 var database = require("../database/config")
 
-function listar(email) {
+function listar(email, fkEmpresa) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
     console.log(email)
     var instrucao = `
-        SELECT f.*, e.nomeEmpresa FROM Funcionario f join Empresa e on idEmpresa = fkEmpresa where emailFuncionario = '${email}';
+        SELECT f.*, e.nomeEmpresa FROM Funcionario f join Empresa e on idEmpresa = fkEmpresa where emailFuncionario = '${email}' and f.fkEmpresa = ${fkEmpresa};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
