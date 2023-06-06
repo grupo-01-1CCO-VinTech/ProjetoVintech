@@ -11,7 +11,6 @@
     var indexRouter = require("./src/routes/index");
     var usuarioRouter = require("./src/routes/usuarios");
     var empresaRouter = require("./src/routes/empresa");
-    var avisosRouter = require("./src/routes/avisos");
     var medidasRouter = require("./src/routes/medidas");
     var platacaoRouter = require("./src/routes/plantacao");
     var estufaRouter = require("./src/routes/estufa");
@@ -27,7 +26,6 @@
     app.use("/", indexRouter);
     app.use("/usuarios", usuarioRouter);
     app.use("/empresa", empresaRouter);
-    app.use("/avisos", avisosRouter);
     app.use("/medidas", medidasRouter);
     app.use("/plantacao", platacaoRouter);
     app.use("/estufa", estufaRouter);
