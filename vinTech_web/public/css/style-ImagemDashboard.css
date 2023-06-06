@@ -70,6 +70,7 @@
 }
 
 .areaBotao button {
+    font-size: 2vh;
     width: 80%;
     height: 65%;
     border-radius: 10vh;
@@ -80,10 +81,10 @@
     background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(241, 241, 241)100%);
 }
 
-
-
 .areaBotao button:hover {
     color: #950aff;
     background: transparent;
     box-shadow: none;
+    transition: 0.4ms;
+    font-size: 3vh;
 }
