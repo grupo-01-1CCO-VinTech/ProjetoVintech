@@ -49,8 +49,7 @@
     <div class="container">
         <div class="header">
             <img src="img/uvaDetalhe.png" alt="Detalhe Uva">
-            <a>Suas plantações</a>
-            <span>Listagem de Estufas</span>
+            <span style="font-size: 5vh;">Listagem de Estufas</span>
             <span class="linhaTitulo"></span>
         </div>
         <div class="containerCard-Grande">
@@ -73,14 +72,14 @@
                             </div>
                             <div class="selectUva">
                                 <h3>Por Uva</h3>
-                                <select id="selectUva">
+                                <select id="selectUva" onchange="filtro('uva')">
                                     <option value=""></option>
                                 </select>
                             </div>
 
                             <div class="selectUva">
                                 <h3>Por Plantação</h3>
-                                <select id="selectPlant">
+                                <select id="selectPlant" onchange="filtro('plantacao')">
                                     <option value=""></option>
                                 </select>
                             </div>
@@ -140,19 +139,38 @@
     var dados_grafico_deitado = []
     var dados_grafico_rosca = []
 
+    var lista_uvas = [];
+    var lista_platacoes = []
+
     validarSessao()
 
     var status_botao = '';
-    function filtro(tipo){
+    var status_uva = '';
+    var status_plantacao = ''
+
+    function filtro(tipo) {
         if (tipo == "seguro") {
-            alert('seguro')  
             status_botao = 'seguro'
-        }else if(tipo == 'alerta'){
-            alert('alert')
+        }
+
+        else if (tipo == 'alerta') {
             status_botao = 'alerta'
-        }else if(tipo == 'perigo'){
-            alert('perigo')
+        }
+
+        else if (tipo == 'perigo') {
             status_botao = 'perigo'
+        }
+
+        if (tipo == 'uva') {
+            if (lista_uvas.indexOf(selectUva.value) != -1) {
+                status_uva = selectUva.value
+            }
+        }
+
+        if (tipo == 'plantacao') {
+            if (lista_platacoes.indexOf(selectPlant.value) != -1) {
+                status_plantacao = selectPlant.value
+            }
         }
 
         listar_estufas()
@@ -160,7 +178,7 @@
 
 
     function filtrar_com_acao(filtro_tipo, json) {
-        status_botao = filtro_tipo;
+        areaCardsPequenos.innerHTML = ''
         listaAlertas =
             [
                 0, //Seguro
@@ -184,7 +202,7 @@
             let umidadeIdeal = (umidadeMaxima + umidadeMinima) / 2
             let umidadeAlertaSuperior = umidadeIdeal + ((10 / 100) * umidadeIdeal)
             let umidadeAlertaInferior = umidadeIdeal - ((10 / 100) * umidadeIdeal)
-            
+
             var classe = ``
 
             let string = ""
@@ -205,23 +223,39 @@
                 listaAlertas[1]++
             }
 
-
-            console.log(status_botao == 'seguro')
-            var check = false
-            if(status_botao == 'seguro' && classe == 'Seguro'){
-                check = true
+            var check_botao = false
+            if (status_botao == 'seguro' && classe == 'Seguro') {
+                check_botao = true
             };
-            if(status_botao == 'alerta' && classe == 'Alerta'){
-                check = true
+            if (status_botao == 'alerta' && classe == 'Alerta') {
+                check_botao = true
             };
-            if(status_botao == 'perigo' && classe == 'Perigo'){
-                check = true
+            if (status_botao == 'perigo' && classe == 'Perigo') {
+                check_botao = true
             };
-            if(status_botao == ''){
-                check = true
+            if (status_botao == '') {
+                check_botao = true
             }
 
-            if(check){
+            var check_uva = false
+            if (json[x].nomeUva == status_uva) {
+                check_uva = true
+            }
+
+            else if (status_uva == "") {
+                check_uva = true
+            }
+
+            var check_plantacao = false
+            if (json[x].nomePlantacao == status_plantacao) {
+               check_plantacao = true 
+            }
+            else if(status_plantacao == ""){
+                check_plantacao = true
+            }
+
+
+            if (check_botao && check_uva && check_plantacao) {
                 areaCardsPequenos.innerHTML +=
                     `
                     <div class="cardPequeno ${classe}" id='card${json[x].idEstufa}' onclick='verEstufa(${json[x].idSensor})'>
@@ -248,8 +282,8 @@
                                 </div>  
                             `
             }
-        }   
-       
+        }
+
         txtSeguro.innerHTML = `${listaAlertas[0]}`
         txtAlerta.innerHTML = `${listaAlertas[1]}`
         txtPerigo.innerHTML = `${listaAlertas[2]}`
@@ -345,7 +379,8 @@
 
                 resposta.json().then(json => {
                     for (let x in json) {
-                        selectUva.innerHTML += `<option value="${json[x].nomeUva}" onchange="filtrarPlant()">${json[x].nomeUva}</option>`;
+                        lista_uvas.push(json[x].nomeUva)
+                        selectUva.innerHTML += `<option value="${json[x].nomeUva}">${json[x].nomeUva}</option>`;
                     }
                 });
             } else {
@@ -384,7 +419,7 @@
                 console.log(resposta);
 
                 resposta.json().then(json => {
-                    filtrar_com_acao(status_botao, json)    
+                    filtrar_com_acao(status_botao, json)
                 });
             } else {
                 console.log("Houve um erro ao tentar consultar as plantações");
@@ -415,6 +450,7 @@
 
                 resposta.json().then(json => {
                     for (let x in json) {
+                        lista_platacoes.push(json[x].nomePlantacao)
                         selectPlant.innerHTML += `<option id='${json[x].nomePlantacao}'>${json[x].nomePlantacao}</option>`;
                     }
                 });
