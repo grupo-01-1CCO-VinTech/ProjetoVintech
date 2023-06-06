@@ -61,6 +61,28 @@
 
         <div class="main_tela">
             <div class="esquerda">
+                <div class="metricas">
+                    <div class="areaMetrica">
+                        <span class="labelBloco">Perigo Inferior</span>
+                        <div class="perigo bloco-metrica" id="minimaSuportada"></div>
+                    </div>
+                    <div class="areaMetrica">
+                        <span class="labelBloco">Alerta Inferior</span>
+                        <div class="alerta bloco-metrica" id="alertaInferior"></div>
+                    </div>
+                    <div class="areaMetrica">
+                        <span class="labelBloco">Ideal</span>
+                        <div class="seguro bloco-metrica" id="seguro"></div>
+                    </div>
+                    <div class="areaMetrica">
+                        <span class="labelBloco">Alerta Superior</span>
+                        <div class="alerta bloco-metrica" id="alertaSuperior"></div>
+                    </div>
+                    <div class="areaMetrica">
+                        <span class="labelBloco">Perigo Superior</span>
+                        <div class="perigo bloco-metrica" id="maximaSuportada"></div>
+                    </div>
+                </div>
                 <div class="grafico_temp">
                     <h1>Temperatura</h1>
                     <section style="width: 100%;">
@@ -151,10 +173,44 @@
                     tamanho.innerHTML = `${json[0].areaEstufa}m²`
                     id_sensor.innerHTML = `${idSensor}`
                     local_sensor.innerHTML = `${json[0].localSensor}`
-                    temp_min.innerHTML = `${json[0].tempMin}°C`
-                    temp_max.innerHTML = `${json[0].tempMax}°C`
-                    umidade_min.innerHTML = `${json[0].umidMin}%`
-                    umidade_max.innerHTML = `${json[0].umidMax}%`
+
+                    let temperaturaMaxima = Number(json[0].tempMax);
+                    let temperaturaMinima = Number(json[0].tempMin);
+                    let temperaturaIdeal = Number((temperaturaMaxima + temperaturaMinima) / 2)
+                    let temperaturaAlertaSuperior = Number(temperaturaIdeal + ((10 / 100) * temperaturaIdeal))
+                    let temperaturaAlertaInferior = Number(temperaturaIdeal - ((10 / 100) * temperaturaIdeal))
+
+                    let umidadeMaxima = json[0].umidMax;
+                    let umidadeMinima = json[0].umidMin;
+                    let umidadeIdeal = (umidadeMaxima + umidadeMinima) / 2
+                    let umidadeAlertaSuperior = umidadeIdeal + ((10 / 100) * umidadeIdeal)
+                    let umidadeAlertaInferior = umidadeIdeal - ((10 / 100) * umidadeIdeal)
+
+                    minimaSuportada.innerHTML +=
+                        `
+                        <span>Temperatura: ${temperaturaMinima}°C</span>
+                        <span>Umidade: ${umidadeMinima}%</span>
+                    `
+                    maximaSuportada.innerHTML +=
+                        `
+                        <span>Temperatura: ${temperaturaMaxima}°C</span>
+                        <span>Umidade: ${umidadeMaxima}%</span>
+                    `
+                    alertaInferior.innerHTML +=
+                        `
+                        <span>Temperatura: ${temperaturaAlertaInferior}°C</span>
+                        <span>Umidade: ${umidadeAlertaInferior}%</span>
+                    `
+                    alertaSuperior.innerHTML +=
+                        `
+                        <span>Temperatura: ${temperaturaAlertaSuperior}°C</span>
+                        <span>Umidade: ${umidadeAlertaSuperior}%</span>
+                    `
+                    seguro.innerHTML +=
+                        `
+                        <span>Temperatura: ${temperaturaIdeal}°C</span>
+                        <span>Umidade: ${umidadeIdeal}%</span>
+                    `
 
                 })
             } else {
@@ -256,17 +312,17 @@
                         type: 'linear',
                         position: 'left',
                         ticks: {
-                            callback: function(value, index, values){
+                            callback: function (value, index, values) {
                                 return `${value}°C`
                             }
                         }
-                    },{
+                    }, {
                         id: 'yAxisUmid',
                         beginAtZero: true,
                         type: 'linear',
                         position: 'right',
                         ticks: {
-                            callback: function(value, index, values){
+                            callback: function (value, index, values) {
                                 return `${value}%`
                             }
                         }
