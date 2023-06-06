@@ -162,7 +162,6 @@
                     var menor_temp = 9999
                     var maior_umid = -9999
                     var menor_umid = 9999
-                    var alertas = [];
 
                     for (let x in json) {
                         let tempRegis = Number(json[x].temperaturaRegistro);
@@ -217,14 +216,17 @@
                     num_alerta.innerHTML = listaAlertas[2]
 
                     for(x in lista_estufa_perigo){
-                        if (alertas.length < 4) {
+                        if (lista_estufa_perigo.length < 4) {
                             top_estufas.innerHTML += `
                             <div class="linha-lista">   
                                 <li>${json[x].nomeEstufa}</li>
                                 <div id="imagem"><img src="img/cancelar.png"></div>
                                 </div>`
+                            }else{
+                                top_estufas.innerHTML = `EXISTEM MUITAS ESTUFAS EM PERIGO!`;
+                                top_estufas.style.color = "red"
                             }    
-                            alertas++
+                            
                         }
 
                     //     for(y in lista_estufa_alerta){
