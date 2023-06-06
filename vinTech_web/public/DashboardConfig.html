@@ -347,7 +347,7 @@
         ipt_emailAlter_user.value = ""
 
         if (ipt_email_user.value == 0) {
-            alert('coloque o email de quem tu vai consultar')
+            alert('coloque o email de quem você irá consultar!')
         } else {
             fetch("/usuarios/listar", {
                 method: "POST",
@@ -355,7 +355,8 @@
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    emailServer: ipt_email_user.value
+                    emailServer: ipt_email_user.value,
+                    idEmpresaServer: fkEmpresa
                 })
             }).then(function (resposta) {
                 console.log("ESTOU NO THEN DO entrar()!")

@@ -9,7 +9,8 @@ function testar(req, res) {
 
 function listar(req, res) {
     var email = req.body.emailServer
-    usuarioModel.listar(email)
+    var fkEmpresa = req.body.idEmpresaServer
+    usuarioModel.listar(email, fkEmpresa)
         .then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);
