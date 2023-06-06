@@ -26,6 +26,7 @@ body{
     width: 80vw;
     height: 100vh;
     flex-direction: column;
+    /* border: 1px solid yellow; */
 }
 /* .container_topo{
     display: flex;
@@ -37,21 +38,15 @@ body{
     display: flex;
     height: 50%;
     width: 100%;
-    flex-direction: row;   
+    justify-content: center; 
 }
 .superior_esquerda{
     display: flex;
-    width: 80%;
+    width: 90%;
     height: 100%;
     flex-direction: column;
 }
-.superior_direita{
-    display: flex;
-    width: 25%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-}
+
 .titulo{
     display: flex;
     justify-content: center;
@@ -66,32 +61,49 @@ body{
     height: 100%;
     align-items: center;
     justify-content: space-evenly;
+    /* border: 1px solid red; */
 }
 .caixa{
     display: flex;
     flex-direction: column;
-    border: solid 1px purple;
+    border: solid 2px transparent;
     border-radius: 30px;
     width: 32%;
     height: 70%;
     align-items: center;
     justify-content: space-evenly; 
 }
+
+.caixa:nth-of-type(1){
+    border-color: red;
+    background-color: rgba(255, 0, 0, 0.123);
+    box-shadow: 0 5px 2px red;
+}
+.caixa:nth-of-type(2){
+    border-color: rgb(221, 170, 1);
+    background-color: rgba(221, 170, 1, 0.123);
+    box-shadow: 0 5px 2px rgb(221, 170, 1);
+}
+.caixa:nth-of-type(3){
+    border-color: green;
+    background-color: rgba(0, 255, 0, 0.123);
+    box-shadow: 0 5px 2px green;
+
+}
 .caixa span {
     font-size: 40px;
 }
-.top_estufas{
-    display: flex;
-    border: solid 1px purple;
-    border-radius:30px ;
-    width: 95%;
-    height: 85%;
-    align-items: center;
-    flex-direction: column;
-    background-size: 5vw, 5vh;
-    background-repeat: no-repeat;
-    background-position:right top;  
-    overflow-y: scroll;
+
+.top_estufas::-webkit-scrollbar, .uvas_cultivo::-webkit-scrollbar{
+    width: 12px;
+}
+
+.top_estufas::-webkit-scrollbar-track, .uvas_cultivo::-webkit-scrollbar-track{
+    background: rgb(45, 0, 97);
+}
+
+.top_estufas::-webkit-scrollbar-thumb, .uvas_cultivo::-webkit-scrollbar-thumb{
+    background: rgb(89, 0, 255);
 }
 
 .imagem_uva{
@@ -118,8 +130,8 @@ body{
     display: flex;
     width: 100%;
     height: 50%;
-   flex-direction:row;
-   border-top: dashed black
+    justify-content: center;
+   /* border-top: dashed black */
 } 
 .inferior_esquerda{
     display: flex;
