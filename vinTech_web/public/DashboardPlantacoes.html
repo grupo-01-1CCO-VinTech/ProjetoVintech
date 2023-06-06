@@ -188,6 +188,7 @@
         if (status_botao == "") {
             console.log('alert')
         }
+        var contador_card = 0
         for (let x in json) {
             let tempRegis = Number(json[x].temperaturaRegistro);
             let temperaturaMaxima = Number(json[x].tempMax);
@@ -253,9 +254,8 @@
             else if(status_plantacao == ""){
                 check_plantacao = true
             }
-
-
             if (check_botao && check_uva && check_plantacao) {
+                contador_card++
                 areaCardsPequenos.innerHTML +=
                     `
                     <div class="cardPequeno ${classe}" id='card${json[x].idEstufa}' onclick='verEstufa(${json[x].idSensor})'>
@@ -284,6 +284,9 @@
             }
         }
 
+        if(contador_card == 0){
+            areaCardsPequenos.innerHTML = `Esta estufa com esta uva não existe`
+        }
         txtSeguro.innerHTML = `${listaAlertas[0]}`
         txtAlerta.innerHTML = `${listaAlertas[1]}`
         txtPerigo.innerHTML = `${listaAlertas[2]}`
