@@ -35,9 +35,9 @@
                 </ul>
             </div>
             <div class="barra-usuario">
-                <div class="barra-fotoUsuario">
-                    <img  id="imagemUsuario" src="" alt="Foto Usuário">
-                </div>
+                <button class="barra-fotoUsuario" onclick="alterarImagem()">
+                    <img id="imagemUsuario" src="" alt="Foto Usuário">
+                </button>
                 <span id="nome_usuario"></span>
                 <span id="cargo_usuario"></span>
             </div>
@@ -259,4 +259,7 @@
         return false;
     }
 
+    function alterarImagem() {
+        window.location = "DashboardImagem.html"
+    }
 </script>

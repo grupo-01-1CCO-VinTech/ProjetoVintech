@@ -25,10 +25,10 @@
                     <a href="DashboardHome.html">
                         <li>Home</li>
                     </a>
-                    <a class="selected">
+                    <a href="DashboardPlantacoes.html">
                         <li>Plantações</li>
                     </a>
-                    <a href="DashboardConfig.html" id="item_config">
+                    <a class="selected" id="item_config">
                         <li>Configurações</li>
                     </a>
                 </ul>
@@ -45,8 +45,17 @@
             </div>
         </div>
         <div class="areaAlterarImagem">
-            <div class="areaCardImagem"> 
-                <img src=""
+            <h1>Altere a sua imagem</h1>
+            <div class="areaCardImagem">
+                <img id="imagemNova_Usuario" src="">
+            </div>
+            <div class="areaInputUrl">
+                <span>Insira sua imagem que deseja alterar</span>
+                <input class="inputImagem" id="input_imagem" type="url" placeholder="Url da Imagem"
+                    oninput="analisar()">
+            </div>
+            <div class="areaBotao">
+                <button class="areaBotao btn-6" onclick="alterarImagem"><span>Alterar</span></button>
             </div>
         </div>
     </div>
@@ -61,10 +70,19 @@
     var fkEmpresa = sessionStorage.FK_EMPRESA;
     var fkChefe = sessionStorage.ID_CHEFE;
     var imagemAdm = sessionStorage.IMAGEM_USUARIO;
-    
+
     imagemUsuario.src = imagemAdm
 
     validarSessao()
-        
+
+    function analisar() {
+        var inputImagem = input_imagem.value
+
+        imagemNova_Usuario.src = inputImagem
+    }
+
+    function alterarImagem() {
+
+    }
 
 </script>
