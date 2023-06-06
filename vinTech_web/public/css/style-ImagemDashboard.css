@@ -13,7 +13,7 @@
     width: 20%;
     height: 35%;
     border-radius: 50%;
-    border: black 2px solid;
+    /* border: black 2px solid; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -28,6 +28,7 @@
 }
 
 .areaCardImagem:hover {
+    border: none;
     border-radius: 10%;
 }
 
@@ -85,6 +86,6 @@
     color: #950aff;
     background: transparent;
     box-shadow: none;
-    transition: 0.4ms;
+    transition: 1s;
     font-size: 3vh;
 }

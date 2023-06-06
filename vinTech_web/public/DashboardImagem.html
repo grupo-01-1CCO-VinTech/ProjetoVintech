@@ -44,7 +44,7 @@
                 <button onclick="limparSessao()">Sair</button>
             </div>
         </div>
-        <div class="areaAlterarImagem">
+        <div class="areaAlterarImagem" id="div_imagem">
             <h1>Altere a sua imagem</h1>
             <div class="areaCardImagem">
                 <img id="imagemNova_Usuario" src="">
@@ -55,15 +55,18 @@
                     oninput="analisar()">
             </div>
             <div class="areaBotao">
-                <button class="areaBotao btn-6" onclick="alterarImagem"><span>Alterar</span></button>
+                <button class="areaBotao btn-6" onclick="alterarImagem()"><span>Alterar</span></button>
             </div>
+        </div>
+        <div class="mensagem" id="div_mensagem">
+
         </div>
     </div>
 </body>
 
 </html>
 <script>
-    var idChefe = sessionStorage.ID_USUARIO;
+    var idUsuario = sessionStorage.ID_USUARIO;
     var nomeUsuario = sessionStorage.NOME_USUARIO;
     var loginUsuario = sessionStorage.LOGIN_USUARIO;
     var emailUsuario = sessionStorage.EMAIL_USUARIO;
@@ -75,14 +78,59 @@
 
     validarSessao()
 
+    var inputImagem = ""
+
     function analisar() {
-        var inputImagem = input_imagem.value
+        inputImagem = input_imagem.value
 
         imagemNova_Usuario.src = inputImagem
     }
 
     function alterarImagem() {
+        var ax_temErro = false
 
+        if (inputImagem == "") {
+            alert("Insira algo no campo de imagens antes de alterar")
+            ax_temErro = true
+        }
+
+        if (ax_temErro == false) {
+            input_imagem.value = null
+
+            fetch("/imagens/alterarImagem", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+        
+                    imagemServer: inputImagem,
+                    idUsuarioServer: idUsuario            
+                })
+            }).then(function (resposta) {
+
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    sessionStorage.IMAGEM_USUARIO = inputImagem
+                    setTimeout(() => {
+                        alert("Imagem alterada com sucesso!")
+                        // setTimeout(() => {
+                        //     window.location = 'DashboardLogin.html'
+                        // }, 2000)
+                        document.getElementById("imagemUsuario").src=`${sessionStorage.IMAGEM_USUARIO}`;
+                    }, 1000)
+                } else {
+                    throw ("Houve um erro ao tentar alterar a imagem!");
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+            return false;
+
+        }
     }
 
 </script>

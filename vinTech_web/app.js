@@ -16,6 +16,7 @@
     var estufaRouter = require("./src/routes/estufa");
     var uvaRouter = require("./src/routes/uva");
     var sensorRouter = require("./src/routes/sensor");
+    var imagemRouter = require("./src/routes/imagens");
 
     app.use(express.json());
     app.use(express.urlencoded({ extended: false }));
@@ -31,6 +32,7 @@
     app.use("/estufa", estufaRouter);
     app.use("/uva", uvaRouter);
     app.use("/sensor", sensorRouter);
+    app.use("/imagens", imagemRouter);
 
     app.listen(PORTA, function () {
         console.log(`Servidor do seu site já está rodando! Acesse o caminho a seguir para visualizar: http://localhost:${PORTA} \n
