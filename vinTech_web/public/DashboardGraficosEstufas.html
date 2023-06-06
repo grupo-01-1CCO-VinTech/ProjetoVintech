@@ -209,14 +209,16 @@
                 data: [],
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
+                tension: 0.075,
+                yAxisID: 'yAxisUmid'
             },
             {
                 label: 'Temperatura',
                 data: [],
                 fill: false,
                 borderColor: 'rgb(199, 52, 52)',
-                tension: 0.1
+                tension: 0.075,
+                yAxistID: 'yAxisTemp'
             }]
         };
 
@@ -246,6 +248,31 @@
         const config = {
             type: 'line',
             data: dados,
+            options: {
+                scales: {
+                    yAxes: [{
+                        id: 'yAxisTemp',
+                        beginAtZero: true,
+                        type: 'linear',
+                        position: 'left',
+                        ticks: {
+                            callback: function(value, index, values){
+                                return `${value}°C`
+                            }
+                        }
+                    },{
+                        id: 'yAxisUmid',
+                        beginAtZero: true,
+                        type: 'linear',
+                        position: 'right',
+                        ticks: {
+                            callback: function(value, index, values){
+                                return `${value}%`
+                            }
+                        }
+                    }]
+                }
+            }
         };
 
         // Adicionando gráfico criado em div na tela
