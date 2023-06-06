@@ -32,6 +32,9 @@
                     <a href="DashboardConfig.html" id="item_config">
                         <li>Configurações</li>
                     </a>
+                    <a href="">
+                        <li>Suporte</li>
+                    </a>
                 </ul>
             </div>
             <div class="barra-usuario">
@@ -52,8 +55,8 @@
                         <h1>
                             Informações de hoje
                         </h1>
-                        <span>
-                            27/04/2023
+                        <span id="dataAtual" style="font-size: 20px; color: purple; font-weight: bolder;">
+                            
                         </span>
                     </div>
                     <div class="caixas">
@@ -120,6 +123,18 @@
 
 </html>
 <script>
+    let dataHoje = new Date();
+    let dia = dataHoje.getDate(); 
+    let mes = dataHoje.getMonth() + 1; 
+    let ano = dataHoje.getFullYear(); 
+
+    if(dia < 10){
+        dia = `0${dia}`
+    }
+    if(mes < 10){
+        mes = `0${mes}`
+    }
+    dataAtual.innerHTML = `${dia}/${mes}/${ano}`
     var idChefe = sessionStorage.ID_USUARIO;
     var nomeUsuario = sessionStorage.NOME_USUARIO;
     var loginUsuario = sessionStorage.LOGIN_USUARIO;
