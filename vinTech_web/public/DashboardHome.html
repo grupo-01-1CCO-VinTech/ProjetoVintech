@@ -216,16 +216,15 @@
                     num_alerta.innerHTML = listaAlertas[2]
 
                     for(x in lista_estufa_perigo){
-                        if (lista_estufa_perigo.length < 4) {
+                        if (x < 5) {
                             top_estufas.innerHTML += `
                             <div class="linha-lista">   
                                 <li>${json[x].nomeEstufa}</li>
                                 <div id="imagem"><img src="img/cancelar.png"></div>
                                 </div>`
                             }else{
-                                top_estufas.innerHTML = `EXISTEM MUITAS ESTUFAS EM PERIGO!`;
-                                top_estufas.style.color = "red"
-                            }    
+                                break
+                            }
                             
                         }
 
