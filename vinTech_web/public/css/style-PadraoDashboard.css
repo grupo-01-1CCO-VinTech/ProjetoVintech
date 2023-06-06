@@ -22,7 +22,7 @@ body {
     width: 20vw;
     height: 100vh;
     border-radius: 0px 4vh 4vh 0px;
-    background-image: linear-gradient(to bottom, #5903AF,#4f009e,#45008a);
+    background-image: linear-gradient(to bottom, #5903AF, #4f009e, #45008a);
     transition: 1000ms;
 }
 
@@ -60,14 +60,15 @@ body {
     height: 75%;
     border-radius: 50%;
     display: flex;
-    border: black 2px solid;
+    border: #240244 2px;
+    box-shadow: 15px 5px 20px 3px #240244;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
 }
 
 
-.barra-usuario span{
+.barra-usuario span {
     color: white;
 }
 
@@ -104,7 +105,7 @@ body {
     align-items: center;
     justify-content: space-evenly;
     width: 100%;
-    align-items:flex-start;
+    align-items: flex-start;
     margin-left: 17%;
 }
 
@@ -124,6 +125,10 @@ body {
     image-rendering: auto;
     height: 100%;
     border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.6px;
+    border: 0.2px solid #9042d8;
 }
 
 .barra-button button {
