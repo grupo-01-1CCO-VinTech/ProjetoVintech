@@ -23,13 +23,13 @@
             <div class="barra-itens">
                 <ul>
                     <a href="DashboardHome.html">
-                        <li class="selected">Home</li>
+                        <li>Home</li>
                     </a>
                     <a href="DashboardPlantacoes.html">
                         <li>Plantações</li>
                     </a>
                     <a href="DashboardConfig.html" id="item_config">
-                        <li>Configurações</li>
+                        <li class="selected">Configurações</li>
                     </a>
                     <a href="https://vintechhelpdesk.atlassian.net/servicedesk/customer/portal/2">
                         <li>Suporte</li>
@@ -253,7 +253,9 @@
     var fkEmpresa = sessionStorage.FK_EMPRESA;
     var fkChefe = sessionStorage.ID_CHEFE;
     var imagemAdm = sessionStorage.IMAGEM_USUARIO;
-
+    var nomeEmpresa = sessionStorage.NOME_EMPRESA;
+    
+    empresaAdm.innerHTML += `${nomeEmpresa}` 
 
     imagemUsuario.src = imagemAdm;
     imagemCfg.src = imagemAdm;
@@ -549,42 +551,49 @@
             if (resposta.ok) {
                 console.log(resposta);
 
-
+                var nomeUltima = ""
                 var ultima = 1
-                var penis = ``
+                var stringEstufa = ``
                 var listaEstufasString = []
                 resposta.json().then(json => {
                     var listaEstufas = [];
                     for (let x in json) {
 
-                        if(ultima != json[x].idPlantacao){
-                            for (let i in listaEstufasString){
-                                penis = penis + `${listaEstufasString[i]}<br>`
+                        if (ultima != json[x].idPlantacao) {
+                            for (let i in listaEstufasString) {
+                                stringEstufa = stringEstufa + `${listaEstufasString[i]}<br>`
                             }
+                            nomeUltima = json[x].nomePlantacao
                             listaPlantacoes.innerHTML += `
-                                <div class='cardListagem'>
-                                    <h1>${ultima}</h1>
-                                    ${penis}
-                                </div>
+                                <div class='cardsLista'>
+                                    <h2>ID da Plantação: ${ultima}<br>
+                                    Nome da Estufa: ${nomeUltima}</h2>
+                                    ${stringEstufa}
+                                </div><br><br>
                             `
 
                             listaEstufasString = []
                             listaEstufasString.push(`${json[x].nomeEstufa}`)
-                            penis = ``
+                            stringEstufa = ``
                             ultima = json[x].idPlantacao
+                            nomeUltima = json[x -1].nomePlantacao
+
                         }
-                        else{
+                        else {
                             listaEstufasString.push(`${json[x].nomeEstufa}`)
                         }
 
-                        if(x == (json.length - 1)){
-                            for (let i in listaEstufasString){
-                                penis = penis + `${listaEstufasString[i]}<br>`
+                        if (x == (json.length - 1)) {
+                            for (let i in listaEstufasString) {
+                                stringEstufa = stringEstufa + `${listaEstufasString[i]}<br>`
                             }
+
+
                             listaPlantacoes.innerHTML += `
-                                <div class='cardListagem'>
-                                    <h1>${ultima}</h1>
-                                    ${penis}
+                                <div class='cardsLista'>
+                                    <h2>ID da Plantação: ${ultima}<br>
+                                    Nome da Estufa: ${nomeUltima}</h2>
+                                    ${stringEstufa}
                                 </div>
                             `
                         }
