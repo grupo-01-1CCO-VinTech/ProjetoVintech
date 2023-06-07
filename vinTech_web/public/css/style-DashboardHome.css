@@ -26,6 +26,7 @@ body{
     width: 80vw;
     height: 100vh;
     flex-direction: column;
+    align-items: center;
     /* border: 1px solid yellow; */
 }
 /* .container_topo{
@@ -39,10 +40,12 @@ body{
     height: 50%;
     width: 100%;
     justify-content: center; 
+    flex-direction: column;
+    align-items: center;
 }
 .superior_esquerda{
     display: flex;
-    width: 90%;
+    width: 100%;
     height: 100%;
     flex-direction: column;
 }
@@ -55,9 +58,21 @@ body{
     height: 30%;
     flex-direction: column;
 }
+
+.titulo h1{
+    font-size: 50px;
+    font-weight: 400;
+}
+
+.linhaTitulo {
+    margin-top: 0.2%;
+    width: 80vw;
+    border: 0.3vh dashed #000;
+}
+
 .caixas{
     display: flex;
-    width: 100%;
+    width: 90%;
     height: 60%;
     align-items: center;
     justify-content: space-between;
@@ -133,69 +148,102 @@ body{
 /* Começo da parte inferior */
 .inferior{
     display: flex;
-    width: 100%;
-    height: 50%;
-    justify-content: center;
-   /* border-top: dashed black */
-} 
-.inferior_esquerda{
-    display: flex;
-    width: 80%;
-    height: 100%;
+    width: 90%;
+    height: 40%;
     justify-content: space-evenly;
-}
+    align-items: center;
+    /* border: 1px solid red; */
+} 
+
 .grafico{
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width: 45%;
     height: 40vh;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     margin-top:1%;
+    cursor: pointer;
+    /* border: 2px solid purple; */
+    /* border-radius: 10px; */
 }
-.titulo_grafico{
-    display: flex;
-    justify-content: center;
+
+.graficoPerigo{
+    box-shadow: 5px 5px 2px red;
+    border: 2px solid red;
+    transition: .5s ease;
+}
+.graficoPerigo:hover{
+    background-color: rgba(255, 0, 0, 0.137);
+    transition: .5s ease;
+}
+.graficoSeguro{
+    box-shadow: 5px 5px 2px green;
+    border: 2px solid green;
+    transition: .5s ease;
+}
+.graficoSeguro:hover{
+    background-color: rgba(0, 255, 0, 0.137);
+    transition: .5s ease;
+}
+
+.titulo_grafico h2{
+    font-size: 30px;
+    font-weight: 700;
 }
 canvas{
     width: 100%;
     height: 100%;
 }
 
-.segundo_grafico{
+.respostaEstufa{
+    /* border: 1px solid red; */
+    width: 80%;
+    height: 80%;
     display: flex;
-    width: 40%;
-    height: 40vh;
-    margin-top: 1%;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
 }
-.inferior_direita{
+
+.linha-grafico{
     display: flex;
-    width: 27%;
-    height: 100%;
+    width: 100%;
+    height: 75%;
+    /* border: 1px solid red; */
+    align-items: flex-start;
+    justify-content: space-around;
+
 }
-.uvas_cultivo{
+
+.resposta{
+    /* border: 1px solid red; */
+    height: 80%;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     align-items: center;
-    width: 95%;
-    height: 90%;
-    border: solid 1px purple;
-    border-radius:30px ;
-    background-position:right top;  
-    background-size: 5vw, 5vh;
-    background-repeat: no-repeat;
-    margin-top: 12px;
-    margin-left: 8px;
-    overflow-y: scroll;
 }
-.uvas_cultivo h3{
-    margin-top: 15px;
-}
-.lista_uvas{
-    display: flex;
-    flex-direction: column;  
+
+.resposta span{
+    color: rgb(132, 0, 219);
+    font-weight: 600;
     font-size: 20px;
+}
+
+.valores{
+    font-weight: 400;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.tituloResposta{
+    font-size: 25px;
+}
+
+.seguro{
+    color: green;
+}
+.perigo{
+    color: red;
 }

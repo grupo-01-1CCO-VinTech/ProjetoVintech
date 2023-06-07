@@ -50,55 +50,38 @@
         </div>
         <div class="container">
             <div class="superior">
-                <div class="superior_esquerda">
-                    <div class="titulo">
-                        <h1>
-                            Informações de hoje
-                        </h1>
-                        <span id="dataAtual" style="font-size: 20px; color: purple; font-weight: bolder;">
-                            
-                        </span>
+                <div class="titulo">
+                    <h1>
+                        Informações de hoje
+                    </h1>
+                    <span id="dataAtual" style="font-size: 20px; color: purple; font-weight: bolder;">
+
+                    </span>
+                    <span class="linhaTitulo"></span>
+
+                </div>
+                <div class="caixas">
+                    <div class="caixa">
+                        <h3>Estufas em Estado Perigo</h3>
+                        <span id="num_perigo">0</span>
                     </div>
-                    <div class="caixas">
-                        <div class="caixa">
-                            <h3>Estufas em Estado Perigo</h3>
-                            <span id="num_perigo">0</span>
-                        </div>
-                        <div class="caixa">
-                            <h3>
-                                Estufas em Estado Alerta
-                            </h3>
-                            <span id="num_alerta">0</span>
-                        </div>
-                        <div class="caixa">
-                            <h3>
-                                Estufas em Estado Seguro
-                            </h3>
-                            <span id="num_ideal">0</span>
-                        </div>
+                    <div class="caixa">
+                        <h3>
+                            Estufas em Estado Alerta
+                        </h3>
+                        <span id="num_alerta">0</span>
+                    </div>
+                    <div class="caixa">
+                        <h3>
+                            Estufas em Estado Seguro
+                        </h3>
+                        <span id="num_ideal">0</span>
                     </div>
                 </div>
             </div>
             <!-- Começo da parte inferior -->
-            <div class="inferior">
-                <div class="inferior_esquerda">
-                    <div class="grafico">
-                        <div class="titulo_grafico">
-                            <h2>
-                                Estufa em estado ideal
-                            </h2>
-                        </div>
-                        <h1 id="estufa_ideal" style="color: rgb(36, 180, 60);"></h1>
-                    </div>
-                    <div class="grafico">
-                        <div class="titulo_grafico">
-                            <h2>
-                                Estufa em estado de perigo
-                            </h2>
-                        </div>
-                        <h1 id="estufa_perigo" style="color: brown;"></h1>
-                    </div>
-                </div>
+            <div class="inferior" id="divInferior">
+                
             </div>
 
 </body>
@@ -106,14 +89,14 @@
 </html>
 <script>
     let dataHoje = new Date();
-    let dia = dataHoje.getDate(); 
-    let mes = dataHoje.getMonth() + 1; 
-    let ano = dataHoje.getFullYear(); 
+    let dia = dataHoje.getDate();
+    let mes = dataHoje.getMonth() + 1;
+    let ano = dataHoje.getFullYear();
 
-    if(dia < 10){
+    if (dia < 10) {
         dia = `0${dia}`
     }
-    if(mes < 10){
+    if (mes < 10) {
         mes = `0${mes}`
     }
     dataAtual.innerHTML = `${dia}/${mes}/${ano}`
@@ -150,7 +133,7 @@
 
                 lista_estufa_perigo = []
                 lista_estufa_alerta = []
-                lista_estufa_segura = []    
+                lista_estufa_segura = []
 
                 lista_uva_js = []
 
@@ -179,38 +162,87 @@
                             string = "../img/check-box.png"
                             lista_estufa_segura.push(json[x].idEstufa)
                             listaAlertas[0]++
-                            estufa_ideal.innerHTML = `${json[x].nomeEstufa}<br> Temp: ${tempRegis} / Umid: ${umidRegis}`
-                            
+                            divInferior.innerHTML += 
+                            `
+                            <div class="grafico graficoSeguro" onclick='verEstufa(${json[x].idSensor})'>
+                                <div class="titulo_grafico">
+                                    <h2>
+                                        Estufa em Estado Seguro
+                                    </h2>
+                                </div>
+                                <div id="estufa_ideal" class="respostaEstufa">
+                                    <span id="tituloIdeal" class="tituloResposta">${json[x].nomeEstufa}</span>
+                                    <div class="linha-grafico">
+                                        <div class="respostaTempSeguro resposta">
+                                            <span>Temperatura(°C)</span>
+                                            <div id="tempIdeal" class="valores seguro">${tempRegis}°C</div>
+                                        </div>
+                                        <div class="respostaUmidSeguro resposta">
+                                            <span>Umidade(%)</span>
+                                            <div id="umidIdeal" class="valores seguro">${umidRegis}%</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            `
                         }
                         else if ((tempRegis <= temperaturaMinima || tempRegis >= temperaturaMaxima) || (umidRegis <= umidadeMinima || umidRegis >= umidadeMaxima)) {
                             string = "../img/cancelar.png"
-                            if (umidRegis > maior_umid || umidRegis < menor_umid || tempRegis > maior_temp || tempRegis < menor_temp){
+                            if (umidRegis > maior_umid || umidRegis < menor_umid || tempRegis > maior_temp || tempRegis < menor_temp) {
                                 maior_umid = umidRegis
                                 menor_umid = umidRegis
                                 menor_temp = tempRegis
                                 maior_temp = tempRegis
-                                estufa_perigo.innerHTML = `${json[x].nomeEstufa}<br> Temp: ${tempRegis} / Umid: ${umidRegis}`
                             }
-                            
+
                             lista_estufa_perigo.push(json[x].idEstufa)
                             listaAlertas[1]++
+
+                            var idSensor = json[x].idSensor
+                            var nomeEstufa = json[x].nomeEstufa
+                            var temperatura = tempRegis
+                            var umidade = umidRegis
                         }
                         else {
                             string = "../img/warning.png"
-                           
+
                             listaAlertas[2]++
                             lista_estufa_alerta.push(json[x].idEstufa)
                         }
-                            if(lista_uva_js.indexOf(json[x].nomeUva == -1)){
-                                lista_uva_js.push(json[x].nomeUva)
-                                // lista_uvas.innerHTML += `<h2>${json[x].nomeEstufa}</h2>`
-                                // lista_uvas.innerHTML += `<h5>${json[x].nomeUva}</h5>`
-                            }
-                        
+                        if (lista_uva_js.indexOf(json[x].nomeUva == -1)) {
+                            lista_uva_js.push(json[x].nomeUva)
+                            // lista_uvas.innerHTML += `<h2>${json[x].nomeEstufa}</h2>`
+                            // lista_uvas.innerHTML += `<h5>${json[x].nomeUva}</h5>`
+                        }
+
                     }
                     num_ideal.innerHTML = listaAlertas[0]
                     num_perigo.innerHTML = listaAlertas[1]
                     num_alerta.innerHTML = listaAlertas[2]
+
+                    divInferior.innerHTML += 
+                            `
+                            <div class="grafico graficoPerigo" onclick='verEstufa(${idSensor})'>
+                                <div class="titulo_grafico">
+                                    <h2>
+                                        Estufa em Estado Perigo
+                                    </h2>
+                                </div>
+                                <div id="estufa_ideal" class="respostaEstufa">
+                                    <span id="tituloPerigo" class="tituloResposta">${nomeEstufa}</span>
+                                    <div class="linha-grafico">
+                                        <div class="respostaTempPerigo resposta">
+                                            <span>Temperatura(°C)</span>
+                                            <div id="tempPerigo" class="valores perigo">${temperatura}°C</div>
+                                        </div>
+                                        <div class="respostaUmidPerigo resposta">
+                                            <span>Umidade(%)</span>
+                                            <div id="umidPerigo" class="valores perigo">${umidade}%</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            `
 
                 });
             } else {
@@ -229,5 +261,10 @@
 
     function alterarImagem() {
         window.location = "DashboardImagem.html"
+    }
+
+    function verEstufa(idSensor) {
+        sessionStorage.ID_SENSOR = idSensor
+        window.location.href = "DashboardGraficosEstufas.html"
     }
 </script>
