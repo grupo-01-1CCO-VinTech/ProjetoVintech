@@ -549,10 +549,45 @@
             if (resposta.ok) {
                 console.log(resposta);
 
+
+                var ultima = 1
+                var penis = ``
+                var listaEstufasString = []
                 resposta.json().then(json => {
                     var listaEstufas = [];
                     for (let x in json) {
-                        alert(json[x].idPlantacao)
+
+                        if(ultima != json[x].idPlantacao){
+                            for (let i in listaEstufasString){
+                                penis = penis + `${listaEstufasString[i]}<br>`
+                            }
+                            listaPlantacoes.innerHTML += `
+                                <div class='cardListagem'>
+                                    <h1>${ultima}</h1>
+                                    ${penis}
+                                </div>
+                            `
+
+                            listaEstufasString = []
+                            listaEstufasString.push(`${json[x].nomeEstufa}`)
+                            penis = ``
+                            ultima = json[x].idPlantacao
+                        }
+                        else{
+                            listaEstufasString.push(`${json[x].nomeEstufa}`)
+                        }
+
+                        if(x == (json.length - 1)){
+                            for (let i in listaEstufasString){
+                                penis = penis + `${listaEstufasString[i]}<br>`
+                            }
+                            listaPlantacoes.innerHTML += `
+                                <div class='cardListagem'>
+                                    <h1>${ultima}</h1>
+                                    ${penis}
+                                </div>
+                            `
+                        }
                     }
                 });
             } else {
