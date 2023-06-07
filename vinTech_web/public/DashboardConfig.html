@@ -135,30 +135,26 @@
                     <h1>Adicionar Plantação</h1>
 
                     <p>Nome da Plantação <input type="text" id="iptNomePlantacao" placeholder="Plantação Jundiaí"></p>
-                    <!-- <p>Localização: <input type="text" id="iptLocalizacaoPlantacao"></p> -->
-                    <!-- <p>Tamanho da Plantação: <input type="text" id="iptTamanhoPlantacao" placeholder="Em Hectares"></p> -->
+                    <p>Cidade: <input type="text" id="iptCidadePlantacao"></p>
+                    <p>UF: <input type="text" id="iptUFPlantacao"></p>
                     <button onclick="adicionar_Plantacao()">Adicionar Plantação</button>
+
                 </div>
                 <!--Editar e remover plantação-->
                 <div id="formEditPlantacao" style="display: none;" class="form">
                     <h1 class="title_edit_plant">Editar ou remover Plantações</h1>
-                    <div class="formPlantaEdit">
-                        <p>Por ID:<br> <input type="text" id="iptEncontrarIdEstufa"></p>
-                        <p>Por Nome:<br> <input type="text" id="iptEncontrarNomePlantacao"
-                                placeholder="Plantação Jundiaí">
-                        </p>
-                        <p>Por Localização: <br><input type="text" id="iptLocalizacaoPlantacao"></p>
-                    </div>
+                    <p>Por Nome:<br> <input type="text" id="iptEncontrarNomePlantacao" placeholder="Plantação Jundiaí">
+                    </p>
                     <button onclick="encontrar_Plantacao()">Encontrar Plantação</button>
                     <h3>Editar Plantação</h3>
-                    <div class="PlantaEdit">
-                        <p>Nome: <br><input type="text" id="iptEditNomePlantação"></p>
+                    <p>Nome:<input type="text" id="iptEditNomePlantação"></p>
+                    <p>Cidade: <input type="text" id="iptCidadePlantacao"></p>
+                    <p>UF: <input type="text" id="iptUFPlantacao"></p>
+
+                    <div class="linha-form" id="btns">
+                        <button onclick="editar_Plantacao()">Editar Plantação</button>
+                        <button onclick="deletarPlantacao()">Deletar Plantação</button>
                     </div>
-                    <!--<p>Tamanho: <input type="text" id="iptEditTamanhoPlantacao"></p>
-                    <h3>Deletar Plantação:</h3>
-                    <p>Confirmar nome: <input type="text" id="iptDeletePlantacaoConfirmacaoNome"></p> -->
-                    <button onclick="editar_Plantacao()">Editar Plantação</button>
-                    <button onclick="deletarPlantacao()">Deletar Plantação</button>
                 </div>
 
                 <!-- AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
@@ -176,6 +172,9 @@
                         <p>Nome da Estufa: <br>
                             <input type="text" id="iptAddNomeEstufa" placeholder="Estufa 001">
                         </p>
+                        <p>Área da Estufa: <br>
+                            <input type="text" id="iptAddAreaEstufa" placeholder="Estufa 001">
+                        </p>
                         <p>Em qual plantação você deseja cadastrar esta estufa? <br>
                             <input type="text" id="iptAddPlantacaoEstufa" placeholder="Id da Plantação">
                         </p>
@@ -184,7 +183,6 @@
                                 <option value="0"></option>
                             </select>
                         </p>
-                        <p>Tamanho da Estufa: <br> <input type="text" id="iptAddTamanhoEstufa"></p>
                     </div>
                     <button onclick="adicionar_Estufa()">Adicionar Estufa</button>
                 </div>
@@ -193,35 +191,28 @@
                     <h1>Editar ou remover Estufas</h1>
 
                     <h3>Encontrar Estufa</h3>
-                    <div class="formEncontrar">
-                        <p>Informe a plantação em que a estufa está: <br>
-                            <input type="text" id="iptEncontrarPlantacaoEstufa">
+                        <p>Por Nome: <br>
+                            <input type="text" id="iptEncontrarNomeEstufa">
                         </p>
-                        <p>Por ID: <br>
-                            <input type="text" id="iptEncontrarIdEstufa">
-                        </p>
-                    </div>
                     <button onclick="encontrar_Estufa()">Encontrar Estufa</button>
                     <!-- <p>Por Localização: <input type="text" id="iptLocalizacaoPlantacao"></p> -->
-                    <h3>Editar Estufa</h3>
-                    <div class="editEstufa">
+                        <p> Nome:
+                            <input type="text" id="iptEditNomeEstufa">
+                        </p>
                         <p>Tipo de Uva:
                             <select id="iptEditUvaEstufa">
                                 <option value="0"></option>
                             </select>
                         </p>
                         <p>Tamanho da Estufa: <br> <input type="text" id="iptEditTamanhoEstufa"></p>
-                    </div>
+                    <div class="linha-form" id="btns">
                     <button onclick="editar_Estufa()">Editar Estufa</button>
-                    <h3>Deletar Plantação:</h3>
-                    <div class="delete">
-                        <p>Confirmar Plantação: <br> <input type="text" id="iptDeleteEstufaConfirmacaoPlantacao"></p>
-                        <p>Confirmar ID: <br> <input type="text" id="iptDeleteEstufaConfirmacaoID"></p>
-                    </div>
                     <button onclick="deletarPlantacao()">Deletar Plantação</button>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
         <div class="container-direita">
             <div class="container-usuario">
                 <img src="" alt="" id="imagemCfg">
