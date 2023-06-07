@@ -23,8 +23,8 @@
             </div>
             <div class="barra-itens">
                 <ul>
-                    <a>
-                        <li class="selected">Home</li>
+                    <a href="DashboardHome.html">
+                        <li>Home</li>
                     </a>
                     <a href="DashboardPlantacoes.html">
                         <li>Plantações</li>
@@ -452,9 +452,8 @@
             })
         }).then(function (resposta) {
             if (resposta.ok) {
-                console.log(resposta);
-
                 resposta.json().then(json => {
+                    console.log(JSON.stringify(json))
                     for (let x in json) {
                         lista_platacoes.push(json[x].nomePlantacao)
                         selectPlant.innerHTML += `<option id='${json[x].nomePlantacao}'>${json[x].nomePlantacao}</option>`;
