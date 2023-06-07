@@ -51,7 +51,14 @@
         <div class="container">
             <div class="container-esquerda">
                 <div class="respostaForms" id="respostaForms">
-
+                    <div class="tituloRespostaForms">
+                        <h1>Listagem de Plantações</h1>
+                    </div>
+                    <div class="listaPlantacoes">
+                        <div class="cardListagem">
+                            <span id="listaPlantacoes"></span>
+                        </div>
+                    </div>
                 </div>
                 <div id="formUsuario" style="display: none;" class="form">
                     <h1>Configuração de Usuários</h1>
@@ -191,7 +198,8 @@
                             <input type="text" id="iptEncontrarPlantacaoEstufa">
                         </p>
                         <p>Por ID: <br>
-                            <input type="text" id="iptEncontrarIdEstufa"></p>
+                            <input type="text" id="iptEncontrarIdEstufa">
+                        </p>
                     </div>
                     <button onclick="encontrar_Estufa()">Encontrar Estufa</button>
                     <!-- <p>Por Localização: <input type="text" id="iptLocalizacaoPlantacao"></p> -->
@@ -542,12 +550,9 @@
                 console.log(resposta);
 
                 resposta.json().then(json => {
+                    var listaEstufas = [];
                     for (let x in json) {
-                        respostaForms.innerHTML +=
-                            `
-                            ID da Plantação: ${json[x].idPlantacao} <br>
-                            Nome da Plantação: ${json[x].nomePlantacao}<br>
-                        `;
+                        alert(json[x].idPlantacao)
                     }
                 });
             } else {
