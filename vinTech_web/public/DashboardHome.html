@@ -175,11 +175,11 @@
                                     <div class="linha-grafico">
                                         <div class="respostaTempSeguro resposta">
                                             <span>Temperatura(°C)</span>
-                                            <div id="tempIdeal" class="valores seguro">${tempRegis}°C</div>
+                                            <div id="tempIdeal" class="valores seguro">${tempRegis != undefined ? (Number(tempRegis)).toFixed(2) + "°C" : "Nenhuma Estufa Encontrada!"}</div>
                                         </div>
                                         <div class="respostaUmidSeguro resposta">
                                             <span>Umidade(%)</span>
-                                            <div id="umidIdeal" class="valores seguro">${umidRegis}%</div>
+                                            <div id="umidIdeal" class="valores seguro">${umidRegis != undefined ? (Number(umidRegis)).toFixed(2) + "%" : "Nenhuma Estufa Encontrada!" }</div>
                                         </div>
                                     </div>
                                 </div>
@@ -229,15 +229,15 @@
                                     </h2>
                                 </div>
                                 <div id="estufa_ideal" class="respostaEstufa">
-                                    <span id="tituloPerigo" class="tituloResposta">${nomeEstufa}</span>
+                                    <span id="tituloPerigo" class="tituloResposta">${nomeEstufa != undefined ? nomeEstufa: "Nenhuma estufa Encontrada!"}</span>
                                     <div class="linha-grafico">
                                         <div class="respostaTempPerigo resposta">
                                             <span>Temperatura(°C)</span>
-                                            <div id="tempPerigo" class="valores perigo">${temperatura}°C</div>
+                                            <div id="tempPerigo" class="valores perigo">${temperatura != undefined ? (Number(temperatura)).toFixed(2) + "°C" : "" }</div>
                                         </div>
                                         <div class="respostaUmidPerigo resposta">
                                             <span>Umidade(%)</span>
-                                            <div id="umidPerigo" class="valores perigo">${umidade}%</div>
+                                            <div id="umidPerigo" class="valores perigo">${umidade != undefined ? (Number(umidade)).toFixed(2) + "%" : ""}</div>
                                         </div>
                                     </div>
                                 </div>
