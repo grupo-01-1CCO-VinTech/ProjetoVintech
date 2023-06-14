@@ -129,7 +129,7 @@ INSERT INTO Registro VALUES (NULL, 29, 53, now(), 3);
 -- Estufa 004 Carménère
 INSERT INTO Registro VALUES (NULL, 10.55, 23, now(), 4);
 
--- Estufa 005 Tempranillo
+-- Estufa 005 Tempranillo 
 INSERT INTO Registro VALUES (NULL, 23, 59, now(), 5);
 
 -- Estufa 006 Pinot Noir

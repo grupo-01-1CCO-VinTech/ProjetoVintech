@@ -198,10 +198,10 @@
                             lista_estufa_perigo.push(json[x].idEstufa)
                             listaAlertas[1]++
 
-                            var idSensor = json[x].idSensor
-                            var nomeEstufa = json[x].nomeEstufa
-                            var temperatura = tempRegis
-                            var umidade = umidRegis
+                            var idSensorPerigo = json[x].idSensor
+                            var nomeEstufaPerigo = json[x].nomeEstufa
+                            var temperaturaPerigo = tempRegis
+                            var umidadePerigo = umidRegis
                         }
                         else {
                             string = "../img/warning.png"
@@ -222,22 +222,22 @@
 
                     divInferior.innerHTML += 
                             `
-                            <div class="grafico graficoPerigo" onclick='verEstufa(${idSensor})'>
+                            <div class="grafico graficoPerigo" onclick='verEstufa(${idSensorPerigo})'>
                                 <div class="titulo_grafico">
                                     <h2>
                                         Estufa em Estado Perigo
                                     </h2>
                                 </div>
                                 <div id="estufa_ideal" class="respostaEstufa">
-                                    <span id="tituloPerigo" class="tituloResposta">${nomeEstufa != undefined ? nomeEstufa: "Nenhuma estufa Encontrada!"}</span>
+                                    <span id="tituloPerigo" class="tituloResposta">${nomeEstufaPerigo != undefined ? nomeEstufaPerigo: "Nenhuma estufa Encontrada!"}</span>
                                     <div class="linha-grafico">
                                         <div class="respostaTempPerigo resposta">
                                             <span>Temperatura(°C)</span>
-                                            <div id="tempPerigo" class="valores perigo">${temperatura != undefined ? (Number(temperatura)).toFixed(2) + "°C" : "" }</div>
+                                            <div id="tempPerigo" class="valores perigo">${temperaturaPerigo != undefined ? (Number(temperaturaPerigo)).toFixed(2) + "°C" : "" }</div>
                                         </div>
                                         <div class="respostaUmidPerigo resposta">
                                             <span>Umidade(%)</span>
-                                            <div id="umidPerigo" class="valores perigo">${umidade != undefined ? (Number(umidade)).toFixed(2) + "%" : ""}</div>
+                                            <div id="umidPerigo" class="valores perigo">${umidadePerigo != undefined ? (Number(umidadePerigo)).toFixed(2) + "%" : ""}</div>
                                         </div>
                                     </div>
                                 </div>

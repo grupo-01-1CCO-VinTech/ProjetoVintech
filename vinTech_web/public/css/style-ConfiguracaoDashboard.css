@@ -315,6 +315,25 @@ button {
 
 }
 
+#formEditEstufa{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    
+}
+
+#btns button {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    justify-self: space-between;;
+    height: 9vh;
+    margin-left: 1%;
+    margin-bottom: 5%;
+    border-radius: 50vw;
+}
+
 .form {
     display: flex;
     flex-direction: column;
