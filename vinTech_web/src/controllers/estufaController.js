@@ -112,9 +112,28 @@ function alterar(req, res) {
     }
 }
 
+function excluir(req, res) {
+    var idEstufa = req.body.idEstufaServer
+
+    if (idEstufa == undefined) {
+        res.status(400).send("O id da estufa esta Undefined!");
+    } else {
+        estufaModel.excluir(idEstufa)
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    res.json(resposta)
+                }
+            }).catch(function (erro) {
+                console.log("\nHouve um erro ao realizar a exclusão! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            })
+    }
+}
+
 module.exports = {
     cadastrar_estufa,
     consultar,
     listar,
-    alterar
+    alterar,
+    excluir
 }

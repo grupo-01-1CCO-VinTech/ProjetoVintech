@@ -42,7 +42,7 @@ function listar(idEmpresa) {
 function consultar(nomeEstufa) {
     var instrucao = `
     select idEstufa, nomeEstufa, nomeUva, areaEstufa from Estufa join Uva on idUva = fkUva where nomeEstufa = '${nomeEstufa}';
-`;
+    `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
@@ -50,7 +50,15 @@ function consultar(nomeEstufa) {
 function alterar(nomeEstufa, idUva, areaEstufa, idEstufa){
     var instrucao = `
     update Estufa set nomeEstufa = '${nomeEstufa}', fkUva = ${idUva}, areaEstufa = ${areaEstufa} where idEstufa = ${idEstufa};
-`;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function excluir(idEstufa){
+    var instrucao = `
+    delete from Estufa where idEstufa = ${idEstufa};
+    `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
@@ -61,5 +69,6 @@ module.exports = {
     adicionar,
     consultar,
     alterar,
-    listar
+    listar,
+    excluir
 };

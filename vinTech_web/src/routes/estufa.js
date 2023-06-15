@@ -19,4 +19,8 @@ router.post("/alterar", function(req, res){
     estufaController.alterar(req, res)
 })
 
+router.post("/excluir", function(req, res){
+    estufaController.excluir(req, res)
+})
+
 module.exports = router;

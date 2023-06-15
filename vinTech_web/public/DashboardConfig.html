@@ -208,7 +208,7 @@
                     <p>Tamanho da Estufa: <br> <input type="text" id="iptEditTamanhoEstufa"></p>
                     <div class="linha-form" id="btns">
                         <button onclick="editar_Estufa()">Editar Estufa</button>
-                        <button onclick="deletarPlantacao()">Deletar Plantação</button>
+                        <button onclick="deletar_Estufa()">Deletar Estufa</button>
                     </div>
                 </div>
             </div>
@@ -564,10 +564,10 @@
         let areaEstufa = iptEditTamanhoEstufa.value
         let idEstufa = iptEditIdEstufa.value
 
-        if(idEstufa == "" || nomeEstufa == ""){
+        if (idEstufa == "" || nomeEstufa == "") {
             alert("Consulte uma estufa antes de realizar uma alteração!")
-        }else{
-            fetch("/estufa/alterar",{
+        } else {
+            fetch("/estufa/alterar", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -578,10 +578,10 @@
                     areaEstufaServer: areaEstufa,
                     idEstufaServer: idEstufa
                 })
-            }).then(function(resposta){
-                if(resposta.ok){
+            }).then(function (resposta) {
+                if (resposta.ok) {
                     alert('Dados alterados com sucesso!')
-                }else {
+                } else {
                     throw ("Houve um erro ao tentar alterar os dados!");
                 }
             }).catch(function (erro) {
@@ -589,6 +589,34 @@
             });
         }
     }
+
+    function deletar_Estufa() {
+
+        let idEstufa = iptEditIdEstufa.value
+
+        if (idEstufa == "") {
+            alert("Consulte uma estufa antes de realizar uma exclusão!")
+        } else {
+            fetch("/estufa/excluir", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    idEstufaServer: idEstufa
+                })
+            }).then(function (resposta) {
+                if (resposta.ok) {
+                    alert('Dados excluidos com sucesso!')
+                } else {
+                    throw ("Houve um erro ao tentar excluir os dados!");
+                }
+            }).catch(function (erro) {
+                console.log(`#ERRO: ${erro}`);
+            });
+        }
+    }
+
     function listar_platacoes() {
         fetch("/plantacao/listar", {
             method: "POST",
@@ -697,38 +725,4 @@
         return false;
     }
     listar_platacoes()
-
-    // function adicionar_Uva() {
-    //     var nomeUvaServer = iptAddNomeUva.value
-    //     var tempMaxServer = iptAddTempMaxUva.value
-    //     var tempMinServer = iptAddTempMinUva.value
-    //     var umidMaxServer = iptAddUmidMaxUva.value
-    //     var umidMinServer = iptAddUmidMinUva.value
-
-    //     fetch("/uva/adicionar", {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         },
-    //         body: JSON.stringify({
-    //             nomeUva: nomeUvaServer,
-    //             tempMax: tempMaxServer,
-    //             tempMin: tempMinServer,
-    //             umidMax: umidMaxServer,
-    //             umidMin: umidMinServer
-    //         })
-    //     }).then(function (resposta) {
-    //         if (resposta.ok) {
-    //             console.log(resposta);
-    //         } else {
-    //             console.log("Houve um erro ao tentar inserir as uvas");
-    //             resposta.text().then(texto => {
-    //                 console.error(texto);
-    //             });
-    //         }
-    //     }).catch(function (erro) {
-    //         console.log(erro);
-    //     })
-    //     return false;
-    // }
 </script>
