@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="img/logo.jpeg" type="image/png">
+    <link rel="stylesheet" href="css/style-PadraoDashboard.css">
+    <link rel="stylesheet" href="css/style-PadraoTodos.css">
+    <link rel="stylesheet" href="css/style-ImagemDashboard.css">
+    <script src="js/funcoes.js"></script>
+    <title>Dashboard - Alterar Imagem</title>
+</head>
+
+<body>
+    <div class="pagina">
+        <div class="barra-lateral">
+            <div class="barra-logo">
+                <span>VinTech</span>
+                <img src="img/vintech.jpg" alt="">
+            </div>
+            <div class="barra-itens">
+                <ul>
+                    <a href="DashboardHome.html">
+                        <li>Home</li>
+                    </a>
+                    <a href="DashboardPlantacoes.html">
+                        <li>Plantações</li>
+                    </a>
+                    <a class="selected" id="item_config">
+                        <li>Configurações</li>
+                    </a>
+                    <a href="https://vintechhelpdesk.atlassian.net/servicedesk/customer/portal/2">
+                        <li>Suporte</li>
+                    </a>
+                </ul>
+            </div>
+            <div class="barra-usuario">
+                <button class="barra-fotoUsuario" onclick="alterarImagem()">
+                    <img id="imagemUsuario" src="" alt="Foto Usuário">
+                </button>
+                <span id="nome_usuario"></span>
+                <span id="cargo_usuario"></span>
+            </div>
+            <div class="barra-button">
+                <button onclick="limparSessao()">Sair</button>
+            </div>
+        </div>
+        <div class="areaAlterarImagem" id="div_imagem">
+            <h1>Altere a sua imagem</h1>
+            <div class="areaCardImagem">
+                <img id="imagemNova_Usuario" src="">
+            </div>
+            <div class="areaInputUrl">
+                <span>Insira sua imagem que deseja alterar</span>
+                <input class="inputImagem" id="input_imagem" type="url" placeholder="Url da Imagem"
+                    oninput="analisar()">
+            </div>
+            <div class="areaBotao">
+                <button class="areaBotao btn-6" onclick="alterarImagem()"><span>Alterar</span></button>
+            </div>
+        </div>
+        <div class="mensagem" id="div_mensagem">
+
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    var idUsuario = sessionStorage.ID_USUARIO;
+    var nomeUsuario = sessionStorage.NOME_USUARIO;
+    var loginUsuario = sessionStorage.LOGIN_USUARIO;
+    var emailUsuario = sessionStorage.EMAIL_USUARIO;
+    var fkEmpresa = sessionStorage.FK_EMPRESA;
+    var fkChefe = sessionStorage.ID_CHEFE;
+    var imagemAdm = sessionStorage.IMAGEM_USUARIO;
+
+    imagemUsuario.src = imagemAdm
+
+    validarSessao()
+
+    var inputImagem = ""
+
+    function analisar() {
+        inputImagem = input_imagem.value
+
+        imagemNova_Usuario.src = inputImagem
+    }
+
+    function alterarImagem() {
+        var ax_temErro = false
+
+        if (inputImagem == "") {
+            alert("Insira algo no campo de imagens antes de alterar")
+            ax_temErro = true
+        }
+
+        if (ax_temErro == false) {
+            input_imagem.value = null
+
+            fetch("/imagens/alterarImagem", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+        
+                    imagemServer: inputImagem,
+                    idUsuarioServer: idUsuario            
+                })
+            }).then(function (resposta) {
+
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    sessionStorage.IMAGEM_USUARIO = inputImagem
+                    setTimeout(() => {
+                        alert("Imagem alterada com sucesso!")
+                        // setTimeout(() => {
+                        //     window.location = 'DashboardLogin.html'
+                        // }, 2000)
+                        document.getElementById("imagemUsuario").src=`${sessionStorage.IMAGEM_USUARIO}`;
+                    }, 1000)
+                } else {
+                    throw ("Houve um erro ao tentar alterar a imagem!");
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+            return false;
+
+        }
+    }
+
+</script>

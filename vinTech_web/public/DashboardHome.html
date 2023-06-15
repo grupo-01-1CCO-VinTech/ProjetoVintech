@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/funcoes.js"></script>
+    <title>Home</title>
+    <link rel="icon" href="img/logo.jpeg" type="image/png">
+    <link rel="stylesheet" href="css/style-PadraoDashboard.css">
+    <link rel="stylesheet" href="css/style-DashboardHome.css">
+    <link rel="stylesheet" href="css/style-PadraoTodos.css">
+</head>
+
+<body onload="listar_estufas()">
+    <div class="pagina">
+        <div class="barra-lateral">
+            <div class="barra-logo">
+                <span>VinTech</span>
+                <img src="img/vintech.jpg" alt="">
+            </div>
+            <div class="barra-itens">
+                <ul>
+                    <a>
+                        <li class="selected">Home</li>
+                    </a>
+                    <a href="DashboardPlantacoes.html">
+                        <li>Plantações</li>
+                    </a>
+                    <a href="DashboardConfig.html" id="item_config">
+                        <li>Configurações</li>
+                    </a>
+                    <a href="https://vintechhelpdesk.atlassian.net/servicedesk/customer/portal/2">
+                        <li>Suporte</li>
+                    </a>
+                </ul>
+            </div>
+            <div class="barra-usuario">
+                <button class="barra-fotoUsuario" onclick="alterarImagem()">
+                    <img id="imagemUsuario" src="" alt="Foto Usuário">
+                </button>
+                <span id="nome_usuario"></span>
+                <span id="cargo_usuario"></span>
+            </div>
+            <div class="barra-button">
+                <button onclick="limparSessao()">Sair</button>
+            </div>
+        </div>
+        <div class="container">
+            <div class="superior">
+                <div class="titulo">
+                    <h1>
+                        Informações de hoje
+                    </h1>
+                    <span id="dataAtual" style="font-size: 20px; color: purple; font-weight: bolder;">
+
+                    </span>
+                    <span class="linhaTitulo"></span>
+
+                </div>
+                <div class="caixas">
+                    <div class="caixa">
+                        <h3>Estufas em Estado Perigo</h3>
+                        <span id="num_perigo">0</span>
+                    </div>
+                    <div class="caixa">
+                        <h3>
+                            Estufas em Estado Alerta
+                        </h3>
+                        <span id="num_alerta">0</span>
+                    </div>
+                    <div class="caixa">
+                        <h3>
+                            Estufas em Estado Seguro
+                        </h3>
+                        <span id="num_ideal">0</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Começo da parte inferior -->
+            <div class="inferior" id="divInferior">
+                
+            </div>
+
+</body>
+
+</html>
+<script>
+    let dataHoje = new Date();
+    let dia = dataHoje.getDate();
+    let mes = dataHoje.getMonth() + 1;
+    let ano = dataHoje.getFullYear();
+
+    if (dia < 10) {
+        dia = `0${dia}`
+    }
+    if (mes < 10) {
+        mes = `0${mes}`
+    }
+    dataAtual.innerHTML = `${dia}/${mes}/${ano}`
+    var idChefe = sessionStorage.ID_USUARIO;
+    var nomeUsuario = sessionStorage.NOME_USUARIO;
+    var loginUsuario = sessionStorage.LOGIN_USUARIO;
+    var emailUsuario = sessionStorage.EMAIL_USUARIO;
+    var fkEmpresa = sessionStorage.FK_EMPRESA;
+    var fkChefe = sessionStorage.ID_CHEFE;
+    var imagemAdm = sessionStorage.IMAGEM_USUARIO;
+
+    imagemUsuario.src = imagemAdm
+
+    validarSessao()
+    function listar_estufas() {
+        fetch("/estufa/listar_plant", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                fkEmpresaServer: fkEmpresa
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                console.log(resposta);
+
+                listaAlertas =
+                    [
+                        0, //Seguro
+                        0, //Alerta
+                        0 // Perigo
+                    ]
+
+                lista_estufa_perigo = []
+                lista_estufa_alerta = []
+                lista_estufa_segura = []
+
+                lista_uva_js = []
+
+                resposta.json().then(json => {
+                    var maior_temp = -9999
+                    var menor_temp = 9999
+                    var maior_umid = -9999
+                    var menor_umid = 9999
+
+                    for (let x in json) {
+                        let tempRegis = Number(json[x].temperaturaRegistro);
+                        let temperaturaMaxima = Number(json[x].tempMax);
+                        let temperaturaMinima = Number(json[x].tempMin);
+                        let temperaturaIdeal = Number((temperaturaMaxima + temperaturaMinima) / 2)
+                        let temperaturaAlertaSuperior = Number(temperaturaIdeal + ((5 / 100) * temperaturaIdeal))
+                        let temperaturaAlertaInferior = Number(temperaturaIdeal - ((5 / 100) * temperaturaIdeal))
+
+                        let umidRegis = json[x].umidadeRegistro;
+                        let umidadeMaxima = json[x].umidMax;
+                        let umidadeMinima = json[x].umidMin;
+                        let umidadeIdeal = (umidadeMaxima + umidadeMinima) / 2
+                        let umidadeAlertaSuperior = umidadeIdeal + ((5 / 100) * umidadeIdeal)
+                        let umidadeAlertaInferior = umidadeIdeal - ((5 / 100) * umidadeIdeal)
+
+                        if ((tempRegis < temperaturaAlertaSuperior && tempRegis > temperaturaAlertaInferior) && (umidRegis < umidadeAlertaSuperior && umidRegis > umidadeAlertaInferior)) {
+                            string = "../img/check-box.png"
+                            lista_estufa_segura.push(json[x].idEstufa)
+                            listaAlertas[0]++
+                            divInferior.innerHTML += 
+                            `
+                            <div class="grafico graficoSeguro" onclick='verEstufa(${json[x].idSensor})'>
+                                <div class="titulo_grafico">
+                                    <h2>
+                                        Estufa em Estado Seguro
+                                    </h2>
+                                </div>
+                                <div id="estufa_ideal" class="respostaEstufa">
+                                    <span id="tituloIdeal" class="tituloResposta">${json[x].nomeEstufa}</span>
+                                    <div class="linha-grafico">
+                                        <div class="respostaTempSeguro resposta">
+                                            <span>Temperatura(°C)</span>
+                                            <div id="tempIdeal" class="valores seguro">${tempRegis != undefined ? (Number(tempRegis)).toFixed(2) + "°C" : "Nenhuma Estufa Encontrada!"}</div>
+                                        </div>
+                                        <div class="respostaUmidSeguro resposta">
+                                            <span>Umidade(%)</span>
+                                            <div id="umidIdeal" class="valores seguro">${umidRegis != undefined ? (Number(umidRegis)).toFixed(2) + "%" : "Nenhuma Estufa Encontrada!" }</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            `
+                        }
+                        else if ((tempRegis <= temperaturaMinima || tempRegis >= temperaturaMaxima) || (umidRegis <= umidadeMinima || umidRegis >= umidadeMaxima)) {
+                            string = "../img/cancelar.png"
+                            if (umidRegis > maior_umid || umidRegis < menor_umid || tempRegis > maior_temp || tempRegis < menor_temp) {
+                                maior_umid = umidRegis
+                                menor_umid = umidRegis
+                                menor_temp = tempRegis
+                                maior_temp = tempRegis
+                            }
+
+                            lista_estufa_perigo.push(json[x].idEstufa)
+                            listaAlertas[1]++
+
+                            var idSensorPerigo = json[x].idSensor
+                            var nomeEstufaPerigo = json[x].nomeEstufa
+                            var temperaturaPerigo = tempRegis
+                            var umidadePerigo = umidRegis
+                        }
+                        else {
+                            string = "../img/warning.png"
+
+                            listaAlertas[2]++
+                            lista_estufa_alerta.push(json[x].idEstufa)
+                        }
+                        if (lista_uva_js.indexOf(json[x].nomeUva == -1)) {
+                            lista_uva_js.push(json[x].nomeUva)
+                            // lista_uvas.innerHTML += `<h2>${json[x].nomeEstufa}</h2>`
+                            // lista_uvas.innerHTML += `<h5>${json[x].nomeUva}</h5>`
+                        }
+
+                    }
+                    num_ideal.innerHTML = listaAlertas[0]
+                    num_perigo.innerHTML = listaAlertas[1]
+                    num_alerta.innerHTML = listaAlertas[2]
+
+                    divInferior.innerHTML += 
+                            `
+                            <div class="grafico graficoPerigo" onclick='verEstufa(${idSensorPerigo})'>
+                                <div class="titulo_grafico">
+                                    <h2>
+                                        Estufa em Estado Perigo
+                                    </h2>
+                                </div>
+                                <div id="estufa_ideal" class="respostaEstufa">
+                                    <span id="tituloPerigo" class="tituloResposta">${nomeEstufaPerigo != undefined ? nomeEstufaPerigo: "Nenhuma estufa Encontrada!"}</span>
+                                    <div class="linha-grafico">
+                                        <div class="respostaTempPerigo resposta">
+                                            <span>Temperatura(°C)</span>
+                                            <div id="tempPerigo" class="valores perigo">${temperaturaPerigo != undefined ? (Number(temperaturaPerigo)).toFixed(2) + "°C" : "" }</div>
+                                        </div>
+                                        <div class="respostaUmidPerigo resposta">
+                                            <span>Umidade(%)</span>
+                                            <div id="umidPerigo" class="valores perigo">${umidadePerigo != undefined ? (Number(umidadePerigo)).toFixed(2) + "%" : ""}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            `
+
+                });
+            } else {
+                console.log("Houve um erro ao tentar consultar as plantações");
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function alterarImagem() {
+        window.location = "DashboardImagem.html"
+    }
+
+    function verEstufa(idSensor) {
+        sessionStorage.ID_SENSOR = idSensor
+        window.location.href = "DashboardGraficosEstufas.html"
+    }
+</script>

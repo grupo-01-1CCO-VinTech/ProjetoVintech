@@ -1,0 +1,512 @@
+.container {
+    display: flex;
+    width: 60vw;
+    height: 100vh;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center
+}
+
+.container-esquerda {
+    display: flex;
+    width: 54vw;
+    height: 95vh;
+    border: solid 1px #5903af;
+    border-radius: 40px;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-direita {
+    display: flex;
+    width: 20vw;
+    height: 100vh;
+    flex-direction: column;
+    border: solid 1px #5903af;
+}
+
+.container-usuario {
+    display: flex;
+    flex-direction: column;
+    height: 30%;
+    width: 100%;
+    border-bottom: solid 1px #5903af;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: large;
+}
+
+.container-usuario img {
+    width: 45%;
+    height: 65%;
+    border-radius: 50%;
+}
+
+.container-contato {
+    display: flex;
+    flex-direction: column;
+    height: 30%;
+    width: 100%;
+    justify-content: space-between;
+    border-bottom: solid 1px #5903af;
+    align-items: center;
+}
+
+.container-botoes {
+    display: flex;
+    flex-direction: column;
+    height: 40%;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.respostaForms {
+    /* border: red 2px solid; */
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.tituloRespostaForms {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: red 2px solid; */
+}
+
+.listaPlantacoes {
+    font-size: 150%;
+    width: 80%;
+    height: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: #5903af 2px solid; */
+    border-radius: 2%;
+}
+
+.cardListagem {
+    width: 100%;
+    height: 100%;
+    border: #5903af 2px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    overflow-y: auto;
+    border-radius: 2vh;
+}
+
+.cardsLista {
+    width: 100%;
+    height: 50%;
+    border: #5903af 2px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 2vh;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.linha-form {
+    display: flex;
+}
+
+button {
+    cursor: pointer;
+}
+
+.container-contato h1 {
+    margin-top: 5%;
+    width: auto;
+    height: 25%;
+}
+
+.container-contato div {
+    height: 18%;
+    width: 90%;
+    padding-left: 5%;
+    border-radius: 20px;
+    border: solid 1px #5903af;
+    font-size: large;
+    display: flex;
+    transition: 1s;
+}
+
+/*Adicionei margem e animação com hover*/
+.container-contato .spanDivContato {
+    margin: 2% 0%;
+}
+
+.container-contato .linha-infoAdm {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#empresaAdm:hover {
+    background-color: #43018431;
+    ;
+    box-shadow: 0.1vh 0.1vh 3vh #000;
+    transition: 0.5s;
+}
+
+#cargoAdm:hover {
+    background-color: #43018431;
+    box-shadow: 0.1vh 0.1vh 3vh #000;
+    transition: 0.5s;
+}
+
+.config:hover {
+    background-color: #43018431;
+    box-shadow: 0.1vh 0.1vh 3vh #000;
+    transition: 0.5s;
+}
+
+.config {
+    transition: 0.5s;
+}
+
+.sairBotao:hover {
+    background-color: #ff000021;
+    border: 0.2vh solid #d20404;
+    box-shadow: 0.1vh 0.1vh 3vh #970101;
+    transition: 0.5s;
+}
+
+.sairBotao {
+    transition: 0.5s;
+}
+
+/*Adicionei o detalhe na parte usuario*/
+.botaoUsuario:hover {
+    background-color: #390e6366;
+    box-shadow: 0.1vh 0.1vh 3vh #000;
+    transition: 0.5s;
+}
+
+.botaoUsuario {
+    transition: 0.5s;
+}
+
+.detalheUva {
+    height: 30%;
+    width: 10%;
+
+}
+
+/*Botão selecionado com a uva, sem js*/
+.botaoUva:hover {
+    display: flex;
+}
+
+.container-botoes button {
+    width: 90%;
+    height: 15%;
+    border-radius: 20px;
+    border: solid 1px #5903af;
+    background: 0;
+    font-size: large;
+}
+
+/*Configuração da pág add usuario*/
+.addUser {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    height: 100%;
+    width: 60%;
+    margin-left: 5%;
+}
+
+.uvaUser {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 50%;
+    margin-left: 23%;
+    background-image: url(../img/uvaDetalhe.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.ambasUser {
+
+    display: flex;
+    flex-direction: row;
+    height: 80%;
+    width: 100%;
+}
+
+.tituloUser {
+    justify-content: center;
+    width: 100%;
+    display: flex;
+}
+
+/*Final do add user*/
+/*Inicio do edit user*/
+.form {
+    align-items: flex-start;
+}
+
+#tu {
+    margin-top: 10%;
+}
+
+.editUser {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.tituloEdit {
+    justify-content: center;
+    width: 100%;
+    display: flex;
+}
+
+/*Final do edit user*/
+#formAddUsuario {
+    display: flex;
+    align-items: flex-start;
+}
+
+#ipt_email_user {
+    margin-right: 1%;
+}
+
+.editUser .inp_edit {
+    padding: 1vw;
+    margin-left: 1%;
+}
+
+.editUser #ipt_cargo_user {
+    margin-left: 1%;
+}
+
+.editUser .btn_edit {
+    text-align: center;
+    width: 50vw;
+    height: 100%;
+}
+
+.editUser #btns button {
+    height: 8vh;
+    margin-left: 1%;
+    margin-bottom: 5%;
+    border-radius: 50vw;
+}
+
+.container-botoes #sair {
+    width: 40%;
+
+}
+
+#formEditEstufa{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    
+}
+
+#btns button {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    justify-self: space-between;;
+    height: 9vh;
+    margin-left: 1%;
+    margin-bottom: 5%;
+    border-radius: 50vw;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.form button {
+    width: 90%;
+    height: 10%;
+    border-radius: 20px;
+    border: solid 1px #5903af;
+    background: 0;
+    font-size: large;
+}
+
+.form p {
+    font-size: large;
+    height: 7.5%;
+}
+
+.form input {
+    width: 50vh;
+    height: 100%;
+    border: solid 1px #5903af;
+    border-radius: 20px;
+}
+
+.form select {
+    text-align: center;
+    height: 100%;
+    border: solid 1px #5903af;
+    border-radius: 20px;
+}
+
+#formEditUsuario p {
+    height: 5%;
+}
+
+/*Editar ou remover plantação inicio*/
+.formPlantaEdit {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 45vw;
+    height: 30%;
+    margin-bottom: 10%;
+}
+
+.formPlantaEdit input {
+    width: 80vh;
+    height: 7vh;
+    border: solid 1px #5903af;
+    border-radius: 20px;
+}
+
+.title_edit_plant {
+    margin: 1vh 0vh 1vh 0vh;
+}
+
+.PlantaEdit {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 45vw;
+    margin-bottom: 2%;
+}
+
+.PlantaEdit input {
+    width: 80vh;
+    height: 7vh;
+    border: solid 1px #5903af;
+    border-radius: 20px;
+}
+
+#formEditPlantacao button {
+    margin-bottom: 2%;
+    width: 90%;
+    border: solid 2px #5903af;
+    transition: 2s;
+}
+
+#formEditPlantacao button:hover {
+    margin-bottom: 2%;
+    width: 90%;
+    background-color: #5903af;
+    border: solid 2px #000000;
+    box-shadow: 2vh 2vh 2vh #1d0139;
+    transition: 1.5s;
+    color: #ffffff;
+}
+
+/*Inicio do add estufa*/
+#formAddEstufa {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#formAddEstufa .form_AddEstufa {
+    height: 50%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 12%;
+}
+
+#formAddEstufa .form_AddEstufa input {
+    width: 20vw;
+    height: 6vh;
+}
+
+#formAddEstufa .form_AddEstufa select {
+    width: 10vw;
+    height: 6vh;
+    border-radius: 15vh;
+}
+
+#formAddEstufa .form_AddEstufa p {
+    margin: 5%;
+}
+
+#formEditEstufa .formEncontrar {
+    height: 12%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#formEditEstufa .formEncontrar input {
+    width: 20vw;
+    height: 6vh;
+}
+
+#formEditEstufa .editEstufa {
+    height: 8%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#formEditEstufa .editEstufa input {
+    width: 20vw;
+    height: 6vh;
+}
+
+#formEditEstufa .editEstufa select {
+    width: 8vw;
+    height: 6vh;
+}
+
+#formEditEstufa .delete {
+    height: 12%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#formEditEstufa .delete input {
+    width: 20vw;
+    height: 6vh;
+}
+
+#formEditEstufa button {
+    margin-top: 10%;
+    border: solid 2px #5903af;
+    margin-bottom: 2%;
+}

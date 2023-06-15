@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/logo.jpeg" type="image/png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+    <script src="js/funcoes.js"></script>
+    <link rel="stylesheet" href="css/style-PadraoDashboard.css">
+    <link rel="stylesheet" href="css/style-PadraoTodos.css">
+    <link rel="stylesheet" href="css/style-GraficoEstufas.css">
+    <title>Página estufa</title>
+</head>
+
+<body>
+    <!--Navbar lateral - inicio -->
+    <div class="pagina">
+        <div class="barra-lateral">
+            <div class="barra-logo">
+                <span>VinTech</span>
+                <img src="img/vintech.jpg" alt="">
+            </div>
+            <div class="barra-itens">
+                <ul>
+                    <a href="DashboardHome.html">
+                        <li>Home</li>
+                    </a>
+                    <a href="DashboardPlantacoes.html">
+                        <li>Plantações</li>
+                    </a>
+                    <a href="DashboardConfig.html" id="item_config">
+                        <li>Configurações</li>
+                    </a>
+                    <a href="https://vintechhelpdesk.atlassian.net/servicedesk/customer/portal/2">
+                        <li>Suporte</li>
+                    </a>
+                </ul>
+            </div>
+            <div class="barra-usuario">
+                <div class="barra-fotoUsuario">
+                    <img id="imagemUsuario" src="" alt="Foto Usuário">
+                </div>
+                <span id="nome_usuario"></span>
+                <span id="cargo_usuario"></span>
+            </div>
+            <div class="barra-button">
+                <button onclick="limparSessao()">Sair</button>
+            </div>
+        </div>
+    </div>
+    <!--Navbar lateral - final -->
+    <!--Inicio do container-->
+    <div class="container">
+        <div class="header">
+            <img src="img/uvaDetalhe.png" alt="Detalhe Uva">
+            <a id="tituloEstufa"></a>
+            <span>Informações</span>
+            <span class="linhaTitulo"></span>
+        </div>
+
+        <div class="main_tela">
+            <div class="esquerda">
+                <div class="metricas">
+                    <div class="areaMetrica">
+                        <span class="labelBloco">Perigo Inferior</span>
+                        <div class="perigo bloco-metrica" id="minimaSuportada"></div>
+                    </div>
+                    <div class="areaMetrica">
+                        <span class="labelBloco">Alerta Inferior</span>
+                        <div class="alerta bloco-metrica" id="alertaInferior"></div>
+                    </div>
+                    <div class="areaMetrica">
+                        <span class="labelBloco">Seguro</span>
+                        <div class="seguro bloco-metrica" id="seguro"></div>
+                    </div>
+                    <div class="areaMetrica">
+                        <span class="labelBloco">Alerta Superior</span>
+                        <div class="alerta bloco-metrica" id="alertaSuperior"></div>
+                    </div>
+                    <div class="areaMetrica">
+                        <span class="labelBloco">Perigo Superior</span>
+                        <div class="perigo bloco-metrica" id="maximaSuportada"></div>
+                    </div>
+                </div>
+                <div class="grafico_temp">
+                    <h1>Variação de temperatura e umidade</h1>
+                    <section style="width: 100%;">
+                        <canvas id="myChartCanvas"></canvas>
+                    </section>
+                </div>
+            </div>
+
+            <div class="direita">
+                <div class="atual">
+                    <h1>Atual</h1>
+                    <div class="atual_ambos">
+                        <div class="atual_umidade">
+                            <img src="img/GraficosEstufas_gotas.png">
+                            <h2><span id="atual_umid"></span>%</h2>
+                        </div>
+                        <div class="atual_temp">
+                            <img src="img/GraficosEstufas_temp.png">
+                            <h2><span id="atual_temp"></span>°C</h2>
+                        </div>
+                    </div>
+                    <div class="descricao">
+                        <div> Umidade</div>
+                        <div> Temperatura</div>
+                    </div>
+                </div>
+                Informações estufa
+                <div class="informacoes" id="respostaInfo">
+                    <h1>Informações</h1>
+                    <div class="info_estufa">
+                        <h5>Informações estufa</h5>
+                        <p>Plantação: <span id="plantacao"></span></p>
+                        <p>Estufa: <span id="estufa"></span></p>
+                        <p>Tipo da Uva: <span id="tipo_uva"></span></p>
+                        <p>Tamanho: <span id="tamanho"></span></p>
+                        <p>Id do Sensor: <span id="id_sensor"></span></p>
+                        <p>Local do Sensor: <span id="local_sensor"></span></p>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Final do container-->
+</body>
+
+</html>
+
+<script>
+    var idChefe = sessionStorage.ID_USUARIO;
+    var nomeUsuario = sessionStorage.NOME_USUARIO;
+    var loginUsuario = sessionStorage.LOGIN_USUARIO;
+    var emailUsuario = sessionStorage.EMAIL_USUARIO;
+    var fkEmpresa = sessionStorage.FK_EMPRESA;
+    var fkChefe = sessionStorage.ID_CHEFE;
+    var imagemAdm = sessionStorage.IMAGEM_USUARIO;
+    var idSensor = sessionStorage.ID_SENSOR;
+    imagemUsuario.src = imagemAdm;
+    let proximaAtualizacao;
+
+    validarSessao()
+
+    pegarDadosEstufa()
+    function pegarDadosEstufa() {
+        fetch("/sensor/buscarInformacoes", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idSensorServer: idSensor
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                console.log(resposta);
+                resposta.json().then(json => {
+                    tituloEstufa.innerHTML = json[0].nomeEstufa
+                    plantacao.innerHTML = `${json[0].nomePlantacao}`
+                    estufa.innerHTML = `${json[0].nomeEstufa}`
+                    tipo_uva.innerHTML = `${json[0].nomeUva}`
+                    tamanho.innerHTML = `${json[0].areaEstufa}m²`
+                    id_sensor.innerHTML = `${idSensor}`
+                    local_sensor.innerHTML = `${json[0].localSensor}`
+
+                    let temperaturaMaxima = Number(json[0].tempMax);
+                    let temperaturaMinima = Number(json[0].tempMin);
+                    let temperaturaIdeal = Number((temperaturaMaxima + temperaturaMinima) / 2)
+                    let temperaturaAlertaSuperior = Number(temperaturaIdeal + ((10 / 100) * temperaturaIdeal))
+                    let temperaturaAlertaInferior = Number(temperaturaIdeal - ((10 / 100) * temperaturaIdeal))
+
+                    let umidadeMaxima = json[0].umidMax;
+                    let umidadeMinima = json[0].umidMin;
+                    let umidadeIdeal = (umidadeMaxima + umidadeMinima) / 2
+                    let umidadeAlertaSuperior = umidadeIdeal + ((10 / 100) * umidadeIdeal)
+                    let umidadeAlertaInferior = umidadeIdeal - ((10 / 100) * umidadeIdeal)
+
+                    minimaSuportada.innerHTML +=
+                        `
+                        <span>Temperatura: ${temperaturaMinima.toFixed(2)}°C</span>
+                        <span>Umidade: ${umidadeMinima.toFixed(2)}%</span>
+                    `
+                    maximaSuportada.innerHTML +=
+                        `
+                        <span>Temperatura: ${temperaturaMaxima.toFixed(2)}°C</span>
+                        <span>Umidade: ${umidadeMaxima.toFixed(2)}%</span>
+                    `
+                    alertaInferior.innerHTML +=
+                        `
+                        <span>Temperatura: ${temperaturaAlertaInferior.toFixed(2)}°C</span>
+                        <span>Umidade: ${umidadeAlertaInferior.toFixed(2)}%</span>
+                    `
+                    alertaSuperior.innerHTML +=
+                        `
+                        <span>Temperatura: ${temperaturaAlertaSuperior.toFixed(2)}°C</span>
+                        <span>Umidade: ${umidadeAlertaSuperior.toFixed(2)}%</span>
+                    `
+                    seguro.innerHTML +=
+                        `
+                        <span>Temperatura: ${temperaturaIdeal.toFixed(2)}°C</span>
+                        <span>Umidade: ${umidadeIdeal.toFixed(2)}%</span>
+                    `
+
+                })
+            } else {
+                console.log("Houve um erro ao tentar consultar as informações");
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+        return false;
+    }
+
+    window.onload = obterDadosGrafico(idSensor)
+
+    function obterDadosGrafico(idSensor) {
+        //alterarTitulo(idSensor)
+        if (proximaAtualizacao != undefined) {
+            clearTimeout(proximaAtualizacao);
+        }
+
+        fetch(`/medidas/ultimas/${idSensor}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarGrafico(resposta, idSensor);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function plotarGrafico(resposta, idSensor) {
+
+        console.log('iniciando plotagem do gráfico...');
+
+        // Criando estrutura para plotar gráfico - labels
+        let labels = [];
+
+        // Criando estrutura para plotar gráfico - dados
+        let dados = {
+            labels: labels,
+            datasets: [{
+                label: 'Umidade',
+                data: [],
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.075,
+                yAxisID: 'yAxisUmid'
+            },
+            {
+                label: 'Temperatura',
+                data: [],
+                fill: false,
+                borderColor: 'rgb(199, 52, 52)',
+                tension: 0.075,
+                yAxistID: 'yAxisTemp'
+            }]
+        };
+
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+        console.log(resposta)
+
+        // Inserindo valores recebidos em estrutura para plotar o gráfico
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            labels.push(String(registro.dataRegistro).substring(0, 10));
+            dados.datasets[0].data.push(registro.umidade);
+            dados.datasets[1].data.push(registro.temperatura);
+            atual_temp.innerHTML = Number((registro.temperatura)).toFixed(1)
+            atual_umid.innerHTML = Number((registro.umidade)).toFixed(2)
+        }
+
+        console.log('----------------------------------------------')
+        console.log('O gráfico será plotado com os respectivos valores:')
+        console.log('Labels:')
+        console.log(labels)
+        console.log('Dados:')
+        console.log(dados.datasets)
+        console.log('----------------------------------------------')
+
+        // Criando estrutura para plotar gráfico - config
+        const config = {
+            type: 'line',
+            data: dados,
+            options: {
+                scales: {
+                    yAxes: [{
+                        id: 'yAxisTemp',
+                        beginAtZero: true,
+                        type: 'linear',
+                        position: 'left',
+                        ticks: {
+                            callback: function (value, index, values) {
+                                return `${value}°C`
+                            }
+                        }
+                    }, {
+                        id: 'yAxisUmid',
+                        beginAtZero: true,
+                        type: 'linear',
+                        position: 'right',
+                        ticks: {
+                            callback: function (value, index, values) {
+                                return `${value}%`
+                            }
+                        }
+                    }]
+                }
+            }
+        };
+
+        // Adicionando gráfico criado em div na tela
+        let myChart = new Chart(
+            document.getElementById(`myChartCanvas`),
+            config
+        );
+
+        setTimeout(() => atualizarGrafico(idSensor, dados, myChart), 2000);
+    }
+
+    function atualizarGrafico(idSensor, dados, myChart) {
+        fetch(`/medidas/tempo-real/${idSensor}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (novoRegistro) {
+
+                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                    console.log(`Dados atuais do gráfico:`);
+                    console.log(dados);
+
+                    let avisoCaptura = document.getElementById(`avisoCaptura${idSensor}`)
+
+
+                    if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
+                        console.log("---------------------------------------------------------------")
+                        console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+                        console.log("Horário do novo dado capturado:")
+                        console.log("Horário do último dado capturado:")
+                        console.log("---------------------------------------------------------------")
+                    } else {
+                        // tirando e colocando valores no gráfico
+                        dados.labels.shift(); // apagar o primeiro
+                        dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
+
+                        dados.datasets[0].data.shift();  // apagar o primeiro de umidade
+                        dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
+
+                        dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
+                        dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
+
+                        myChart.update();
+
+                        atual_umid.innerHTML = `${novoRegistro[0].umidade}`
+                        atual_temp.innerHTML = `${novoRegistro[0].temperatura}`
+                    }
+
+                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                    proximaAtualizacao = setTimeout(() => atualizarGrafico(idSensor, dados, myChart), 2000);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                proximaAtualizacao = setTimeout(() => atualizarGrafico(idSensor, dados, myChart), 2000);
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+    }
+</script>

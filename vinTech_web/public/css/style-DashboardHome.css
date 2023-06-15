@@ -1,0 +1,249 @@
+@font-face {
+    font-family: tt-travels;
+    src: url(/fonte/TTChocolatesTrialRegular.otf);
+}
+@font-face {
+    font-family: tt-chocolates;
+    src: url(/fonte/TTTravelsRegular.otf);
+}
+body{
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+}
+
+/* Criação dos elementos da página */
+
+.pagina{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100vw;
+    height: 100vh;
+}
+.container{
+    display: flex;
+    width: 80vw;
+    height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    /* border: 1px solid yellow; */
+}
+/* .container_topo{
+    display: flex;
+    width: 70vw;
+    height: 20vh;
+    border: solid 1px pink;
+} */
+.superior{
+    display: flex;
+    height: 50%;
+    width: 100%;
+    justify-content: center; 
+    flex-direction: column;
+    align-items: center;
+}
+.superior_esquerda{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+}
+
+.titulo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 30%;
+    flex-direction: column;
+}
+
+.titulo h1{
+    font-size: 50px;
+    font-weight: 400;
+}
+
+.linhaTitulo {
+    margin-top: 0.2%;
+    width: 80vw;
+    border: 0.3vh dashed #000;
+}
+
+.caixas{
+    display: flex;
+    width: 90%;
+    height: 60%;
+    align-items: center;
+    justify-content: space-between;
+    /* border: 1px solid red; */
+}
+.caixa{
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    border: solid 2px transparent;
+    border-radius: 30px;
+    width: 30%;
+    height: 70%;
+    align-items: center;
+    justify-content: space-evenly; 
+}
+
+.caixa:nth-of-type(1){
+    border-color: red;
+    background-image: linear-gradient(to bottom, #fff, rgba(255, 0, 0, 0.301));
+    box-shadow: 0 5px 2px red;
+}
+.caixa:nth-of-type(2){
+    border-color: rgb(221, 170, 1);
+    background-image: linear-gradient(to bottom, #fff, rgba(221,170,1,.301));
+    box-shadow: 0 5px 2px rgb(221, 170, 1);
+}
+.caixa:nth-of-type(3){
+    border-color: green;
+    background-image: linear-gradient(to bottom, #fff, rgba(0, 255, 0, 0.301));
+    box-shadow: 0 5px 2px green;
+
+}
+.caixa span {
+    font-size: 60px;
+}
+
+.caixa h3{
+    font-size: 20px;
+}
+
+.top_estufas::-webkit-scrollbar, .uvas_cultivo::-webkit-scrollbar{
+    width: 12px;
+}
+
+.top_estufas::-webkit-scrollbar-track, .uvas_cultivo::-webkit-scrollbar-track{
+    background: rgb(45, 0, 97);
+}
+
+.top_estufas::-webkit-scrollbar-thumb, .uvas_cultivo::-webkit-scrollbar-thumb{
+    background: rgb(89, 0, 255);
+}
+
+.imagem_uva{
+    width: 50%;
+}
+.top_estufas img{
+    height: 115%;
+}
+.top_estufas h2{
+    margin-top: 15px;
+}
+.linha-lista{
+    display: flex;
+    height: 3vh;
+    margin-bottom: 1vh;
+}
+.lista{
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    }
+/* Começo da parte inferior */
+.inferior{
+    display: flex;
+    width: 90%;
+    height: 40%;
+    justify-content: space-evenly;
+    align-items: center;
+    /* border: 1px solid red; */
+} 
+
+.grafico{
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    height: 40vh;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top:1%;
+    cursor: pointer;
+    /* border: 2px solid purple; */
+    /* border-radius: 10px; */
+}
+
+.graficoPerigo{
+    box-shadow: 5px 5px 2px red;
+    border: 2px solid red;
+    transition: .5s ease;
+}
+.graficoPerigo:hover{
+    background-color: rgba(255, 0, 0, 0.137);
+    transition: .5s ease;
+}
+.graficoSeguro{
+    box-shadow: 5px 5px 2px green;
+    border: 2px solid green;
+    transition: .5s ease;
+}
+.graficoSeguro:hover{
+    background-color: rgba(0, 255, 0, 0.137);
+    transition: .5s ease;
+}
+
+.titulo_grafico h2{
+    font-size: 30px;
+    font-weight: 700;
+}
+canvas{
+    width: 100%;
+    height: 100%;
+}
+
+.respostaEstufa{
+    /* border: 1px solid red; */
+    width: 80%;
+    height: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
+.linha-grafico{
+    display: flex;
+    width: 100%;
+    height: 75%;
+    /* border: 1px solid red; */
+    align-items: flex-start;
+    justify-content: space-around;
+
+}
+
+.resposta{
+    /* border: 1px solid red; */
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.resposta span{
+    color: rgb(132, 0, 219);
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.valores{
+    font-weight: 400;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.tituloResposta{
+    font-size: 25px;
+}
+
+.seguro{
+    color: green;
+}
+.perigo{
+    color: red;
+}

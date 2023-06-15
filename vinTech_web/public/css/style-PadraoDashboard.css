@@ -1,0 +1,161 @@
+body {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+}
+
+/* Criação dos elementos da página */
+
+.pagina {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100vw;
+    height: 100vh;
+}
+
+.barra-lateral {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 20vw;
+    height: 100vh;
+    border-radius: 0px 4vh 4vh 0px;
+    background-image: linear-gradient(to bottom, #5903AF, #4f009e, #45008a);
+    transition: 1000ms;
+}
+
+.barra-logo {
+    display: flex;
+    width: 100%;
+    height: 20%;
+    justify-content: center;
+    align-items: center;
+}
+
+.barra-itens {
+    display: flex;
+    width: 100%;
+    height: 40%;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 3.2vh;
+}
+
+.barra-usuario {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.barra-fotoUsuario {
+    border: none;
+    background-color: snow;
+    width: 40%;
+    height: 75%;
+    border-radius: 50%;
+    display: flex;
+    border: #240244 2px;
+    box-shadow: 15px 5px 20px 3px #240244;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.barra-fotoUsuario img:hover {
+    background: linear-gradient(45deg, #ce51e7, #7a00ff, #5467c5, #7b48b1, #240244, #30075a);
+    animation: glowing 20s linear infinite;
+    transition: opacity .3s ease-in-out;
+    border-radius: 45%;
+}
+
+.barra-usuario span {
+    color: white;
+}
+
+.barra-button {
+    display: flex;
+    width: 100%;
+    height: 5%;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 10%;
+}
+
+.barra-logo img {
+    display: flex;
+    width: 20%;
+    height: auto;
+}
+
+.barra-logo span {
+    font-family: tt-travels;
+    font-size: 5vh;
+    color: white;
+}
+
+.barra-itens .selected {
+    border-bottom: solid 0.1vh white;
+}
+
+.barra-itens ul {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    list-style: none;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    align-items: flex-start;
+    margin-left: 17%;
+}
+
+.barra-itens ul li {
+    display: flex;
+    cursor: pointer;
+    width: 100%;
+}
+
+.barra-itens ul li:hover {
+    cursor: pointer;
+    border-bottom: solid 0.1vh white;
+}
+
+.barra-fotoUsuario img {
+    width: 100%;
+    image-rendering: auto;
+    height: 100%;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.6px;
+    border: 0.2px solid #9042d8;
+}
+
+.barra-button button {
+    width: 60%;
+    color: white;
+    border: solid 1px white;
+    border-radius: 40px;
+    background-color: #5903af00;
+    font-size: 3vh;
+    transition: 500ms;
+}
+
+.barra-button button:hover {
+    cursor: pointer;
+    transform: translateY(-0.3vh);
+    transition: 500ms;
+}
+
+a {
+    color: white;
+    cursor: pointer;
+    text-decoration: 0;
+}

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style-PadraoTodos.css">
+    <link rel="stylesheet" href="css/style-Index.css">
+    <link rel="icon" type="image/png" href="img/logo.jpeg"/>
+    <title>VinTech</title>
+</head>
+
+<body>
+    <!--Inicio do navbar-->
+    <div class="header">
+        <div class="container">
+            <h1></h1>
+            
+            <ul class="navbar">
+              <div class="login">
+                <li><a href="./DashboardLogin.html">Entrar</a></li>
+                <li><a href="./CadastroEmpresa.html">Cadastra-se</a></li>    
+              </div>
+                <li><a href="#mais">Saiba mais</a></li>
+                <li><a href="#simule">Simule</a></li>
+                <li><a href="#projeto">Projeto</a></li>
+                <li><a href="#fale_conosco">Contato</a></li>
+            </ul>
+        </div>
+    </div>
+    <!--Final do navbar-->
+    <!--Inicio do banner-->
+    <div class="banner">
+        <div class="container">
+            <h1>VinTech</h1>
+            <p>Inovando e revolucionando seu cultivo</p>
+            <br><br>
+            <button class="entrar" onclick="mudaPagina()">
+                Cadastra-se
+            </button>
+        </div>
+    </div>
+    <!--Final do banner-->
+    <!--Começo do saiba mais-->
+    <div class="saibaMais" id="mais">
+        <div class="container">
+            <div class="coluna1">
+                <div class="textoCol1" id="item1">
+                    <h1 style="font-family: 'Times New Roman', Times, serif;">Diga adeus às plantações comuns e conheça a revolução.</h1>
+                </div>
+                <div class="textoCol1" id="item2">
+                    <h2>O dano financeiro </h2>
+                    <p>As produções de uvas e vinhos possuem uma perda de 10 bilhões de dólares anuais (cerca de 51
+                        bilhões de reais)</p>
+                </div>
+            </div>
+            <div class="coluna2">
+                <div class="textoCol2" id="item3">
+                    <h2>O dano causado pelo clima</h2>
+                    <p>devido a diversos fatores climáticos, como frio extremo e desastres naturais, múltiplas viticulturas pelo mundo tem sofrido 
+                        <span class="roxo"> perdas anuais gigantescas </span> nas suas safras, gerando <span class="escuro">prejuízos bilionários</span> e afetando os lucros dos produtores.
+                    </p>
+                </div>
+                <div class="textoCol2" id="item4">
+                    <h2>Escolha transformar esse cenário </h2>
+                    <p><span class="roxo">Reduziremos em até 10 bilhões de dólares</span> os prejuízos causados pelos feitos climáticos no cultivo de uvas.
+                        
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Final do saiba mais-->
+
+
+    <!--Começo Simule aqui-->
+    <div class="simule" id="simule">
+        <div class="container">
+            <div class="img_simule">
+            </div>
+            <div class="txt_simule" id="div_simule">
+                <h2>Simule aqui</h2>
+                <div id="form">
+                <p>Calcule agora o quanto você pode
+                <span class="roxo_escuro">reduzir</span> em <span class="roxo_escuro">custo</span> na sua produção</p>
+                <span>Custo anual</span>
+                <div class="input" ><div class="quadrado">R$</div><input type="text" id="custoProducao" placeholder="Custo anual de produção por hectare :"></div><br><br>
+                <span>Tamanho da sua platação</span>
+                <div class="input"><input type="text" id="hectares" placeholder="Tamanho da sua plantação em hectares:"><div class="quadrado">ha</div></div>
+                <br>
+                <button onclick="calcular()">Calcular lucros</button>
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- Final Simule Aqui -->
+
+    <!-- Começo Feito para você -->
+    <div class="feito_voce" id="projeto">
+        <div class="container">
+            <div class="texto">
+                <h1>Feito para Você</h1>
+                <span>Conheça os nossos objetivos e compromisso com os nossos clientes.</span>
+            </div>
+            <div class="Ncards">
+                <div class="card">
+                    <div class="text">
+                        <h2>1</h2><p>•Diminuir os prejuízos gerados pela perda de uvas nas safras através do
+                        monitoramento da temperatura e umidade na estufa.</p>
+                    </div>
+                    <div class="detalhe"></div>
+                </div>
+
+                <div class="card">
+                    <div class="text">
+                        <h2>2</h2><p>•Implantar sensores conectados a um arduíno para a coleta
+                        de informações relativas a temperatura e umidade.</p>
+                    </div>
+                    <div class="detalhe"></div>
+                </div>
+
+                <div class="card">
+                    <div class="text">
+                        <h2>3</h2><p>•Gerar informações pertinentes ao cliente através dos dados coletados
+                        pelos sensores implantados</p>
+                    </div>
+                    <div class="detalhe"></div>
+                </div>
+
+                <div class="card">
+                    <div class="text">
+                        <h2>4</h2><p>•Auxiliar na tomada de decisão através dos
+                        dados gerados pelos sensores</p>
+                    </div>
+                    <div class="detalhe"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Final Feito para você -->
+    <div class="fale_conosco" id="fale_conosco">
+        <div class="container">
+            <div class="txt_fale">
+                <h2>Fale conosco</h2>
+                <p>
+                    Rua Qualquer, 123<br>
+                    Cidade Qualquer -SP<br>
+                    (12) 3456-7890<br>
+                </p>
+                <a>technoir@gmail.com</a>
+                <br>
+                <div class="icones_fale">
+                    <img src="./img/facebook.png">
+                    <img src="./img/instagram.png">
+                    <img src="./img/twitter.png">
+                    <a href="https://vintechhelpdesk.atlassian.net/servicedesk/customer/portal/2">
+                        <img src="./img/Untitled.png" >
+                    </a>
+                </div>
+                <br>
+                <span class="roxo">Site desenvolvido por: TechNoir</span>
+            </div>
+        </div>
+    </div>
+    <!-- Começo Fale conosco -->
+
+
+</body>
+
+</html>
+<script src="../js/calculadoraAntiga"></script>
+<script>
+    function mudaPagina(){
+        location.href = "cadastroEmpresa.html"
+    }
+</script>

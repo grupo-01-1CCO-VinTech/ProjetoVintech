@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VinTech - Cadastro</title>
+    <link rel="stylesheet" href="css/style-CadastroEmpresa.css">
+    <link rel="stylesheet" href="css/style-PadraoTodos.css">
+    <link rel="icon" href="img/logo.jpeg" type="image/png">
+</head>
+
+<body>
+    <div class="pai">
+        <div class="sobre">
+            <div class="sobreTitulo">
+                <h1>Formulário de Cadastro</h1>
+            </div>
+            <div class="sobreTexto">
+                <span>Lei de Proteção de Dados Pessoais LGPD</span>
+                <p>Certificamos que a TechNoir, tanto em seu site quanto em suas atividades comerciais, segue
+                    rigorosamente as leis de proteção de dados pessoais do Brasil, estabelecidas pela Lei Geral de
+                    Proteção de Dados (LGPD).
+                    <br><br>
+                    Nosso compromisso é garantir a privacidade e segurança dos dados pessoais de nossos usuários e
+                    clientes, e para isso, adotamos medidas técnicas e organizacionais para assegurar que todas as
+                    informações fornecidas sejam tratadas de forma adequada e responsável.
+                    <br><br>
+                    Com isso, você pode confiar na TechNoir como uma empresa comprometida com a segurança dos seus dados
+                    pessoais, e que segue as normas estabelecidas pelas autoridades competentes para garantir a proteção
+                    de seus direitos e privacidade. Estamos sempre à disposição para esclarecer qualquer dúvida e
+                    oferecer suporte aos nossos usuários.
+                </p>
+            </div>
+        </div>
+        <div class="coluna"></div>
+        <div class="ajuste">
+            <div class="formulario formulario-infoEmpresa" id="frm_infoEmpresa">
+                <h2>Informações</h2>
+                <br>
+                <div class="informacoes">
+                    <div class="linha linha-nome">
+                        <div class="bloco">
+                            <p>Nome Empresarial:* </p><input type="text" id="txtNomeEmpresarial"
+                                onkeyup="eliminarNumeros('txtNomeEmpresarial')" value="TechGrape & Cia">
+                        </div>
+                        <div class="bloco">
+                            <p>Nome Fantasia: </p><input type="text" id="txtNomeFantasia"
+                                onkeyup="eliminarNumeros('txtNomeFantasia')" value="TechGrape">
+                        </div>
+                    </div>
+                    <div class="linha linha-cnpj">
+                        <div class="bloco bloco-cnpj">
+                            <p>CNPJ:* </p><input type="text" id="txtCnpj"
+                                onkeyup="mascaraCnpj(), eliminarLetras('txtCnpj')" maxlength="18" value="13.568911087661444">
+                        </div>
+                        <div class="bloco bloco-cep">
+                            <p>CEP:*</p> <input type="text" id="txtCep" onkeyup="mascaraCep(), eliminarLetras('txtCep')"
+                                maxlength="9" value="02345-163">
+                        </div>
+                        <div class="bloco bloco-numero">
+                            <p>Número:* </p><input type="text" id="txtNumero" class="input-numero" value="157">
+                        </div>
+                    </div>
+                    <div class="linha linha-logrBairro">
+                        <div class="bloco">
+                            <p>Logradouro:*</p> <input type="text" id="txtLogradouro"
+                                onkeyup="eliminarNumeros('txtLogradouro')" value="Rua Afonso Campos">
+                        </div>
+                        <div class="bloco">
+                            <p>Bairro:*</p> <input type="text" id="txtBairro" onkeyup="eliminarNumeros('txtBairro')" value="Champirra">
+                        </div>
+                    </div>
+                    <div class="linha linha-cidadeUf">
+                        <div class="bloco">
+                            <p>Cidade:*</p> <input type="text" id="txtCidade" onkeyup="eliminarNumeros('txtCidade')" value="Jundiaí">
+                        </div>
+                        <div class="bloco">
+                            <p>UF:* </p><input type="text" id="txtUf" onkeyup="eliminarNumeros('txtUf')" value="SP">
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+                <h2>Contato</h2>
+                <div class="contato">
+                    <div class="linha">
+                        <div class="bloco">
+                            <p>Telefone da empresa:* </p><input type="text" id="txtTelEmpresa"
+                                onkeyup="mascaraTelefone(), eliminarLetras(`txtTelEmpresa`)" maxlength="14" value="(19)28384-9182">
+                        </div>
+                        <div class="bloco">
+                            <p>Telefone secundário: </p><input type="text" id="txtTelSecundario"
+                                onkeyup="mascaraTelefone(), eliminarLetras('txtTelSecundario')" maxlength="14" value="(19)98323-9582">
+                        </div>
+                    </div>
+                    <div class="linha">
+                        <div class="bloco">
+                            <p>E-mail da empresa:* </p><input type="text" id="txtEmailEmpresa" value="techgrape@gmail.com">
+                        </div>
+                    </div>
+                </div>
+                <h2>Termos de Serviço</h2>
+                <div class="termos">
+                    <p><input type="checkbox" onclick="mudaCheckBox()"> Li e aceito os Termos de Serviço da TechNoir</p>
+                    <button onclick="verificarCampos()" class="button" id="btn_continuar">Continuar</button>
+                </div>
+            </div>
+            <div class="carregando" id="divLoad">
+                <img src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif" alt="">
+            </div>
+            <div class="formulario formulario-cadastroLogin" id="frm_infoLogin">
+                <div class="administrador">
+                    <br>
+                    <h2>Dados do Administrador</h2>
+                    <div class="linha">
+                        <div class="bloco">
+                            <p>E-mail do Administrador:* </p><input type="text" id="txtEmailAdm"value="marise@gmail.com">
+                        </div>
+                    </div>
+                    <div class="linha">
+                        <div class="bloco">
+                            <p>Login:* </p><input type="text" id="txtLogin"value="Marise Miranda">
+                        </div>
+                    </div>
+                    <div class="linha">
+                        <div class="bloco">
+                            <p>Senha:* </p><input type="text" id="txtSenha" oninput=""value="urubu100">
+                        </div>
+                    </div>
+                    <div class="linha">
+                        <div class="bloco">
+                            <p>Repetir Senha:* </p><input type="text" id="txtConfirmarSenha"value="urubu100">
+                        </div>
+                    </div>
+                    <div class="linha linha-imagemUsuario">
+                        <div class="bloco bloco-imagem">
+                            <p>Insira sua imagem de Perfil <br>(Url da Imagem)</p>
+                            <input type="text" id="txtImagem" value="data:image/jpeg;base64,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">
+                        </div>
+                    </div>
+                </div>
+                <div class="termos">
+                    <button onclick="verificarSenha()" class="button" id="btn_cadastrar">Cadastrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    var checked = false
+    var empresa = {
+        dados: {
+            nome: "",
+            nomeFantasia: "",
+            cnpj: "",
+        },
+        endereco: {
+            cep: "",
+            logradouro: "",
+            numero: 0,
+            bairro: "",
+            cidade: "",
+            uf: ""
+        },
+        contato: {
+            telefone: "",
+            telefoneSecundario: "",
+            email: ""
+        },
+        adm: {
+            login: "",
+            imagem: "",
+            email: "",
+            senha: ""
+        }
+    }
+
+    // verificando se a checkbox está marcada
+    function mudaCheckBox() {
+        if (checked == false) {
+            checked = true
+        } else {
+            checked = false
+        }
+    }
+
+    // verificando campos obrigatórios vazios
+
+    function verificarCampos() {
+        // campos obrigatorios
+        empresa.dados.nome = txtNomeEmpresarial.value
+        empresa.dados.nomeFantasia = txtNomeFantasia.value
+        empresa.dados.cnpj = txtCnpj.value
+        empresa.endereco.cep = txtCep.value
+        empresa.endereco.logradouro = txtLogradouro.value
+        empresa.endereco.numero = Number(txtNumero.value)
+        empresa.endereco.bairro = txtBairro.value
+        empresa.endereco.cidade = txtCidade.value
+        empresa.endereco.uf = txtUf.value
+        empresa.contato.telefone = txtTelEmpresa.value
+        empresa.contato.telefoneSecundario = txtTelSecundario.value
+        empresa.contato.email = txtEmailEmpresa.value
+        var erro = false
+
+        // definindo a cor das bordas para preto
+        txtNomeEmpresarial.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtCnpj.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtCep.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtLogradouro.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtNumero.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtCidade.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtBairro.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtUf.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtEmailEmpresa.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtTelEmpresa.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtTelSecundario.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+
+        // verificando condições
+        if (checked == false) {
+            erro = true
+            alert("Você precisa aceitar os termos de uso para prosseguir!")
+        }
+        if (empresa.dados.nome == "" || isNaN(empresa.dados.nome) == false) {
+            erro = true
+            // alert("O campo {nome empresarial} é obrigatório!")
+            txtNomeEmpresarial.style = 'box-shadow: .5px .5px 10px red;'
+        } if (empresa.dados.cnpj == "" || empresa.dados.cnpj.length != 18) {
+            erro = true
+            // alert("O campo {cnpj} é obrigatório!")
+            txtCnpj.style = 'box-shadow: .5px .5px 10px red;'
+        } if (empresa.endereco.cep == "" || empresa.endereco.cep.length != 9) {
+            erro = true
+            // alert("O campo {cep} é obrigatório!")
+            txtCep.style = 'box-shadow: .5px .5px 10px red;'
+        } if (empresa.endereco.logradouro == "") {
+            erro = true
+            // alert("O campo {logradouro} é obrigatório!")
+            txtLogradouro.style = 'box-shadow: .5px .5px 10px red;'
+        } if (empresa.endereco.numero == 0) {
+            erro = true
+            // alert("O campo {numero} está inválido! Verifique o conteúdo!")
+            txtNumero.style = 'box-shadow: .5px .5px 10px red;'
+        } if (empresa.endereco.cidade == "") {
+            erro = true
+            // alert("O campo {cidade} é obrigatório!")
+            txtCidade.style = 'box-shadow: .5px .5px 10px red;'
+        } if (empresa.endereco.bairro == "") {
+            erro = true
+            // alert("O campo {bairro} é obrigatório!")
+            txtBairro.style = 'box-shadow: .5px .5px 10px red;'
+        } if (empresa.endereco.uf == "" || empresa.endereco.uf.length != 2) {
+            erro = true
+            // alert("O campo {uf} é obrigatório!")
+            txtUf.style = 'box-shadow: .5px .5px 10px red;'
+        } if (empresa.contato.telefone == "" || empresa.contato.telefone.length != 14) {
+            erro = true
+            // alert("O campo {telefone da empresa} é obrigatório!")
+            txtTelEmpresa.style = 'box-shadow: .5px .5px 10px red;'
+        } if (empresa.contato.telefoneSecundario != "" &&
+            empresa.contato.telefoneSecundario.length != 14) {
+            erro = true
+            // alert("O campo {telefone da empresa} é obrigatório!")
+            txtTelSecundario.style = 'box-shadow: .5px .5px 10px red;'
+        } if (empresa.contato.email == "" || empresa.contato.email.indexOf('@') == -1 ||
+            empresa.contato.email.indexOf('.') == -1 || empresa.contato.email.length < 10) {
+            erro = true
+            // alert("O campo {email da empresa} é obrigatório!")
+            txtEmailEmpresa.style = 'box-shadow: .5px .5px 10px red;'
+        } if (erro == false) {
+            divLoad.style = 'display:flex;'
+            setInterval(() => {
+                divLoad.style = 'display:none;'
+                frm_infoEmpresa.style = 'display:none;'
+                frm_infoLogin.style = 'display:flex;'
+            }, 1000)
+        } else {
+            alert("Alerta! Campos inválidos encontrados, verifique o conteúdo!")
+        }
+    }
+
+    // mascaras de cnpj, cep e telefone
+    function mascaraCnpj() {
+        var tamanhoCnpj = txtCnpj.value.length
+        if (tamanhoCnpj == 2) {
+            txtCnpj.value += '.'
+        } if (tamanhoCnpj == 6) {
+            txtCnpj.value += '.'
+        } if (tamanhoCnpj == 10) {
+            txtCnpj.value += '/'
+        } if (tamanhoCnpj == 15) {
+            txtCnpj.value += '-'
+        }
+    }
+    function mascaraCep() {
+        var tamanhoCep = txtCep.value.length
+        if (tamanhoCep == 5) {
+            txtCep.value += '-'
+        }
+    }
+    function mascaraTelefone() {
+        var tamanhoTel1 = txtTelEmpresa.value.length
+
+        if (tamanhoTel1 == 2) {
+            txtTelEmpresa.value = `(${txtTelEmpresa.value})`
+        } if (tamanhoTel1 == 9) {
+            txtTelEmpresa.value += '-'
+        }
+
+        var tamanhoTel2 = txtTelSecundario.value.length
+        if (tamanhoTel2 == 2) {
+            txtTelSecundario.value = `(${txtTelSecundario.value})`
+        } if (tamanhoTel2 == 9) {
+            txtTelSecundario.value += '-'
+        }
+    }
+
+    function eliminarLetras(id) {
+        const input = document.getElementById(id)
+        var listaLetras = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@;,?|{}[]~^'
+        // console.log(input)
+        // console.log(ultima_letra)
+        for (var i = 0; i <= 62; i++) {
+            if (input.value[input.value.length - 1] == listaLetras[i]) {
+                alert('Esse campo só aceita números!')
+                input.value = ''
+            }
+            for (var letra = 0; letra <= input.value.length - 1; letra++) {
+                if (input.value[letra] == listaLetras[i]) {
+                    alert('Esse campo só aceita números!')
+                    input.value = ''
+                }
+            }
+        }
+
+    }
+    function eliminarNumeros(id) {
+        const input = document.getElementById(id)
+        var listaLetras = ['0','1','2','3','4','5','6','7','8','9']
+        // console.log(input)
+        // console.log(ultima_letra)
+        for (var i = 0; i <= 9; i++) {
+            if (input.value[input.value.length - 1] == Number(listaLetras[i]) && input.value[input.value.length - 1] != ' ') {
+                alert('Esse campo não aceita números!')
+                input.value = ''
+            }
+        }
+        for (var letra = 0; letra <= input.value.length - 1; letra++) {
+            if (isNaN(input.value[letra]) == false && input.value[letra] != ' ') {
+                alert('Esse campo não aceita números!')
+                input.value = ''
+            }
+        }
+    }
+    function verificarSenha() {
+        empresa.adm.login = txtLogin.value
+        empresa.adm.imagem = txtImagem.value
+        empresa.adm.email = txtEmailAdm.value
+        empresa.adm.senha = txtSenha.value
+        const confirmarSenha = txtConfirmarSenha.value
+        var erro = false
+
+        txtLogin.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtEmailAdm.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtSenha.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+        txtConfirmarSenha.style = 'box-shadow: 1px 1px 10px #4f3f585d;'
+
+        if (empresa.adm.login.length < 8) {
+            erro = true
+            alert('O campo Login deve ter pelo menos 8 caracteres!')
+            txtLogin.style = 'box-shadow: .5px .5px 10px red;'
+        }
+        if (empresa.adm.email == "" || empresa.adm.email.indexOf('@') == -1 ||
+            empresa.adm.email.indexOf('.') == -1 || empresa.adm.email.length < 10) {
+            erro = true
+            txtEmailAdm.style = 'box-shadow: .5px .5px 10px red;'
+        }
+        if (empresa.adm.senha.length < 8) {
+            erro = true
+            alert('A senha deve ter pelo menos 8 caracteres!')
+            txtSenha.style = 'box-shadow: .5px .5px 10px red;'
+        }
+        if (confirmarSenha != empresa.adm.senha) {
+            erro = true
+            alert('Senhas diferentes!')
+            txtConfirmarSenha.style = 'box-shadow: .5px .5px 10px red;'
+        }
+        if (erro == false) {
+            cadastrar()
+        } else {
+            alert("Alerta! Campos inválidos encontrados, verifique o conteúdo!")
+        }
+    }
+
+    function cadastrar() {
+        fetch("/empresa/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeEmpresaServer: empresa.dados.nome,
+                nomeFantasiaServer: empresa.dados.nomeFantasia,
+                cnpjServer: empresa.dados.cnpj,
+                cepServer: empresa.endereco.cep,
+                logradouroServer: empresa.endereco.logradouro,
+                numeroServer: empresa.endereco.numero,
+                bairroServer: empresa.endereco.bairro,
+                cidadeServer: empresa.endereco.cidade,
+                ufServer: empresa.endereco.uf,
+                telefoneServer: empresa.contato.telefone,
+                telefoneSecundarioServer: empresa.contato.telefoneSecundario,
+                emailEmpresaServer: empresa.contato.email,
+        
+                loginServer: empresa.adm.login,
+                imagemServer: empresa.adm.imagem,
+                emailAdmServer: empresa.adm.email,
+                senhaServer: empresa.adm.senha
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                divLoad.style = 'display:flex;'
+                setTimeout(() => {
+                    divLoad.innerHTML = `Cadastro efetuado com sucesso! Redirecionando para a tela de login!`;
+                    setTimeout(() => {
+                        window.location = 'DashboardLogin.html'
+                    }, 2000)
+                }, 1000)
+            } else {
+                throw ("Houve u erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+        return false;
+
+        // usuario
+
+        // fetch("/usuarios/cadastrar", {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json"
+        //     },
+        //     body: JSON.stringify({
+        //         // crie um atributo que recebe o valor recuperado aqui
+        //         // Agora vá para o arquivo routes/usuario.js
+        //         emailAdmServer: empresa.adm.email,
+        //         loginServer: empresa.adm.login,
+        //         senhaServer: empresa.adm.senha
+
+        //     })
+        // }).then(function (resposta) {
+
+        //     console.log("resposta: ", resposta);
+
+        //     if (resposta.ok) {
+        //         divLoad.style = 'display:flex;'
+        //         setTimeout(() => {
+        //             divLoad.innerHTML = `Cadastro efetuado com sucesso! Redirecionando para a tela de login!`;
+        //             setTimeout(() => {
+        //                 window.location = 'DashboardLogin.html'
+        //             }, 2000)
+        //         }, 1000)
+        //     } else {
+        //         throw ("Houve um erro ao tentar realizar o cadastro!");
+        //     }
+        // }).catch(function (resposta) {
+        //     console.log(`#ERRO: ${resposta}`);
+        // });
+        // return false;
+    }
+</script>

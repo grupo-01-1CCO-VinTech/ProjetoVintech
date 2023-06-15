@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/funcoes.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/logo.jpeg" type="image/png">
+    <link rel="stylesheet" href="css/style-PadraoDashboard.css">
+    <link rel="stylesheet" href="css/style-Plantacao.css">
+    <link rel="stylesheet" href="css/style-PadraoTodos.css">
+    <title>Plantações</title>
+</head>
+
+<body onload="listar_Uvas(), listar_platacoes()">
+    <div class="pagina">
+        <div class="barra-lateral">
+            <div class="barra-logo">
+                <span>VinTech</span>
+                <img src="img/vintech.jpg" alt="">
+            </div>
+            <div class="barra-itens">
+                <ul>
+                    <a href="DashboardHome.html">
+                        <li>Home</li>
+                    </a>
+                    <a href="DashboardPlantacoes.html">
+                        <li>Plantações</li>
+                    </a>
+                    <a href="DashboardConfig.html" id="item_config">
+                        <li>Configurações</li>
+                    </a>
+                    <a href="https://vintechhelpdesk.atlassian.net/servicedesk/customer/portal/2">
+                        <li>Suporte</li>
+                    </a>
+                </ul>
+            </div>
+            <div class="barra-usuario">
+                <button class="barra-fotoUsuario" onclick="alterarImagem()">
+                    <img id="imagemUsuario" src="" alt="Foto Usuário">
+                </button>
+                <span id="nome_usuario"></span>
+                <span id="cargo_usuario"></span>
+            </div>
+            <div class="barra-button">
+                <button onclick="limparSessao()">Sair</button>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="header">
+            <img src="img/uvaDetalhe.png" alt="Detalhe Uva">
+            <span style="font-size: 5vh;">Listagem de Estufas</span>
+            <span class="linhaTitulo"></span>
+        </div>
+        <div class="containerCard-Grande">
+            <div class="cardGrande">
+                <div class="primeiraParte">
+                    <div class="areaBtn">
+                        <div class="cardBtns">
+                            <div class="areaBotoes">
+                                <div class="tituloBtn">
+                                    <h3>Por Status</h3>
+                                </div>
+                                <div class="botoes">
+                                    <button class="btnSeguro" onclick="filtro('seguro')"><b>Seguro</b></button>
+                                    <button class="btnAlerta" onclick="filtro('alerta')"><b>Alerta</b></button>
+                                    <button class="btnPerigo" onclick="filtro('perigo')"><b>Perigo</b></button>
+                                </div>
+                            </div>
+                            <div class="selectUva">
+                                <h3>Por Uva</h3>
+                                <select id="selectUva" onchange="filtro('uva')">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+
+                            <div class="selectUva">
+                                <h3>Por Plantação</h3>
+                                <select id="selectPlant" onchange="filtro('plantacao')">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="areaCardsPequenos" id="areaCardsPequenos">
+                    </div>
+                </div>
+            </div>
+            <div class="containerGraficos">
+                <h2>Quantidade por Status</h2>
+                <div class="containerStatus">
+                    <div class="statusImagens">
+                        <div class="status">
+                            <img src="img/check-box.png" alt="">
+                            <a><b>Seguro</b></a>
+                            <a id="txtSeguro"></a>
+                        </div>
+                        <div class="status">
+                            <img src="img/warning.png" alt="">
+                            <a><b>Alerta</b></a>
+                            <a id="txtAlerta"></a>
+                        </div>
+                        <div class="status">
+                            <img src="img/cancelar.png" alt="">
+                            <a><b>Perigo</b></a>
+                            <a id="txtPerigo"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-graficoBarra">
+                    <canvas id="graficoBarraDeitado"></canvas>
+                </div>
+                <div class="container-graficoPizza">
+                    <div class="areaGrafico">
+                        <canvas id="graficoPizza" class="graficoPizza"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>
+<script>
+    var idChefe = sessionStorage.ID_USUARIO;
+    var nomeUsuario = sessionStorage.NOME_USUARIO;
+    var loginUsuario = sessionStorage.LOGIN_USUARIO;
+    var emailUsuario = sessionStorage.EMAIL_USUARIO;
+    var fkEmpresa = sessionStorage.FK_EMPRESA;
+    var fkChefe = sessionStorage.ID_CHEFE;
+    var imagemAdm = sessionStorage.IMAGEM_USUARIO;
+
+    imagemUsuario.src = imagemAdm
+
+    var dados_grafico_deitado = []
+    var dados_grafico_rosca = []
+
+    var lista_uvas = [];
+    var lista_platacoes = []
+
+    validarSessao()
+
+    var status_botao = '';
+    var status_uva = '';
+    var status_plantacao = ''
+
+    function filtro(tipo) {
+        if (tipo == "seguro") {
+            status_botao = 'seguro'
+        }
+
+        else if (tipo == 'alerta') {
+            status_botao = 'alerta'
+        }
+
+        else if (tipo == 'perigo') {
+            status_botao = 'perigo'
+        }
+
+        if (tipo == 'uva') {
+            if (lista_uvas.indexOf(selectUva.value) != -1) {
+                status_uva = selectUva.value
+            }
+        }
+
+        if (tipo == 'plantacao') {
+            if (lista_platacoes.indexOf(selectPlant.value) != -1) {
+                status_plantacao = selectPlant.value
+            }
+        }
+
+        listar_estufas()
+    }
+
+
+    function filtrar_com_acao(filtro_tipo, json) {
+        areaCardsPequenos.innerHTML = ''
+        listaAlertas =
+            [
+                0, //Seguro
+                0, //Alerta
+                0 // Perigo
+            ]
+        if (status_botao == "") {
+            console.log('alert')
+        }
+        var contador_card = 0
+        for (let x in json) {
+            let tempRegis = Number(json[x].temperaturaRegistro);
+            let temperaturaMaxima = Number(json[x].tempMax);
+            let temperaturaMinima = Number(json[x].tempMin);
+            let temperaturaIdeal = Number((temperaturaMaxima + temperaturaMinima) / 2)
+            let temperaturaAlertaSuperior = Number(temperaturaIdeal + ((10 / 100) * temperaturaIdeal))
+            let temperaturaAlertaInferior = Number(temperaturaIdeal - ((10 / 100) * temperaturaIdeal))
+
+            let umidRegis = json[x].umidadeRegistro;
+            let umidadeMaxima = json[x].umidMax;
+            let umidadeMinima = json[x].umidMin;
+            let umidadeIdeal = (umidadeMaxima + umidadeMinima) / 2
+            let umidadeAlertaSuperior = umidadeIdeal + ((10 / 100) * umidadeIdeal)
+            let umidadeAlertaInferior = umidadeIdeal - ((10 / 100) * umidadeIdeal)
+
+            var classe = ``
+
+            let string = ""
+
+            if ((tempRegis < temperaturaAlertaSuperior && tempRegis > temperaturaAlertaInferior) && (umidRegis < umidadeAlertaSuperior && umidRegis > umidadeAlertaInferior)) {
+                classe = "Seguro"
+                string = "../img/check-box.png"
+                listaAlertas[0]++
+            }
+            else if ((tempRegis <= temperaturaMinima || tempRegis >= temperaturaMaxima) || (umidRegis <= umidadeMinima || umidRegis >= umidadeMaxima)) {
+                classe = "Perigo"
+                string = "../img/cancelar.png"
+                listaAlertas[2]++
+            }
+            else {
+                classe = "Alerta"
+                string = "../img/warning.png"
+                listaAlertas[1]++
+            }
+
+            var check_botao = false
+            if (status_botao == 'seguro' && classe == 'Seguro') {
+                check_botao = true
+            };
+            if (status_botao == 'alerta' && classe == 'Alerta') {
+                check_botao = true
+            };
+            if (status_botao == 'perigo' && classe == 'Perigo') {
+                check_botao = true
+            };
+            if (status_botao == '') {
+                check_botao = true
+            }
+
+            var check_uva = false
+            if (json[x].nomeUva == status_uva) {
+                check_uva = true
+            }
+
+            else if (status_uva == "") {
+                check_uva = true
+            }
+
+            var check_plantacao = false
+            if (json[x].nomePlantacao == status_plantacao) {
+               check_plantacao = true 
+            }
+            else if(status_plantacao == ""){
+                check_plantacao = true
+            }
+            if (check_botao && check_uva && check_plantacao) {
+                contador_card++
+                areaCardsPequenos.innerHTML +=
+                    `
+                    <div class="cardPequeno ${classe}" id='card${json[x].idEstufa}' onclick='verEstufa(${json[x].idSensor})'>
+                                    <div class="ordemCardpequeno">
+                                        <a id="title">Id da Estufa: ${json[x].idEstufa}</a>
+                                        <a>${json[x].nomeEstufa}</a>
+                                    </div>
+                                    <div class="ordemCardpequeno">
+                                        <a id="title">Tipo de Uva</a>
+                                        <a>${json[x].nomeUva}</a>
+                                    </div>
+                                    <div class="ordemCardpequeno">
+                                        <a id="title">Umidade Atual (%)</a>
+                                        <a>${json[x].umidadeRegistro}</a>
+                                    </div>
+                                    <div class="ordemCardpequeno">
+                                        <a id="title">Temperatura Atual(°C)</a>
+                                        <a>${json[x].temperaturaRegistro}</a>
+                                    </div> 
+                                    <div class="ordemCardpequeno">
+                                        <a id="title">Status</a>
+                                        <img src="${string}" alt="Botão Tudo OK">
+                                    </div>
+                                </div>  
+                            `
+            }
+        }
+
+        if(contador_card == 0){
+            areaCardsPequenos.innerHTML = `Esta estufa com esta uva não existe`
+        }
+        txtSeguro.innerHTML = `${listaAlertas[0]}`
+        txtAlerta.innerHTML = `${listaAlertas[1]}`
+        txtPerigo.innerHTML = `${listaAlertas[2]}`
+
+
+        grafico_deitado.data.datasets[0].data.push(listaAlertas[0])
+        grafico_deitado.data.datasets[1].data.push(listaAlertas[1])
+        grafico_deitado.data.datasets[2].data.push(listaAlertas[2])
+
+        grafico_rosca.data.datasets[0].data.push(listaAlertas[0])
+        grafico_rosca.data.datasets[0].data.push(listaAlertas[1])
+        grafico_rosca.data.datasets[0].data.push(listaAlertas[2])
+
+        grafico_deitado.update()
+        grafico_rosca.update()
+    }
+
+    const graficoBarraDeitado = document.getElementById('graficoBarraDeitado');
+    var grafico_deitado = new Chart(graficoBarraDeitado, {
+        type: 'bar',
+
+        data: {
+            labels: ['Valores'],
+            datasets: [{
+                label: ['Seguro'],
+                data: [],
+                borderWidth: 1,
+                backgroundColor: [
+                    '#00BF15'
+                ]
+            }, {
+                label: ['Alerta'],
+                data: [],
+                borderWidth: 1,
+                backgroundColor: [
+                    '#FFDE59'
+                ]
+            }, {
+                label: ['Perigo'],
+                data: [],
+                borderWidth: 1,
+                backgroundColor: [
+                    '#FF3131'
+                ]
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            scales: {
+                x: {
+                    grid: {
+                        display: false
+                    }
+                },
+                y: {
+                    grid: {
+                        display: false
+                    }
+                }
+            }
+        }
+    });
+
+    const graficoPizza = document.getElementById('graficoPizza');
+    var grafico_rosca = new Chart(graficoPizza, {
+        type: 'pie',
+        data: {
+            datasets: [{
+                label: 'Status',
+                data: dados_grafico_rosca,
+                borderWidth: 1,
+                backgroundColor: [
+                    '#00BF15',
+                    '#FFDE59',
+                    '#FF3131'
+                ]
+            }]
+        },
+    });
+
+    function listar_Uvas() {
+        fetch("/uva/listar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                fkEmpresaServer: fkEmpresa
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    for (let x in json) {
+                        lista_uvas.push(json[x].nomeUva)
+                        selectUva.innerHTML += `<option value="${json[x].nomeUva}">${json[x].nomeUva}</option>`;
+                    }
+                });
+            } else {
+                console.log("Houve um erro ao tentar consultar as uvas");
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+        return false;
+    }
+
+    function listar_estufas() {
+        areaCardsPequenos.innerHTML = ''
+        grafico_deitado.data.datasets[0].data = []
+        grafico_deitado.data.datasets[1].data = []
+        grafico_deitado.data.datasets[2].data = []
+
+        grafico_rosca.data.datasets[0].data = []
+
+        grafico_deitado.update()
+        grafico_rosca.update()
+
+        fetch("/estufa/listar_plant", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                fkEmpresaServer: fkEmpresa
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    filtrar_com_acao(status_botao, json)
+                });
+            } else {
+                console.log("Houve um erro ao tentar consultar as plantações");
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function listar_platacoes() {
+        fetch("/plantacao/listar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                fkEmpresaServer: fkEmpresa
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(json => {
+                    console.log(JSON.stringify(json))
+                    for (let x in json) {
+                        lista_platacoes.push(json[x].nomePlantacao)
+                        selectPlant.innerHTML += `<option id='${json[x].nomePlantacao}'>${json[x].nomePlantacao}</option>`;
+                    }
+                });
+            } else {
+                console.log("Houve um erro ao tentar consultar as plantações");
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    listar_estufas()
+
+    function verEstufa(idSensor) {
+        sessionStorage.ID_SENSOR = idSensor
+        window.location.href = "DashboardGraficosEstufas.html"
+    }
+
+    setInterval(() => {
+        listar_estufas()
+    }, 45000)
+
+    function alterarImagem() {
+        window.location = "DashboardImagem.html"
+    }
+</script>
