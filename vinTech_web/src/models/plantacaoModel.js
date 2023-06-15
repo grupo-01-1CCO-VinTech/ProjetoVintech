@@ -1,10 +1,9 @@
 var database = require("../database/config")
 
-function adicionar(fkEmpresa, nomePlant) {
+function adicionar(fkEmpresa, nomePlant, cidadePlant, ufPlant) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function adicionar():", fkEmpresa);
-    var instrucao =
-
-        `INSERT INTO Plantacao (nomePlantacao, fkEmpresa) VALUES ('${nomePlant}','${fkEmpresa}');`;
+    var instrucao = `
+        INSERT INTO Plantacao (nomePlantacao, cidadePlantacao, ufPlantacao, fkEmpresa) VALUES ('${nomePlant}','${cidadePlant}','${ufPlant}','${fkEmpresa}');`;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
@@ -20,65 +19,32 @@ function listar(id) {
 
 function consultar(id, nomePlant) {
     var instrucao = `
-    SELECT nomePlantacao, idPlantacao FROM Plantacao WHERE nomePlantacao = '${nomePlant}' AND fkEmpresa = ${id};
+    SELECT nomePlantacao, idPlantacao, cidadePlantacao, ufPlantacao FROM Plantacao WHERE nomePlantacao = '${nomePlant}' AND fkEmpresa = ${id};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
-function consultarDois(id){
-
+function alterar(id, fkEmpresa, nomePlant, cidadePlant, ufPlant) {
+    var instrucao = `
+    update plantacao set nomePlantacao = '${nomePlant}', cidadePlantacao = '${cidadePlant}', ufPlantacao = '${ufPlant}' where idPlantacao = ${id} and fkEmpresa = ${fkEmpresa}
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
 }
 
-function deletar(id, nomePlant) {
-    var estufa = undefined
+function excluir(id) {
     var instrucao = `
-        SELECT idPlantacao FROM Plantacao WHERE nomePlantacao = 'jundia' AND fkEmpresa = ${id};
+        delete from plantacao where idPlantacao = ${id};
     `;
-    var plantacao = database.executar(instrucao);
-    plantacao.then(
-        function (resultado) {
-            console.log(resultado)
-            if (resultado.length == 0) {
-                console.log('teste')
-                return new Promise(() => { return 0 })
-            }
-            instrucao = `
-                SELECT idEstufa FROM Estufa WHERE fkPlantacao = '${resultado[0].idPlantacao}';
-            `;
-            var estufas = database.executar(instrucao);
-            estufas.then(
-                function (resultado) {
-                    estufas.then(
-                        function (resultado) {
-                            estufa = resultado
-                            instrucao = `
-                                SELECT idSensor FROM Sensor WHERE fkEstufa = '${resultado[0].idEstufa}';
-                            `;
-
-                            var sensores = database.executar(instrucao);
-
-                            sensores.then(
-                                function (resultado) {
-                                    var instrucao = `DELETE FROM Registro WHERE fkSensor = (select fkSensor from sensor, registro where idSensor = ${resultado[0].idSensor}); DELETE FROM Sensor WHERE fkEstufa = (select fkEstufa from sensor, estufa where idEstufa = ${estufa[0].idEstufa}); DELETE FROM Estufa WHERE fkPlantacao = 1;DELETE FROM Plantacao WHERE idPlantacao = (select idPlantacao from plantacao where nomePlantacao = ${nomePlant});`
-                                    return database.executar(instrucao);
-                                }
-
-                            )
-
-                        }
-                    )
-
-                }
-            )
-        }
-    )
-    return new Promise(() => { return 0 })
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
 }
 
 module.exports = {
     adicionar,
     listar,
-    deletar,
-    consultar
+    alterar,
+    consultar,
+    excluir
 };

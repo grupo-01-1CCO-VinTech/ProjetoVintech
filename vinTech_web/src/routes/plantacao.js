@@ -13,7 +13,11 @@ router.post("/listar", function (req, res){
 router.post("/consultar", function(req, res){
     plantacaoController.consultar(req,res);
 })
-router.post("/deletar", function(req, res){
-    plantacaoController.deletar(req,res);
+router.post("/excluir", function(req, res){
+    plantacaoController.excluir(req,res);
 })
+router.post("/alterar", function(req, res){
+    plantacaoController.alterar(req,res);
+})
+
 module.exports = router;

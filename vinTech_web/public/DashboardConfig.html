@@ -148,8 +148,9 @@
                     <button onclick="encontrar_Plantacao()">Encontrar Plantação</button>
                     <h3>Editar Plantação</h3>
                     <p>Nome:<input type="text" id="iptEditNomePlantação"></p>
-                    <p>Cidade: <input type="text" id="iptCidadePlantacao"></p>
-                    <p>UF: <input type="text" id="iptUFPlantacao"></p>
+                    <p>Cidade: <input type="text" id="iptEditCidadePlantacao"></p>
+                    <p>UF: <input type="text" id="iptEditUFPlantacao"></p>
+                    <input type="text" id="iptIdPlantacao" style="display: none;">
 
                     <div class="linha-form" id="btns">
                         <button onclick="editar_Plantacao()">Editar Plantação</button>
@@ -290,9 +291,9 @@
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
                 nomePlantacaoServer: iptNomePlantacao.value,
+                cidadePlantacaoServer: iptCidadePlantacao.value,
+                ufPlantacaoServer: iptUFPlantacao.value,
                 fkEmpresaServer: fkEmpresa
             })
         }).then(function (resposta) {
@@ -308,6 +309,95 @@
             console.log(`#ERRO: ${resposta}`);
         });
         return false;
+    }
+
+    function encontrar_Plantacao() {
+        var nomePlantacao = iptEncontrarNomePlantacao.value
+        if (nomePlantacao == "") {
+            alert('Informe o nome da plantação que deseja consultar!')
+        } else {
+            fetch("/plantacao/consultar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    nomePlantacaoServer: nomePlantacao,
+                    fkEmpresaServer: fkEmpresa
+                })
+            }).then(function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then(json => {
+                        iptEditNomePlantação.value = json[0].nomePlantacao
+                        iptEditCidadePlantacao.value = json[0].cidadePlantacao
+                        iptEditUFPlantacao.value = json[0].ufPlantacao
+                        iptIdPlantacao.value = json[0].idPlantacao
+                    });
+                } else {
+                    throw ("Houve um erro ao tentar realizar a consulta!");
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+            return false;
+        }
+    }
+
+    function editar_Plantacao() {
+
+        let idPlantacao = iptIdPlantacao.value
+
+        if (idPlantacao == "") {
+            alert("Consulte uma plantacao antes de realizar uma alteração!")
+        } else {
+            fetch("/plantacao/alterar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    idPlantacaoServer: iptIdPlantacao.value,
+                    nomePlantacaoServer: iptEditNomePlantação.value,
+                    cidadePlantacaoServer: iptEditCidadePlantacao.value,
+                    ufPlantacaoServer: iptEditUFPlantacao.value,
+                    fkEmpresaServer: fkEmpresa
+                })
+            }).then(function (resposta) {
+                if (resposta.ok) {
+                    alert('Dados alterados com sucesso!')
+                } else {
+                    throw ("Houve um erro ao tentar alterar os dados!");
+                }
+            }).catch(function (erro) {
+                console.log(`#ERRO: ${erro}`);
+            });
+        }
+    }
+
+    function deletarPlantacao() {
+        let idPlantacao = iptIdPlantacao.value
+
+        if (idPlantacao == "") {
+            alert("Consulte uma plantacao antes de realizar uma exclusão!")
+        } else {
+            fetch("/plantacao/excluir", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    idPlantacaoServer: iptIdPlantacao.value
+                })
+            }).then(function (resposta) {
+                if (resposta.ok) {
+                    alert('Dados excluidos com sucesso!')
+                } else {
+                    throw ("Houve um erro ao tentar excluir os dados!");
+                }
+            }).catch(function (erro) {
+                console.log(`#ERRO: ${erro}`);
+            });
+        }
     }
 
     function adicionar_Usuario() {
