@@ -36,7 +36,7 @@ CREATE TABLE Plantacao (
 	cidadePlantacao varchar(50),
 	ufPlantacao char(2),
 	fkEmpresa INT,
-	FOREIGN KEY (fkEmpresa) REFERENCES Empresa (idEmpresa)
+	FOREIGN KEY (fkEmpresa) REFERENCES Empresa (idEmpresa) ON DELETE CASCADE
 );
 
 CREATE TABLE Uva (
@@ -54,7 +54,7 @@ CREATE TABLE Estufa (
 	areaEstufa INT,
 	fkPlantacao INT,
 	fkUva INT,
-	FOREIGN KEY (fkPlantacao) REFERENCES Plantacao (idPlantacao),
+	FOREIGN KEY (fkPlantacao) REFERENCES Plantacao (idPlantacao) ON DELETE CASCADE,
 	FOREIGN KEY (fkUva) REFERENCES Uva (idUva)
 );
 
@@ -62,7 +62,7 @@ CREATE TABLE Sensor (
 	idSensor INT PRIMARY KEY AUTO_INCREMENT,
 	localSensor VARCHAR(45),
 	fkEstufa INT,
-	FOREIGN KEY (fkEstufa) REFERENCES Estufa (idEstufa)
+	FOREIGN KEY (fkEstufa) REFERENCES Estufa (idEstufa) ON DELETE CASCADE
 );
 
 CREATE TABLE Registro (
@@ -71,7 +71,7 @@ CREATE TABLE Registro (
 	umidadeRegistro DECIMAL(4,2),
 	dataRegistro DATETIME,
 	fkSensor INT,
-	FOREIGN KEY (fkSensor) REFERENCES Sensor (idSensor)
+	FOREIGN KEY (fkSensor) REFERENCES Sensor (idSensor) ON DELETE CASCADE
 );
 			
 -- select nomeEstufa, idSensor, umidadeRegistro, temperaturaRegistro, nomeUva, tempMax, tempMin, umidMax, umidMin
