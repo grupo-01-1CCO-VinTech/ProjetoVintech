@@ -11,4 +11,12 @@ router.post("/listar_plant", function (req, res) {
     estufaController.listar(req,res)
 })
 
+router.post("/consultar", function(req,res){
+    estufaController.consultar(req,res)
+})
+
+router.post("/alterar", function(req, res){
+    estufaController.alterar(req, res)
+})
+
 module.exports = router;

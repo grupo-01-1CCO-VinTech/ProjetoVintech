@@ -191,47 +191,48 @@
                     <h1>Editar ou remover Estufas</h1>
 
                     <h3>Encontrar Estufa</h3>
-                        <p>Por Nome: <br>
-                            <input type="text" id="iptEncontrarNomeEstufa">
-                        </p>
-                    <button onclick="encontrar_Estufa()">Encontrar Estufa</button>
+                    <p>Por Nome: <br>
+                        <input type="text" id="iptEncontrarNomeEstufa">
+                    </p>
+                    <button onclick="consultar_Estufa()">Encontrar Estufa</button>
                     <!-- <p>Por Localização: <input type="text" id="iptLocalizacaoPlantacao"></p> -->
-                        <p> Nome:
-                            <input type="text" id="iptEditNomeEstufa">
-                        </p>
-                        <p>Tipo de Uva:
-                            <select id="iptEditUvaEstufa">
-                                <option value="0"></option>
-                            </select>
-                        </p>
-                        <p>Tamanho da Estufa: <br> <input type="text" id="iptEditTamanhoEstufa"></p>
+                    <p> Nome:
+                        <input type="text" id="iptEditNomeEstufa">
+                        <input type="text" id="iptEditIdEstufa" style="display: none;">
+                    </p>
+                    <p>Tipo de Uva:
+                        <select id="iptEditUvaEstufa">
+                            <option value="0"></option>
+                        </select>
+                    </p>
+                    <p>Tamanho da Estufa: <br> <input type="text" id="iptEditTamanhoEstufa"></p>
                     <div class="linha-form" id="btns">
-                    <button onclick="editar_Estufa()">Editar Estufa</button>
-                    <button onclick="deletarPlantacao()">Deletar Plantação</button>
+                        <button onclick="editar_Estufa()">Editar Estufa</button>
+                        <button onclick="deletarPlantacao()">Deletar Plantação</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-        <div class="container-direita">
-            <div class="container-usuario">
-                <img src="" alt="" id="imagemCfg">
-                <p id="nomeAdm"></p>
-                <p id="emailAdm"></p>
-            </div>
-            <div class="container-contato">
-                <h1>Informações</h1>
-                <div id="empresaAdm" class="linha-infoAdm"><span class="spanDivContato">Empresa:</span></div>
-                <div id="cargoAdm" class="linha-infoAdm"><span class="spanDivContato">Cargo:</span></div>
-                <p>
-            </div>
-            <div class="container-botoes">
-                <button onclick="apagarDivs('formUsuario')" class="config">Configurar Usuários</button>
-                <button onclick="apagarDivs('formPlantacao')" class="config">Configurar Plantação</button>
-                <button onclick="apagarDivs('formEstufa')" class="config">Configurar Estufa</button>
-            </div>
-
+    <div class="container-direita">
+        <div class="container-usuario">
+            <img src="" alt="" id="imagemCfg">
+            <p id="nomeAdm"></p>
+            <p id="emailAdm"></p>
         </div>
+        <div class="container-contato">
+            <h1>Informações</h1>
+            <div id="empresaAdm" class="linha-infoAdm"><span class="spanDivContato">Empresa:</span></div>
+            <div id="cargoAdm" class="linha-infoAdm"><span class="spanDivContato">Cargo:</span></div>
+            <p>
+        </div>
+        <div class="container-botoes">
+            <button onclick="apagarDivs('formUsuario')" class="config">Configurar Usuários</button>
+            <button onclick="apagarDivs('formPlantacao')" class="config">Configurar Plantação</button>
+            <button onclick="apagarDivs('formEstufa')" class="config">Configurar Estufa</button>
+        </div>
+
+    </div>
     </div>
 </body>
 
@@ -245,8 +246,8 @@
     var fkChefe = sessionStorage.ID_CHEFE;
     var imagemAdm = sessionStorage.IMAGEM_USUARIO;
     var nomeEmpresa = sessionStorage.NOME_EMPRESA;
-    
-    empresaAdm.innerHTML += `${nomeEmpresa}` 
+
+    empresaAdm.innerHTML += `${nomeEmpresa}`
 
     imagemUsuario.src = imagemAdm;
     imagemCfg.src = imagemAdm;
@@ -495,9 +496,7 @@
         return false;
     }
 
-    //<p>Em qual plantação você deseja cadastrar esta estufa?<input type="text" id="iptAddPlantacaoEstufa"></p>
-    //<p>Tipo de Uva: <input type="text" id="iptAddUvaEstufa"></p>
-    //<p>Tamanho da Estufa <input type="text" id="iptAddTamanhoEstufa"></p>
+    // Estufa
     function adicionar_Estufa() {
         if (iptAddUvaEstufa.value == 0) {
             adicionar_Uva()
@@ -508,8 +507,6 @@
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    // crie um atributo que recebe o valor recuperado aqui
-                    // Agora vá para o arquivo routes/usuario.js
                     nomeEstufa: iptAddNomeEstufa.value,
                     idPlantacao: iptAddPlantacaoEstufa.value,
                     tipoUva: iptAddUvaEstufa.value,
@@ -529,6 +526,69 @@
         }
     }
 
+    function consultar_Estufa() {
+        var nomeEstufa = iptEncontrarNomeEstufa.value
+        if (nomeEstufa == "") {
+            alert("Informe corretamente o nome da estufa antes de realizar a consulta!")
+        }
+        else {
+            fetch("/estufa/consultar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    nomeEstufaServer: nomeEstufa
+                })
+            }).then(function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then(json => {
+                        iptEditNomeEstufa.value = json[0].nomeEstufa
+                        iptEditUvaEstufa.value = json[0].nomeUva
+                        iptEditTamanhoEstufa.value = json[0].areaEstufa
+                        iptEditIdEstufa.value = json[0].idEstufa
+                    });
+                } else {
+                    throw ("Houve um erro ao tentar realizar a consulta!");
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+            return false;
+        }
+    }
+
+    function editar_Estufa() {
+        let nomeEstufa = iptEditNomeEstufa.value
+        let nomeUva = iptEditUvaEstufa.value
+        let areaEstufa = iptEditTamanhoEstufa.value
+        let idEstufa = iptEditIdEstufa.value
+
+        if(idEstufa == "" || nomeEstufa == ""){
+            alert("Consulte uma estufa antes de realizar uma alteração!")
+        }else{
+            fetch("/estufa/alterar",{
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    nomeEstufaServer: nomeEstufa,
+                    nomeUvaServer: nomeUva,
+                    areaEstufaServer: areaEstufa,
+                    idEstufaServer: idEstufa
+                })
+            }).then(function(resposta){
+                if(resposta.ok){
+                    alert('Dados alterados com sucesso!')
+                }else {
+                    throw ("Houve um erro ao tentar alterar os dados!");
+                }
+            }).catch(function (erro) {
+                console.log(`#ERRO: ${erro}`);
+            });
+        }
+    }
     function listar_platacoes() {
         fetch("/plantacao/listar", {
             method: "POST",
@@ -567,7 +627,7 @@
                             listaEstufasString.push(`${json[x].nomeEstufa}`)
                             stringEstufa = ``
                             ultima = json[x].idPlantacao
-                            nomeUltima = json[x -1].nomePlantacao
+                            nomeUltima = json[x - 1].nomePlantacao
 
                         }
                         else {
